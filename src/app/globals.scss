@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Riviera';
+  src: url('../../public/font/rivieraNight/RivieraNights-Bold.woff') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Riviera';
+  src: url('../../public/font/rivieraNight/RivieraNights-Light.woff') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Riviera';
+  src: url('../../public/font/rivieraNight/RivieraNights-Medium.woff') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Riviera';
+  src: url('../../public/font/rivieraNight/RivieraNights-Regular.woff') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('../../public/font/futura/FuturaLTPro-Bold2698190374575161979.92f5.f0b877bda89bd0a9ef6dc6430979813.woff2') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('../../public/font/futura/FuturaLTPro-Light.bad942be600a1b909942cb.dd75b7ebd4d8b78ba940560c9a5568f.woff2') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('../../public/font/futura/FuturaLTPro-Medium.6d46014eba66a33b0027f.35a2e0c77d11392949303dc39682d46.woff2') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('../../public/font/futura/FuturaLTPro-MediumOblique.7d7a1f6fb85780.85bd32cebcc4b42594cc704d96c8192.woff2') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+#root,
+html,
+body {
+	height: 100%;
+  cursor: none;
+}
+
+#main::-webkit-scrollbar {
+	display: none;
+}
+
+#main {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+}
+
+button {
+  cursor: none;
+}
+
+.title {
+  font-size: 10rem;
+  line-height: 46px;
+  font-weight: 300;
+  letter-spacing: .03571em;
+}
+
+.content {
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 300;
+  letter-spacing: .02571em;
+}
+
+.gradient-header {
+	background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8435749299719888) 100%);
+}
+
+/*#Home {
+	background: url(assets/images/4k_eiffel.webp) no-repeat center center fixed;
+	background-size: cover;
+}*/
+
+.arrow-transition {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.arrow-enter {
+  opacity: 0;
+  transform: translateX(-10px); // ou une autre valeur selon votre design
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.arrow-hover {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.next,
+.prev {
+  top: calc(50% - 20px);
+  position: absolute;
+  background: white;
+  border-radius: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.next {
+  right: 10px;
+}
+
+.prev {
+  left: 10px;
+  transform: scale(-1);
+}
+
+video {
+  position: absolute;
+  max-width: 100vw;
+}
+
+.refresh {
+  padding: 10px;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
