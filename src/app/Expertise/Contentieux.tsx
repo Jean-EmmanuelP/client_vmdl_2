@@ -9,24 +9,6 @@ export default function Contentieux() {
   const [textOpacity, setTextOpacity] = useState(0);
   const { langueCourante } = useSection();
   const { data } = useData();
-
-  if (!data) {
-    return null;
-  }
-
-  const langCodeMap: { [key in LangueCode]: string } = {
-    FR: 'fr',
-    EN: 'en',
-    IT: 'it',
-    ES: 'es',
-    عربي: 'عربي',
-    PT: 'pt',
-    DE: 'de',
-    中文: '中文'
-  };
-  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
-  const { title, content } = data[langCode].section_3.box_2;
-
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
@@ -69,6 +51,23 @@ export default function Contentieux() {
       }
     };
   }, [videoRef]);
+  if (!data) {
+    return null;
+  }
+
+  const langCodeMap: { [key in LangueCode]: string } = {
+    FR: 'fr',
+    EN: 'en',
+    IT: 'it',
+    ES: 'es',
+    عربي: 'عربي',
+    PT: 'pt',
+    DE: 'de',
+    中文: '中文'
+  };
+  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
+  const { title, content } = data[langCode].section_3.box_2;
+
   const formatContent = (content: string): string => {
     // Diviser le contenu à chaque point, puis rejoindre les éléments avec un '<br>' pour un saut de ligne HTML
     return content.split('.').filter(sentence => sentence.trim() !== '').join('.<br><br>') + '.';

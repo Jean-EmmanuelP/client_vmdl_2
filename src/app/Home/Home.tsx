@@ -7,11 +7,19 @@ import { LangueCode, useSection } from "../utils/Contextboard";
   
 export default function Home() {
   const { data } = useData();
+  const [languesVisibles, setLanguesVisibles] = useState(false);
+  const { langueCourante, setLangueCourante } = useSection();
+  const { currentSection } = useSection();
+  
+  useEffect(() => {
+    if (currentSection === 1) {
+
+    }
+  }, [currentSection])
   if (!data) {
     return;
   }
-  const [languesVisibles, setLanguesVisibles] = useState(false);
-  const { langueCourante, setLangueCourante } = useSection();
+
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: 'fr',
     EN: 'en',
@@ -24,7 +32,6 @@ export default function Home() {
   };
   const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title, subtitle, contact_button } = data[langCode].section_1;
-  const { currentSection } = useSection();
 
   const langues = ['FR', 'EN', 'IT', 'ES', 'عربي', 'PT', 'DE', '中文'];
   console.log(`cest la langueCourante:`, langueCourante);
@@ -44,11 +51,6 @@ export default function Home() {
     setLanguesVisibles(false);
   };
 
-  useEffect(() => {
-    if (currentSection === 1) {
-
-    }
-  }, [currentSection])
 
   return (
     <div

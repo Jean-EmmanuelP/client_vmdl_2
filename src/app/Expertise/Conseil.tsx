@@ -11,6 +11,7 @@ export default function Conseil() {
   const isMobile = windowWidth <= 768;
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [videoVisible, setVideoVisible] = useState(false);
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -70,18 +71,19 @@ export default function Conseil() {
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content } = data[langCode].section_3.box_1;
-  const [videoVisible, setVideoVisible] = useState(false);
-
-  
-
   const videoVariants = {
     hidden: { x: "50%" },
     visible: { x: "-110%" },
   };
   const formatContent = (content: string): string => {
     // Diviser le contenu à chaque point, puis rejoindre les éléments avec un '<br>' pour un saut de ligne HTML
-    return content.split('.').filter(sentence => sentence.trim() !== '').join('.<br><br>') + '.';
-  }
+    return (
+      content
+        .split(".")
+        .filter((sentence) => sentence.trim() !== "")
+        .join(".<br><br>") + "."
+    );
+  };
   const formattedContent = formatContent(content);
   return (
     <motion.div
@@ -93,7 +95,9 @@ export default function Conseil() {
       <div className={`relative hidden sm:block w-[30%] h-full`}>
         <video
           ref={videoRef}
-          className={`object-cover w-full h-full transition duration-75 ${!isPlaying && 'blur-lg'}`}
+          className={`object-cover w-full h-full transition duration-75 ${
+            !isPlaying && "blur-lg"
+          }`}
           onClick={togglePlay}
         >
           <source src="/videos/kaka.mp4" type="video/mp4" />
@@ -101,7 +105,9 @@ export default function Conseil() {
         {!isPlaying && (
           <button
             onClick={togglePlay}
-            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 ${isMobile ? '-mt-[64px]': '-mt-[50px]'} -translate-y-1/2 w-16 h-16 bg-white rounded-full flex justify-center items-center`}
+            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 ${
+              isMobile ? "-mt-[64px]" : "-mt-[50px]"
+            } -translate-y-1/2 w-16 h-16 bg-white rounded-full flex justify-center items-center`}
           >
             <svg viewBox="0 0 24 24" className="w-10 h-10 text-black">
               <path fill="currentColor" d="M8 5v14l11-7z" />
@@ -117,8 +123,13 @@ export default function Conseil() {
           <p className="text-[40px] sm:text-[60px] font-light uppercase">{title}</p>
         </div> */}
         <div className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[65%] -translate-y-1/2 flex flex-col gap-2 justify-center items-center">
-        <p className="text-[40px] sm:text-[60px] font-light uppercase">{title}</p>
-        <p className="text-[20px] sm:text-[24px] sm:content" dangerouslySetInnerHTML={{ __html: formattedContent }}></p>
+          <p className="text-[40px] sm:text-[60px] font-light uppercase">
+            {title}
+          </p>
+          <p
+            className="text-[20px] sm:text-[24px] sm:content"
+            dangerouslySetInnerHTML={{ __html: formattedContent }}
+          ></p>
         </div>
       </div>
       {isMobile && (

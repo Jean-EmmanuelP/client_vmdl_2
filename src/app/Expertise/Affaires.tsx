@@ -19,6 +19,32 @@ export default function Affaires() {
   ]);
   const { data } = useData();
   const { langueCourante } = useSection();
+  useEffect(() => {
+    if (autoScroll) {
+      const timer = setTimeout(() => {
+        setAutoScroll(false);
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [autoScroll]);
+
+  useEffect(() => {
+    for (const vid of videos) {
+      if (vid.idx === -1) {
+        console.log("SWAP");
+        setAutoScroll(true);
+
+        console.log("old: ", videos);
+        const newVideos = videos.map((video) => {
+          video.idx = video.idx + 1;
+          return video;
+        });
+        console.log("new: ", newVideos);
+        setVideos(newVideos);
+      }
+    }
+  }, [videos]);
   if (!data) {
     return;
   }
@@ -34,6 +60,7 @@ export default function Affaires() {
   };
   const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title, content } = data[langCode].section_3.box_3;
+  
 
   const changeVideo = (direction: string) => {
     /*if (direction === "left") {
@@ -96,33 +123,6 @@ export default function Affaires() {
       event.currentTarget.play();
     }
   };
-
-  useEffect(() => {
-    if (autoScroll) {
-      const timer = setTimeout(() => {
-        setAutoScroll(false);
-      }, 500);
-
-      return () => clearTimeout(timer);
-    }
-  }, [autoScroll]);
-
-  useEffect(() => {
-    for (const vid of videos) {
-      if (vid.idx === -1) {
-        console.log("SWAP");
-        setAutoScroll(true);
-
-        console.log("old: ", videos);
-        const newVideos = videos.map((video) => {
-          video.idx = video.idx + 1;
-          return video;
-        });
-        console.log("new: ", newVideos);
-        setVideos(newVideos);
-      }
-    }
-  }, [videos]);
 
   return (
     <motion.div

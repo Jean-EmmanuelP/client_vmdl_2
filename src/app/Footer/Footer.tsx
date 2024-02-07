@@ -9,10 +9,10 @@ import { useData } from "../utils/DataContext";
 export default function Footer() {
   const { setCurrentSection, setHeaderHeight } = useSection();
   const { data } = useData();
+  const { langueCourante } = useSection();
   if (!data) {
     return;
   }
-  const { langueCourante } = useSection();
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: 'fr',
     EN: 'en',
