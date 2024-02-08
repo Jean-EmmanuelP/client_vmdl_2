@@ -1,37 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Cabinet from "./Cabinet/Cabinet";
-import Contact from "./Contact/Contact";
-import Expertise from "./Expertise/Expertise";
-import Fondateur from "./Fondateur/Fondateur";
-import Footer from "./Footer/Footer";
-import Home from "./Home/Home";
-import Vision from "./Vision/Vision";
-import Header from "./Components/Header";
+import dynamic from "next/dynamic";
 import { LangueCode, currentSectionContext, expertiseContext } from "./utils/Contextboard";
 import { DataProvider } from './utils/DataContext';
-import BackgroundEiffel from "./Components/BackgroundEiffel";
-import dynamic from "next/dynamic";
 
-const CustomCursor = dynamic(() => import("./Components/Cursor"), {
-  ssr: false,
-
-});
+// Import dynamique des composants avec ssr désactivé
+const Cabinet = dynamic(() => import("./Cabinet/Cabinet"), { ssr: false });
+const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
+const Expertise = dynamic(() => import("./Expertise/Expertise"), { ssr: false });
+const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), { ssr: false });
+const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
+const Home = dynamic(() => import("./Home/Home"), { ssr: false });
+const Vision = dynamic(() => import("./Vision/Vision"), { ssr: false });
+const Header = dynamic(() => import("./Components/Header"), { ssr: false });
+const BackgroundEiffel = dynamic(() => import("./Components/BackgroundEiffel"), { ssr: false });
+const CustomCursor = dynamic(() => import("./Components/Cursor"), { ssr: false });
 
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // 768px est généralement la largeur max pour les appareils mobiles en mode portrait
+      // S'assurer que `window` est utilisé uniquement côté client
+      if (typeof window !== "undefined") {
+        setIsMobile(window.innerWidth <= 768);
+      }
     };
 
-    // Vérifier une fois et ensuite ajouter un écouteur d'événement pour les changements de taille
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
 
-    // Nettoyer l'écouteur d'événement lors du démontage du composant
     return () => {
       window.removeEventListener('resize', checkIfMobile);
     };
@@ -66,6 +65,7 @@ export default function App() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (typeof window !== "undefined") {
       if (
         [
           "Tab",
@@ -79,6 +79,7 @@ export default function App() {
       ) {
         event.preventDefault();
       }
+    }
     };
     window.addEventListener("keydown", handleKeyDown);
 
