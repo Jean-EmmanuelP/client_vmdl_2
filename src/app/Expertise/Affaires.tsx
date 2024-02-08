@@ -4,21 +4,50 @@ import { PanInfo, motion } from "framer-motion";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { BiSolidLeftArrow } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
 
 const videoPosition = [-window.innerWidth, 0, window.innerWidth];
+interface Video {
+  src: string;
+  idx: number;
+  side: "left" | "right";
+}
 
 export default function Affaires() {
   const { subExpertise } = useExpertise();
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
-  const [videos, setVideos] = useState([
+  const [videos, setVideos] = useState<Video[]>([
     { src: "/videos/qatar.mp4", idx: 1, side: "right" },
     { src: "/videos/dubai.mp4", idx: 2, side: "right" },
     { src: "/videos/rio_de_janeiro.mp4", idx: 0, side: "right" },
   ]);
   const { data } = useData();
   const { langueCourante } = useSection();
+  const videoRefs = useRef<HTMLVideoElement[]>([]);
+
+  // Intersection Observer pour jouer/pauser les vidéos basées sur la visibilité
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            video.play().catch((error) => {
+              console.error("Error trying to play the video: ", error);
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    videoRefs.current.forEach((video) => video && observer.observe(video));
+
+    return () => videoRefs.current.forEach((video) => video && observer.unobserve(video));
+  }, [videos]);
   useEffect(() => {
     if (autoScroll) {
       const timer = setTimeout(() => {
@@ -49,18 +78,18 @@ export default function Affaires() {
     return;
   }
   const langCodeMap: { [key in LangueCode]: string } = {
-    FR: 'fr',
-    EN: 'en',
-    IT: 'it',
-    ES: 'es',
-    عربي: 'عربي',
-    PT: 'pt',
-    DE: 'de',
-	中文: '中文'
+    FR: "fr",
+    EN: "en",
+    IT: "it",
+    ES: "es",
+    عربي: "عربي",
+    PT: "pt",
+    DE: "de",
+    中文: "中文",
   };
-  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
+  const langCode =
+    langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content } = data[langCode].section_3.box_3;
-  
 
   const changeVideo = (direction: string) => {
     /*if (direction === "left") {

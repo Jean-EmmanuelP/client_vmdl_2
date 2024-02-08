@@ -182,7 +182,6 @@ export default function CMS() {
           value={newValue}
           onChange={handleChange}
         />
-
         <button
           onClick={handleSubmit}
           className="cursor-pointer transition duration-150 hover:scale-105 rounded-md p-2 shadow-md text-xs sm:text-base bg-black text-white font-bold hover:text-green-500"
