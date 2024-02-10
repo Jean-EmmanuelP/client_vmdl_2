@@ -8,6 +8,7 @@ type LanguageKeys = keyof JsonDataType;
 type SectionKeys = keyof JsonDataType[LanguageKeys];
 type SubSectionKeys = string | null;
 type ElementKeys = string | null;
+type SubSubSectionKeys = string | null;
 
 export default function CMS() {
   const [language, setLanguage] = useState<LanguageKeys>("fr");
@@ -15,8 +16,12 @@ export default function CMS() {
   const [selectedSection, setSelectedSection] = useState<SectionKeys>("header");
   const [selectedSubSection, setSelectedSubSection] =
     useState<SubSectionKeys>(null);
+  const [newTitle, setNewTitle] = useState<string>("");
+  const [newContent, setNewContent] = useState<string>("");
   const [selectedElement, setSelectedElement] = useState<ElementKeys>(null);
   const [newValue, setNewValue] = useState<string>("");
+  const [selectedSubSubSection, setSelectedSubSubSection] = useState<SubSubSectionKeys>(null);
+  const [titleOrContent, setTitleOrContent] = useState<"title" | "content">("title");
 
   useEffect(() => {
     updateSubSections(selectedSection);
@@ -37,8 +42,10 @@ export default function CMS() {
     if (subSectionData && typeof subSectionData === "object") {
       const firstElementKey = getFirstKey(subSectionData);
       setSelectedElement(firstElementKey);
+      setSelectedSubSubSection(firstElementKey); // Nouvelle ligne pour gérer la sous-sous-section
     } else {
       setSelectedElement(null);
+      setSelectedSubSubSection(null); // Nouvelle ligne pour gérer la sous-sous-section
     }
   };
 
@@ -66,49 +73,54 @@ export default function CMS() {
 
   const handleSubmit = async () => {
     const updatedJsonData = { ...jsonData };
-    if (selectedElement && selectedSubSection) {
-      (
-        (updatedJsonData[language][selectedSection] as any)[
-          selectedSubSection
-        ] as any
-      )[selectedElement] = newValue;
+    
+    // Si une sous-sous-section est sélectionnée, mettez à jour son titre et son contenu
+    if (selectedElement && selectedSubSection && selectedSubSubSection) {
+      // Accédez à la sous-sous-section et mettez à jour ses propriétés
+      const subSectionData = (updatedJsonData[language][selectedSection] as any)[selectedSubSection];
+      if (subSectionData && typeof subSectionData === "object" && subSectionData[selectedSubSubSection]) {
+        subSectionData[selectedSubSubSection].title = newTitle;
+        subSectionData[selectedSubSubSection].content = newContent;
+      }
+    // Sinon, si seulement une sous-section est sélectionnée, mettez à jour sa valeur
+    } else if (selectedElement && selectedSubSection) {
+      ((updatedJsonData[language][selectedSection] as any)[selectedSubSection] as any)[selectedElement] = newValue;
     } else if (selectedSubSection) {
-      (updatedJsonData[language][selectedSection] as any)[selectedSubSection] =
-        newValue;
+      (updatedJsonData[language][selectedSection] as any)[selectedSubSection] = newValue;
     }
+  
     setJsonData(updatedJsonData);
-
-    console.log(
-      `this is the jsonData sended to the save-content route:`,
-      updatedJsonData
-    );
+  
+    // Ici, vous pouvez conserver le code pour la sauvegarde des données comme il est
+    console.log(`this is the jsonData sent to the save-content route:`, updatedJsonData);
     try {
       const response = await fetch("/api/save-content", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(jsonData),
+        body: JSON.stringify(updatedJsonData), // Assurez-vous d'envoyer les données mises à jour
       });
-
+  
       if (!response.ok) {
         throw new Error("Network response was not ok.");
       }
-
+  
       alert("Données sauvegardées !");
     } catch (error) {
       console.error("Erreur lors de la sauvegarde des données", error);
     }
   };
+  
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value as LanguageKeys);
   };
 
   return (
     <div className="cursor-default bg-blanc bg-cover w-full h-full flex justify-center items-center">
-      <div className="backdrop-blur-xl bg-cyan-500/20 flex flex-col justify-center gap-10 p-10 w-1/3 h-1/2 rounded-md shadow-2xl">
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 sm:font-bold sm:text-2xl text-center">
-          CMS
+      <div className="backdrop-blur-xl bg-cyan-500/20 flex flex-col justify-center gap-10 p-10 w-fit h-fit rounded-md shadow-2xl">
+        <div className="p-2 font-bold underline">
+          Content Management System
         </div>
         <select
           value={language}
@@ -152,7 +164,7 @@ export default function CMS() {
         {selectedElement &&
           selectedSubSection &&
           typeof (jsonData.fr[selectedSection] as any)[selectedSubSection] ===
-            "object" && (
+          "object" && (
             <select
               className="p-2 rounded-md"
               value={selectedElement || undefined}
@@ -171,6 +183,21 @@ export default function CMS() {
               ))}
             </select>
           )}
+        {selectedSubSubSection && (
+          <>
+            <input
+              type="text"
+              placeholder="Title"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+            />
+            <textarea
+              placeholder="Content"
+              value={newContent}
+              onChange={(e) => setNewContent(e.target.value)}
+            />
+          </>
+        )}
 
         <input
           type="text"
@@ -187,4 +214,6 @@ export default function CMS() {
       </div>
     </div>
   );
+
+
 }
