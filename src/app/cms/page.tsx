@@ -10,7 +10,7 @@ type SubSectionKeys = string | null;
 type ElementKeys = string | null;
 
 export default function CMS() {
-  const [language, setLanguage] = useState<LanguageKeys>("fr"); // État pour la langue sélectionnée
+  const [language, setLanguage] = useState<LanguageKeys>("fr");
   const [jsonData, setJsonData] = useState<JsonDataType>(contentData);
   const [selectedSection, setSelectedSection] = useState<SectionKeys>("header");
   const [selectedSubSection, setSelectedSubSection] =
@@ -20,10 +20,10 @@ export default function CMS() {
 
   useEffect(() => {
     updateSubSections(selectedSection);
-  }, [selectedSection, language]); // Ajouter 'language' comme dépendance
+  }, [selectedSection, language]);
 
   const updateSubSections = (section: SectionKeys) => {
-    const sectionData = jsonData[language][section]; // Utiliser 'language' pour accéder aux données
+    const sectionData = jsonData[language][section];
     const firstSubSectionKey =
       typeof sectionData === "object" ? getFirstKey(sectionData) : null;
     setSelectedSubSection(firstSubSectionKey);
@@ -33,7 +33,7 @@ export default function CMS() {
   const updateElements = (section: SectionKeys, subSection: SubSectionKeys) => {
     const subSectionData = subSection
       ? (jsonData[language][section] as any)[subSection]
-      : null; // Utiliser 'language'
+      : null;
     if (subSectionData && typeof subSectionData === "object") {
       const firstElementKey = getFirstKey(subSectionData);
       setSelectedElement(firstElementKey);
@@ -67,7 +67,6 @@ export default function CMS() {
   const handleSubmit = async () => {
     const updatedJsonData = { ...jsonData };
     if (selectedElement && selectedSubSection) {
-      // Utilisation de 'as any' pour accéder dynamiquement aux propriétés de l'objet
       (
         (updatedJsonData[language][selectedSection] as any)[
           selectedSubSection
@@ -84,7 +83,6 @@ export default function CMS() {
       updatedJsonData
     );
     try {
-      // Envoi des données au serveur, regler ce probleme, faire le save-content
       const response = await fetch("/api/save-content", {
         method: "POST",
         headers: {
@@ -97,11 +95,9 @@ export default function CMS() {
         throw new Error("Network response was not ok.");
       }
 
-      // Gérer la réponse de succès ici...
       alert("Données sauvegardées !");
     } catch (error) {
       console.error("Erreur lors de la sauvegarde des données", error);
-      // Gérer l'erreur ici...
     }
   };
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

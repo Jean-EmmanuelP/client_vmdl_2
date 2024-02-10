@@ -104,7 +104,7 @@ export default function Affaires() {
   };
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
-  const { title, content } = data[langCode].section_3.box_3;
+  const { qatar, rio, dubai } = data[langCode].section_3.box_3;
 
   const changeVideo = (direction: string) => {
     if (!autoScroll) {
@@ -153,6 +153,18 @@ export default function Affaires() {
       >
         {videos &&
           videos.map((video, index) => {
+            let title, content;
+            // Déterminer le titre et le contenu en fonction de la source de la vidéo
+            if (video.src.includes('qatar')) {
+              title = qatar.title;
+              content = qatar.content;
+            } else if (video.src.includes('dubai')) {
+              title = dubai.title;
+              content = dubai.content;
+            } else if (video.src.includes('rio')) {
+              title = rio.title;
+              content = rio.content;
+            }
             return (
               <motion.button
                 initial={{ x: videoPosition[index] + "px" }}
@@ -181,10 +193,10 @@ export default function Affaires() {
                 ></video>
                 <div className="text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-2 sm:p-4 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center">
                   <p>
-                  {title}
+                    {title}
                   </p>
                   <p>
-                  {content}
+                    {content}
                   </p>
                 </div>
               </motion.button>
