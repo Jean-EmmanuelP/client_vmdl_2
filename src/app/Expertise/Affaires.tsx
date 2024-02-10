@@ -81,12 +81,10 @@ export default function Affaires() {
         console.log("SWAP");
         setAutoScroll(true);
 
-        console.log("old: ", videos);
         const newVideos = videos.map((video) => {
           video.idx = video.idx + 1;
           return video;
         });
-        console.log("new: ", newVideos);
         setVideos(newVideos);
       }
     }
@@ -143,7 +141,7 @@ export default function Affaires() {
       animate={{ x: subExpertise === "affaires" ? "100vw" : "200vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className="absolute w-full h-full flex justify-center items-center text-blanc z-1 bg-blanc"
+      className="relative w-full h-full flex justify-center items-center text-blanc z-1 bg-blanc"
     >
       <motion.div
         drag={autoScroll ? false : "x"}
@@ -152,10 +150,6 @@ export default function Affaires() {
         dragConstraints={{ left: 0, right: 0 }}
         className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc"
         initial={{ x: 0 }}
-        transition={{
-          duration: subExpertise === "affaires" ? (autoScroll ? 0.5 : 0) : 0.5,
-        }}
-        onClick={() => console.log("PARENT CLICKED")}
       >
         {videos &&
           videos.map((video, index) => {
@@ -164,7 +158,6 @@ export default function Affaires() {
                 initial={{ x: videoPosition[index] + "px" }}
                 animate={{ x: videoPosition[video.idx] + "px" }}
                 transition={{ duration: .5 }}
-                style={{ y: "-50vh" }}
                 key={video.src}
                 className={`absolute w-1/3 h-full text-4xl ${video.side === "right"
                   ? video.idx === 2
@@ -176,7 +169,7 @@ export default function Affaires() {
                   }`}
               >
                 <video
-                  className="absolute flex justify-center items-center object-cover h-full w-full"
+                  className="absolute flex justify-center items-center object-cover h-full w-full -translate-y-1/2"
                   ref={(el) => {
                     if (el) {
                       videoRefs.current[index] = el;
@@ -186,6 +179,14 @@ export default function Affaires() {
                   muted
                   onEnded={(e) => handleVideoEnd(e, video.idx)}
                 ></video>
+                <div className="text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-2 sm:p-4 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center">
+                  <p>
+                  {title}
+                  </p>
+                  <p>
+                  {content}
+                  </p>
+                </div>
               </motion.button>
             );
           })}
