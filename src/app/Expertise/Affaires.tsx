@@ -6,21 +6,37 @@ import { BiSolidRightArrow } from "react-icons/bi";
 import { BiSolidLeftArrow } from "react-icons/bi";
 import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
+import Paragraph from "../Components/Paragraph";
 
 const videoPosition = [-window.innerWidth, 0, window.innerWidth];
 interface Video {
   src: string;
   idx: number;
   side: "left" | "right";
+  title: string;
+  subtitle: string;
+  contact_button: string;
 }
 
 export default function Affaires() {
   const { subExpertise } = useExpertise();
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
   const [videos, setVideos] = useState<Video[]>([
-    { src: "/videos/qatar.mp4", idx: 1, side: "right" },
-    { src: "/videos/dubai.mp4", idx: 2, side: "right" },
-    { src: "/videos/rio_de_janeiro.mp4", idx: 0, side: "right" },
+    {
+      src: "/videos/qatar.mp4", idx: 1, side: "right", title: "Titre de la vidéo Qatar",
+      subtitle: "Sous-titre de la vidéo Qatar",
+      contact_button: "Contacter pour Qatar"
+    },
+    {
+      src: "/videos/dubai.mp4", idx: 2, side: "right", title: "Titre de la vidéo Dubai",
+      subtitle: "Sous-titre de la vidéo Dubai",
+      contact_button: "Contacter pour Dubai"
+    },
+    {
+      src: "/videos/rio_de_janeiro.mp4", idx: 0, side: "right", title: "Titre de la vidéo Rio",
+      subtitle: "Sous-titre de la vidéo Rio",
+      contact_button: "Contacter pour Rio"
+    },
   ]);
   const { data } = useData();
   const { langueCourante } = useSection();
@@ -43,6 +59,7 @@ export default function Affaires() {
       },
       { threshold: 0.5 }
     );
+    videoRefs.current = videoRefs.current.slice(0, videos.length); // Gardez les références synchronisées avec les vidéos actuelles
 
     videoRefs.current.forEach((video) => video && observer.observe(video));
 
@@ -92,54 +109,22 @@ export default function Affaires() {
   const { title, content } = data[langCode].section_3.box_3;
 
   const changeVideo = (direction: string) => {
-    /*if (direction === "left") {
-			console.log("left")
-			// Déplace le premier élément à la fin du tableau
-			setVideos(prev => [...prev.slice(1), prev[0]]);
-		} else {
-			// Déplace le dernier élément au début du tableau
-			console.log("left")
-			setVideos(prev => [prev[prev.length - 1], ...prev.slice(0, -1)]);
-		}*/
-
-    if (direction === "right" && !autoScroll) {
+    if (!autoScroll) {
       setAutoScroll(true);
-
-      const newVideos = videos.map((video) => {
-        video.idx = video.idx - 1 > -1 ? video.idx - 1 : 2;
-        video.side = "right";
-        return video;
-      });
+      let newVideos;
+      if (direction === "right") {
+        newVideos = videos.map((video) => {
+          const newIndex = video.idx - 1 >= 0 ? video.idx - 1 : videos.length - 1;
+          return { ...video, idx: newIndex, side: "right" as const };
+        });
+      } else {
+        newVideos = videos.map((video) => {
+          const newIndex = video.idx + 1 < videos.length ? video.idx + 1 : 0;
+          return { ...video, idx: newIndex, side: "left" as const };
+        });
+      }
       setVideos(newVideos);
-    } else if (direction === "left" && !autoScroll) {
-      setAutoScroll(true);
-
-      const newVideos = videos.map((video) => {
-        if (video.idx === 2) video.idx = -1;
-        video.side = "left";
-        return video;
-      });
-      setVideos(newVideos);
-    }
-  };
-
-  const handleEndDrag = (info: PanInfo) => {
-    if (info.offset.x < 0) {
-      setAutoScroll(true);
-
-      const newVideos = videos.map((video) => {
-        video.idx = video.idx - 1 > -1 ? video.idx - 1 : 2;
-        return video;
-      });
-      setVideos(newVideos);
-    } else {
-      setAutoScroll(true);
-
-      const newVideos = videos.map((video) => {
-        video.idx = video.idx + 1 < 3 ? video.idx + 1 : 0;
-        return video;
-      });
-      setVideos(newVideos);
+      setTimeout(() => setAutoScroll(false), 500);
     }
   };
 
@@ -164,7 +149,6 @@ export default function Affaires() {
         drag={autoScroll ? false : "x"}
         dragMomentum={false}
         dragElastic={0}
-        onDragEnd={(e, i) => {e; handleEndDrag(i)}}
         dragConstraints={{ left: 0, right: 0 }}
         className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc"
         initial={{ x: 0 }}
@@ -179,24 +163,26 @@ export default function Affaires() {
               <motion.button
                 initial={{ x: videoPosition[index] + "px" }}
                 animate={{ x: videoPosition[video.idx] + "px" }}
-                transition={{ duration: 1 }}
+                transition={{ duration: .5 }}
                 style={{ y: "-50vh" }}
                 key={video.src}
-                onClick={() => console.log(`${index} clicked`)}
-                className={`absolute w-1/3 h-full text-4xl ${
-                  video.side === "right"
-                    ? video.idx === 2
-                      ? "opacity-0"
-                      : ""
-                    : video.idx === -1
+                className={`absolute w-1/3 h-full text-4xl ${video.side === "right"
+                  ? video.idx === 2
                     ? "opacity-0"
                     : ""
-                }`}
+                  : video.idx === -1
+                    ? "opacity-0"
+                    : ""
+                  }`}
               >
                 <video
-                  className="justify-center items-center object-cover h-full w-full"
+                  className="absolute flex justify-center items-center object-cover h-full w-full"
+                  ref={(el) => {
+                    if (el) {
+                      videoRefs.current[index] = el;
+                    }
+                  }}
                   src={video.src}
-                  autoPlay
                   muted
                   onEnded={(e) => handleVideoEnd(e, video.idx)}
                 ></video>
@@ -204,22 +190,10 @@ export default function Affaires() {
             );
           })}
       </motion.div>
-
       <motion.button
         style={{ x: "-100vw" }}
         animate={{ scale: autoScroll ? 1 : 1.5 }}
-        transition={{ duration: 0.5 }}
-        onClick={() => changeVideo("left")}
-        className="absolute left-[10%] text-3xl z-10 animation-spin"
-        data-clickable="true"
-      >
-        <BiSolidLeftArrow />
-      </motion.button>
-
-      <motion.button
-        style={{ x: "-100vw" }}
-        animate={{ scale: autoScroll ? 1 : 1.5 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.1 }}
         onClick={() => changeVideo("right")}
         className="absolute right-[10%] text-3xl z-10 animation-spin"
         data-clickable="true"
