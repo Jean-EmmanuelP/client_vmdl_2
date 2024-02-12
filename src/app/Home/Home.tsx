@@ -28,7 +28,6 @@ export default function Home() {
     ];
 
     const browserLang = navigator.language.slice(0, 2).toUpperCase();
-
     const isLangueCode = (lang: any): lang is LangueCode =>
       supportedLangs.includes(lang);
 

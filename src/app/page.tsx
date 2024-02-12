@@ -2,33 +2,20 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import {
-  LangueCode,
-  currentSectionContext,
-  expertiseContext,
-} from "./utils/Contextboard";
-import { DataProvider } from "./utils/DataContext";
+import { LangueCode, currentSectionContext, expertiseContext } from "./utils/Contextboard";
+import { DataProvider } from './utils/DataContext';
 
 // Import dynamique des composants avec ssr désactivé
 const Cabinet = dynamic(() => import("./Cabinet/Cabinet"), { ssr: false });
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
-const Expertise = dynamic(() => import("./Expertise/Expertise"), {
-  ssr: false,
-});
-const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), {
-  ssr: false,
-});
+const Expertise = dynamic(() => import("./Expertise/Expertise"), { ssr: false });
+const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), { ssr: false });
 const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
 const Home = dynamic(() => import("./Home/Home"), { ssr: false });
 const Vision = dynamic(() => import("./Vision/Vision"), { ssr: false });
 const Header = dynamic(() => import("./Components/Header"), { ssr: false });
-const BackgroundEiffel = dynamic(
-  () => import("./Components/BackgroundEiffel"),
-  { ssr: false }
-);
-const CustomCursor = dynamic(() => import("./Components/Cursor"), {
-  ssr: false,
-});
+const BackgroundEiffel = dynamic(() => import("./Components/BackgroundEiffel"), { ssr: false });
+const CustomCursor = dynamic(() => import("./Components/Cursor"), { ssr: false });
 
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);
@@ -42,10 +29,10 @@ function useMobileDetect() {
     };
 
     checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
+    window.addEventListener('resize', checkIfMobile);
 
     return () => {
-      window.removeEventListener("resize", checkIfMobile);
+      window.removeEventListener('resize', checkIfMobile);
     };
   }, []);
 
@@ -56,9 +43,7 @@ export default function App() {
   const [isScrolling, setIsScrolling] = useState(false);
   const [currentSection, setCurrentSection] = useState<number>(0);
   const isMobile = useMobileDetect();
-  const [headerHeight, setHeaderHeight] = useState<"64px" | "128px" | "90px">(
-    "128px"
-  );
+  const [headerHeight, setHeaderHeight] = useState<"64px" | "128px" | "90px">("128px");
   const [langueCourante, setLangueCourante] = useState<LangueCode>("FR");
   const [subExpertise, setSubExpertise] = useState<
     "conseil" | "contentieux" | "affaires" | null
@@ -81,20 +66,20 @@ export default function App() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (typeof window !== "undefined") {
-        if (
-          [
-            "Tab",
-            "PageUp",
-            "PageDown",
-            "Arrow",
-            "ArrowLeft",
-            "ArrowUp",
-            "ArrowDown",
-          ].includes(event.code)
-        ) {
-          event.preventDefault();
-        }
+      if (
+        [
+          "Tab",
+          "PageUp",
+          "PageDown",
+          "Arrow",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowDown",
+        ].includes(event.code)
+      ) {
+        event.preventDefault();
       }
+    }
     };
     window.addEventListener("keydown", handleKeyDown);
 
@@ -117,46 +102,13 @@ export default function App() {
       if (timer) clearTimeout(timer);
     };
   }, [isScrolling]);
-  useEffect(() => {
-    let touchStartY = 0;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      const touchEndY = e.changedTouches[0].clientY;
-      const direction = touchStartY > touchEndY ? "down" : "up";
-
-      if (direction === "down" && currentSection < 6) {
-        setCurrentSection(currentSection + 1);
-        setIsScrolling(true);
-      } else if (direction === "up" && currentSection > 0) {
-        setCurrentSection(currentSection - 1);
-        setIsScrolling(true);
-      }
-    };
-
-    const mainDiv = document.getElementById("main");
-    if (mainDiv) {
-      mainDiv.addEventListener("touchstart", handleTouchStart, {
-        passive: true,
-      });
-      mainDiv.addEventListener("touchend", handleTouchEnd, { passive: true });
-
-      return () => {
-        mainDiv.removeEventListener("touchstart", handleTouchStart);
-        mainDiv.removeEventListener("touchend", handleTouchEnd);
-      };
-    }
-  }, [currentSection, isScrolling]);
 
   useEffect(() => {
     const handleScroll = (direction: string) => {
       if (isScrolling) return;
-
+    
       const mainDiv = document.getElementById("main");
-
+    
       if (mainDiv) {
         if (direction === "down") {
           if (currentSection < 6) {
@@ -210,49 +162,49 @@ export default function App() {
       console.log(`Here is the response data`, data);
     }
     fetchData();
-  }, []);
+  }, [])
 
   useEffect(() => {
-    const newHeaderHeight =
-      currentSection === 0 ? (!isMobile ? "128px" : "90px") : "64px";
+    const newHeaderHeight = currentSection === 0 ? (!isMobile ? "128px" : "90px") : "64px";
     setHeaderHeight(newHeaderHeight);
   }, [currentSection, isMobile]);
 
   return (
+    
     <DataProvider>
-      <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
-        <CustomCursor />
-        <currentSectionContext.Provider
-          value={{
-            langueCourante,
-            setLangueCourante,
-            currentSection,
-            setCurrentSection,
-            headerHeight,
-            setHeaderHeight,
-          }}
-        >
-          <expertiseContext.Provider value={{ subExpertise, setSubExpertise }}>
-            <Header height={headerHeight} />
+    <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
+      <CustomCursor />
+      <currentSectionContext.Provider
+        value={{
+          langueCourante,
+          setLangueCourante,
+          currentSection,
+          setCurrentSection,
+          headerHeight,
+          setHeaderHeight,
+        }}
+      >
+        <expertiseContext.Provider value={{ subExpertise, setSubExpertise }}>
+          <Header height={headerHeight} />
 
-            <div
-              id="main"
-              style={{ height: mainHeight }}
-              className="w-full z-1 overflow-y-auto overflow-x-hidden"
-            >
-              <Home />
-              <Cabinet />
-              <Expertise />
-              <Vision />
-              <Fondateur />
-              <Contact />
-              <Footer />
-            </div>
+          <div
+            id="main"
+            style={{ height: mainHeight }}
+            className="w-full z-1 overflow-y-auto overflow-x-hidden"
+          >
+            <Home />
+            <Cabinet />
+            <Expertise />
+            <Vision />
+            <Fondateur />
+            <Contact />
+            <Footer />
+          </div>
 
-            <BackgroundEiffel />
-          </expertiseContext.Provider>
-        </currentSectionContext.Provider>
-      </div>
+          <BackgroundEiffel />
+        </expertiseContext.Provider>
+      </currentSectionContext.Provider>
+    </div>
     </DataProvider>
   );
 }
