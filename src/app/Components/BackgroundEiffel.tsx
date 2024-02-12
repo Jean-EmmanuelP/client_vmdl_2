@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 
 export default function BackgroundEiffel() {
   const { subExpertise } = useExpertise();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    setIsVideoLoaded(false);
   }, [subExpertise]);
 
   const videoVariants = {
@@ -15,41 +15,50 @@ export default function BackgroundEiffel() {
     visible: { opacity: 1 },
   };
 
-  const backgroundVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
   return (
     <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          key="eiffelVideo"
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          variants={videoVariants}
-          transition={{ duration: 1 }}
-          className="fixed top-0 w-full h-full justify-center items-center"
-          style={{ zIndex: -1 }}
-        >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
+      <motion.div
+        key="background"
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={videoVariants}
+        transition={{ duration: 1 }}
+        className="fixed top-0 w-full h-full justify-center items-center"
+        style={{ zIndex: -1 }}
+      >
+        {!isVideoLoaded && (
+          <img
+            src="/images/picture_paris.png"
+            alt="Image de fond"
             style={{
               position: "absolute",
               width: "100%",
               height: "100%",
               objectFit: "cover",
               objectPosition: "50% 50%",
-              zIndex: -1,
+              zIndex: -2,
             }}
-            src="/videos/paris.mov"
           />
-        </motion.div>
-      )}
+        )}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "50% 50%",
+            zIndex: -1,
+            opacity: isVideoLoaded ? 1 : 0,
+          }}
+          src="/videos/paris.mov"
+          onLoadedData={() => setIsVideoLoaded(true)}
+        />
+      </motion.div>
     </AnimatePresence>
   );
 }

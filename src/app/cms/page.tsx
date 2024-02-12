@@ -20,12 +20,17 @@ export default function CMS() {
   const [newContent, setNewContent] = useState<string>("");
   const [selectedElement, setSelectedElement] = useState<ElementKeys>(null);
   const [newValue, setNewValue] = useState<string>("");
-  const [selectedSubSubSection, setSelectedSubSubSection] = useState<SubSubSectionKeys>(null);
-  const [titleOrContent, setTitleOrContent] = useState<"title" | "content">("title");
+  const [selectedSubSubSection, setSelectedSubSubSection] =
+    useState<SubSubSectionKeys>(null);
 
   useEffect(() => {
     updateSubSections(selectedSection);
   }, [selectedSection, language]);
+
+  useEffect(() => {
+    console.log("Selected sub-sub-section:", selectedSubSubSection);
+    console.log(`New title: ${newTitle}, New content: ${newContent}`);
+  }, [selectedSubSubSection]);
 
   const updateSubSections = (section: SectionKeys) => {
     const sectionData = jsonData[language][section];
@@ -69,30 +74,40 @@ export default function CMS() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewValue(e.target.value);
+    console.log("New value:", e.target.value);
   };
 
   const handleSubmit = async () => {
     const updatedJsonData = { ...jsonData };
-    
+
     // Si une sous-sous-section est sélectionnée, mettez à jour son titre et son contenu
     if (selectedElement && selectedSubSection && selectedSubSubSection) {
-      // Accédez à la sous-sous-section et mettez à jour ses propriétés
-      const subSectionData = (updatedJsonData[language][selectedSection] as any)[selectedSubSection];
-      if (subSectionData && typeof subSectionData === "object" && subSectionData[selectedSubSubSection]) {
-        subSectionData[selectedSubSubSection].title = newTitle;
-        subSectionData[selectedSubSubSection].content = newContent;
+      const subSectionData = (
+        updatedJsonData[language][selectedSection] as any
+      )[selectedSubSection][selectedElement];
+      if (subSectionData && typeof subSectionData === "object") {
+        if (newTitle) subSectionData[selectedSubSubSection].title = newTitle;
+        if (newContent)
+          subSectionData[selectedSubSubSection].content = newContent;
       }
-    // Sinon, si seulement une sous-section est sélectionnée, mettez à jour sa valeur
     } else if (selectedElement && selectedSubSection) {
-      ((updatedJsonData[language][selectedSection] as any)[selectedSubSection] as any)[selectedElement] = newValue;
+      (
+        (updatedJsonData[language][selectedSection] as any)[
+          selectedSubSection
+        ] as any
+      )[selectedElement] = newValue;
     } else if (selectedSubSection) {
-      (updatedJsonData[language][selectedSection] as any)[selectedSubSection] = newValue;
+      (updatedJsonData[language][selectedSection] as any)[selectedSubSection] =
+        newValue;
     }
-  
+
     setJsonData(updatedJsonData);
-  
+
     // Ici, vous pouvez conserver le code pour la sauvegarde des données comme il est
-    console.log(`this is the jsonData sent to the save-content route:`, updatedJsonData);
+    console.log(
+      `this is the jsonData sent to the save-content route:`,
+      updatedJsonData
+    );
     try {
       const response = await fetch("/api/save-content", {
         method: "POST",
@@ -101,17 +116,19 @@ export default function CMS() {
         },
         body: JSON.stringify(updatedJsonData), // Assurez-vous d'envoyer les données mises à jour
       });
-  
+
       if (!response.ok) {
         throw new Error("Network response was not ok.");
       }
-  
+
       alert("Données sauvegardées !");
     } catch (error) {
       console.error("Erreur lors de la sauvegarde des données", error);
     }
+    setNewTitle("");
+    setNewContent("");
   };
-  
+
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value as LanguageKeys);
   };
@@ -119,9 +136,7 @@ export default function CMS() {
   return (
     <div className="cursor-default bg-blanc bg-cover w-full h-full flex justify-center items-center">
       <div className="backdrop-blur-xl bg-cyan-500/20 flex flex-col justify-center gap-10 p-10 w-fit h-fit rounded-md shadow-2xl">
-        <div className="p-2 font-bold underline">
-          Content Management System
-        </div>
+        <div className="p-2 font-bold underline">Content Management System</div>
         <select
           value={language}
           className="p-2 rounded-md"
@@ -164,7 +179,7 @@ export default function CMS() {
         {selectedElement &&
           selectedSubSection &&
           typeof (jsonData.fr[selectedSection] as any)[selectedSubSection] ===
-          "object" && (
+            "object" && (
             <select
               className="p-2 rounded-md"
               value={selectedElement || undefined}
@@ -183,6 +198,32 @@ export default function CMS() {
               ))}
             </select>
           )}
+        {selectedElement &&
+          selectedSubSection === "box_3" &&
+          typeof (jsonData.fr[selectedSection] as any)[selectedSubSection][
+            selectedElement
+          ] === "object" && (
+            <select
+              className="p-2 rounded-md"
+              value={selectedSubSubSection || undefined}
+              onChange={(e) => setSelectedSubSubSection(e.target.value)}
+            >
+              {Object.keys(
+                (jsonData.fr[selectedSection] as any)[selectedSubSection][
+                  selectedElement
+                ]
+              ).map((subSubSectionKey) => (
+                <option
+                  key={subSubSectionKey}
+                  className="p-1 border"
+                  value={subSubSectionKey}
+                >
+                  {subSubSectionKey}
+                </option>
+              ))}
+            </select>
+          )}
+
         {selectedSubSubSection && (
           <>
             <input
@@ -214,6 +255,4 @@ export default function CMS() {
       </div>
     </div>
   );
-
-
 }

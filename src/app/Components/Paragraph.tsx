@@ -81,14 +81,12 @@ export default function Paragraph({
 
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // 768px est généralement la largeur max pour les appareils mobiles en mode portrait
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    // Vérifier une fois et ensuite ajouter un écouteur d'événement pour les changements de taille
     checkIfMobile();
     window.addEventListener("resize", checkIfMobile);
 
-    // Nettoyer l'écouteur d'événement lors du démontage du composant
     return () => {
       window.removeEventListener("resize", checkIfMobile);
     };
@@ -98,9 +96,6 @@ export default function Paragraph({
     return <p className="text-3xl font-bold">Error missing: children</p>;
   }
 
-  //initial = etat de base avant animation
-  //animate = etat final apres animation
-  //transition = delay ou duration
   return (
     <motion.div
       key={`${section}-primary`}
@@ -151,7 +146,6 @@ export default function Paragraph({
             y: animateEntry[section] ? (toggle ? "-10px" : 0) : "40px",
             opacity: animateEntry[section] ? (!toggle ? 1 : 0) : 0,
           }}
-          // transition={{ delay: !toggle && !previousState ? 0.6 : 0, duration: 0.2 }}
           transition={{
             opacity: {
               delay: !toggle && !previousState ? 0.6 : 0,

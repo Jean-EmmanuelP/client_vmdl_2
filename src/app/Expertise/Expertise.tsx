@@ -11,7 +11,7 @@ const Affaires = dynamic(() => import("./Affaires"), { ssr: false });
 export default function Expertise() {
   const [hovering, setHovering] = useState<number>(0);
   const { subExpertise, setSubExpertise } = useExpertise();
-  const { langueCourante } = useSection();
+  const { langueCourante, currentSection } = useSection();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const isMobile = windowWidth <= 768;
   const { data } = useData();

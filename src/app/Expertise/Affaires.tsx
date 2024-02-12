@@ -59,7 +59,7 @@ export default function Affaires() {
       },
       { threshold: 0.5 }
     );
-    videoRefs.current = videoRefs.current.slice(0, videos.length); // Gardez les références synchronisées avec les vidéos actuelles
+    videoRefs.current = videoRefs.current.slice(0, videos.length);
 
     videoRefs.current.forEach((video) => video && observer.observe(video));
 
