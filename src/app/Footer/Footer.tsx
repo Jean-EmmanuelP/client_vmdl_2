@@ -42,7 +42,7 @@ export default function Footer() {
   return (
     <div
       id="Footer"
-      className="relative w-full h-[25%] flex flex-col z-10 bg-noir text-blanc mt-[-40px] sm:mt-0"
+      className="relative w-full h-[35%] flex flex-col z-10 bg-noir text-blanc mt-[-40px] sm:mt-0"
     >
       {/* <div className="absolute top-[10px] left-[30px] scale-50 opacity-50">
         <img src="/favicon/vmdl.png" alt="" />
