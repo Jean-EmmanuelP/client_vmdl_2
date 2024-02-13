@@ -55,7 +55,6 @@ export default function Home() {
   const { title, subtitle, contact_button } = data[langCode].section_1;
 
   const langues = ["FR", "EN", "IT", "ES", "عربي", "PT", "DE", "中文"];
-  console.log(`cest la langueCourante:`, langueCourante);
 
   const afficherLangues = () => {
     if (currentSection === 0) {

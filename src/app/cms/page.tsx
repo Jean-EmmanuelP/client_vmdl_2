@@ -28,8 +28,6 @@ export default function CMS() {
   }, [selectedSection, language]);
 
   useEffect(() => {
-    console.log("Selected sub-sub-section:", selectedSubSubSection);
-    console.log(`New title: ${newTitle}, New content: ${newContent}`);
   }, [selectedSubSubSection]);
 
   const updateSubSections = (section: SectionKeys) => {
@@ -74,7 +72,6 @@ export default function CMS() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewValue(e.target.value);
-    console.log("New value:", e.target.value);
   };
 
   const handleSubmit = async () => {
@@ -103,11 +100,6 @@ export default function CMS() {
 
     setJsonData(updatedJsonData);
 
-    // Ici, vous pouvez conserver le code pour la sauvegarde des données comme il est
-    console.log(
-      `this is the jsonData sent to the save-content route:`,
-      updatedJsonData
-    );
     try {
       const response = await fetch("/api/save-content", {
         method: "POST",

@@ -29,7 +29,6 @@ export async function GET(req: NextRequest) {
 
     if ("content" in response.data && response.data.type === "file") {
       const content = Buffer.from(response.data.content, "base64").toString();
-      console.log(`this is the content from the response:`, content);
       return NextResponse.json(JSON.parse(content));
     } else {
       throw new Error("Could not retrieve content.json");

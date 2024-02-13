@@ -78,7 +78,6 @@ export default function Affaires() {
   useEffect(() => {
     for (const vid of videos) {
       if (vid.idx === -1) {
-        console.log("SWAP");
         setAutoScroll(true);
 
         const newVideos = videos.map((video) => {

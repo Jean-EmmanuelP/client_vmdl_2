@@ -5,7 +5,8 @@ import dynamic from "next/dynamic";
 import { LangueCode, currentSectionContext, expertiseContext } from "./utils/Contextboard";
 import { DataProvider } from './utils/DataContext';
 
-// Import dynamique des composants avec ssr désactivé
+
+// comprendre la repectussion quand je mets en ssr si ca joue par rapport au SEO
 const Cabinet = dynamic(() => import("./Cabinet/Cabinet"), { ssr: false });
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
 const Expertise = dynamic(() => import("./Expertise/Expertise"), { ssr: false });
@@ -22,7 +23,6 @@ function useMobileDetect() {
 
   useEffect(() => {
     const checkIfMobile = () => {
-      // S'assurer que `window` est utilisé uniquement côté client
       if (typeof window !== "undefined") {
         setIsMobile(window.innerWidth <= 768);
       }
@@ -50,19 +50,22 @@ export default function App() {
   >(null);
   const [mainHeight, setMainHeight] = useState("100%");
 
+  {/* check si cest sur telephone */}
   useEffect(() => {
     if (isMobile) {
-      console.log(`its mobile`);
       setHeaderHeight("90px");
     } else {
       setHeaderHeight("128px");
     }
   }, [isMobile]);
+
+  {/* met la taille du home en fonction de la taille du header */}
   useEffect(() => {
     const availableHeight = `calc(100% - ${headerHeight}px)`;
     setMainHeight(availableHeight);
   }, [headerHeight]);
 
+  {/* gere les touches clavier pour que aucun comportement soit execute si touche */}
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (typeof window !== "undefined") {
@@ -89,6 +92,7 @@ export default function App() {
     };
   }, []);
 
+  {/* call a chaque scroll, pour tel quand toucher soit vers le haut ou le bas alors comportement === scrolling */}
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
 
@@ -103,8 +107,11 @@ export default function App() {
     };
   }, [isScrolling]);
 
+  {/* gere la dynamique de scrolling soit le fait que si tu scrolles vers le haut ou le bas, ca se deplacera jusqua ou,
+      sur telephone je peux ajoute le comportement ici */}
   useEffect(() => {
     const handleScroll = (direction: string) => {
+      {/* si il scroll alors on fait aucune action, pour eviter deux scroll a la fois */}
       if (isScrolling) return;
     
       const mainDiv = document.getElementById("main");
@@ -152,6 +159,7 @@ export default function App() {
     }
   }, [currentSection, isScrolling]);
 
+  {/* prends les donnees depuis le github */}
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/take-content");
@@ -159,7 +167,6 @@ export default function App() {
         throw new Error(`Network response was not ok`);
       }
       const data = await response.json();
-      console.log(`Here is the response data`, data);
     }
     fetchData();
   }, [])

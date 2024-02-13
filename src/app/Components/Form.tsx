@@ -122,7 +122,6 @@ export default function FormContact() {
     };
     return (
         <>
-        {console.log(`wasSended:`, wasSended)}
         {wasSended && 
         <div className="fixed bg-white py-[10%] px-[5%] w-1/2 h-1/2 border shadow-2xl rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-1 items-center text-center text-2xl z-10">
             <div className="w-full h-full flex flex-col">
@@ -140,7 +139,6 @@ export default function FormContact() {
         initialValues={{ nom: '', email: '', telephone: '', message: '' }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(`here we go here:`, values);
           handleSubmit(values);
         }}
       >

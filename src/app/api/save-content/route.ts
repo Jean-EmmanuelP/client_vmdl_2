@@ -9,7 +9,6 @@ export async function POST(req: Request) {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
   try {
-    console.log(`1111 tu as bien atteint le save-content`);
     const dataSended = await req.json();
     const fileInfoResponse = await octokit.request(
       "GET /repos/{owner}/{repo}/contents/{path}",
@@ -24,7 +23,6 @@ export async function POST(req: Request) {
 
     if ("sha" in data && data.sha) {
       sha = data.sha;
-      console.log(`this is the sha:`, sha);
     } else {
       sha = "null";
     }
@@ -43,8 +41,6 @@ export async function POST(req: Request) {
         sha,
       }
     );
-    console.log(`this is the response you send to the repo: `, response);
-    console.log(`tu as bien atteint le save-content`);
     return NextResponse.json({ message: "Content updated successfully." });
   } catch (error) {
     throw new Error("Failed to update content.");
