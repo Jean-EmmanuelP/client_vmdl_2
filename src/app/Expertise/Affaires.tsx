@@ -1,18 +1,14 @@
 "use client";
 
-import { PanInfo, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
-import { BiSolidRightArrow } from "react-icons/bi";
-import { BiSolidLeftArrow } from "react-icons/bi";
 import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
-import Paragraph from "../Components/Paragraph";
 
 const videoPosition = [-window.innerWidth, 0, window.innerWidth];
 interface Video {
   src: string;
-  idx: number;
-  side: "left" | "right";
+  isActive: boolean;
   title: string;
   subtitle: string;
   contact_button: string;
@@ -23,26 +19,31 @@ export default function Affaires() {
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
   const [videos, setVideos] = useState<Video[]>([
     {
-      src: "/videos/qatar.mp4", idx: 1, side: "right", title: "Titre de la vidéo Qatar",
+      src: "/videos/qatar.mp4",
+      isActive: false,
+      title: "Titre de la vidéo Qatar",
       subtitle: "Sous-titre de la vidéo Qatar",
-      contact_button: "Contacter pour Qatar"
+      contact_button: "Contacter pour Qatar",
     },
     {
-      src: "/videos/dubai.mp4", idx: 2, side: "right", title: "Titre de la vidéo Dubai",
+      src: "/videos/dubai.mp4",
+      isActive: false,
+      title: "Titre de la vidéo Dubai",
       subtitle: "Sous-titre de la vidéo Dubai",
-      contact_button: "Contacter pour Dubai"
+      contact_button: "Contacter pour Dubai",
     },
     {
-      src: "/videos/rio_de_janeiro.mp4", idx: 0, side: "right", title: "Titre de la vidéo Rio",
+      src: "/videos/rio_de_janeiro.mp4",
+      isActive: true,
+      title: "Titre de la vidéo Rio",
       subtitle: "Sous-titre de la vidéo Rio",
-      contact_button: "Contacter pour Rio"
+      contact_button: "Contacter pour Rio",
     },
   ]);
   const { data } = useData();
   const { langueCourante } = useSection();
   const videoRefs = useRef<HTMLVideoElement[]>([]);
 
-  // Intersection Observer pour jouer/pauser les vidéos basées sur la visibilité
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -63,7 +64,8 @@ export default function Affaires() {
 
     videoRefs.current.forEach((video) => video && observer.observe(video));
 
-    return () => videoRefs.current.forEach((video) => video && observer.unobserve(video));
+    return () =>
+      videoRefs.current.forEach((video) => video && observer.unobserve(video));
   }, [videos]);
   useEffect(() => {
     if (autoScroll) {
@@ -74,20 +76,6 @@ export default function Affaires() {
       return () => clearTimeout(timer);
     }
   }, [autoScroll]);
-
-  useEffect(() => {
-    for (const vid of videos) {
-      if (vid.idx === -1) {
-        setAutoScroll(true);
-
-        const newVideos = videos.map((video) => {
-          video.idx = video.idx + 1;
-          return video;
-        });
-        setVideos(newVideos);
-      }
-    }
-  }, [videos]);
   if (!data) {
     return;
   }
@@ -105,33 +93,18 @@ export default function Affaires() {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { qatar, rio, dubai } = data[langCode].section_3.box_3;
 
-  const changeVideo = (direction: string) => {
+  const handleSelection = (selectedId: string) => {
     if (!autoScroll) {
       setAutoScroll(true);
-      let newVideos;
-      if (direction === "right") {
-        newVideos = videos.map((video) => {
-          const newIndex = video.idx - 1 >= 0 ? video.idx - 1 : videos.length - 1;
-          return { ...video, idx: newIndex, side: "right" as const };
-        });
-      } else {
-        newVideos = videos.map((video) => {
-          const newIndex = video.idx + 1 < videos.length ? video.idx + 1 : 0;
-          return { ...video, idx: newIndex, side: "left" as const };
-        });
-      }
+      const newVideos = videos.map((video) => {
+        if (video.src.includes(selectedId)) {
+          return { ...video, isActive: true };
+        } else {
+          return { ...video, isActive: false };
+        }
+      });
       setVideos(newVideos);
       setTimeout(() => setAutoScroll(false), 500);
-    }
-  };
-
-  const handleVideoEnd = (
-    event: React.SyntheticEvent<HTMLVideoElement>,
-    index: number
-  ) => {
-    if (subExpertise === "affaires" && index === 0) {
-      event.currentTarget.currentTime = 0;
-      event.currentTarget.play();
     }
   };
 
@@ -142,42 +115,29 @@ export default function Affaires() {
       transition={{ duration: 1 }}
       className="relative w-full h-full flex justify-center items-center text-blanc z-1 bg-blanc"
     >
-      <motion.div
-        drag={autoScroll ? false : "x"}
-        dragMomentum={false}
-        dragElastic={0}
-        dragConstraints={{ left: 0, right: 0 }}
-        className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc"
-        initial={{ x: 0 }}
-      >
+      <div className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc">
         {videos &&
           videos.map((video, index) => {
             let title, content;
-            // Déterminer le titre et le contenu en fonction de la source de la vidéo
-            if (video.src.includes('qatar')) {
+            if (video.src.includes("qatar")) {
               title = qatar.title;
               content = qatar.content;
-            } else if (video.src.includes('dubai')) {
+            } else if (video.src.includes("dubai")) {
               title = dubai.title;
               content = dubai.content;
-            } else if (video.src.includes('rio')) {
+            } else if (video.src.includes("rio")) {
               title = rio.title;
               content = rio.content;
             }
             return (
               <motion.button
-                initial={{ x: videoPosition[index] + "px" }}
-                animate={{ x: videoPosition[video.idx] + "px" }}
-                transition={{ duration: .5 }}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: video.isActive ? 1 : 0,
+                }}
+                transition={{ duration: 0.5 }}
                 key={video.src}
-                className={`absolute w-1/3 h-full text-4xl ${video.side === "right"
-                  ? video.idx === 2
-                    ? "opacity-0"
-                    : ""
-                  : video.idx === -1
-                    ? "opacity-0"
-                    : ""
-                  }`}
+                className={`absolute w-1/3 h-full text-4xl`}
               >
                 <video
                   className="absolute flex justify-center items-center object-cover h-full w-full -translate-y-1/2"
@@ -188,30 +148,37 @@ export default function Affaires() {
                   }}
                   src={video.src}
                   muted
-                  onEnded={(e) => handleVideoEnd(e, video.idx)}
                 ></video>
                 <div className="text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-2 sm:p-4 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center">
-                  <p>
-                    {title}
-                  </p>
-                  <p>
-                    {content}
-                  </p>
+                  <p>{title}</p>
+                  <p>{content}</p>
                 </div>
               </motion.button>
             );
           })}
-      </motion.div>
-      <motion.button
-        style={{ x: "-100vw" }}
-        animate={{ scale: autoScroll ? 1 : 1.5 }}
-        transition={{ duration: 0.1 }}
-        onClick={() => changeVideo("right")}
-        className="absolute right-[10%] text-3xl z-10 animation-spin"
-        data-clickable="true"
-      >
-        <BiSolidRightArrow />
-      </motion.button>
+        <div
+          className="absolute flex justify-around items-center bottom-20 left-1/2 translate-x-[-125.5vw] sm:translate-x-[-106.5vw] w-60 h-10 bg-white/10 backdrop-blur-sm shadow-2xl rounded-2xl"
+        >
+          <div
+            className="rounded-full border border-black/50 bg-white shadow-2xl w-5 h-5 sm:w-6 sm:h-6"
+            data-clickable="true"
+            id="rio"
+            onClick={() => handleSelection("rio")}
+          ></div>
+          <div
+            className="rounded-full border border-black/50 bg-white shadow-2xl w-5 h-5 sm:w-6 sm:h-6"
+            data-clickable="true"
+            id="dubai"
+            onClick={() => handleSelection("dubai")}
+          ></div>
+          <div
+            className="rounded-full border border-black/50 bg-white shadow-2xl w-5 h-5 sm:w-6 sm:h-6"
+            data-clickable="true"
+            id="qatar"
+            onClick={() => handleSelection("qatar")}
+          ></div>
+        </div>
+      </div>
     </motion.div>
   );
 }
