@@ -156,9 +156,7 @@ export default function Affaires() {
               </motion.button>
             );
           })}
-        <div
-          className="absolute flex justify-around items-center bottom-20 left-1/2 translate-x-[-125.5vw] sm:translate-x-[-106.5vw] w-60 h-10 bg-white/10 backdrop-blur-sm shadow-2xl rounded-2xl"
-        >
+        <div className="absolute flex justify-around items-center bottom-20 left-1/2 translate-x-[-125.5vw] sm:translate-x-[-106.5vw] w-60 h-10 bg-white/10 backdrop-blur-sm shadow-2xl rounded-2xl">
           <div
             className="rounded-full border border-black/50 bg-white shadow-2xl w-5 h-5 sm:w-6 sm:h-6"
             data-clickable="true"

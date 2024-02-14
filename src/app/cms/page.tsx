@@ -22,12 +22,13 @@ export default function CMS() {
   const [newValue, setNewValue] = useState<string>("");
   const [selectedSubSubSection, setSelectedSubSubSection] =
     useState<SubSubSectionKeys>(null);
-
+  const [selectedProperty, setSelectedProperty] = useState<string | null>(null);
   useEffect(() => {
     updateSubSections(selectedSection);
   }, [selectedSection, language]);
 
   useEffect(() => {
+    console.log(`this is the selectedSubSubSection:`, selectedSubSubSection);
   }, [selectedSubSubSection]);
 
   const updateSubSections = (section: SectionKeys) => {
@@ -44,11 +45,12 @@ export default function CMS() {
       : null;
     if (subSectionData && typeof subSectionData === "object") {
       const firstElementKey = getFirstKey(subSectionData);
-      setSelectedElement(firstElementKey);
-      setSelectedSubSubSection(firstElementKey); // Nouvelle ligne pour gérer la sous-sous-section
+      setSelectedElement(firstElementKey); // je suis arrive ici au niveau de la comprehension !
+      console.log(`dans le updateElements`);
+      setSelectedSubSubSection(firstElementKey);
     } else {
       setSelectedElement(null);
-      setSelectedSubSubSection(null); // Nouvelle ligne pour gérer la sous-sous-section
+      setSelectedSubSubSection(null);
     }
   };
 
@@ -57,17 +59,24 @@ export default function CMS() {
     return keys.length > 0 ? keys[0] : null;
   };
 
+  const getKey = <T extends object>(data: T, number: number) => {
+    const keys = Object.keys(data);
+    return keys.length > 0 ? keys[number] : null;
+  };
+
   const handleSectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSection(e.target.value as SectionKeys);
   };
 
   const handleSubSectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSubSection(e.target.value);
+    console.log(`this is the selectedSubSection:`, e.target.value);
     updateElements(selectedSection, e.target.value);
   };
 
   const handleElementChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedElement(e.target.value);
+    setSelectedSubSubSection(e.target.value);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,7 +115,7 @@ export default function CMS() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedJsonData), // Assurez-vous d'envoyer les données mises à jour
+        body: JSON.stringify(updatedJsonData),
       });
 
       if (!response.ok) {
@@ -156,7 +165,7 @@ export default function CMS() {
         {selectedSubSection &&
           typeof jsonData.fr[selectedSection] === "object" && (
             <select
-              className="p-2 rounded-md"
+              className="p-2 rounded-md bg-red-500"
               value={selectedSubSection || undefined}
               onChange={handleSubSectionChange}
             >
@@ -173,7 +182,7 @@ export default function CMS() {
           typeof (jsonData.fr[selectedSection] as any)[selectedSubSection] ===
             "object" && (
             <select
-              className="p-2 rounded-md"
+              className="p-2 rounded-md bg-green-300"
               value={selectedElement || undefined}
               onChange={handleElementChange}
             >
@@ -190,47 +199,28 @@ export default function CMS() {
               ))}
             </select>
           )}
-        {selectedElement &&
-          selectedSubSection === "box_3" &&
-          typeof (jsonData.fr[selectedSection] as any)[selectedSubSection][
-            selectedElement
+        {selectedSubSubSection &&
+          typeof (jsonData.fr[selectedSection] as any)[selectedSubSection!][
+            selectedSubSubSection
           ] === "object" && (
-            <select
-              className="p-2 rounded-md"
-              value={selectedSubSubSection || undefined}
-              onChange={(e) => setSelectedSubSubSection(e.target.value)}
+             <select
+              className="p-2 rounded-md bg-green-300"
+              value={selectedElement || undefined}
+              onChange={handleElementChange} // changer le onChange
             >
               {Object.keys(
-                (jsonData.fr[selectedSection] as any)[selectedSubSection][
-                  selectedElement
-                ]
-              ).map((subSubSectionKey) => (
+                (jsonData.fr[selectedSection] as any)[selectedSubSection!][selectedSubSubSection]
+              ).map((elementKey) => (
                 <option
-                  key={subSubSectionKey}
+                  key={elementKey}
                   className="p-1 border"
-                  value={subSubSectionKey}
+                  value={elementKey}
                 >
-                  {subSubSectionKey}
+                  {elementKey}
                 </option>
               ))}
             </select>
           )}
-
-        {selectedSubSubSection && (
-          <>
-            <input
-              type="text"
-              placeholder="Title"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-            />
-            <textarea
-              placeholder="Content"
-              value={newContent}
-              onChange={(e) => setNewContent(e.target.value)}
-            />
-          </>
-        )}
 
         <input
           type="text"
