@@ -91,7 +91,12 @@ export default function CMS() {
       const subSectionData = (
         updatedJsonData[language][selectedSection] as any
       )[selectedSubSection][selectedElement];
-      if (subSectionData && typeof subSectionData === "object") {
+      // La vérification conditionnelle est placée ici
+      if (
+        subSectionData &&
+        selectedSubSubSection &&
+        subSectionData[selectedSubSubSection]
+      ) {
         if (newTitle) subSectionData[selectedSubSubSection].title = newTitle;
         if (newContent)
           subSectionData[selectedSubSubSection].content = newContent;
@@ -203,13 +208,15 @@ export default function CMS() {
           typeof (jsonData.fr[selectedSection] as any)[selectedSubSection!][
             selectedSubSubSection
           ] === "object" && (
-             <select
+            <select
               className="p-2 rounded-md bg-green-300"
               value={selectedElement || undefined}
               onChange={handleElementChange} // changer le onChange
             >
               {Object.keys(
-                (jsonData.fr[selectedSection] as any)[selectedSubSection!][selectedSubSubSection]
+                (jsonData.fr[selectedSection] as any)[selectedSubSection!][
+                  selectedSubSubSection
+                ]
               ).map((elementKey) => (
                 <option
                   key={elementKey}
