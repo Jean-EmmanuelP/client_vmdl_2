@@ -11,8 +11,11 @@ export type LangueCode =
   | "中文";
 
 interface MediaPaths {
-  video: string;
-  image: string;
+  paris: string;
+  dubai: string;
+  qatar: string;
+  rio: string;
+  vosges: string;
 }
 
 interface currentSectionProps {
@@ -36,8 +39,11 @@ const defaultValues: currentSectionProps = {
   langueCourante: "FR",
   setLangueCourante: () => {},
   mediaPaths: {
-    video: "/path/to/default/video.mp4",
-    image: "/path/to/default/image.jpg",
+    paris: `/videos/laptop/paris/paris_low.webm`,
+    dubai: `/videos/laptop/dubai/dubai_low.webm`,
+    qatar: `/videos/laptop/qatar/qatar_low.webm`,
+    rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
+    vosges: `/videos/laptop/vosges/vosges_low.webm`,
   },
   updateMediaPaths: () => {},
 };

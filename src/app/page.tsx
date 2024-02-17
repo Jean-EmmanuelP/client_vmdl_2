@@ -55,8 +55,11 @@ export default function App() {
   const [isScrolling, setIsScrolling] = useState(false);
   const [currentSection, setCurrentSection] = useState<number>(0);
   const [mediaPaths, setMediaPaths] = useState({
-    video: "/path/to/default/video.mp4",
-    image: "/path/to/default/image.jpg",
+    paris: `/videos/laptop/paris/paris_low.webm`,
+    dubai: `/videos/laptop/dubai/dubai_low.webm`,
+    qatar: `/videos/laptop/qatar/qatar_low.webm`,
+    rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
+    vosges: `/videos/laptop/vosges/vosges_low.webm`,
   });
   const isMobile = useMobileDetect();
   const [headerHeight, setHeaderHeight] = useState<"64px" | "128px" | "90px">(
@@ -216,31 +219,30 @@ export default function App() {
     };
   }
 
-  /* Ceci nous permet d'obtenir des informations sur la connexion */
   const updateMediaPaths = useCallback(() => {
     const isMobile = window.innerWidth <= 768;
-
-    let basePath = "/videos/";
-    basePath += isMobile ? "mobile/" : "laptop/";
 
     const navigatorWithConnection = navigator as NavigatorWithConnection;
     const downlink = navigatorWithConnection.connection?.downlink ?? 10;
 
-    let qualityPath = "paris_default.mp4";
+    let videoBasePath = "/videos/";
+    videoBasePath += isMobile ? "mobile/" : "laptop/";
 
-    if (downlink < 1.5) {
-      qualityPath = "paris_low.mp4";
-    } else if (downlink >= 1.5 && downlink < 5) {
-      qualityPath = "paris_medium.mp4";
-    } else {
-      qualityPath = "paris_high.mp4";
+    let qualitySuffix = isMobile ? "high_mobile" : "high";
+
+    if (downlink < 1) {
+      qualitySuffix = isMobile ? "low_mobile" : "low";
+    } else if (downlink >= 1 && downlink < 5) {
+      qualitySuffix = isMobile ? "medium_mobile" : "medium";
     }
 
-    const finalVideoPath = basePath + qualityPath;
-    setMediaPaths((prevPaths) => ({
-      ...prevPaths,
-      video: finalVideoPath,
-    }));
+    setMediaPaths({
+      paris: `${videoBasePath}paris/paris_${qualitySuffix}.webm`,
+      dubai: `${videoBasePath}dubai/dubai_${qualitySuffix}.webm`,
+      qatar: `${videoBasePath}qatar/qatar_${qualitySuffix}.webm`,
+      rio: `${videoBasePath}rio/rio_de_janeiro_${qualitySuffix}.webm`,
+      vosges: `${videoBasePath}vosges/vosges_${qualitySuffix}.webm`,
+    });
   }, []);
 
   useEffect(() => {
@@ -279,7 +281,6 @@ export default function App() {
               <Contact />
               <Footer />
             </div>
-
             <BackgroundEiffel />
           </expertiseContext.Provider>
         </currentSectionContext.Provider>

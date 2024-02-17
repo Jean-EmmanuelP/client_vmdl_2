@@ -1,10 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useExpertise } from "../utils/Contextboard";
-import { useEffect, useState } from "react";
+import { useExpertise, useSection } from "../utils/Contextboard";
+import { useEffect, useRef, useState } from "react";
 
 export default function BackgroundEiffel() {
   const { subExpertise } = useExpertise();
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const { mediaPaths } = useSection();
 
   useEffect(() => {
     setIsVideoLoaded(false);
@@ -14,6 +15,15 @@ export default function BackgroundEiffel() {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1;
+      videoRef.current.play();
+    }
+  }, []);
 
   return (
     <AnimatePresence>
@@ -42,8 +52,9 @@ export default function BackgroundEiffel() {
           />
         )}
         <video
+          ref={videoRef}
           autoPlay
-          loop
+          loop={false}
           muted
           playsInline
           style={{
@@ -55,7 +66,7 @@ export default function BackgroundEiffel() {
             zIndex: -1,
             opacity: isVideoLoaded ? 1 : 0,
           }}
-          src="/videos/paris.mov"
+          src={`${mediaPaths.paris}`}
           onLoadedData={() => setIsVideoLoaded(true)}
         />
       </motion.div>

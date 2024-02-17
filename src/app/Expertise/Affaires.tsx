@@ -17,23 +17,25 @@ interface Video {
 export default function Affaires() {
   const { subExpertise } = useExpertise();
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
+  const { mediaPaths } = useSection();
+
   const [videos, setVideos] = useState<Video[]>([
     {
-      src: "/videos/qatar.mp4",
+      src: `${mediaPaths.qatar}`,
       isActive: false,
       title: "Titre de la vidéo Qatar",
       subtitle: "Sous-titre de la vidéo Qatar",
       contact_button: "Contacter pour Qatar",
     },
     {
-      src: "/videos/dubai.mp4",
+      src: `${mediaPaths.dubai}`,
       isActive: false,
       title: "Titre de la vidéo Dubai",
       subtitle: "Sous-titre de la vidéo Dubai",
       contact_button: "Contacter pour Dubai",
     },
     {
-      src: "/videos/rio_de_janeiro.mp4",
+      src: `${mediaPaths.rio}`,
       isActive: true,
       title: "Titre de la vidéo Rio",
       subtitle: "Sous-titre de la vidéo Rio",
