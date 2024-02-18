@@ -26,7 +26,7 @@ export default function Contact() {
   return (
     <div
       id="Contact"
-      className="w-full h-full flex justify-center z-10 items-center"
+      className="relative w-full h-full flex justify-center z-10 items-center"
     >
       <div className="w-full h-full flex justify-center items-center bg-blanc mb-20 sm:mb-0">
         <div className="flex flex-col w-[45%]">

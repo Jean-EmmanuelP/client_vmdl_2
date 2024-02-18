@@ -206,6 +206,8 @@ export default function App() {
     fetchData();
   }, []);
 
+
+
   useEffect(() => {
     const newHeaderHeight =
       currentSection === 0 ? (!isMobile ? "128px" : "90px") : "64px";
@@ -218,6 +220,37 @@ export default function App() {
       effectiveType?: string;
     };
   }
+
+  useEffect(() => {
+    let lastTouchY: number = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      lastTouchY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touchY: number = e.touches[0].clientY;
+      const direction: string = touchY > lastTouchY ? 'up' : 'down';
+
+      if (direction === 'down') {
+        setHeaderHeight('64px');
+      } else {
+        setHeaderHeight(isMobile ? '90px' : '128px');
+      }
+
+      lastTouchY = touchY;
+    };
+
+    if (isMobile) {
+      window.addEventListener('touchstart', handleTouchStart, { passive: true });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+      return () => {
+        window.removeEventListener('touchstart', handleTouchStart);
+        window.removeEventListener('touchmove', handleTouchMove);
+      };
+    }
+  }, [isMobile]);
 
   const updateMediaPaths = useCallback(() => {
     const isMobile = window.innerWidth <= 768;

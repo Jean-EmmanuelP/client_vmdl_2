@@ -10,8 +10,10 @@ export default function Home() {
   const [languesVisibles, setLanguesVisibles] = useState(false);
   const { langueCourante, setLangueCourante } = useSection();
   const { currentSection } = useSection();
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
     const supportedLangs: LangueCode[] = [
       "FR",
       "EN",
@@ -46,22 +48,19 @@ export default function Home() {
     DE: "de",
     中文: "中文",
   };
-  const langCode =
-    langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
+  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, subtitle, contact_button } = data[langCode].section_1;
 
   const langues = ["FR", "EN", "IT", "ES", "عربي", "PT", "DE", "中文"];
 
   const afficherLangues = () => {
-    if (currentSection === 0) {
       setLanguesVisibles(true);
-    }
   };
 
   const masquerLangues = () => {
     setLanguesVisibles(false);
   };
-
+  
   const choisirLangue = (nouvelleLangue: any) => {
     setLangueCourante(nouvelleLangue);
     setLanguesVisibles(false);
@@ -92,7 +91,7 @@ export default function Home() {
         <div
           data-clickable={true}
           className={`transition duration-150 hover:text-lg text-blanc hover:bg-gray-500/50 flex justify-center items-center w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${
-            currentSection !== 0 && "hidden"
+            currentSection !== 0 && !isMobile && "hidden"
           }`}
           onMouseEnter={afficherLangues}
           onClick={afficherLangues}

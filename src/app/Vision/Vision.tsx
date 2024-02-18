@@ -23,7 +23,7 @@ export default function Vision() {
   return (
     <div
       id="Vision"
-      className="w-screen h-screen flex justify-center -z-40 items-center gap-4 bg-blanc"
+      className="w-full h-full flex justify-center relative items-center gap-4 bg-blanc"
     >
       <Paragraph textColor="#030303">
         <span className="uppercase text-[40px] sm:text-[60px] font-light">{title}</span>

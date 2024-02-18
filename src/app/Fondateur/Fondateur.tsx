@@ -18,12 +18,12 @@ export default function Fondateur() {
     DE: 'de',
 	中文: '中文'
   };
-  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
+const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title, content } = data[langCode].section_5;
   return (
     <div
       id="Fondateur"
-      className="w-full h-full flex justify-center items-center z-10 bg-noir"
+      className="relative w-full h-full flex justify-center items-center z-10 bg-noir"
     >
       <Paragraph textColor="#F9F9F9">
         <span className="uppercase text-[40px] sm:text-[60px] sm:title font-light">{title}</span>

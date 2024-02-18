@@ -27,15 +27,12 @@ export default function Expertise() {
             switch (entry.target.id) {
               case "conseil":
                 setSubExpertise("conseil");
-                console.log(`this is the expertise:`, subExpertise);
                 break;
               case "contentieux":
                 setSubExpertise("contentieux");
-                  console.log(`this is the expertise:`, subExpertise);
                   break;
                 case "affaires":
                   setSubExpertise("affaires");
-                  console.log(`this is the expertise:`, subExpertise);
                 break;
               default:
                 break;

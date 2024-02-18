@@ -3,6 +3,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { useSection } from "../utils/Contextboard";
 import { twMerge } from "tailwind-merge";
 import Arrow from "../assets/svg/Arrow";
+import ReversedArrow from "../assets/svg/reverseArrow";
 
 interface ParagraphProps {
   children: React.ReactNode;
@@ -106,7 +107,7 @@ export default function Paragraph({
     classTitle
   );
   const mergedTextClass = twMerge("w-[70%] text-center mb-2", classText);
-  
+
 
   return (
     <motion.div
@@ -128,7 +129,7 @@ export default function Paragraph({
               exit={{ opacity: 0 }}
               className={mergedTitleClass}
             >
-              {!toggle ? children[0] : <Arrow />}
+              {!toggle ? children[0] : <ReversedArrow />}
             </motion.button>
 
             {/* Texte de base */}
@@ -148,9 +149,8 @@ export default function Paragraph({
                 animate={{ y: "-40px", opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.2, duration: 0.7 }}
-                className={`text-xl w-1/2 text-center mb-2 ${
-                  isMobile ? "-mt-[64px]" : "-mt-[50px]"
-                }`}
+                className={`text-xl w-1/2 text-center mb-2 ${isMobile ? "-mt-[64px]" : "-mt-[50px]"
+                  }`}
               >
                 {children[3]}
               </motion.p>
@@ -176,11 +176,10 @@ export default function Paragraph({
                 onClick={() => {
                   homeSection ? handleScroll(5) : setToggle(!toggle);
                 }}
-                className={`text-[#181a1b] p-4 ${
-                  !homeSection
-                    ? `rounded-full w-[280px] hover:bg-gray-500/5 transition duration-150`
-                    : `text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-2 sm:p-4 w-[169px] sm:w-[220px]`
-                } text-sm uppercase flex justify-center items-center`}
+                className={`text-[#181a1b] p-4 ${!homeSection
+                  ? `rounded-full w-[280px] hover:bg-gray-500/5 transition duration-150`
+                  : `text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-2 sm:p-4 w-[169px] sm:w-[220px]`
+                  } text-sm uppercase flex justify-center items-center`}
               >
                 <motion.span
                   animate={{ x: isHovering ? "0" : "8px" }}

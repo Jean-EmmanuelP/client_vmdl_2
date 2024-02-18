@@ -6,6 +6,7 @@ interface ArrowProps {
   baseProfile?: string;
   xmlns?: string;
   overflow?: string;
+  reversed?: boolean;
 }
 
 const Arrow = (props: ArrowProps) => (
