@@ -161,7 +161,7 @@ export default function Paragraph({
                 data-clickable="true"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
-                initial={{ y: "40px", opacity: 0, backgroundColor: "#FFFFFF" }}
+                initial={{ y: "20px", opacity: 0, backgroundColor: "#FFFFFF" }}
                 animate={{
                   y: isVisible ? 0 : "40px",
                   opacity: isVisible ? 1 : 0,
@@ -169,9 +169,10 @@ export default function Paragraph({
                 }}
                 exit={{ opacity: 0 }}
                 transition={{
-                  backgroundColor: { delay: 0, duration: 0.3 },
+                  y: { type: "tween", ease: "linear", duration: 0.5 },
+                  opacity: { type: "tween", ease: "linear", duration: 0.5 },
+                  backgroundColor: { type: "tween", ease: "linear", duration: .5 },
                   delay: toggle ? 0 : 0.7,
-                  duration: 0.5,
                 }}
                 onClick={() => {
                   homeSection ? handleScroll(5) : setToggle(!toggle);
@@ -183,8 +184,9 @@ export default function Paragraph({
               >
                 <motion.span
                   animate={{ x: isHovering ? "0" : "8px" }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ type: "tween", ease: "linear", duration: 0.5 }}
                 >
+
                   {children[2]}
                 </motion.span>
                 <motion.span
