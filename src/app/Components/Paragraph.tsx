@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { useSection } from "../utils/Contextboard";
+import { useExpertise, useSection } from "../utils/Contextboard";
 import { twMerge } from "tailwind-merge";
 import Arrow from "../assets/svg/Arrow";
 import ReversedArrow from "../assets/svg/reverseArrow";
@@ -30,6 +30,8 @@ export default function Paragraph({
   const [toggle, setToggle] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { setSubExpertise } = useExpertise();
+
 
   const handleScroll = (value: number) => {
     const mainDiv = document.getElementById("main");
@@ -47,6 +49,7 @@ export default function Paragraph({
       (entries) => {
         entries.forEach((entry) => {
           setIsVisible(entry.isIntersecting);
+          setSubExpertise(null);
         });
       },
       {

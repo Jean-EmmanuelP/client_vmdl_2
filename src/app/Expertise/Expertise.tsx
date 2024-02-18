@@ -20,60 +20,6 @@ export default function Expertise() {
   const affairesRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            switch (entry.target.id) {
-              case "conseil":
-                setSubExpertise("conseil");
-                break;
-              case "contentieux":
-                setSubExpertise("contentieux");
-                  break;
-                case "affaires":
-                  setSubExpertise("affaires");
-                break;
-              default:
-                break;
-            }
-          }
-        });
-      },
-      {
-        root: null, // par défaut, l'viewport
-        rootMargin: "0px",
-        threshold: 0.1, // 10% de l'élément doit être visible
-      }
-    );
-
-    if (conseilRef.current) {
-      observer.observe(conseilRef.current);
-    }
-    if (contentieuxRef.current) {
-      observer.observe(contentieuxRef.current);
-    }
-    if (affairesRef.current) {
-      observer.observe(affairesRef.current);
-    }
-
-    console.log(`this is the expertise:`, subExpertise);
-    return () => {
-      console.log(`this is the expertise:`, subExpertise);
-      // Nettoyer l'observer pour éviter les fuites de mémoire
-      if (conseilRef.current) {
-        observer.unobserve(conseilRef.current);
-      }
-      if (contentieuxRef.current) {
-        observer.unobserve(contentieuxRef.current);
-      }
-      if (affairesRef.current) {
-        observer.unobserve(affairesRef.current);
-      }
-    };
-  }, [setSubExpertise]);
-
-  useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
