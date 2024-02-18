@@ -12,10 +12,6 @@ export default function Home() {
   const { currentSection } = useSection();
 
   useEffect(() => {
-    if (currentSection === 1) {
-    }
-  }, [currentSection]);
-  useEffect(() => {
     const supportedLangs: LangueCode[] = [
       "FR",
       "EN",

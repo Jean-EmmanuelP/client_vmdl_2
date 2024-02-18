@@ -24,16 +24,18 @@ export default function Expertise() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Mettez à jour l'état de votre sous-expertise ou d'autres états selon l'élément intersecté
             switch (entry.target.id) {
               case "conseil":
                 setSubExpertise("conseil");
+                console.log(`this is the expertise:`, subExpertise);
                 break;
               case "contentieux":
                 setSubExpertise("contentieux");
-                break;
-              case "affaires":
-                setSubExpertise("affaires");
+                  console.log(`this is the expertise:`, subExpertise);
+                  break;
+                case "affaires":
+                  setSubExpertise("affaires");
+                  console.log(`this is the expertise:`, subExpertise);
                 break;
               default:
                 break;
@@ -58,7 +60,9 @@ export default function Expertise() {
       observer.observe(affairesRef.current);
     }
 
+    console.log(`this is the expertise:`, subExpertise);
     return () => {
+      console.log(`this is the expertise:`, subExpertise);
       // Nettoyer l'observer pour éviter les fuites de mémoire
       if (conseilRef.current) {
         observer.unobserve(conseilRef.current);

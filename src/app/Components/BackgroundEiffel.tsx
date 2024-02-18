@@ -9,7 +9,6 @@ export default function BackgroundEiffel() {
 
   useEffect(() => {
     setIsVideoLoaded(false);
-    console.log(`voici le mediaPath en fonction de la connexion:`, mediaPaths);
   }, [subExpertise, mediaPaths]);
 
   const videoVariants = {
