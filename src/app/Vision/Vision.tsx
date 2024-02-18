@@ -27,7 +27,7 @@ export default function Vision() {
     >
       <Paragraph textColor="#030303">
         <span className="uppercase text-[40px] sm:text-[60px] font-light">{title}</span>
-        <span className="text-[20px] sm:text-[24px] sm:content font-light leading-[26px]">
+        <span className="text-[20px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
           {content}
         </span>
         <span className="text-sm">{button}</span>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Paragraph from "../Components/Paragraph";
 import { useData } from "../utils/DataContext";
 import { LangueCode, useSection } from "../utils/Contextboard";
+import Toggle from "../assets/svg/Toggle";
 
 export default function Home() {
   const { data } = useData();
@@ -54,13 +55,13 @@ export default function Home() {
   const langues = ["FR", "EN", "IT", "ES", "عربي", "PT", "DE", "中文"];
 
   const afficherLangues = () => {
-      setLanguesVisibles(true);
+    setLanguesVisibles(true);
   };
 
   const masquerLangues = () => {
     setLanguesVisibles(false);
   };
-  
+
   const choisirLangue = (nouvelleLangue: any) => {
     setLangueCourante(nouvelleLangue);
     setLanguesVisibles(false);
@@ -90,38 +91,36 @@ export default function Home() {
         {/* Langue courante toujours visible */}
         <div
           data-clickable={true}
-          className={`transition duration-150 hover:text-lg text-blanc hover:bg-gray-500/50 flex justify-center items-center w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${
-            currentSection !== 0 && !isMobile && "hidden"
-          }`}
+          className={`transition duration-150 hover:text-lg text-blanc hover:bg-gray-500/50 flex justify-center items-center w-[50px] h-[30px] sm:w-[50px] sm:h-[50px] bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${currentSection !== 0 && !isMobile && "hidden"
+            } flex items-center p-2 sm:p-0`}
           onMouseEnter={afficherLangues}
           onClick={afficherLangues}
         >
-          {langueCourante}
+          <p className="ml-[.5px] text-[10px] sm:text-base mr-1">
+            {langueCourante}
+          </p>
+          <Toggle isToggled={languesVisibles ? true : false} size={isMobile ? "12px" : "18px"} />
         </div>
 
         {/* Conteneur pour les autres langues */}
         <div
-          className={`flex flex-col items-center transition-all ${
-            !languesVisibles ? "h-0 overflow-hidden" : "h-auto mt-2"
-          }`}
+          className={`flex flex-col items-center transition-all ${!languesVisibles ? "h-0 overflow-hidden" : "h-auto mt-2"
+            }`}
         >
           {langues
             .filter((langue) => langue !== langueCourante)
             .map((langue, index) => (
               <div
                 data-clickable={true}
-                className={`transition duration-150 hover:text-lg text-blanc rounded-md flex justify-center items-center w-[30px] h-[30px] hover:bg-gray-500/50 sm:w-[50px] sm:h-[50px] m-2 bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${
-                  languesVisibles ? "opacity-100" : ""
-                }`}
+                className={`transition duration-150 hover:text-lg text-blanc text-[12px] sm:text-base rounded-md flex justify-center items-center w-[50px] h-[30px] hover:bg-gray-500/50 sm:w-[50px] sm:h-[50px] m-2 bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${languesVisibles ? "opacity-100" : ""
+                  }`}
                 key={langue}
                 onClick={() => choisirLangue(langue)}
                 style={{
-                  transition: `opacity 0.5s ${index * 0.1}s, transform 0.5s ${
-                    index * 0.1
-                  }s`,
-                  transform: `${
-                    languesVisibles ? "translateY(0)" : "translateY(-20px)"
-                  }`,
+                  transition: `opacity 0.5s ${index * 0.1}s, transform 0.5s ${index * 0.1
+                    }s`,
+                  transform: `${languesVisibles ? "translateY(0)" : "translateY(-20px)"
+                    }`,
                 }}
               >
                 {langue}
@@ -129,6 +128,6 @@ export default function Home() {
             ))}
         </div>
       </div>
-    </div>
+    </div >
   );
 }

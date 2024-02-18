@@ -48,8 +48,19 @@ export default function Paragraph({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setIsVisible(entry.isIntersecting);
-          setSubExpertise(null);
+          const isIntersecting = entry.isIntersecting;
+
+          // Si l'élément est visible, on marque comme visible et on ne fait rien de plus
+          if (isIntersecting) {
+            setSubExpertise(null);
+            setIsVisible(true);
+          } else {
+            // Si l'élément n'est plus visible, on marque comme non visible
+            setIsVisible(false);
+
+            // Réinitialiser l'état toggle à false
+            setToggle(false);
+          }
         });
       },
       {
