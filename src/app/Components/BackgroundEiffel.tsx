@@ -9,21 +9,13 @@ export default function BackgroundEiffel() {
 
   useEffect(() => {
     setIsVideoLoaded(false);
-  }, [subExpertise]);
+    console.log(`voici le mediaPath en fonction de la connexion:`, mediaPaths);
+  }, [subExpertise, mediaPaths]);
 
   const videoVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 1;
-      videoRef.current.play();
-    }
-  }, []);
 
   return (
     <AnimatePresence>
@@ -52,7 +44,6 @@ export default function BackgroundEiffel() {
           />
         )}
         <video
-          ref={videoRef}
           autoPlay
           loop={false}
           muted

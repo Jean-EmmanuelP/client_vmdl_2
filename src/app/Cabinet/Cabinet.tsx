@@ -23,9 +23,9 @@ export default function Cabinet() {
 	return (
 		<div
 			id="Cabinet"
-			className="w-full h-full flex justify-center items-center gap-4 z-10"
+			className="w-full h-full flex justify-center items-center gap-4 z-10  bg-blanc"
 		>
-			<Paragraph bgColor="#F9F9F9" textColor="#030303" section={1}>
+			<Paragraph textColor="#030303">
 				<span className="uppercase text-[40px] sm:text-[60px] sm:title font-light">{title}</span>
 				<span className="text-[20px] sm:text-[24px] sm:content leading-[26px] font-light">{content}</span>
 				<span className="text-sm">{button}</span>

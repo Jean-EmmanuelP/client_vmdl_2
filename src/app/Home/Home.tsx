@@ -78,7 +78,6 @@ export default function Home() {
     >
       <Paragraph
         homeSection={true}
-        section={0}
         textColor="#FFFFFF"
         bgColor="#00000000"
         className="gap-2.5 w-[70%] sm:w-[50%] h-[30%] text-center z-10 mt-[60px] sm:mt-[-50px]"

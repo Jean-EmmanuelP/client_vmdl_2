@@ -23,9 +23,9 @@ export default function Fondateur() {
   return (
     <div
       id="Fondateur"
-      className="w-full h-full flex justify-center items-center z-10"
+      className="w-full h-full flex justify-center items-center z-10 bg-noir"
     >
-      <Paragraph section={4} bgColor="#030303" textColor="#F9F9F9">
+      <Paragraph textColor="#F9F9F9">
         <span className="uppercase text-[40px] sm:text-[60px] sm:title font-light">{title}</span>
         <span className="text-[20px] sm:text-[24px] sm:content leading-[26px] font-light">
           {content}

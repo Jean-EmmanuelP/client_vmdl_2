@@ -160,23 +160,44 @@ export default function Affaires() {
           })}
         <div className="absolute flex justify-around items-center bottom-20 left-1/2 translate-x-[-125.5vw] sm:translate-x-[-106.5vw] w-60 h-10 bg-white/10 backdrop-blur-sm shadow-2xl rounded-2xl">
           <div
-            className="rounded-full border border-black/50 bg-white shadow-2xl w-5 h-5 sm:w-6 sm:h-6"
+            className={`relative rounded-full border border-black/50  shadow-2xl w-5 h-5 sm:w-6 sm:h-6 bg-white`}
             data-clickable="true"
             id="rio"
             onClick={() => handleSelection("rio")}
-          ></div>
+          >
+            <div
+              className={`${
+                videos[2].isActive &&
+                `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
+              }`}
+            ></div>
+          </div>
           <div
-            className="rounded-full border border-black/50 bg-white shadow-2xl w-5 h-5 sm:w-6 sm:h-6"
+            className={`relative rounded-full border border-black/50  shadow-2xl w-5 h-5 sm:w-6 sm:h-6 bg-white`}
             data-clickable="true"
             id="dubai"
             onClick={() => handleSelection("dubai")}
-          ></div>
+          >
+            <div
+              className={`${
+                videos[1].isActive &&
+                `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
+              }`}
+            ></div>
+          </div>
           <div
-            className="rounded-full border border-black/50 bg-white shadow-2xl w-5 h-5 sm:w-6 sm:h-6"
+            className={`relative rounded-full border border-black/50  shadow-2xl w-5 h-5 sm:w-6 sm:h-6 bg-white`}
             data-clickable="true"
             id="qatar"
             onClick={() => handleSelection("qatar")}
-          ></div>
+          >
+            <div
+              className={`${
+                videos[0].isActive &&
+                `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
+              }`}
+            ></div>
+          </div>
         </div>
       </div>
     </motion.div>

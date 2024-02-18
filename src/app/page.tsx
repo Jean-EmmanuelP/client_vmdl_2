@@ -235,7 +235,6 @@ export default function App() {
     } else if (downlink >= 1 && downlink < 5) {
       qualitySuffix = isMobile ? "medium_mobile" : "medium";
     }
-
     setMediaPaths({
       paris: `${videoBasePath}paris/paris_${qualitySuffix}.webm`,
       dubai: `${videoBasePath}dubai/dubai_${qualitySuffix}.webm`,
