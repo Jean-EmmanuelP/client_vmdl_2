@@ -54,6 +54,10 @@ export default function Contentieux() {
       }
     };
   }, [videoRef]);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768)
+  }, [])
   if (!data) {
     return null;
   }
@@ -82,10 +86,6 @@ export default function Contentieux() {
     );
   };
   const formattedContent = formatContent(content);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  useEffect(() => {
-    setIsMobile(window.innerWidth <= 768)
-  }, [])
 
   return (
     <motion.div
