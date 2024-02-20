@@ -85,13 +85,13 @@ export default function Home() {
         <span className="text-[12px] sm:text-base">{contact_button}</span>
       </Paragraph>
       <div
-        className="absolute top-[95px] sm:top-[3%] right-1 sm:right-2 flex flex-col items-center w-[100px] h-[55%] font-bold text-gray-800 text-sm sm:text-base"
+        className="absolute top-[95px] sm:top-[2%] right-1 sm:right-2 flex flex-col items-center w-[100px] h-[55%] font-bold text-gray-800 text-sm sm:text-base"
         onMouseLeave={masquerLangues}
       >
         {/* Langue courante toujours visible */}
         <div
           data-clickable={true}
-          className={`transition duration-150 hover:text-lg text-blanc hover:bg-gray-500/50 flex justify-center items-center w-[50px] h-[30px] sm:w-[50px] sm:h-[50px] bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${currentSection !== 0 && !isMobile && "hidden"
+          className={`transition duration-150 hover:text-lg text-blanc hover:bg-gray-500/50 flex justify-center items-center w-[50px] h-[30px] sm:w-[70px] sm:h-[50px] bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${currentSection !== 0 && !isMobile && "hidden"
             } flex items-center p-2 sm:p-0`}
           onMouseEnter={afficherLangues}
           onClick={afficherLangues}
@@ -112,7 +112,7 @@ export default function Home() {
             .map((langue, index) => (
               <div
                 data-clickable={true}
-                className={`transition duration-150 hover:text-lg text-blanc text-[12px] sm:text-base rounded-md flex justify-center items-center w-[50px] h-[30px] hover:bg-gray-500/50 sm:w-[50px] sm:h-[50px] m-2 bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${languesVisibles ? "opacity-100" : ""
+                className={`transition duration-150 hover:text-lg text-blanc text-[12px] sm:text-base rounded-md flex justify-center items-center w-[50px] h-[30px] hover:bg-gray-500/50 sm:w-[70px] sm:h-[50px] m-2 bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-md ${languesVisibles ? "opacity-100" : ""
                   }`}
                 key={langue}
                 onClick={() => choisirLangue(langue)}

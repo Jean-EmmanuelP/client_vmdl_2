@@ -42,11 +42,8 @@ export default function Footer() {
   return (
     <div
       id="Footer"
-      className="relative w-full h-[27%] flex flex-col z-10 bg-noir text-blanc mt-[-40px] sm:mt-0"
+      className="relative w-full h-[45%] sm:h-[27%] flex flex-col z-10 bg-noir text-blanc mt-[-40px] sm:mt-0"
     >
-      {/* <div className="absolute top-[10px] left-[30px] scale-50 opacity-50">
-        <img src="/favicon/vmdl.png" alt="" />
-      </div> */}
       <div
         id="footer-title"
         className="w-full h-2/5 sm:h-3/5 flex justify-center items-center"

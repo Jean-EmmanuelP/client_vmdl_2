@@ -5,21 +5,21 @@ import { useData } from "../utils/DataContext";
 export default function Cabinet() {
 	const { data } = useData();
 	const { langueCourante } = useSection();
-  if (!data) {
-    return;
-  }
-  const langCodeMap: { [key in LangueCode]: string } = {
-    FR: 'fr',
-    EN: 'en',
-    IT: 'it',
-    ES: 'es',
-    عربي: 'عربي',
-    PT: 'pt',
-    DE: 'de',
-	中文: '中文'
-  };
-  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
-	const { title, content, button, content_after_clicking_button  } = data[langCode].section_2;
+	if (!data) {
+		return;
+	}
+	const langCodeMap: { [key in LangueCode]: string } = {
+		FR: 'fr',
+		EN: 'en',
+		IT: 'it',
+		ES: 'es',
+		عربي: 'عربي',
+		PT: 'pt',
+		DE: 'de',
+		中文: '中文'
+	};
+	const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
+	const { title, content, button, content_after_clicking_button } = data[langCode].section_2;
 	return (
 		<div
 			id="Cabinet"

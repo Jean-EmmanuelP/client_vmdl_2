@@ -100,7 +100,7 @@ export default function Conseil() {
           }`}
           onClick={togglePlay}
         >
-          <source src="/videos/kaka.mp4" type="video/mp4" />
+          <source src="/videos/kaka.webm" type="video/mp4" />
         </video>
         {!isPlaying && (
           <button
@@ -162,7 +162,7 @@ export default function Conseil() {
                   loop
                   onHoverEnd={() => setVideoVisible(false)}
                 >
-                  <source src="/videos/kaka.mp4" type="video/mp4" />
+                  <source src="/videos/kaka.webm" type="video/mp4" />
                 </motion.video>
               )}
             </AnimatePresence>
