@@ -54,10 +54,6 @@ export default function Contentieux() {
       }
     };
   }, [videoRef]);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  useEffect(() => {
-    setIsMobile(window.innerWidth <= 768)
-  }, [])
   if (!data) {
     return null;
   }
@@ -75,6 +71,7 @@ export default function Contentieux() {
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { content } = data[langCode].section_3.box_2;
+  const isMobile = window.innerWidth <= 768;
 
   const formatContent = (content: string): string => {
     // Diviser le contenu à chaque point, puis rejoindre les éléments avec un '<br>' pour un saut de ligne HTML
@@ -90,9 +87,9 @@ export default function Contentieux() {
   return (
     <motion.div
       animate={{ x: subExpertise === "contentieux" ? "0vw" : "100vw" }}
-      style={{ y: isMobile ? "-30vh" : "-100vh" }}
+      style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className="absolute w-full overflow-hidden h-full flex justify-center items-center text-blanc"
+      className={`absolute w-full overflow-hidden ${isMobile ? 'h-[120vh]' : 'h-full'} flex justify-center items-center text-blanc`}
     >
       <motion.div
         initial={{ opacity: 0 }}

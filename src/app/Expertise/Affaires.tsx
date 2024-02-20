@@ -18,7 +18,6 @@ export default function Affaires() {
   const { subExpertise } = useExpertise();
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
   const { mediaPaths } = useSection();
-  const [isMobile, setIsMobile] = useState(false);
 
   const [videos, setVideos] = useState<Video[]>([
     {
@@ -48,7 +47,6 @@ export default function Affaires() {
   const videoRefs = useRef<HTMLVideoElement[]>([]);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -115,7 +113,7 @@ export default function Affaires() {
   return (
     <motion.div
       animate={{ x: subExpertise === "affaires" ? "100vw" : "200vw" }}
-      style={{ y: isMobile ? "-30vh" : "-100vh" }}
+      style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
       className="relative w-full h-full flex justify-center items-center text-blanc z-1 bg-blanc"
     >
@@ -168,9 +166,10 @@ export default function Affaires() {
             onClick={() => handleSelection("rio")}
           >
             <div
-              className={`${videos[2].isActive &&
+              className={`${
+                videos[2].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-                }`}
+              }`}
             ></div>
           </div>
           <div
@@ -180,9 +179,10 @@ export default function Affaires() {
             onClick={() => handleSelection("dubai")}
           >
             <div
-              className={`${videos[1].isActive &&
+              className={`${
+                videos[1].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-                }`}
+              }`}
             ></div>
           </div>
           <div
@@ -192,9 +192,10 @@ export default function Affaires() {
             onClick={() => handleSelection("qatar")}
           >
             <div
-              className={`${videos[0].isActive &&
+              className={`${
+                videos[0].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-                }`}
+              }`}
             ></div>
           </div>
         </div>
