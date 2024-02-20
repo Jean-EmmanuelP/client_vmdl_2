@@ -82,13 +82,17 @@ export default function Contentieux() {
     );
   };
   const formattedContent = formatContent(content);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768)
+  }, [])
 
   return (
     <motion.div
       animate={{ x: subExpertise === "contentieux" ? "0vw" : "100vw" }}
-      style={{ y: "-100vh" }}
+      style={{ y: isMobile ? "-30vh" : "-100vh" }}
       transition={{ duration: 1 }}
-      className="absolute w-full overflow-hidden h-screen flex justify-center items-center text-blanc"
+      className="absolute w-full overflow-hidden h-full flex justify-center items-center text-blanc"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -102,7 +106,7 @@ export default function Contentieux() {
         ></div>
       </motion.div>
 
-      <video ref={videoRef} className="w-full h-screen object-cover bg-black">
+      <video ref={videoRef} className="w-full h-full object-cover bg-black">
         <source src={`${mediaPaths.vosges}`} type="video/mp4" />
       </video>
     </motion.div>

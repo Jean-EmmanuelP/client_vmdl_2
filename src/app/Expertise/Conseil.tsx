@@ -88,9 +88,9 @@ export default function Conseil() {
   return (
     <motion.div
       animate={{ x: subExpertise === "conseil" ? "0vw" : "100vw" }}
-      style={{ y: "-100vh" }}
+      style={{ y: isMobile ? "-30vh" : "-100vh" }}
       transition={{ duration: 1 }}
-      className="absolute w-full h-screen flex text-noir bg-blanc"
+      className="absolute w-full h-full flex text-noir bg-blanc"
     >
       <div className={`relative hidden sm:block w-[30%] h-full`}>
         <video
