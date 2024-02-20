@@ -116,7 +116,7 @@ export default function Affaires() {
       animate={{ x: subExpertise === "affaires" ? "100vw" : "200vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className={`relative w-full ${isMobile ? 'h-[120vh]' : 'h-full'} flex justify-center items-center text-blanc z-1 bg-blanc`}
+      className={`relative w-full ${isMobile ? 'h-[110vh]' : 'h-full'} flex justify-center items-center text-blanc z-1 bg-blanc`}
     >
       <div className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc">
         {videos &&

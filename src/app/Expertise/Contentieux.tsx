@@ -89,7 +89,7 @@ export default function Contentieux() {
       animate={{ x: subExpertise === "contentieux" ? "0vw" : "100vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className={`absolute w-full overflow-hidden ${isMobile ? 'h-[120vh]' : 'h-full'} flex justify-center items-center text-blanc`}
+      className={`absolute w-full overflow-hidden ${isMobile ? 'h-[110vh]' : 'h-full'} flex justify-center items-center text-blanc`}
     >
       <motion.div
         initial={{ opacity: 0 }}
