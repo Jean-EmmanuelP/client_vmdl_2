@@ -167,10 +167,9 @@ export default function Affaires() {
             onClick={() => handleSelection("rio")}
           >
             <div
-              className={`${
-                videos[2].isActive &&
+              className={`${videos[2].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-              }`}
+                }`}
             ></div>
           </div>
           <div
@@ -180,10 +179,9 @@ export default function Affaires() {
             onClick={() => handleSelection("dubai")}
           >
             <div
-              className={`${
-                videos[1].isActive &&
+              className={`${videos[1].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-              }`}
+                }`}
             ></div>
           </div>
           <div
@@ -193,10 +191,9 @@ export default function Affaires() {
             onClick={() => handleSelection("qatar")}
           >
             <div
-              className={`${
-                videos[0].isActive &&
+              className={`${videos[0].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-              }`}
+                }`}
             ></div>
           </div>
         </div>

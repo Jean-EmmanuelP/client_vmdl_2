@@ -100,7 +100,7 @@ export default function Conseil() {
             }`}
           onClick={togglePlay}
         >
-          <source src="/videos/kaka.webm" type="video/mp4" />
+          <source src="/videos/kaka.webm" type="video/webm" />
         </video>
         {!isPlaying && (
           <button
@@ -114,13 +114,7 @@ export default function Conseil() {
           </button>
         )}
       </div>
-      {/* <video ref={videoRef} className="object-cover hidden sm:flex w-[30%] h-full">
-        <source src="/videos/kaka.mp4" type="video/mp4" />
-      </video> */}
       <div className="absolute right-0 w-full h-full sm:w-[70%] flex flex-col text-center">
-        {/* <div className="w-full h-[20%] flex justify-center items-center">
-          <p className="text-[40px] sm:text-[60px] font-light uppercase">{title}</p>
-        </div> */}
         <div className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[65%] -translate-y-1/2 flex flex-col gap-2 justify-center items-center">
           <p className="text-[40px] sm:text-[60px] font-light uppercase">
             {title}
@@ -161,7 +155,7 @@ export default function Conseil() {
                   loop
                   onHoverEnd={() => setVideoVisible(false)}
                 >
-                  <source src="/videos/kaka.webm" type="video/mp4" />
+                  <source src="/videos/kaka.webm" type="video/webm" />
                 </motion.video>
               )}
             </AnimatePresence>

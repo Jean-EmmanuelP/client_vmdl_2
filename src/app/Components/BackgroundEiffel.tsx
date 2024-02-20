@@ -24,7 +24,7 @@ export default function BackgroundEiffel() {
       >
         <video
           autoPlay
-          loop={false}
+          loop
           muted
           playsInline
           style={{
