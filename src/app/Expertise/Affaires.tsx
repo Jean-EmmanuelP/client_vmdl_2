@@ -115,9 +115,9 @@ export default function Affaires() {
       animate={{ x: subExpertise === "affaires" ? "100vw" : "200vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className="relative w-full h-full flex justify-center items-center text-blanc z-1 bg-blanc"
+      className="relative w-full h-screen flex justify-center items-center text-blanc z-1 bg-blanc"
     >
-      <div className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc">
+      <div className="absolute flex w-[300%] h-screen overflow-hidden z-10 bg-blanc">
         {videos &&
           videos.map((video, index) => {
             let title, content;
@@ -142,7 +142,7 @@ export default function Affaires() {
                 className={`absolute w-1/3 h-full text-4xl`}
               >
                 <video
-                  className="absolute flex justify-center items-center object-cover h-full w-full -translate-y-1/2"
+                  className="absolute flex justify-center items-center object-cover h-screen w-full -translate-y-1/2"
                   ref={(el) => {
                     if (el) {
                       videoRefs.current[index] = el;
