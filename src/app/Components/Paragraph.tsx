@@ -198,8 +198,8 @@ export default function Paragraph({
                 }}
                 className={`text-[#181a1b] p-4 ${!homeSection
                   ? `rounded-full w-[280px] hover:bg-gray-500/5 transition duration-150`
-                  : `text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-2 sm:p-4 w-[169px] sm:w-[220px]`
-                  } text-sm uppercase flex justify-center items-center`}
+                  : `text-noir tracking-widest rounded-full bg-blanc shadow-2xl p-2 sm:py-6`
+                  } uppercase flex justify-center items-center leading-3 text-sm`}
               >
                 <motion.span
                   animate={{ x: isHovering ? "0" : "8px" }}
