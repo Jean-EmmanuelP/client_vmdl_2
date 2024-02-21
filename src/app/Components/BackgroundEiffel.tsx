@@ -15,6 +15,10 @@ export default function BackgroundEiffel() {
     }, 1300);
   };
 
+  function convertToMp4Path(webmPath: string) {
+    return webmPath.replace(".webm", ".mp4");
+  }
+
   return (
     <AnimatePresence>
       <motion.div
@@ -28,12 +32,11 @@ export default function BackgroundEiffel() {
         style={{ zIndex: -1 }}
       >
         <video
-          autoPlay
           loop
           muted
           onLoadedData={handleVideoLoad}
           playsInline
-          poster="/images/paris.jpeg"
+          poster="/images/paris_global_view.jpeg"
           style={{
             position: "absolute",
             width: "100%",
@@ -44,6 +47,10 @@ export default function BackgroundEiffel() {
           }}
         >
           <source src={`${mediaPaths.paris}`} type="video/webm" />
+          <source
+            src={`${convertToMp4Path(mediaPaths.paris)}`}
+            type="video/mp4"
+          />
         </video>
       </motion.div>
     </AnimatePresence>
