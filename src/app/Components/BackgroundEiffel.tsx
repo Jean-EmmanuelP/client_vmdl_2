@@ -32,6 +32,7 @@ export default function BackgroundEiffel() {
         style={{ zIndex: -1 }}
       >
         <video
+          autoPlay
           loop
           muted
           onLoadedData={handleVideoLoad}
