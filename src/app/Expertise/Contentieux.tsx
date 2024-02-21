@@ -105,6 +105,7 @@ export default function Contentieux() {
 
       <video ref={videoRef} className="w-full h-full object-cover bg-black">
         <source src={`${mediaPaths.vosges}`} type="video/webm" />
+        <img className="w-screen h-screen" src={`/images/vosges.jpeg`} />
       </video>
     </motion.div>
   );

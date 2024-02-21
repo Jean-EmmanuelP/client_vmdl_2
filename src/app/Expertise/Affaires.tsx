@@ -12,6 +12,7 @@ interface Video {
   title: string;
   subtitle: string;
   contact_button: string;
+  image: string;
 }
 
 export default function Affaires() {
@@ -26,6 +27,7 @@ export default function Affaires() {
       title: "Titre de la vidéo Qatar",
       subtitle: "Sous-titre de la vidéo Qatar",
       contact_button: "Contacter pour Qatar",
+      image: "qatar.jpeg"
     },
     {
       src: `${mediaPaths.dubai}`,
@@ -33,6 +35,7 @@ export default function Affaires() {
       title: "Titre de la vidéo Dubai",
       subtitle: "Sous-titre de la vidéo Dubai",
       contact_button: "Contacter pour Dubai",
+      image: "dubai.jpeg"
     },
     {
       src: `${mediaPaths.rio}`,
@@ -40,6 +43,7 @@ export default function Affaires() {
       title: "Titre de la vidéo Rio",
       subtitle: "Sous-titre de la vidéo Rio",
       contact_button: "Contacter pour Rio",
+      image: "rio.jpeg"
     },
   ]);
   const { data } = useData();
@@ -149,9 +153,11 @@ export default function Affaires() {
                       videoRefs.current[index] = el;
                     }
                   }}
-                  src={video.src}
                   muted
-                ></video>
+                >
+                  <source src={`${video.src}`} type="video/webm" />
+                  <img className="w-screen h-screen" src={`/images/${video.image}`} />
+                </video>
                 <div className="text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-2 sm:p-4 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center">
                   <p>{title}</p>
                   <p>{content}</p>

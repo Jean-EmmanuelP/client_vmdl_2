@@ -156,6 +156,7 @@ export default function Conseil() {
                   onHoverEnd={() => setVideoVisible(false)}
                 >
                   <source src="/videos/kaka.webm" type="video/webm" />
+                  <img className="w-screen h-screen" src="/images/paris.jpeg" />
                 </motion.video>
               )}
             </AnimatePresence>

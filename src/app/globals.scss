@@ -61,18 +61,47 @@
 #root,
 html,
 body {
-	height: 100%;
+  height: 100%;
   cursor: none;
 }
 
+
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  animation: slideUp 0.5s ease-in forwards;
+  animation-delay: 1s;
+}
+
+@keyframes slideUp {
+  from {
+    height: 100%;
+  }
+
+  to {
+    height: 0%;
+  }
+}
+
+
 #main::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 #main {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
 }
 
 button {
@@ -94,7 +123,7 @@ button {
 }
 
 .gradient-header {
-	background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8435749299719888) 100%);
+  background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8435749299719888) 100%);
 }
 
 /*#Home {
@@ -235,9 +264,9 @@ video {
   margin-right: 40px;
 }
 
-#radio1:checked ~ .navigation-auto .auto-btn1,
-#radio2:checked ~ .navigation-auto .auto-btn2,
-#radio3:checked ~ .navigation-auto .auto-btn3,
-#radio4:checked ~ .navigation-auto .auto-btn4 {
+#radio1:checked~.navigation-auto .auto-btn1,
+#radio2:checked~.navigation-auto .auto-btn2,
+#radio3:checked~.navigation-auto .auto-btn3,
+#radio4:checked~.navigation-auto .auto-btn4 {
   background: #40D3DC;
 }

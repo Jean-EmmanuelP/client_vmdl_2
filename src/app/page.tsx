@@ -280,9 +280,19 @@ export default function App() {
   useEffect(() => {
     updateMediaPaths();
   }, []);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <DataProvider>
+      {isLoading && (
+        <div
+          className="loading-screen"
+          onAnimationEnd={() => setIsLoading(false)}
+        >
+          <h1 className="font-riviera text-2xl">VMDL presents</h1>
+        </div>
+      )}
+
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
         <CustomCursor />
         <currentSectionContext.Provider
@@ -295,6 +305,7 @@ export default function App() {
             setHeaderHeight,
             mediaPaths,
             updateMediaPaths,
+            setIsLoading
           }}
         >
           <expertiseContext.Provider value={{ subExpertise, setSubExpertise }}>

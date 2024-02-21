@@ -1,13 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useSection } from "../utils/Contextboard";
-import { useEffect, useState } from "react";
 
 export default function BackgroundEiffel() {
-  const { mediaPaths } = useSection();
+  const { mediaPaths, setIsLoading } = useSection();
 
   const videoVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
+  };
+
+  const handleVideoLoad = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
 
   return (
@@ -26,6 +31,7 @@ export default function BackgroundEiffel() {
           autoPlay
           loop
           muted
+          onLoadedData={handleVideoLoad}
           playsInline
           style={{
             position: "absolute",
@@ -35,8 +41,10 @@ export default function BackgroundEiffel() {
             objectPosition: "50% 50%",
             zIndex: -1,
           }}
-          src={`${mediaPaths.paris}`}
-        />
+        >
+          <source src={`${mediaPaths.paris}`} type="video/webm" />
+          <img className="w-screen h-screen" src="/images/paris.jpeg" />
+        </video>
       </motion.div>
     </AnimatePresence>
   );

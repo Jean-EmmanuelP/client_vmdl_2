@@ -29,6 +29,7 @@ interface currentSectionProps {
   setLangueCourante: React.Dispatch<React.SetStateAction<LangueCode>>;
   mediaPaths: MediaPaths;
   updateMediaPaths: () => void;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const defaultValues: currentSectionProps = {
@@ -46,6 +47,7 @@ const defaultValues: currentSectionProps = {
     vosges: `/videos/laptop/vosges/vosges_low.webm`,
   },
   updateMediaPaths: () => {},
+  setIsLoading: () => {}
 };
 
 export const currentSectionContext = createContext<

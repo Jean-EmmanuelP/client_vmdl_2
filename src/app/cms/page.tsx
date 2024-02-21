@@ -28,7 +28,6 @@ export default function CMS() {
   }, [selectedSection, language]);
 
   useEffect(() => {
-    console.log(`this is the selectedSubSubSection:`, selectedSubSubSection);
   }, [selectedSubSubSection]);
 
   const updateSubSections = (section: SectionKeys) => {
@@ -46,7 +45,6 @@ export default function CMS() {
     if (subSectionData && typeof subSectionData === "object") {
       const firstElementKey = getFirstKey(subSectionData);
       setSelectedElement(firstElementKey); // je suis arrive ici au niveau de la comprehension !
-      console.log(`dans le updateElements`);
       setSelectedSubSubSection(firstElementKey);
     } else {
       setSelectedElement(null);
@@ -70,7 +68,6 @@ export default function CMS() {
 
   const handleSubSectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSubSection(e.target.value);
-    console.log(`this is the selectedSubSection:`, e.target.value);
     updateElements(selectedSection, e.target.value);
   };
 
