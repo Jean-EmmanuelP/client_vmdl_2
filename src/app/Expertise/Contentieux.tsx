@@ -103,9 +103,8 @@ export default function Contentieux() {
         ></div>
       </motion.div>
 
-      <video ref={videoRef} className="w-full h-full object-cover bg-black">
+      <video ref={videoRef} className="w-full h-full object-cover bg-black" poster={`/images/vosges.jpeg`}>
         <source src={`${mediaPaths.vosges}`} type="video/webm" />
-        <img className="w-screen h-screen" src={`/images/vosges.jpeg`} />
       </video>
     </motion.div>
   );

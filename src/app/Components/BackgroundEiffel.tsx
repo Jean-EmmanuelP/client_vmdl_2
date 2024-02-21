@@ -12,7 +12,7 @@ export default function BackgroundEiffel() {
   const handleVideoLoad = () => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 1300);
   };
 
   return (
@@ -33,6 +33,7 @@ export default function BackgroundEiffel() {
           muted
           onLoadedData={handleVideoLoad}
           playsInline
+          poster="/images/paris.jpeg"
           style={{
             position: "absolute",
             width: "100%",
@@ -43,7 +44,6 @@ export default function BackgroundEiffel() {
           }}
         >
           <source src={`${mediaPaths.paris}`} type="video/webm" />
-          <img className="w-screen h-screen" src="/images/paris.jpeg" />
         </video>
       </motion.div>
     </AnimatePresence>

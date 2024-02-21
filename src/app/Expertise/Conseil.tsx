@@ -153,10 +153,10 @@ export default function Conseil() {
                   className="w-fit h-fit bg-blanc object-cover"
                   autoPlay={videoVisible}
                   loop
+                  poster="/images/paris.jpeg"
                   onHoverEnd={() => setVideoVisible(false)}
                 >
                   <source src="/videos/kaka.webm" type="video/webm" />
-                  <img className="w-screen h-screen" src="/images/paris.jpeg" />
                 </motion.video>
               )}
             </AnimatePresence>
