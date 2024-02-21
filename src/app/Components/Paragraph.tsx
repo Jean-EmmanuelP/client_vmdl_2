@@ -24,7 +24,7 @@ export default function Paragraph({
   classText,
   homeSection,
 }: ParagraphProps) {
-  const { setCurrentSection } = useSection();
+  const { setCurrentSection, setHeaderHeight } = useSection();
   const [isVisible, setIsVisible] = useState(false);
   const paragraphRef = useRef<HTMLDivElement | null>(null);
   const [toggle, setToggle] = useState<boolean>(false);
@@ -54,6 +54,11 @@ export default function Paragraph({
           if (isIntersecting) {
             setSubExpertise(null);
             setIsVisible(true);
+            if (!homeSection) {
+              setHeaderHeight("64px");
+            } else {
+              setHeaderHeight("90px");
+            }
           } else {
             // Si l'élément n'est plus visible, on marque comme non visible
             setIsVisible(false);

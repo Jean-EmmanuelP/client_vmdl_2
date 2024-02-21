@@ -221,37 +221,6 @@ export default function App() {
     };
   }
 
-  useEffect(() => {
-    let lastTouchY: number = 0;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      lastTouchY = e.touches[0].clientY;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      const touchY: number = e.touches[0].clientY;
-      const direction: string = touchY > lastTouchY ? 'up' : 'down';
-
-      if (direction === 'down') {
-        setHeaderHeight('64px');
-      } else {
-        setHeaderHeight(isMobile ? '90px' : '128px');
-      }
-
-      lastTouchY = touchY;
-    };
-
-    if (isMobile) {
-      window.addEventListener('touchstart', handleTouchStart, { passive: true });
-      window.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-      return () => {
-        window.removeEventListener('touchstart', handleTouchStart);
-        window.removeEventListener('touchmove', handleTouchMove);
-      };
-    }
-  }, [isMobile]);
-
   const updateMediaPaths = useCallback(() => {
     const isMobile = window.innerWidth <= 768;
 
@@ -289,7 +258,24 @@ export default function App() {
           className="loading-screen"
           onAnimationEnd={() => setIsLoading(false)}
         >
-          <h1 className="font-riviera text-2xl">VMDL presents</h1>
+          <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" stroke="#fff">
+            <g fill="none" fill-rule="evenodd">
+              <g transform="translate(1 1)" stroke-width="2">
+                <circle cx="5" cy="50" r="5">
+                  <animate attributeName="cy" begin="0s" dur="2.2s" values="50;5;50;50" calcMode="linear" repeatCount="indefinite" />
+                  <animate attributeName="cx" begin="0s" dur="2.2s" values="5;27;49;5" calcMode="linear" repeatCount="indefinite" />
+                </circle>
+                <circle cx="27" cy="5" r="5">
+                  <animate attributeName="cy" begin="0s" dur="2.2s" from="5" to="5" values="5;50;50;5" calcMode="linear" repeatCount="indefinite" />
+                  <animate attributeName="cx" begin="0s" dur="2.2s" from="27" to="27" values="27;49;5;27" calcMode="linear" repeatCount="indefinite" />
+                </circle>
+                <circle cx="49" cy="50" r="5">
+                  <animate attributeName="cy" begin="0s" dur="2.2s" values="50;50;5;50" calcMode="linear" repeatCount="indefinite" />
+                  <animate attributeName="cx" from="49" to="49" begin="0s" dur="2.2s" values="49;5;27;49" calcMode="linear" repeatCount="indefinite" />
+                </circle>
+              </g>
+            </g>
+          </svg>
         </div>
       )}
 
