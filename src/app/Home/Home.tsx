@@ -10,8 +10,9 @@ export default function Home() {
   const { data } = useData();
   const [languesVisibles, setLanguesVisibles] = useState(false);
   const { langueCourante, setLangueCourante } = useSection();
-  const { currentSection } = useSection();
+  const { currentSection, headerHeight } = useSection();
   const [isMobile, setIsMobile] = useState(false);
+  const [hideLanguage, setHideLanguage] = useState(false);
 
   useEffect(() => {
     setIsMobile(window.innerWidth <= 768);
@@ -34,6 +35,13 @@ export default function Home() {
 
     setLangueCourante(appLang);
   }, []);
+  useEffect(() => {
+    if (headerHeight === "64px") {
+      setHideLanguage(true);
+    } else {
+      setHideLanguage(false);
+    }
+  }, [headerHeight]);
 
   if (!data) {
     return;
@@ -49,7 +57,8 @@ export default function Home() {
     DE: "de",
     中文: "中文",
   };
-  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
+  const langCode =
+    langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, subtitle, contact_button } = data[langCode].section_1;
 
   const langues = ["FR", "EN", "IT", "ES", "عربي", "PT", "DE", "中文"];
@@ -91,36 +100,44 @@ export default function Home() {
         {/* Langue courante toujours visible */}
         <div
           data-clickable={true}
-          className={`transition duration-150 hover:text-lg hover:bg-blanc/70 flex rounded-md justify-center items-center w-[50px] h-[30px] sm:w-[70px] sm:h-[50px] bg-blanc text-noir shadow-md ${currentSection !== 0 && !isMobile && "hidden"
-            } flex items-center p-2 sm:p-0`}
+          className={`transition duration-150 hover:text-lg hover:bg-blanc/70 flex rounded-md justify-center items-center w-[50px] h-[30px] sm:w-[70px] sm:h-[50px] bg-blanc text-noir shadow-md ${
+            currentSection !== 0 && !isMobile && "hidden"
+          } ${hideLanguage && 'hidden'} flex items-center p-2 sm:p-0`}
           onMouseEnter={afficherLangues}
           onClick={afficherLangues}
         >
           <p className="ml-[.5px] text-[10px] sm:text-base mr-1">
             {langueCourante}
           </p>
-          <Toggle isToggled={languesVisibles ? true : false} size={isMobile ? "12px" : "18px"} />
+          <Toggle
+            isToggled={languesVisibles ? true : false}
+            size={isMobile ? "12px" : "18px"}
+          />
         </div>
 
         {/* Conteneur pour les autres langues */}
         <div
-          className={`flex flex-col items-center transition-all ${!languesVisibles ? "h-0 overflow-hidden" : "h-auto mt-2"
-            }`}
+          className={`flex flex-col items-center transition-all ${
+            !languesVisibles ? "h-0 overflow-hidden" : "h-auto mt-2"
+          }`}
         >
           {langues
             .filter((langue) => langue !== langueCourante)
             .map((langue, index) => (
               <div
                 data-clickable={true}
-                className={`transition duration-150 hover:text-lg text-[12px] sm:text-base rounded-md flex justify-center items-center w-[50px] h-[30px] hover:bg-blanc/70 sm:w-[70px] sm:h-[50px] m-2 bg-blanc text-noir shadow-md ${languesVisibles ? "opacity-100" : ""
-                  }`}
+                className={`transition duration-150 hover:text-lg text-[12px] sm:text-base rounded-md flex justify-center items-center w-[50px] h-[30px] hover:bg-blanc/70 sm:w-[70px] sm:h-[50px] m-2 bg-blanc text-noir shadow-md ${
+                  languesVisibles ? "opacity-100" : ""
+                }`}
                 key={langue}
                 onClick={() => choisirLangue(langue)}
                 style={{
-                  transition: `opacity 0.5s ${index * 0.1}s, transform 0.5s ${index * 0.1
-                    }s`,
-                  transform: `${languesVisibles ? "translateY(0)" : "translateY(-20px)"
-                    }`,
+                  transition: `opacity 0.5s ${index * 0.1}s, transform 0.5s ${
+                    index * 0.1
+                  }s`,
+                  transform: `${
+                    languesVisibles ? "translateY(0)" : "translateY(-20px)"
+                  }`,
                 }}
               >
                 {langue}
@@ -128,6 +145,6 @@ export default function Home() {
             ))}
         </div>
       </div>
-    </div >
+    </div>
   );
 }
