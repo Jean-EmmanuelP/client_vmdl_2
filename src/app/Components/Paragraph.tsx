@@ -32,7 +32,6 @@ export default function Paragraph({
   const [isMobile, setIsMobile] = useState(false);
   const { setSubExpertise } = useExpertise();
 
-
   const handleScroll = (value: number) => {
     const mainDiv = document.getElementById("main");
 
@@ -195,6 +194,7 @@ export default function Paragraph({
                 }}
                 onClick={() => {
                   homeSection ? handleScroll(5) : setToggle(!toggle);
+                  setIsHovering(false);
                 }}
                 className={`text-[#181a1b] p-4 ${!homeSection
                   ? `rounded-full w-[280px] hover:bg-gray-500/5 transition duration-150`
