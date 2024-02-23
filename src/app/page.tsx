@@ -234,9 +234,9 @@ export default function App() {
 
     let qualitySuffix = isMobile ? "high_mobile" : "high";
 
-    if (downlink < 1) {
+    if (downlink < 0.75) {
       qualitySuffix = isMobile ? "low_mobile" : "low";
-    } else if (downlink >= 1 && downlink < 5) {
+    } else if (downlink >= 0.75 && downlink < 1) {
       qualitySuffix = isMobile ? "medium_mobile" : "medium";
     }
     setMediaPaths({

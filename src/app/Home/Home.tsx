@@ -62,6 +62,17 @@ export default function Home() {
   const { title, subtitle, contact_button } = data[langCode].section_1;
 
   const langues = ["FR", "EN", "IT", "ES", "عربي", "PT", "DE", "中文"];
+  const messagesByLang = {
+    FR: 'Cliquez ci-dessous pour changer de langue',
+    EN: 'Click below to change the language',
+    IT: 'Clicca qui sotto per cambiare lingua',
+    ES: 'Haz clic abajo para cambiar de idioma',
+    عربي: 'انقر أدناه لتغيير اللغة',
+    PT: 'Clique abaixo para mudar o idioma',
+    DE: 'Klicken Sie unten, um die Sprache zu ändern',
+    中文: '点击下方更换语言'
+  };
+  const message = messagesByLang[langueCourante];
 
   const afficherLangues = () => {
     setLanguesVisibles(true);
@@ -81,6 +92,9 @@ export default function Home() {
       id="Home"
       className="w-full h-full flex justify-center items-center transparent"
     >
+      {languesVisibles && !isMobile && (<>
+        <div className="absolute top-[95px] sm:top-[3.5%] right-[23%] sm:right-[6%] bg-white p-2 text-xs sm:text-base rounded-md transition duration-150">{message}</div>
+      </>)}
       <Paragraph
         homeSection={true}
         textColor="#FFFFFF"
@@ -100,9 +114,8 @@ export default function Home() {
         {/* Langue courante toujours visible */}
         <div
           data-clickable={true}
-          className={`transition duration-150 hover:text-lg hover:bg-blanc/70 flex rounded-md justify-center items-center w-[50px] h-[30px] sm:w-[70px] sm:h-[50px] bg-blanc text-noir shadow-md ${
-            currentSection !== 0 && !isMobile && "hidden"
-          } ${hideLanguage && 'hidden'} flex items-center p-2 sm:p-0`}
+          className={`transition duration-150 hover:text-lg hover:scale-110 flex rounded-md justify-center items-center w-[50px] h-[30px] sm:w-[70px] sm:h-[50px] bg-blanc text-noir shadow-md ${currentSection !== 0 && !isMobile && "hidden"
+            } ${hideLanguage && 'hidden'} flex items-center p-2 sm:p-0`}
           onMouseEnter={afficherLangues}
           onClick={afficherLangues}
         >
@@ -117,27 +130,23 @@ export default function Home() {
 
         {/* Conteneur pour les autres langues */}
         <div
-          className={`flex flex-col items-center transition-all ${
-            !languesVisibles ? "h-0 overflow-hidden" : "h-auto mt-2"
-          }`}
+          className={`flex flex-col items-center transition-all ${!languesVisibles ? "h-0 overflow-hidden" : "h-auto mt-2"
+            }`}
         >
           {langues
             .filter((langue) => langue !== langueCourante)
             .map((langue, index) => (
               <div
                 data-clickable={true}
-                className={`transition duration-150 hover:text-lg text-[12px] sm:text-base rounded-md flex justify-center items-center w-[50px] h-[30px] hover:bg-blanc/70 sm:w-[70px] sm:h-[50px] m-2 bg-blanc text-noir shadow-md ${
-                  languesVisibles ? "opacity-100" : ""
-                }`}
+                className={`transition hover:text-2xl text-[12px] sm:text-base rounded-md flex justify-center items-center w-[50px] h-[30px] hover:scale-110 sm:w-[70px] sm:h-[50px] m-2 bg-blanc text-noir shadow-md ${languesVisibles ? "opacity-100" : ""
+                  }`}
                 key={langue}
                 onClick={() => choisirLangue(langue)}
                 style={{
-                  transition: `opacity 0.5s ${index * 0.1}s, transform 0.5s ${
-                    index * 0.1
-                  }s`,
-                  transform: `${
-                    languesVisibles ? "translateY(0)" : "translateY(-20px)"
-                  }`,
+                  transition: `opacity 0.5s ${index * 0.1}s, transform 0.5s ${index * 0.1
+                    }s`,
+                  transform: `${languesVisibles ? "translateY(0)" : "translateY(-20px)"
+                    }`,
                 }}
               >
                 {langue}
