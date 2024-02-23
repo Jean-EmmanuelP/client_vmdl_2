@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useSection } from '../utils/Contextboard';
 
 const CustomCursor = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
+    const { bgIsBlackFondateur, bgIsBlackFooter, setBgIsBlackFooter, setBgIsBlackFondateur } = useSection();
     const [visible, setVisible] = useState(false);
     const [clickable, setClickable] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    useEffect(() => {
+        console.log(`this is the bgIsBlack value: ${bgIsBlackFondateur}`)
+    }, [bgIsBlackFondateur]);
 
     const BORDER_THRESHOLD = 2;
     const SCREEN_WIDTH_THRESHOLD = 1000;
@@ -66,7 +71,7 @@ const CustomCursor = () => {
         position: 'fixed',
         width: '18px',
         height: '18px',
-        border: '2px solid #1D1D1B',
+        border: `2px solid ${bgIsBlackFondateur || bgIsBlackFooter ? '#FFFFFF' : '#1D1D1B'}`,
         borderRadius: '50%',
         transform: `translate(-50%, -50%) ${clickable ? 'scale(1.5)' : 'scale(1)'}`,
         pointerEvents: 'none',

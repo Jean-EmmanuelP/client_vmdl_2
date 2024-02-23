@@ -54,6 +54,8 @@ function useMobileDetect() {
 export default function App() {
   const [isScrolling, setIsScrolling] = useState(false);
   const [currentSection, setCurrentSection] = useState<number>(0);
+  const [bgIsBlackFondateur, setBgIsBlackFondateur] = useState(false);
+  const [bgIsBlackFooter, setBgIsBlackFooter] = useState(false);
   const [mediaPaths, setMediaPaths] = useState({
     paris: `/videos/laptop/paris/paris_low.webm`,
     dubai: `/videos/laptop/dubai/dubai_low.webm`,
@@ -280,9 +282,13 @@ export default function App() {
       )}
 
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
-        <CustomCursor />
+
         <currentSectionContext.Provider
           value={{
+            bgIsBlackFondateur,
+            setBgIsBlackFondateur,
+            bgIsBlackFooter,
+            setBgIsBlackFooter,
             langueCourante,
             setLangueCourante,
             currentSection,
@@ -294,6 +300,7 @@ export default function App() {
             setIsLoading
           }}
         >
+          <CustomCursor />
           <expertiseContext.Provider value={{ subExpertise, setSubExpertise }}>
             <Header height={headerHeight} />
 

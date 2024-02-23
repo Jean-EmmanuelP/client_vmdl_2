@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Paragraph from "../Components/Paragraph";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
@@ -5,6 +6,30 @@ import { useData } from "../utils/DataContext";
 export default function Fondateur() {
   const { data } = useData();
   const { langueCourante } = useSection();
+  const fondateurRef = useRef<HTMLDivElement>(null);
+  const { setBgIsBlackFondateur } = useSection();
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setBgIsBlackFondateur(true);
+        } else {
+          console.log('not intersecting');
+          setBgIsBlackFondateur(false);
+        }
+      });
+    }, { threshold: 0.5 })
+
+    if (fondateurRef.current) {
+      observer.observe(fondateurRef.current);
+    }
+
+    return () => {
+      if (fondateurRef.current) {
+        observer.unobserve(fondateurRef.current)
+      }
+    }
+  })
   if (!data) {
     return;
   }
@@ -16,12 +41,13 @@ export default function Fondateur() {
     عربي: 'عربي',
     PT: 'pt',
     DE: 'de',
-	中文: '中文'
+    中文: '中文'
   };
-const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
+  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title, content } = data[langCode].section_5;
   return (
     <div
+      ref={fondateurRef}
       id="Fondateur"
       className="relative w-full h-full flex justify-center items-center z-10 bg-noir"
     >

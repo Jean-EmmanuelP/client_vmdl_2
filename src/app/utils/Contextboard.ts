@@ -20,6 +20,10 @@ interface MediaPaths {
 
 interface currentSectionProps {
   currentSection: number;
+  bgIsBlackFondateur: boolean;
+  bgIsBlackFooter: boolean;
+  setBgIsBlackFooter: React.Dispatch<React.SetStateAction<boolean>>;
+  setBgIsBlackFondateur: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentSection: React.Dispatch<React.SetStateAction<number>>;
   headerHeight: "64px" | "128px" | "90px";
   setHeaderHeight: React.Dispatch<
@@ -34,11 +38,15 @@ interface currentSectionProps {
 
 const defaultValues: currentSectionProps = {
   currentSection: 0,
-  setCurrentSection: () => {},
+  bgIsBlackFondateur: false,
+  bgIsBlackFooter: false,
+  setBgIsBlackFooter: () => { },
+  setBgIsBlackFondateur: () => { },
+  setCurrentSection: () => { },
   headerHeight: "64px",
-  setHeaderHeight: () => {},
+  setHeaderHeight: () => { },
   langueCourante: "FR",
-  setLangueCourante: () => {},
+  setLangueCourante: () => { },
   mediaPaths: {
     paris: `/videos/laptop/paris/paris_low.webm`,
     dubai: `/videos/laptop/dubai/dubai_low.webm`,
@@ -46,8 +54,8 @@ const defaultValues: currentSectionProps = {
     rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
     vosges: `/videos/laptop/vosges/vosges_low.webm`,
   },
-  updateMediaPaths: () => {},
-  setIsLoading: () => {}
+  updateMediaPaths: () => { },
+  setIsLoading: () => { }
 };
 
 export const currentSectionContext = createContext<
