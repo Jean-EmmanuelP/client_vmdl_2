@@ -124,7 +124,7 @@ export default function Paragraph({
     `text-[40px] ${toggle ? "absolute left-2" : ""}`,
     classTitle
   );
-  const mergedTextClass = twMerge("w-[70%] text-center mb-2", classText);
+  const mergedTextClass = twMerge("w-[70%] text-center leading-5 sm:leading-8 mb-2", classText);
 
 
   return (

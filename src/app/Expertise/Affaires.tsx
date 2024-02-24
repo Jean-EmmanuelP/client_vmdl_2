@@ -49,30 +49,46 @@ export default function Affaires() {
   const { data } = useData();
   const { langueCourante } = useSection();
   const videoRefs = useRef<HTMLVideoElement[]>([]);
+  const [opacities, setOpacities] = useState(Array(3).fill(0));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        entries.forEach((entry, index) => {
           const video = entry.target as HTMLVideoElement;
+
+          const updateOpacity = () => {
+            const currentTime = video.currentTime;
+            const newOpacities = [...opacities];
+            newOpacities[index] = currentTime > 8 ? 1 : 0; // changer cette ligne faire en sorte pour la troisieme que ce soit personnalise
+            setOpacities(newOpacities);
+          };
+
           if (entry.isIntersecting) {
-            video.play().catch((error) => {
+            video.play().then(() => {
+              video.addEventListener('timeupdate', updateOpacity);
+            }).catch((error) => {
               console.error("Error trying to play the video: ", error);
             });
           } else {
-            video.pause();
+            video.currentTime = 0;
+            video.removeEventListener('timeupdate', updateOpacity);
           }
         });
       },
       { threshold: 0.5 }
     );
-    videoRefs.current = videoRefs.current.slice(0, videos.length);
 
-    videoRefs.current.forEach((video) => video && observer.observe(video));
+    videoRefs.current.forEach((video, index) => {
+      if (video) observer.observe(video);
+    });
 
-    return () =>
-      videoRefs.current.forEach((video) => video && observer.unobserve(video));
-  }, [videos]);
+    return () => {
+      videoRefs.current.forEach((video, index) => {
+        if (video) observer.unobserve(video);
+      });
+    };
+  }, [opacities]); 
   useEffect(() => {
     if (autoScroll) {
       const timer = setTimeout(() => {
@@ -159,7 +175,6 @@ export default function Affaires() {
                   }}
                   playsInline
                   muted
-                // poster={`/images/${video.image}`}
                 >
                   <source src={`${video.src}`} type="video/webm" />
                   <source
@@ -167,7 +182,9 @@ export default function Affaires() {
                     type="video/mp4"
                   />
                 </video>
-                <div className="text-white tracking-wide bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center">
+                <div 
+                style={{ opacity: opacities[index] }}
+                className={`text-white tracking-wide bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}>
                   <p>{title}</p>
                   <p>{content}</p>
                 </div>
