@@ -112,7 +112,7 @@ export default function Contentieux() {
         ref={videoRef}
         playsInline
         className="w-full h-full object-cover bg-black"
-        poster={`/images/vosges.jpeg`}
+        // poster={`/images/vosges.jpeg`}
       >
         <source src={`${mediaPaths.vosges}`} type="video/webm" />
         <source

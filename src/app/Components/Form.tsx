@@ -181,7 +181,7 @@ export default function FormContact() {
                   delay:  0.7, duration: 0.5
                 }}
                 type="submit"
-                className='text-[#181a1b] p-4 w-[280px] text-sm uppercase flex justify-center items-center'
+                className='text-[#181a1b] shadow-sm p-4 w-[280px] text-sm uppercase flex justify-center items-center'
               >
                 <motion.span animate={{ x: isHovering ? '0' : '8px' }}
                   transition={{ duration: 0.5 }}

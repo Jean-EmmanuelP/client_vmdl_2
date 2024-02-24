@@ -93,7 +93,7 @@ export default function Home() {
       className="w-full h-full flex justify-center items-center transparent"
     >
       {languesVisibles && !isMobile && (<>
-        <div className="absolute top-[95px] sm:top-[3.5%] right-[23%] sm:right-[6%] bg-white p-2 text-xs sm:text-base rounded-md transition duration-150">{message}</div>
+        <div className="absolute top-[95px] sm:top-[3%] right-[23%] sm:right-[6%] bg-white h-[30px] sm:h-[50px] text-xs sm:text-base transition duration-150 flex justify-center items-center p-2">{message}</div>
       </>)}
       <Paragraph
         homeSection={true}
@@ -114,7 +114,7 @@ export default function Home() {
         {/* Langue courante toujours visible */}
         <div
           data-clickable={true}
-          className={`transition duration-150 hover:text-lg hover:scale-110 flex rounded-md justify-center items-center w-[50px] h-[30px] sm:w-[70px] sm:h-[50px] bg-blanc text-noir shadow-md ${currentSection !== 0 && !isMobile && "hidden"
+          className={`transition duration-150 hover:text-lg hover:scale-110 flex justify-center items-center w-[50px] h-[30px] sm:w-[70px] sm:h-[50px] bg-blanc text-noir shadow-md ${currentSection !== 0 && !isMobile && "hidden"
             } ${hideLanguage && 'hidden'} flex items-center p-2 sm:p-0`}
           onMouseEnter={afficherLangues}
           onClick={afficherLangues}
@@ -138,7 +138,7 @@ export default function Home() {
             .map((langue, index) => (
               <div
                 data-clickable={true}
-                className={`transition hover:text-2xl text-[12px] sm:text-base rounded-md flex justify-center items-center w-[50px] h-[30px] hover:scale-110 sm:w-[70px] sm:h-[50px] m-2 bg-blanc text-noir shadow-md ${languesVisibles ? "opacity-100" : ""
+                className={`transition hover:text-2xl text-[12px] sm:text-base flex justify-center items-center w-[50px] h-[30px] hover:scale-110 sm:w-[70px] sm:h-[50px] m-2 bg-blanc text-noir shadow-md ${languesVisibles ? "opacity-100" : ""
                   }`}
                 key={langue}
                 onClick={() => choisirLangue(langue)}

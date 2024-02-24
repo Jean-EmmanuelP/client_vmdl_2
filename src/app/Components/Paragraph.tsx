@@ -167,7 +167,7 @@ export default function Paragraph({
                 animate={{ y: "-40px", opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.2, duration: 0.7 }}
-                className={`text-xl w-1/2 text-center mb-2 ${isMobile ? "-mt-[64px]" : "-mt-[50px]"
+                className={`text-xl w-1/2 text-left leading-5 sm:leading-8 mb-2 ${isMobile ? "-mt-[64px]" : "-mt-[50px]"
                   }`}
               >
                 {children[3]}

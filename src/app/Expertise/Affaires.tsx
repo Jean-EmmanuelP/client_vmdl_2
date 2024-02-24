@@ -123,9 +123,8 @@ export default function Affaires() {
       animate={{ x: subExpertise === "affaires" ? "100vw" : "200vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className={`relative w-full ${
-        isMobile ? "h-[110vh]" : "h-full"
-      } flex justify-center items-center text-blanc z-1 bg-blanc`}
+      className={`relative w-full ${isMobile ? "h-[110vh]" : "h-full"
+        } flex justify-center items-center text-blanc z-1 bg-blanc`}
     >
       <div className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc">
         {videos &&
@@ -160,7 +159,7 @@ export default function Affaires() {
                   }}
                   playsInline
                   muted
-                  poster={`/images/${video.image}`}
+                // poster={`/images/${video.image}`}
                 >
                   <source src={`${video.src}`} type="video/webm" />
                   <source
@@ -168,7 +167,7 @@ export default function Affaires() {
                     type="video/mp4"
                   />
                 </video>
-                <div className="text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-2 sm:p-4 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center">
+                <div className="text-white tracking-wide bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center">
                   <p>{title}</p>
                   <p>{content}</p>
                 </div>
@@ -183,10 +182,9 @@ export default function Affaires() {
             onClick={() => handleSelection("rio")}
           >
             <div
-              className={`${
-                videos[2].isActive &&
+              className={`${videos[2].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-              }`}
+                }`}
             ></div>
           </div>
           <div
@@ -196,10 +194,9 @@ export default function Affaires() {
             onClick={() => handleSelection("dubai")}
           >
             <div
-              className={`${
-                videos[1].isActive &&
+              className={`${videos[1].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-              }`}
+                }`}
             ></div>
           </div>
           <div
@@ -209,10 +206,9 @@ export default function Affaires() {
             onClick={() => handleSelection("qatar")}
           >
             <div
-              className={`${
-                videos[0].isActive &&
+              className={`${videos[0].isActive &&
                 `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black w-1/2 h-1/2 rounded-full`
-              }`}
+                }`}
             ></div>
           </div>
         </div>

@@ -1,28 +1,23 @@
 interface reverseArrowProps {
-    fill?: string;
-    width?: string;
-    height?: string;
-    viewBox?: string;
-    baseProfile?: string;
-    xmlns?: string;
-    overflow?: string;
-    reversed?: boolean; // Ajoutez cette ligne
-  }
-  
-  const ReversedArrow = ({ reversed = false, ...props }: reverseArrowProps) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={16}
-      height={16}
-      viewBox="0 0 16 16"
-      {...props}
-    >
-      <path
-        fill="currentColor"
-        fillRule="evenodd"
-        d="M13 9V7h3v2h-3zM7.03233022 1l1.43859292 1.43076034-4.58011387 4.55637467H10v2.02471813H3.89080927l4.58011387 4.55637466L7.03233022 15 0 8l.71777145-.71538017.71878813-.71639202L7.03233022 1z"
-      />
-    </svg>
-  );
-  
-  export default ReversedArrow;
+  fill?: string;
+  width?: string;
+  height?: string;
+  viewBox?: string;
+  baseProfile?: string;
+  xmlns?: string;
+  overflow?: string;
+  reversed?: boolean;
+}
+
+const isMobile = window.innerWidth <= 768;
+
+const ReversedArrow = ({ reversed = false, ...props }: reverseArrowProps) => (
+  <svg height={isMobile ? 30 : 50} width={isMobile ? 30 : 50} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" transform="translateX()"
+    viewBox="0 0 50 50" enable-background="new 0 0 50 50">
+    <path fill="#231F20" d="M15.563,40.836c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293l15-15
+	c0.391-0.391,0.391-1.023,0-1.414l-15-15c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l14.293,14.293L15.563,39.422
+	C15.172,39.813,15.172,40.446,15.563,40.836z" transform="scale(-1, 1) translate(-50, 0)" />
+  </svg>
+);
+
+export default ReversedArrow;
