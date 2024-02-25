@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon/vmdl.png'
   },
-  title: "VMDL - Law Firm & Cover Group",
+  title: "VMDL - Law firm & Cover group",
   description: "VMDL est un cabinet d'avocat",
 };
 
