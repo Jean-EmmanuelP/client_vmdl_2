@@ -13,6 +13,7 @@ interface Video {
   subtitle: string;
   contact_button: string;
   image: string;
+  textAppearTime: number;
 }
 
 /* 
@@ -37,6 +38,7 @@ export default function Affaires() {
       subtitle: "Sous-titre de la vidéo Qatar",
       contact_button: "Contacter pour Qatar",
       image: "qatar.jpeg",
+      textAppearTime: 0,
     },
     {
       src: `${mediaPaths.dubai}`,
@@ -45,6 +47,7 @@ export default function Affaires() {
       subtitle: "Sous-titre de la vidéo Dubai",
       contact_button: "Contacter pour Dubai",
       image: "dubai.jpeg",
+      textAppearTime: 0,
     },
     {
       src: `${mediaPaths.rio}`,
@@ -53,6 +56,7 @@ export default function Affaires() {
       subtitle: "Sous-titre de la vidéo Rio",
       contact_button: "Contacter pour Rio",
       image: "rio.jpeg",
+      textAppearTime: 12,
     },
   ]);
   const { data } = useData();
@@ -68,11 +72,13 @@ export default function Affaires() {
 
           const updateOpacity = async () => {
             const currentTime = video.currentTime;
+            const videoData = videos[index];
+            console.log(videoData);
             const newOpacities = [...opacities];
-            newOpacities[index] = currentTime > 4 ? 1 : 0; // changer cette ligne faire en sorte pour la troisieme que ce soit personnalise
+            newOpacities[index] =
+              currentTime > videoData.textAppearTime ? 1 : 0;
             setOpacities(newOpacities);
           };
-
           if (entry.isIntersecting) {
             video
               .play()
@@ -100,7 +106,16 @@ export default function Affaires() {
         if (video) observer.unobserve(video);
       });
     };
-  }, [opacities]);
+  }, [videos, opacities]);
+  useEffect(() => {
+    videos.forEach((video, index) => {
+      if (!video.isActive && videoRefs.current[index]) {
+        const videoElement = videoRefs.current[index];
+        videoElement.currentTime = 0;
+        videoElement.pause();
+      }
+    });
+  }, [videos]);
   useEffect(() => {
     if (autoScroll) {
       const timer = setTimeout(() => {
@@ -133,17 +148,20 @@ export default function Affaires() {
       const currentIndex = videos.findIndex((video) => video.isActive);
       let nextIndex = currentIndex + direction;
 
-      // Loop back to the end or start if out of bounds
       if (nextIndex < 0) {
         nextIndex = videos.length - 1;
       } else if (nextIndex >= videos.length) {
         nextIndex = 0;
       }
 
-      const newVideos = videos.map((video, index) => ({
-        ...video,
-        isActive: index === nextIndex,
-      }));
+      const newVideos = videos.map((video, index) => {
+        const isActive = index === nextIndex;
+        if (!isActive && videoRefs.current[index]) {
+          videoRefs.current[index].currentTime = 0;
+          videoRefs.current[index].pause();
+        }
+        return { ...video, isActive };
+      });
 
       setVideos(newVideos);
       setTimeout(() => setAutoScroll(false), 500);
