@@ -38,6 +38,7 @@ export default function Home() {
   useEffect(() => {
     if (headerHeight === "64px") {
       setHideLanguage(true);
+      masquerLangues();
     } else {
       setHideLanguage(false);
     }

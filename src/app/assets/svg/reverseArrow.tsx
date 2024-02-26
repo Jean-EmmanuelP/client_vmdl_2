@@ -20,8 +20,8 @@ const ReversedArrow = ({
   ...props
 }: reverseArrowProps) => (
   <svg
-    height={lilArrow ? "30" : isMobile ? 30 : 50}
-    width={lilArrow ? "30" : isMobile ? 30 : 50}
+    height={lilArrow ? isMobile ? "15" : "30" : isMobile ? 30 : 50}
+    width={lilArrow ? isMobile ? "15" : "30" : isMobile ? 30 : 50}
     version="1.1"
     id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"

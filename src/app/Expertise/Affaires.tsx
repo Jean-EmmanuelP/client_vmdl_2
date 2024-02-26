@@ -38,7 +38,7 @@ export default function Affaires() {
       subtitle: "Sous-titre de la vidéo Qatar",
       contact_button: "Contacter pour Qatar",
       image: "qatar.jpeg",
-      textAppearTime: 0,
+      textAppearTime: 4,
     },
     {
       src: `${mediaPaths.dubai}`,
@@ -47,7 +47,7 @@ export default function Affaires() {
       subtitle: "Sous-titre de la vidéo Dubai",
       contact_button: "Contacter pour Dubai",
       image: "dubai.jpeg",
-      textAppearTime: 0,
+      textAppearTime: 10,
     },
     {
       src: `${mediaPaths.rio}`,
@@ -56,13 +56,15 @@ export default function Affaires() {
       subtitle: "Sous-titre de la vidéo Rio",
       contact_button: "Contacter pour Rio",
       image: "rio.jpeg",
-      textAppearTime: 12,
+      textAppearTime: 8,
     },
   ]);
   const { data } = useData();
   const { langueCourante } = useSection();
   const videoRefs = useRef<HTMLVideoElement[]>([]);
   const [opacities, setOpacities] = useState(Array(3).fill(0));
+  const opacitiesRef = useRef(opacities);
+  opacitiesRef.current = opacities;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,11 +76,12 @@ export default function Affaires() {
             const currentTime = video.currentTime;
             const videoData = videos[index];
             console.log(videoData);
-            const newOpacities = [...opacities];
+            const newOpacities = [...opacitiesRef.current];
             newOpacities[index] =
               currentTime > videoData.textAppearTime ? 1 : 0;
             setOpacities(newOpacities);
           };
+
           if (entry.isIntersecting) {
             video
               .play()
@@ -106,7 +109,7 @@ export default function Affaires() {
         if (video) observer.unobserve(video);
       });
     };
-  }, [videos, opacities]);
+  }, [videos]);
   useEffect(() => {
     videos.forEach((video, index) => {
       if (!video.isActive && videoRefs.current[index]) {
@@ -230,14 +233,14 @@ export default function Affaires() {
                   <p>{content}</p>
                 </div>
                 <div
-                  className="absolute flex transition duration-100 hover:scale-105 justify-center items-center left-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-4"
+                  className="absolute flex transition duration-100 hover:scale-105 justify-center items-center left-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
                   data-clickable={"true"}
                   onClick={() => handleSelection(-1)}
                 >
                   <ReversedArrow lilArrow={true} isGrey={true} />
                 </div>
                 <div
-                  className="absolute flex justify-center transition duration-100 hover:scale-105 items-center right-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-4"
+                  className="absolute flex justify-center transition duration-100 hover:scale-105 items-center right-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
                   data-clickable={"true"}
                   onClick={() => handleSelection(1)}
                 >
