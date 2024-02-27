@@ -1,11 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useSection } from "../utils/Contextboard";
+import React, { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useSection } from '../utils/Contextboard';
 
-declare global {
-  interface Window {
-    MSStream?: any;
-  }
-}
 export default function BackgroundEiffel() {
   const { mediaPaths, setIsLoading } = useSection();
 
@@ -14,20 +10,35 @@ export default function BackgroundEiffel() {
     visible: { opacity: 1 },
   };
 
-  const handleVideoLoad = () => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1300);
-  };
-
-  function convertToMp4Path(webmPath: string) {
-    return webmPath.replace(".webm", ".mp4");
+  function isIOS() {
+    return (
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    );
   }
 
-  // Fonction pour détecter les appareils iOS
-  const isIOS = () => {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  };
+  function isMobile() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  }
+
+  useEffect(() => {
+    const videoContainer = document.getElementById('videoContainer');
+    if (videoContainer) {
+      const videoSource = isIOS() || isMobile() ? convertToMp4Path(mediaPaths.paris) : mediaPaths.paris;
+      const videoType = isIOS() || isMobile() ? 'video/mp4' : 'video/webm';
+
+      const videoHtml = `
+        <video class="video-js" playsinline autoplay loop muted onloadeddata="${() => setIsLoading(false)}" style="position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; z-index: -1;">
+          <source src="${videoSource}" type="${videoType}"/>
+        </video>
+      `;
+      videoContainer.innerHTML = videoHtml;
+    }
+  }, [mediaPaths.paris]);
+
+  function convertToMp4Path(webmPath: string) {
+    return webmPath.replace('.webm', '.mp4');
+  }
 
   return (
     <AnimatePresence>
@@ -40,33 +51,9 @@ export default function BackgroundEiffel() {
         transition={{ duration: 1 }}
         className="fixed top-0 w-full h-full justify-center items-center"
         style={{ zIndex: -1 }}
+        id="videoContainer" // Adding an ID to target this div
       >
-        <video
-          autoPlay
-          loop
-          muted
-          onLoadedData={handleVideoLoad}
-          playsInline
-          poster="/images/paris_global_view.jpeg"
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "50% 50%",
-            zIndex: -1,
-          }}
-          {...(isIOS()
-            ? { "data-wf-ignore": "true", "data-object-fit": "cover" }
-            : {})}
-        >
-          <source src={`${mediaPaths.paris}`} type="video/webm" />
-          <source
-            src={`${convertToMp4Path(mediaPaths.paris)}`}
-            type="video/mp4"
-            {...(isIOS() ? { "data-wf-ignore": "true" } : {})}
-          />
-        </video>
+        {/* The video will be injected here via dangerouslySetInnerHTML */}
       </motion.div>
     </AnimatePresence>
   );
