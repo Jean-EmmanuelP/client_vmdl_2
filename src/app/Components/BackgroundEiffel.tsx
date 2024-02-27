@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from 'react'; // Importez useState et useEffect
+import { useState, useEffect } from "react";
 import { useSection } from "../utils/Contextboard";
 
 export default function BackgroundEiffel() {
   const { mediaPaths, setIsLoading } = useSection();
-  const [autoplayFailed, setAutoplayFailed] = useState(false); // État pour suivre si l'autoplay a échoué
+  const [autoplayFailed, setAutoplayFailed] = useState(false);
 
   const videoVariants = {
     hidden: { opacity: 0 },
@@ -21,18 +21,19 @@ export default function BackgroundEiffel() {
     return webmPath.replace(".webm", ".mp4");
   }
 
-  // Fonction pour vérifier l'autoplay
   const checkAutoplay = () => {
-    const video = document.createElement('video');
+    const video = document.createElement("video");
     video.muted = true;
-    video.play().then(() => {
-      setAutoplayFailed(false); // L'autoplay a fonctionné
-    }).catch(() => {
-      setAutoplayFailed(true); // L'autoplay a échoué
-    });
+    video
+      .play()
+      .then(() => {
+        setAutoplayFailed(false);
+      })
+      .catch(() => {
+        setAutoplayFailed(true);
+      });
   };
 
-  // Utilisez useEffect pour vérifier l'autoplay au montage du composant
   useEffect(() => {
     checkAutoplay();
   }, []);
@@ -50,12 +51,19 @@ export default function BackgroundEiffel() {
         style={{ zIndex: -1 }}
       >
         {autoplayFailed ? (
-          // Afficher un message si l'autoplay a échoué
-          <div style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', zIndex: 1 }}>
-            Lautoplay nest pas disponible. Veuillez démarrer la vidéo manuellement.
-          </div>
+          <img
+            src={`public/videos/mobile/paris/Paris.gif`}
+            alt="Paris background"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "50% 50%",
+              zIndex: -1,
+            }}
+          />
         ) : (
-          // Sinon, afficher la vidéo
           <video
             autoPlay
             loop
