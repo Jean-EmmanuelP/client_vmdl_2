@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSection } from '../utils/Contextboard';
 
-export default function BackgroundEiffel() {
+const BackgroundEiffel: React.FC = () => {
   const { mediaPaths, setIsLoading } = useSection();
 
   const videoVariants = {
@@ -10,29 +10,60 @@ export default function BackgroundEiffel() {
     visible: { opacity: 1 },
   };
 
-  function isIOS() {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent);
-  }
+  const isIOS = (): boolean => /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+  const convertToMp4Path = (webmPath: string): string => webmPath.replace('.webm', '.mp4');
 
   useEffect(() => {
-    const videoContainer = document.getElementById('videoContainer');
+    const videoContainer = document.getElementById('videoContainer') as HTMLDivElement | null;
     if (videoContainer) {
-      const videoAttributes = isIOS() ? 'webkit-playsinline playsinline autoplay loop muted' : 'autoplay loop muted playsinline';
       const videoSource = isIOS() ? convertToMp4Path(mediaPaths.paris) : mediaPaths.paris;
       const videoType = isIOS() ? 'video/mp4' : 'video/webm';
+      const posterPath = '/videos/mobile/paris/paris_poster.png'; // Chemin de votre image poster
 
-      const videoHtml = `
-        <video class="video-js" ${videoAttributes} onloadeddata="${() => setIsLoading(false)}" style="position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; z-index: -1;">
-          <source src="${videoSource}" type="${videoType}"/>
-        </video>
-      `;
-      videoContainer.innerHTML = videoHtml;
+      // Création de l'élément vidéo
+      const videoElement = document.createElement('video');
+      videoElement.className = 'video-js';
+      videoElement.setAttribute('webkit-playsinline', '');
+      videoElement.setAttribute('playsinline', '');
+      videoElement.autoplay = true;
+      videoElement.loop = true;
+      videoElement.muted = true;
+      videoElement.poster = posterPath;
+      videoElement.style.cssText = 'position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; z-index: -1;';
+
+      // Création de la source vidéo
+      const sourceElement = document.createElement('source');
+      sourceElement.src = videoSource;
+      sourceElement.type = videoType;
+
+      videoElement.appendChild(sourceElement);
+
+      videoElement.onloadeddata = () => setIsLoading(false);
+      videoElement.onplay = () => {
+        videoElement.style.display = 'block';
+      };
+      videoElement.onerror = () => {
+        videoElement.style.display = 'none'; // Cache la vidéo en cas d'erreur
+        // Affiche l'image poster si la vidéo ne peut pas être jouée
+        videoContainer.style.backgroundImage = `url('${posterPath}')`;
+        videoContainer.style.backgroundSize = 'cover';
+        videoContainer.style.backgroundPosition = 'center';
+      };
+
+      videoElement.play().catch(() => {
+        // Gestion de l'échec de l'autoplay, affiche l'image poster
+        videoElement.style.display = 'none';
+        videoContainer.style.backgroundImage = `url('${posterPath}')`;
+        videoContainer.style.backgroundSize = 'cover';
+        videoContainer.style.backgroundPosition = 'center';
+      });
+
+      // Ajout de l'élément vidéo au conteneur
+      videoContainer.innerHTML = '';
+      videoContainer.appendChild(videoElement);
     }
-  }, [mediaPaths.paris]);
-
-  function convertToMp4Path(webmPath: string) {
-    return webmPath.replace('.webm', '.mp4');
-  }
+  }, [mediaPaths.paris, setIsLoading]);
 
   return (
     <AnimatePresence>
@@ -45,10 +76,12 @@ export default function BackgroundEiffel() {
         transition={{ duration: 1 }}
         className="fixed top-0 w-full h-full justify-center items-center"
         style={{ zIndex: -1 }}
-        id="videoContainer" // Adding an ID to target this div
+        id="videoContainer"
       >
-        {/* The video will be injected here */}
+        {/* La vidéo ou l'image sera affichée ici */}
       </motion.div>
     </AnimatePresence>
   );
 }
+
+export default BackgroundEiffel;
