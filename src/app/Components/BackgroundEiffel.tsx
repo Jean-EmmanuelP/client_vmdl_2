@@ -11,24 +11,18 @@ export default function BackgroundEiffel() {
   };
 
   function isIOS() {
-    return (
-      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-    );
-  }
-
-  function isMobile() {
-    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    return /iPad|iPhone|iPod/.test(navigator.userAgent);
   }
 
   useEffect(() => {
     const videoContainer = document.getElementById('videoContainer');
     if (videoContainer) {
-      const videoSource = isIOS() || isMobile() ? convertToMp4Path(mediaPaths.paris) : mediaPaths.paris;
-      const videoType = isIOS() || isMobile() ? 'video/mp4' : 'video/webm';
+      const videoAttributes = isIOS() ? 'webkit-playsinline playsinline autoplay loop muted' : 'autoplay loop muted playsinline';
+      const videoSource = isIOS() ? convertToMp4Path(mediaPaths.paris) : mediaPaths.paris;
+      const videoType = isIOS() ? 'video/mp4' : 'video/webm';
 
       const videoHtml = `
-        <video class="video-js" playsinline autoplay loop muted onloadeddata="${() => setIsLoading(false)}" style="position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; z-index: -1;">
+        <video class="video-js" ${videoAttributes} onloadeddata="${() => setIsLoading(false)}" style="position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; z-index: -1;">
           <source src="${videoSource}" type="${videoType}"/>
         </video>
       `;
@@ -53,7 +47,7 @@ export default function BackgroundEiffel() {
         style={{ zIndex: -1 }}
         id="videoContainer" // Adding an ID to target this div
       >
-        {/* The video will be injected here via dangerouslySetInnerHTML */}
+        {/* The video will be injected here */}
       </motion.div>
     </AnimatePresence>
   );
