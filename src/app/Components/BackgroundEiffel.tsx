@@ -52,7 +52,7 @@ export default function BackgroundEiffel() {
       >
         {autoplayFailed ? (
           <img
-            src={`public/videos/mobile/paris/Paris.gif`}
+            src={`/videos/mobile/paris/Paris.gif`}
             alt="Paris background"
             style={{
               position: "absolute",
