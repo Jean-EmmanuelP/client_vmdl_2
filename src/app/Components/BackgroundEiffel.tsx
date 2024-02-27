@@ -1,10 +1,13 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
 import { useSection } from "../utils/Contextboard";
 
+declare global {
+  interface Window {
+    MSStream?: any;
+  }
+}
 export default function BackgroundEiffel() {
   const { mediaPaths, setIsLoading } = useSection();
-  const [autoplayFailed, setAutoplayFailed] = useState(false);
 
   const videoVariants = {
     hidden: { opacity: 0 },
@@ -21,22 +24,10 @@ export default function BackgroundEiffel() {
     return webmPath.replace(".webm", ".mp4");
   }
 
-  const checkAutoplay = () => {
-    const video = document.createElement("video");
-    video.muted = true;
-    video
-      .play()
-      .then(() => {
-        setAutoplayFailed(false);
-      })
-      .catch(() => {
-        setAutoplayFailed(true);
-      });
+  // Fonction pour détecter les appareils iOS
+  const isIOS = () => {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   };
-
-  useEffect(() => {
-    checkAutoplay();
-  }, []);
 
   return (
     <AnimatePresence>
@@ -50,43 +41,32 @@ export default function BackgroundEiffel() {
         className="fixed top-0 w-full h-full justify-center items-center"
         style={{ zIndex: -1 }}
       >
-        {autoplayFailed ? (
-          <img
-            src={`/videos/mobile/paris/Paris.gif`}
-            alt="Paris background"
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "50% 50%",
-              zIndex: -1,
-            }}
+        <video
+          autoPlay
+          loop
+          muted
+          onLoadedData={handleVideoLoad}
+          playsInline
+          poster="/images/paris_global_view.jpeg"
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "50% 50%",
+            zIndex: -1,
+          }}
+          {...(isIOS()
+            ? { "data-wf-ignore": "true", "data-object-fit": "cover" }
+            : {})}
+        >
+          <source src={`${mediaPaths.paris}`} type="video/webm" />
+          <source
+            src={`${convertToMp4Path(mediaPaths.paris)}`}
+            type="video/mp4"
+            {...(isIOS() ? { "data-wf-ignore": "true" } : {})}
           />
-        ) : (
-          <video
-            autoPlay
-            loop
-            muted
-            onLoadedData={handleVideoLoad}
-            playsInline
-            poster="/images/paris_global_view.jpeg"
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "50% 50%",
-              zIndex: -1,
-            }}
-          >
-            <source src={`${mediaPaths.paris}`} type="video/webm" />
-            <source
-              src={`${convertToMp4Path(mediaPaths.paris)}`}
-              type="video/mp4"
-            />
-          </video>
-        )}
+        </video>
       </motion.div>
     </AnimatePresence>
   );
