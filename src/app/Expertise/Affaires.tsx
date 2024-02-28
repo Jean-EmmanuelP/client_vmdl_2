@@ -181,13 +181,20 @@ export default function Affaires() {
         {videos &&
           videos.map((video, index) => {
             let title, content;
-            if (video.src.includes("qatar")) {
+            if (video.src.includes("qatar") || video.image.includes("qatar")) {
               title = qatar.title;
               content = qatar.content;
-            } else if (video.src.includes("dubai")) {
+              console.log(qatar.title, qatar.content)
+            } else if (
+              video.src.includes("dubai") ||
+              video.image.includes("dubai")
+            ) {
               title = dubai.title;
               content = dubai.content;
-            } else if (video.src.includes("rio")) {
+            } else if (
+              video.src.includes("rio") ||
+              video.image.includes("rio")
+            ) {
               title = rio.title;
               content = rio.content;
             }
@@ -209,8 +216,7 @@ export default function Affaires() {
                       className="absolute w-full h-full object-cover -translate-y-1/2"
                     />
                     <div
-                      style={{ opacity: opacities[index] }}
-                      className="p-10 text-center text-white"
+                      className="absolute p-4 top-1/2 left-1/2 -translate-y-1/2 text-center text-white bg-black"
                     >
                       <p>{title}</p>
                       <p>{content}</p>
