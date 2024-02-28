@@ -184,7 +184,7 @@ export default function Affaires() {
             if (video.src.includes("qatar") || video.image.includes("qatar")) {
               title = qatar.title;
               content = qatar.content;
-              console.log(qatar.title, qatar.content)
+              console.log(qatar.title, qatar.content);
             } else if (
               video.src.includes("dubai") ||
               video.image.includes("dubai")
@@ -215,9 +215,7 @@ export default function Affaires() {
                       alt={title}
                       className="absolute w-full h-full object-cover -translate-y-1/2"
                     />
-                    <div
-                      className="absolute p-4 top-1/2 left-1/2 -translate-y-1/2 text-center text-white bg-black"
-                    >
+                    <div className="absolute p-4 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white sm:text-xl tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm">
                       <p>{title}</p>
                       <p>{content}</p>
                     </div>
