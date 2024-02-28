@@ -1,6 +1,6 @@
-import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
 export default function Contentieux() {
@@ -9,6 +9,17 @@ export default function Contentieux() {
   const [textOpacity, setTextOpacity] = useState(0);
   const { langueCourante, mediaPaths } = useSection();
   const { data } = useData();
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,6 +45,7 @@ export default function Contentieux() {
       }
     };
   }, []);
+
   useEffect(() => {
     const videoElement = videoRef.current;
 
@@ -53,12 +65,13 @@ export default function Contentieux() {
         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
       }
     };
-  }, [videoRef]);
+  }, []);
+
   if (!data) {
     return null;
   }
 
-  const langCodeMap: { [key in LangueCode]: string } = {
+  const langCodeMap: { [key in string]: string } = {
     FR: "fr",
     EN: "en",
     IT: "it",
@@ -68,13 +81,11 @@ export default function Contentieux() {
     DE: "de",
     中文: "中文",
   };
-  const langCode =
-    langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
-  const { content } = data[langCode].section_3.box_2;
-  const isMobile = window.innerWidth <= 768;
+
+  const langCode = langCodeMap[langueCourante] || langCodeMap["FR"];
+  const { content } = data[langCode]?.section_3?.box_2 || { content: "" };
 
   const formatContent = (content: string): string => {
-    // Diviser le contenu à chaque point, puis rejoindre les éléments avec un '<br>' pour un saut de ligne HTML
     return (
       content
         .split(".")
@@ -82,10 +93,15 @@ export default function Contentieux() {
         .join(".<br><br>") + "."
     );
   };
+
   const formattedContent = formatContent(content);
-  function convertToMp4Path(webmPath: string) {
+
+  const isIOS = (): boolean =>
+    /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+
+  const convertToMp4Path = (webmPath: string): string => {
     return webmPath.replace(".webm", ".mp4");
-  }
+  };
 
   return (
     <motion.div
@@ -112,12 +128,13 @@ export default function Contentieux() {
         ref={videoRef}
         playsInline
         className="w-full h-full object-cover bg-black"
-        // poster={`/images/vosges.jpeg`}
+        poster={isIOS() ? "/path/to/ios/poster/image.jpg" : undefined}
       >
-        <source src={`${mediaPaths.vosges}`} type="video/webm" />
         <source
-          src={`${convertToMp4Path(mediaPaths.vosges)}`}
-          type="video/mp4"
+          src={
+            isIOS() ? convertToMp4Path(mediaPaths.vosges) : mediaPaths.vosges
+          }
+          type={isIOS() ? "video/mp4" : "video/webm"}
         />
       </video>
     </motion.div>
