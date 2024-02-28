@@ -9,9 +9,6 @@ import ReversedArrow from "../assets/svg/reverseArrow";
 interface Video {
   src: string;
   isActive: boolean;
-  title: string;
-  subtitle: string;
-  contact_button: string;
   image: string;
   textAppearTime: number;
 }
@@ -29,33 +26,28 @@ export default function Affaires() {
   const { subExpertise } = useExpertise();
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
   const { mediaPaths } = useSection();
+  const [isIOS, setIsIOS] = useState<boolean>(false);
+  useEffect(() => {
+    setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent));
+  }, []);
 
   const [videos, setVideos] = useState<Video[]>([
     {
       src: `${mediaPaths.qatar}`,
       isActive: false,
-      title: "Titre de la vidéo Qatar",
-      subtitle: "Sous-titre de la vidéo Qatar",
-      contact_button: "Contacter pour Qatar",
-      image: "qatar.jpeg",
+      image: "/images/qatar.jpeg",
       textAppearTime: 4,
     },
     {
       src: `${mediaPaths.dubai}`,
       isActive: false,
-      title: "Titre de la vidéo Dubai",
-      subtitle: "Sous-titre de la vidéo Dubai",
-      contact_button: "Contacter pour Dubai",
-      image: "dubai.jpeg",
+      image: "/images/dubai.jpeg",
       textAppearTime: 10,
     },
     {
       src: `${mediaPaths.rio}`,
       isActive: true,
-      title: "Titre de la vidéo Rio",
-      subtitle: "Sous-titre de la vidéo Rio",
-      contact_button: "Contacter pour Rio",
-      image: "rio.jpeg",
+      image: "/images/rio.jpeg",
       textAppearTime: 8,
     },
   ]);
@@ -209,22 +201,40 @@ export default function Affaires() {
                 key={video.src}
                 className={`absolute w-1/3 h-full text-4xl`}
               >
-                <video
-                  className="absolute flex justify-center items-center object-cover h-full w-full -translate-y-1/2"
-                  ref={(el) => {
-                    if (el) {
-                      videoRefs.current[index] = el;
-                    }
-                  }}
-                  playsInline
-                  muted
-                >
-                  <source src={`${video.src}`} type="video/webm" />
-                  <source
-                    src={`${convertToMp4Path(video.src)}`}
-                    type="video/mp4"
-                  />
-                </video>
+                {isIOS ? (
+                  <>
+                    <img
+                      src={video.image}
+                      alt={title}
+                      className="absolute w-full h-full object-cover -translate-y-1/2"
+                    />
+                    <div
+                      style={{ opacity: opacities[index] }}
+                      className="p-10 text-center text-white"
+                    >
+                      <p>{title}</p>
+                      <p>{content}</p>
+                    </div>
+                  </>
+                ) : (
+                  <video
+                    className="absolute flex justify-center items-center object-cover h-full w-full -translate-y-1/2"
+                    ref={(el) => {
+                      if (el) {
+                        videoRefs.current[index] = el;
+                      }
+                    }}
+                    playsInline
+                    muted
+                  >
+                    <source src={`${video.src}`} type="video/webm" />
+                    <source
+                      src={`${convertToMp4Path(video.src)}`}
+                      type="video/mp4"
+                    />
+                  </video>
+                )}
+
                 <div
                   style={{ opacity: opacities[index] }}
                   className={`transition duration-150 text-white text-[18px] tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}

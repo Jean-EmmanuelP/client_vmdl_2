@@ -115,7 +115,7 @@ export default function Contentieux() {
             className="w-full h-full object-cover bg-black"
           />
           <div
-            className="p-2 sm:p-10 absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm"
+            className="w-1/2 sm:p-10 absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm"
             dangerouslySetInnerHTML={{ __html: formattedContent }}
           ></div>
         </>
