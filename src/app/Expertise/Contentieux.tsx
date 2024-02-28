@@ -3,75 +3,36 @@ import { motion } from "framer-motion";
 import { useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
+// Assurez-vous que LangueCode est correctement importé ou défini quelque part dans votre projet
+type LangueCode = "FR" | "EN" | "IT" | "ES" | "عربي" | "PT" | "DE" | "中文";
+
 export default function Contentieux() {
   const { subExpertise } = useExpertise();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [textOpacity, setTextOpacity] = useState(0);
+  const [videoError, setVideoError] = useState(false);
   const { langueCourante, mediaPaths } = useSection();
   const { data } = useData();
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
+  const isMobile = window.innerWidth <= 768;
+
+  const isIOS = (): boolean => /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          videoRef.current?.play();
-          setTextOpacity(1);
-        } else {
-          videoRef.current?.pause();
-          setTextOpacity(0);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    const handleVideoError = () => setVideoError(true);
+    const videoCurrent = videoRef.current;
+    if (videoCurrent) {
+      videoCurrent.addEventListener("error", handleVideoError);
     }
-
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
+      if (videoCurrent) {
+        videoCurrent.removeEventListener("error", handleVideoError);
       }
     };
   }, []);
 
-  useEffect(() => {
-    const videoElement = videoRef.current;
+  if (!data) return null;
 
-    const handleTimeUpdate = () => {
-      if (videoElement && videoElement.currentTime >= 12) {
-        setTextOpacity(1);
-        videoElement.removeEventListener("timeupdate", handleTimeUpdate);
-      }
-    };
-
-    if (videoElement) {
-      videoElement.addEventListener("timeupdate", handleTimeUpdate);
-    }
-
-    return () => {
-      if (videoElement) {
-        videoElement.removeEventListener("timeupdate", handleTimeUpdate);
-      }
-    };
-  }, []);
-
-  if (!data) {
-    return null;
-  }
-
-  const langCodeMap: { [key in string]: string } = {
+  const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
     IT: "it",
@@ -82,7 +43,8 @@ export default function Contentieux() {
     中文: "中文",
   };
 
-  const langCode = langCodeMap[langueCourante] || langCodeMap["FR"];
+  const langCode =
+    langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { content } = data[langCode]?.section_3?.box_2 || { content: "" };
 
   const formatContent = (content: string): string => {
@@ -96,13 +58,6 @@ export default function Contentieux() {
 
   const formattedContent = formatContent(content);
 
-  const isIOS = (): boolean =>
-    /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
-
-  const convertToMp4Path = (webmPath: string): string => {
-    return webmPath.replace(".webm", ".mp4");
-  };
-
   return (
     <motion.div
       animate={{ x: subExpertise === "contentieux" ? "0vw" : "100vw" }}
@@ -112,31 +67,35 @@ export default function Contentieux() {
         isMobile ? "h-[110vh]" : "h-full"
       } flex justify-center items-center text-blanc`}
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: textOpacity }}
-        transition={{ delay: 12, duration: 0.3 }}
-        className="z-10"
-      >
+      {isIOS() && videoError ? (
         <div
-          className="p-2 sm:p-10 absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm"
-          dangerouslySetInnerHTML={{ __html: formattedContent }}
-        ></div>
-      </motion.div>
-
-      <video
-        ref={videoRef}
-        playsInline
-        className="w-full h-full object-cover bg-black"
-        poster={isIOS() ? "/path/to/ios/poster/image.jpg" : undefined}
-      >
-        <source
-          src={
-            isIOS() ? convertToMp4Path(mediaPaths.vosges) : mediaPaths.vosges
-          }
-          type={isIOS() ? "video/mp4" : "video/webm"}
-        />
-      </video>
+          className="w-full h-full bg-center bg-cover flex justify-center items-center"
+          style={{
+            backgroundImage: `url(${mediaPaths.vosges.replace(
+              ".webm",
+              ".jpeg"
+            )})`,
+          }} // Remplacer .webm par .jpeg pour le poster
+        >
+          <div
+            className="p-2 sm:p-10 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm"
+            dangerouslySetInnerHTML={{ __html: formattedContent }}
+          ></div>
+        </div>
+      ) : (
+        <video
+          ref={videoRef}
+          playsInline
+          className="w-full h-full object-cover bg-black"
+          poster={mediaPaths.vosges.replace(".webm", ".jpeg")} // Utiliser le poster pour tous les cas
+        >
+          <source src={mediaPaths.vosges} type="video/webm" />
+          <source
+            src={mediaPaths.vosges.replace(".webm", ".mp4")}
+            type="video/mp4"
+          />
+        </video>
+      )}
     </motion.div>
   );
 }
