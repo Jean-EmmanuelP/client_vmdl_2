@@ -15,7 +15,9 @@ export default function Home() {
   const [hideLanguage, setHideLanguage] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth <= 768);
+    }
     const supportedLangs: LangueCode[] = [
       "FR",
       "EN",

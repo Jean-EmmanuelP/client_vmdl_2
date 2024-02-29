@@ -86,6 +86,7 @@ export default function Paragraph({
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
