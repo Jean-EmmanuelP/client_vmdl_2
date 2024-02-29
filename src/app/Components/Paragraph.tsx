@@ -125,105 +125,121 @@ export default function Paragraph({
     `text-[40px] ${toggle ? "absolute left-2" : ""}`,
     classTitle
   );
-  const mergedTextClass = twMerge("w-[70%] text-center leading-5 sm:leading-8 mb-2", classText);
-
-
-  return (
-    <motion.div
-      ref={paragraphRef}
-      initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
-      exit="exit"
-      variants={variants}
-      className={mergedClass}
-    >
-      <AnimatePresence>
-        {isVisible && (
-          <Fragment>
-            {/* Arrow a gauche quand toggle === true */}
-            <motion.button
-              onClick={() => setToggle(false)}
-              initial={{ y: "0px", opacity: 0 }}
-              animate={{ y: toggle ? "-20px" : 0, opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className={mergedTitleClass}
-            >
-              {!toggle ? children[0] : <ReversedArrow />}
-            </motion.button>
-
-            {/* Texte de base */}
-            <motion.p
-              initial={{ y: "40px" }}
-              animate={{ y: toggle ? "-10px" : 0, opacity: toggle ? 0 : 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className={mergedTextClass}
-            >
-              {children[1]}
-            </motion.p>
-
-            {toggle && (
-              <motion.p
-                initial={{ y: "0px", opacity: 0 }}
-                animate={{ y: "-40px", opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ delay: 0.2, duration: 0.7 }}
-                className={`text-xl w-1/2 text-center leading-5 sm:leading-8 mb-2 ${isMobile ? "-mt-[64px]" : "-mt-[50px]"
-                  }`}
-              >
-                {children[3]}
-              </motion.p>
-            )}
-
-            {children.length > 2 && !toggle && (
-              <motion.button
-                data-clickable="true"
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-                initial={{ y: "20px", opacity: 0, backgroundColor: "#FFFFFF" }}
-                animate={{
-                  y: isVisible ? 0 : "40px",
-                  opacity: isVisible ? 1 : 0,
-                  backgroundColor: isHovering ? "" : "",
-                }}
-                exit={{ opacity: 0 }}
-                transition={{
-                  y: { type: "tween", ease: "linear", duration: 0.5 },
-                  opacity: { type: "tween", ease: "linear", duration: 0.5 },
-                  backgroundColor: { type: "tween", ease: "linear", duration: .5 },
-                  delay: toggle ? 0 : 0.7,
-                }}
-                onClick={() => {
-                  homeSection ? handleScroll(5) : setToggle(!toggle);
-                  setIsHovering(false);
-                }}
-                className={`text-[#181a1b] p-4 ${!homeSection
-                  ? `rounded-full w-[280px] hover:bg-gray-500/5 transition duration-150`
-                  : `text-noir bg-blanc shadow-2xl sm:h-[50px] sm:w-[300px]`
-                  } uppercase flex justify-center items-center leading-3 text-xs contact-us`}
-              >
-                <motion.span
-                  animate={{ x: isHovering ? "0" : "8px" }}
-                  transition={{ type: "tween", ease: "linear", duration: 0.5 }}
-                >
-
-                  {children[2]}
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, paddingLeft: "0px" }}
-                  animate={{
-                    opacity: isHovering ? 1 : 0,
-                    paddingLeft: isHovering ? "10px" : "0px",
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Arrow />
-                </motion.span>
-              </motion.button>
-            )}
-          </Fragment>
-        )}
-      </AnimatePresence>
-    </motion.div>
+  const mergedTextClass = twMerge(
+    "w-[70%] text-center leading-5 sm:leading-8 mb-2",
+    classText
   );
+
+  if (typeof window !== "undefined")
+    return (
+      <motion.div
+        ref={paragraphRef}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        exit="exit"
+        variants={variants}
+        className={mergedClass}
+      >
+        <AnimatePresence>
+          {isVisible && (
+            <Fragment>
+              {/* Arrow a gauche quand toggle === true */}
+              <motion.button
+                onClick={() => setToggle(false)}
+                initial={{ y: "0px", opacity: 0 }}
+                animate={{ y: toggle ? "-20px" : 0, opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className={mergedTitleClass}
+              >
+                {!toggle ? children[0] : <ReversedArrow />}
+              </motion.button>
+
+              {/* Texte de base */}
+              <motion.p
+                initial={{ y: "40px" }}
+                animate={{ y: toggle ? "-10px" : 0, opacity: toggle ? 0 : 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className={mergedTextClass}
+              >
+                {children[1]}
+              </motion.p>
+
+              {toggle && (
+                <motion.p
+                  initial={{ y: "0px", opacity: 0 }}
+                  animate={{ y: "-40px", opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.2, duration: 0.7 }}
+                  className={`text-xl w-1/2 text-center leading-5 sm:leading-8 mb-2 ${
+                    isMobile ? "-mt-[64px]" : "-mt-[50px]"
+                  }`}
+                >
+                  {children[3]}
+                </motion.p>
+              )}
+
+              {children.length > 2 && !toggle && (
+                <motion.button
+                  data-clickable="true"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                  initial={{
+                    y: "20px",
+                    opacity: 0,
+                    backgroundColor: "#FFFFFF",
+                  }}
+                  animate={{
+                    y: isVisible ? 0 : "40px",
+                    opacity: isVisible ? 1 : 0,
+                    backgroundColor: isHovering ? "" : "",
+                  }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    y: { type: "tween", ease: "linear", duration: 0.5 },
+                    opacity: { type: "tween", ease: "linear", duration: 0.5 },
+                    backgroundColor: {
+                      type: "tween",
+                      ease: "linear",
+                      duration: 0.5,
+                    },
+                    delay: toggle ? 0 : 0.7,
+                  }}
+                  onClick={() => {
+                    homeSection ? handleScroll(5) : setToggle(!toggle);
+                    setIsHovering(false);
+                  }}
+                  className={`text-[#181a1b] p-4 ${
+                    !homeSection
+                      ? `rounded-full w-[280px] hover:bg-gray-500/5 transition duration-150`
+                      : `text-noir bg-blanc shadow-2xl sm:h-[50px] sm:w-[300px]`
+                  } uppercase flex justify-center items-center leading-3 text-xs contact-us`}
+                >
+                  <motion.span
+                    animate={{ x: isHovering ? "0" : "8px" }}
+                    transition={{
+                      type: "tween",
+                      ease: "linear",
+                      duration: 0.5,
+                    }}
+                  >
+                    {children[2]}
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, paddingLeft: "0px" }}
+                    animate={{
+                      opacity: isHovering ? 1 : 0,
+                      paddingLeft: isHovering ? "10px" : "0px",
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Arrow />
+                  </motion.span>
+                </motion.button>
+              )}
+            </Fragment>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    );
 }
