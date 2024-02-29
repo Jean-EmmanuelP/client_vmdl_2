@@ -12,24 +12,29 @@ export default function Expertise() {
   const [hovering, setHovering] = useState<number>(0);
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante } = useSection();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const isMobile = windowWidth <= 768;
   const { data } = useData();
   const conseilRef = useRef(null);
   const contentieuxRef = useRef(null);
   const affairesRef = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    const handleResize = () => {
+    if (typeof window !== "undefined") {
       setWindowWidth(window.innerWidth);
-    };
 
-    window.addEventListener("resize", handleResize);
+      const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+      };
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
+
+  const isMobile = windowWidth <= 768;
   useEffect(() => {
     setHovering(0);
   }, [subExpertise]);

@@ -13,7 +13,7 @@ import { DataProvider } from "./utils/DataContext";
 const Cabinet = dynamic(() => import("./Cabinet/Cabinet"), { ssr: false });
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
 const Expertise = dynamic(() => import("./Expertise/Expertise"), {
-  ssr: false,
+  ssr: true,
 });
 const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), {
   ssr: false,
