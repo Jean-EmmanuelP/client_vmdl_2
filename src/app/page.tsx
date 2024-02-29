@@ -19,7 +19,7 @@ const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), {
   ssr: false,
 });
 const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
-const Home = dynamic(() => import("./Home/Home"), { ssr: false });
+const Home = dynamic(() => import("./Home/Home"), { ssr: true });
 const Vision = dynamic(() => import("./Vision/Vision"), { ssr: false });
 const Header = dynamic(() => import("./Components/Header"), { ssr: false });
 const BackgroundEiffel = dynamic(
