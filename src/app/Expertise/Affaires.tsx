@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
 import ReversedArrow from "../assets/svg/reverseArrow";
 
-// check window here
 interface Video {
   src: string;
   isActive: boolean;
@@ -58,7 +57,11 @@ export default function Affaires() {
   const [opacities, setOpacities] = useState(Array(3).fill(0));
   const opacitiesRef = useRef(opacities);
   opacitiesRef.current = opacities;
-
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setIsMobile(window.innerWidth <= 768);
+  }, [])
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -163,8 +166,6 @@ export default function Affaires() {
       setTimeout(() => setAutoScroll(false), 500);
     }
   };
-  // check window here
-  const isMobile = window.innerWidth <= 768;
 
   function convertToMp4Path(webmPath: string) {
     return webmPath.replace(".webm", ".mp4");
