@@ -1,24 +1,25 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import {
   LangueCode,
   currentSectionContext,
   expertiseContext,
 } from "./utils/Contextboard";
 import { DataProvider } from "./utils/DataContext";
+import dynamic from "next/dynamic";
 
-import Cabinet from "./Cabinet/Cabinet";
-import Contact from "./Contact/Contact"
-import Expertise from "./Expertise/Expertise";
-import Fondateur from "./Fondateur/Fondateur";
-import Footer from "./Footer/Footer";
+
 import Home from "./Home/Home";
-import Vision from "./Vision/Vision"
-import Header from "./Components/Header";
-import BackgroundEiffel from "./Components/BackgroundEiffel";
-import CustomCursor from "./Components/Cursor";
+import Cabinet from "./Cabinet/Cabinet";
+const Contact = dynamic(() => import('./Contact/Contact'), { ssr: false });
+const Expertise = dynamic(() => import('./Expertise/Expertise'), { ssr: false });
+const Fondateur = dynamic(() => import('./Fondateur/Fondateur'), { ssr: false });
+const Footer = dynamic(() => import('./Footer/Footer'), { ssr: false });
+const Vision = dynamic(() => import('./Vision/Vision'), { ssr: false });
+const Header = dynamic(() => import('./Components/Header'), { ssr: false });
+const BackgroundEiffel = dynamic(() => import('./Components/BackgroundEiffel'), { ssr: false });
+const CustomCursor = dynamic(() => import('./Components/Cursor'), { ssr: false });
 
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);
