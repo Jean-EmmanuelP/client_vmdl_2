@@ -7,22 +7,26 @@ export default function Conseil() {
   const { subExpertise } = useExpertise();
   const { langueCourante } = useSection();
   const { data } = useData();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const isMobile = windowWidth <= 768;
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoVisible, setVideoVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    // check window here
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+    // check if it work
+    console.log(`the push went well no error !`);
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
 
-    window.addEventListener("resize", handleResize);
+      handleResize();
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,7 +37,7 @@ export default function Conseil() {
           setIsPlaying(false);
         }
       },
-      { threshold: 0.1 } // Déclenche l'observer lorsque 10% de l'élément est visible
+      { threshold: 0.1 }
     );
 
     if (videoRef.current) {
@@ -77,7 +81,6 @@ export default function Conseil() {
     visible: { x: "-110%" },
   };
   const formatContent = (content: string): string => {
-    // Diviser le contenu à chaque point, puis rejoindre les éléments avec un '<br>' pour un saut de ligne HTML
     return (
       content
         .split(".")

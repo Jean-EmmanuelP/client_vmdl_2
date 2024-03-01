@@ -71,11 +71,23 @@ export default function Contentieux() {
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { content } = data[langCode].section_3.box_2;
-  // check window here
-  const isMobile = window.innerWidth <= 768;
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
 
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
   const formatContent = (content: string): string => {
-    // Diviser le contenu à chaque point, puis rejoindre les éléments avec un '<br>' pour un saut de ligne HTML
     return (
       content
         .split(".")
