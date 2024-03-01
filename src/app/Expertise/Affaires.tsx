@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
 import ReversedArrow from "../assets/svg/reverseArrow";
 
+// check window here
 interface Video {
   src: string;
   isActive: boolean;
@@ -162,7 +163,7 @@ export default function Affaires() {
       setTimeout(() => setAutoScroll(false), 500);
     }
   };
-
+  // check window here
   const isMobile = window.innerWidth <= 768;
 
   function convertToMp4Path(webmPath: string) {
@@ -173,9 +174,8 @@ export default function Affaires() {
       animate={{ x: subExpertise === "affaires" ? "100vw" : "200vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className={`relative w-full ${
-        isMobile ? "h-[110vh]" : "h-full"
-      } flex justify-center items-center text-blanc z-1 bg-blanc`}
+      className={`relative w-full ${isMobile ? "h-[110vh]" : "h-full"
+        } flex justify-center items-center text-blanc z-1 bg-blanc`}
     >
       <div className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc">
         {videos &&

@@ -2,11 +2,9 @@ import { motion } from "framer-motion";
 import { Fragment, useEffect, useRef, useState } from "react";
 import Conseil from "./Conseil";
 import Contentieux from "./Contentieux";
-import dynamic from "next/dynamic";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
-
-const Affaires = dynamic(() => import("./Affaires"), { ssr: false });
+import Affaires from "./Affaires";
 
 export default function Expertise() {
   const [hovering, setHovering] = useState<number>(0);

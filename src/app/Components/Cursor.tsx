@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useSection } from '../utils/Contextboard';
 
-const CustomCursor = () => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const { bgIsBlackFondateur, bgIsBlackFooter, setBgIsBlackFooter, setBgIsBlackFondateur } = useSection();
-    const [visible, setVisible] = useState(false);
-    const [clickable, setClickable] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    useEffect(() => {
-        console.log(`this is the bgIsBlack value: ${bgIsBlackFondateur}`)
-    }, [bgIsBlackFondateur]);
+const CustomCursor: React.FC = () => {
+    const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+    const { bgIsBlackFondateur, bgIsBlackFooter } = useSection();
+    const [visible, setVisible] = useState<boolean>(false);
+    const [clickable, setClickable] = useState<boolean>(false);
+    const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 0);
 
     const BORDER_THRESHOLD = 2;
     const SCREEN_WIDTH_THRESHOLD = 1000;
 
     useEffect(() => {
-        const handleResize = () => {
+        if (typeof window === 'undefined') return;
+
+        const handleResize = (): void => {
             setWindowWidth(window.innerWidth);
         };
 
@@ -24,7 +23,9 @@ const CustomCursor = () => {
     }, []);
 
     useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
+        if (typeof window === 'undefined') return;
+
+        const handleMouseMove = (event: MouseEvent): void => {
             requestAnimationFrame(() => {
                 if (position.x !== event.clientX || position.y !== event.clientY) {
                     setPosition({ x: event.clientX, y: event.clientY });
@@ -33,12 +34,13 @@ const CustomCursor = () => {
             });
         };
 
-        const handleMouseEnter = () => {
+        const handleMouseEnter = (): void => {
             if (window.innerWidth > SCREEN_WIDTH_THRESHOLD) {
                 setVisible(true);
             }
         };
-        const handleMouseLeave = () => {
+
+        const handleMouseLeave = (): void => {
             setVisible(false);
         };
 
@@ -54,7 +56,9 @@ const CustomCursor = () => {
     }, [position]);
 
     useEffect(() => {
-        const checkIfClickable = () => {
+        if (typeof window === 'undefined') return;
+
+        const checkIfClickable = (): void => {
             const elementUnderCursor = document.elementFromPoint(position.x, position.y);
             const isClickable = elementUnderCursor && (
                 elementUnderCursor.getAttribute("data-clickable") === "true" ||
@@ -87,6 +91,4 @@ const CustomCursor = () => {
     );
 };
 
-
-// tout fonctionne bien sauf quand tu decide de partir vite de la page, le cursor reste a opacity 1 alors que je veux que ce soit opacity 0
 export default CustomCursor;
