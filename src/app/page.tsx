@@ -9,26 +9,16 @@ import {
 } from "./utils/Contextboard";
 import { DataProvider } from "./utils/DataContext";
 
-// comprendre la repectussion quand je mets en ssr si ca joue par rapport au SEO
-const Cabinet = dynamic(() => import("./Cabinet/Cabinet"), { ssr: false });
-const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
-const Expertise = dynamic(() => import("./Expertise/Expertise"), {
-  ssr: true,
-});
-const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), {
-  ssr: false,
-});
-const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
-const Home = dynamic(() => import("./Home/Home"), { ssr: true });
-const Vision = dynamic(() => import("./Vision/Vision"), { ssr: false });
-const Header = dynamic(() => import("./Components/Header"), { ssr: false });
-const BackgroundEiffel = dynamic(
-  () => import("./Components/BackgroundEiffel"),
-  { ssr: false }
-);
-const CustomCursor = dynamic(() => import("./Components/Cursor"), {
-  ssr: false,
-});
+import Cabinet from "./Cabinet/Cabinet";
+import Contact from "./Contact/Contact"
+import Expertise from "./Expertise/Expertise";
+import Fondateur from "./Fondateur/Fondateur";
+import Footer from "./Footer/Footer";
+import Home from "./Home/Home";
+import Vision from "./Vision/Vision"
+import Header from "./Components/Header";
+import BackgroundEiffel from "./Components/BackgroundEiffel";
+import CustomCursor from "./Components/Cursor";
 
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);
