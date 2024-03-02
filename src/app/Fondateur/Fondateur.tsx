@@ -52,8 +52,8 @@ export default function Fondateur() {
       className="relative w-full h-full flex justify-center items-center z-10 bg-noir"
     >
       <Paragraph textColor="#F9F9F9">
-        <span className="uppercase text-[40px] sm:text-[60px] sm:title font-light">{title}</span>
-        <span className="text-[20px] sm:text-[24px] sm:content leading-[26px] font-light">
+        <span className="uppercase text-[30px] sm:text-[60px] sm:title font-light">{title}</span>
+        <span className="text-[16px] sm:text-[24px] sm:content leading-[26px] font-light">
           {content}
         </span>
       </Paragraph>

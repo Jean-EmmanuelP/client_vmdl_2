@@ -26,12 +26,12 @@ export default function Vision() {
       className="w-full h-full flex justify-center relative items-center gap-4 bg-blanc"
     >
       <Paragraph textColor="#030303">
-        <span className="uppercase text-[40px] sm:text-[60px] font-light">{title}</span>
-        <span className="text-[20px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
+        <span className="uppercase text-[30px] sm:text-[60px] font-light">{title}</span>
+        <span className="text-[16px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
           {content}
         </span>
         <span className="text-sm">{button}</span>
-        <span className="text-[20px] sm:text-[24px] sm:content leading-[26px] font-light">
+        <span className="text-[16px] sm:text-[24px] sm:content leading-[26px] font-light">
           {content_after_clicking_button}
         </span>
       </Paragraph>

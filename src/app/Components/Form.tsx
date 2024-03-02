@@ -96,20 +96,15 @@ export default function FormContact() {
 
         const JSONdata = JSON.stringify(data);
 
-        // Options de la requête
         const endpoint = '/api/send-mail';
         const options = {
-            // La méthode HTTP pour la requête
             method: 'POST',
-            // En-têtes de la requête
             headers: {
                 'Content-Type': 'application/json',
             },
-            // Corps de la requête
             body: JSONdata,
         };
 
-        // Envoyer la requête à l'endpoint de l'API
         const response = await fetch(endpoint, options);
         if (response.ok) {
             setWasSended(true);
@@ -143,26 +138,26 @@ export default function FormContact() {
         }}
       >
         {({ handleSubmit, touched, errors }) => (
-          <Form className="bg-blanc flex flex-col gap-2  text-[16px] sm:text-[20px] sm:content leading-[26px] font-light" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-2">
+          <Form className="bg-blanc flex flex-col gap-1 sm:gap-2 text-[14px] sm:text-[20px] sm:content leading-[26px] font-light" onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-1 sm:gap-2">
             <label htmlFor="nom">{nom_prenom}</label>
             <Field name="nom" type="text" className={`border p-1 ${touched.nom && errors.nom ? 'border-red-500' : 'hover:border-noir'}`} />
             {touched.nom && errors.nom && <div className="text-red-500 mt-1">{errors.nom}</div>}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1 sm:gap-2">
                 <label htmlFor="telephone">{Numero_de_telephone}</label>
                 <Field name="telephone" type="text" className={`border p-1 ${touched.telephone && errors.telephone ? 'border-red-500' : 'hover:border-noir'}`} />
                 {touched.telephone && errors.telephone && <div className="text-red-500 mt-1">{errors.telephone}</div>}
             </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1 sm:gap-2">
             <label htmlFor="email">{Courriel}</label>
             <Field name="email" type="email" className={`border p-1 ${touched.email && errors.email ? 'border-red-500' : 'hover:border-noir'}`} />
             {touched.email && errors.email && <div className="text-red-500 mt-1">{errors.email}</div>}
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1 sm:gap-2">
             <label htmlFor="message">{Message}</label>
             <Field name="message" as="textarea" className={`border h-36 p-1 ${touched.message && errors.message ? 'border-red-500' : 'hover:border-noir'}`} />
             {touched.message && errors.message && <div className="text-red-500 mt-1">{errors.message}</div>}
@@ -181,7 +176,7 @@ export default function FormContact() {
                   delay:  0.7, duration: 0.5
                 }}
                 type="submit"
-                className='text-[#181a1b] shadow-sm p-4 w-[280px] text-sm uppercase flex justify-center items-center'
+                className='text-[#181a1b] shadow-sm p-2 sm:p-4 w-[280px] text-[14px] tracking-wide sm:text-sm uppercase flex justify-center items-center'
               >
                 <motion.span animate={{ x: isHovering ? '0' : '8px' }}
                   transition={{ duration: 0.5 }}

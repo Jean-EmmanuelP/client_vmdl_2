@@ -30,7 +30,7 @@ export default function Contact() {
     >
       <div className="w-full h-full flex justify-center items-center bg-blanc mb-20 sm:mb-0">
         <div className="flex flex-col w-[45%]">
-          <h1 className="uppercase text-center py-4 text-2xl mt-[-50px] text-[40px] sm:text-[60px] sm:title font-light">
+          <h1 className="uppercase text-center py-4 text-2xl mt-[-50px] text-[30px] sm:text-[60px] sm:title font-light">
             {title}
           </h1>
           <FormContact></FormContact>

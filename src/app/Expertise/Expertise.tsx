@@ -69,7 +69,7 @@ export default function Expertise() {
           className="w-full h-full text-noir"
         >
           <motion.div className="w-full h-[20%] flex justify-center items-center bg-blanc">
-            <p className="uppercase text-[40px] sm:text-[60px] font-light">
+            <p className="uppercase text-[30px] sm:text-[60px] font-light">
               {title}
             </p>
           </motion.div>
