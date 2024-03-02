@@ -1,34 +1,25 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import {
   LangueCode,
   currentSectionContext,
   expertiseContext,
 } from "./utils/Contextboard";
 import { DataProvider } from "./utils/DataContext";
+import dynamic from "next/dynamic";
 
-// comprendre la repectussion quand je mets en ssr si ca joue par rapport au SEO
-const Cabinet = dynamic(() => import("./Cabinet/Cabinet"), { ssr: false });
-const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
-const Expertise = dynamic(() => import("./Expertise/Expertise"), {
-  ssr: true,
-});
-const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), {
-  ssr: false,
-});
-const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
-const Home = dynamic(() => import("./Home/Home"), { ssr: true });
-const Vision = dynamic(() => import("./Vision/Vision"), { ssr: false });
-const Header = dynamic(() => import("./Components/Header"), { ssr: false });
-const BackgroundEiffel = dynamic(
-  () => import("./Components/BackgroundEiffel"),
-  { ssr: false }
-);
-const CustomCursor = dynamic(() => import("./Components/Cursor"), {
-  ssr: false,
-});
+
+import Home from "./Home/Home";
+import Cabinet from "./Cabinet/Cabinet";
+const Contact = dynamic(() => import('./Contact/Contact'), { ssr: false });
+const Expertise = dynamic(() => import('./Expertise/Expertise'), { ssr: false });
+const Fondateur = dynamic(() => import('./Fondateur/Fondateur'), { ssr: false });
+const Footer = dynamic(() => import('./Footer/Footer'), { ssr: false });
+const Vision = dynamic(() => import('./Vision/Vision'), { ssr: false });
+const Header = dynamic(() => import('./Components/Header'), { ssr: false });
+const BackgroundEiffel = dynamic(() => import('./Components/BackgroundEiffel'), { ssr: false });
+const CustomCursor = dynamic(() => import('./Components/Cursor'), { ssr: false });
 
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);

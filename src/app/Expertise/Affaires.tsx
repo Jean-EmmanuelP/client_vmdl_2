@@ -57,7 +57,11 @@ export default function Affaires() {
   const [opacities, setOpacities] = useState(Array(3).fill(0));
   const opacitiesRef = useRef(opacities);
   opacitiesRef.current = opacities;
-
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setIsMobile(window.innerWidth <= 768);
+  }, [])
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -163,8 +167,6 @@ export default function Affaires() {
     }
   };
 
-  const isMobile = window.innerWidth <= 768;
-
   function convertToMp4Path(webmPath: string) {
     return webmPath.replace(".webm", ".mp4");
   }
@@ -173,9 +175,8 @@ export default function Affaires() {
       animate={{ x: subExpertise === "affaires" ? "100vw" : "200vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className={`relative w-full ${
-        isMobile ? "h-[110vh]" : "h-full"
-      } flex justify-center items-center text-blanc z-1 bg-blanc`}
+      className={`relative w-full ${isMobile ? "h-[110vh]" : "h-full"
+        } flex justify-center items-center text-blanc z-1 bg-blanc`}
     >
       <div className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc">
         {videos &&

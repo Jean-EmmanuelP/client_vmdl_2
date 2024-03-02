@@ -54,6 +54,22 @@ export default function Contentieux() {
       }
     };
   }, [videoRef]);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
   if (!data) {
     return null;
   }
@@ -71,10 +87,7 @@ export default function Contentieux() {
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { content } = data[langCode].section_3.box_2;
-  const isMobile = window.innerWidth <= 768;
-
   const formatContent = (content: string): string => {
-    // Diviser le contenu à chaque point, puis rejoindre les éléments avec un '<br>' pour un saut de ligne HTML
     return (
       content
         .split(".")
@@ -92,9 +105,8 @@ export default function Contentieux() {
       animate={{ x: subExpertise === "contentieux" ? "0vw" : "100vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className={`absolute w-full overflow-hidden ${
-        isMobile ? "h-[110vh]" : "h-full"
-      } flex justify-center items-center text-blanc`}
+      className={`absolute w-full overflow-hidden ${isMobile ? "h-[110vh]" : "h-full"
+        } flex justify-center items-center text-blanc`}
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -125,7 +137,7 @@ export default function Contentieux() {
           ref={videoRef}
           playsInline
           className="w-full h-full object-cover bg-red-500"
-          // poster={`/images/vosges.jpeg`}
+        // poster={`/images/vosges.jpeg`}
         >
           <source src={`${mediaPaths.vosges}`} type="video/webm" />
           <source
