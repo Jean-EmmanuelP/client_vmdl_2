@@ -79,7 +79,7 @@ const CustomCursor: React.FC = () => {
         borderRadius: '50%',
         transform: `translate(-50%, -50%) ${clickable ? 'scale(1.5)' : 'scale(1)'}`,
         pointerEvents: 'none',
-        zIndex: 1000,
+        zIndex: 3000,
         left: `${position.x}px`,
         top: `${position.y}px`,
         opacity: visible && windowWidth > SCREEN_WIDTH_THRESHOLD ? 1 : 0,

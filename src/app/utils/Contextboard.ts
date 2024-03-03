@@ -20,6 +20,11 @@ interface MediaPaths {
 
 interface currentSectionProps {
   currentSection: number;
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  goingOut: boolean;
+  setIsGoingOut: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleMenu: () => void;
   bgIsBlackFondateur: boolean;
   bgIsBlackFooter: boolean;
   setBgIsBlackFooter: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,6 +43,11 @@ interface currentSectionProps {
 
 const defaultValues: currentSectionProps = {
   currentSection: 0,
+  menuOpen: false,
+  setMenuOpen: () => { },
+  toggleMenu: () => { },
+  goingOut: false,
+  setIsGoingOut: () => { },
   bgIsBlackFondateur: false,
   bgIsBlackFooter: false,
   setBgIsBlackFooter: () => { },

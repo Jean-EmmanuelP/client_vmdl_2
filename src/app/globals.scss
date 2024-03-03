@@ -297,18 +297,52 @@ video {
 }
 
 .menu {
-  transition: transform 0.5s ease;
-  position: fixed; /* ou absolute selon votre mise en page */
+  transition: transform 0.5s ease, background-color 0.5s ease;
+  position: fixed;
   left: 0;
   top: 0;
-  height: 100%; /* Ajustez selon le besoin */
-  width: 100vw; /* Ajustez selon le besoin */
-  transform: translateX(-100%); /* Démarre hors de l'écran */
-  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  height: 100%;
+  width: 100vw;
+  transform: translateX(-100%);
   backdrop-filter: blur(10px);
   z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
+.overlay {
+  transition: opacity 0.5s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  opacity: 1;
+}
+
+.text-transition {
+  position: relative;
+  height: 20px; /* Assurez-vous que la hauteur est suffisante pour contenir une ligne de texte */
+  overflow: hidden; /* Empêche l'affichage de tout débordement pendant la transition */
+}
+
+.text-transition p {
+  position: absolute;
+  width: 100%;
+  transition: opacity 0.5s ease-in-out;
+  margin: 0; /* Supprimez les marges par défaut des paragraphes */
+}
+
+.text-transition p.fade-out {
+  opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    width: 30vw;
+  }
+}
 .menu {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -316,4 +350,85 @@ video {
 
 .menu.open {
   transform: translateX(0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.menu button {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: none;
+  opacity: 0;
+}
+
+.menu.open button:nth-child(1) {
+  animation-name: slideInFromLeft;
+  animation-delay: 0.75s;
+}
+.menu.open button:nth-child(2) {
+  animation-name: slideInFromLeft;
+  animation-delay: 0.6s;
+}
+.menu.open button:nth-child(3) {
+  animation-name: slideInFromLeft;
+  animation-delay: 0.45s;
+}
+.menu.open button:nth-child(4) {
+  animation-name: slideInFromLeft;
+  animation-delay: 0.3s;
+}
+
+.menu.open button:nth-child(5) {
+  animation-name: slideInFromLeft;
+  animation-delay: 0.15s;
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.menu button {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: none;
+}
+
+.menu.close button:nth-child(1) {
+  animation-name: slideOutToLeft;
+  animation-delay: 0.15s;
+}
+.menu.close button:nth-child(2) {
+  animation-name: slideOutToLeft;
+  animation-delay: 0.3s;
+}
+.menu.close button:nth-child(3) {
+  animation-name: slideOutToLeft;
+  animation-delay: 0.45s;
+}
+.menu.close button:nth-child(4) {
+  animation-name: slideOutToLeft;
+  animation-delay: 0.6s;
+}
+.menu.close button:nth-child(5) {
+  animation-name: slideOutToLeft;
+  animation-delay: 0.75s;
 }

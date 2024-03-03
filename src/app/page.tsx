@@ -55,6 +55,8 @@ export default function App() {
   const [currentSection, setCurrentSection] = useState<number>(0);
   const [bgIsBlackFondateur, setBgIsBlackFondateur] = useState(false);
   const [bgIsBlackFooter, setBgIsBlackFooter] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [goingOut, setIsGoingOut] = useState(false);
   const [mediaPaths, setMediaPaths] = useState({
     paris: `/videos/laptop/paris/paris_low.webm`,
     dubai: `/videos/laptop/dubai/dubai_low.webm`,
@@ -62,6 +64,18 @@ export default function App() {
     rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
     vosges: `/videos/laptop/vosges/vosges_low.webm`,
   });
+  const toggleMenu = () => {
+    if (menuOpen) {
+      setIsGoingOut(true);
+
+      setTimeout(() => {
+        setMenuOpen(false);
+        setIsGoingOut(false);
+      }, 1000);
+    } else {
+      setMenuOpen(true);
+    }
+  };
   const isMobile = useMobileDetect();
   const [headerHeight, setHeaderHeight] = useState<"64px" | "128px" | "90px">(
     "128px"
@@ -335,6 +349,11 @@ export default function App() {
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
         <currentSectionContext.Provider
           value={{
+            menuOpen,
+            setMenuOpen,
+            goingOut,
+            setIsGoingOut,
+            toggleMenu,
             bgIsBlackFondateur,
             setBgIsBlackFondateur,
             bgIsBlackFooter,
