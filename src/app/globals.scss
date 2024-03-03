@@ -277,3 +277,13 @@ video {
 #radio4:checked~.navigation-auto .auto-btn4 {
   background: #40D3DC;
 }
+
+::selection {
+  background: #251E26;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: #251E26;
+  color: #ffffff;
+}

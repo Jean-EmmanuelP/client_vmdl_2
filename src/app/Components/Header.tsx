@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 import Back from "../assets/svg/Back";
@@ -63,7 +63,7 @@ export default function Header({ height }: HeaderProps) {
     >
       <div
         className={`${
-          height === "128px" || height === "90px" ? "border-b" : ""
+          height === "128px" || height === "90px" ? "border-b border-slate-50" : ""
         } h-full flex justify-center items-center gap-10 md:gap-28`}
       >
         {!subExpertise ? (
