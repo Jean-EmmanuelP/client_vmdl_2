@@ -3,57 +3,65 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Riviera';
-  src: url('../../public/font/rivieraNight/RivieraNights-Bold.woff') format('truetype');
+  font-family: "Riviera";
+  src: url("../../public/font/rivieraNight/RivieraNights-Bold.woff")
+    format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Riviera';
-  src: url('../../public/font/rivieraNight/RivieraNights-Light.woff') format('truetype');
+  font-family: "Riviera";
+  src: url("../../public/font/rivieraNight/RivieraNights-Light.woff")
+    format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Riviera';
-  src: url('../../public/font/rivieraNight/RivieraNights-Medium.woff') format('truetype');
+  font-family: "Riviera";
+  src: url("../../public/font/rivieraNight/RivieraNights-Medium.woff")
+    format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Riviera';
-  src: url('../../public/font/rivieraNight/RivieraNights-Regular.woff') format('truetype');
+  font-family: "Riviera";
+  src: url("../../public/font/rivieraNight/RivieraNights-Regular.woff")
+    format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Futura';
-  src: url('../../public/font/futura/FuturaLTPro-Bold2698190374575161979.92f5.f0b877bda89bd0a9ef6dc6430979813.woff2') format('truetype');
+  font-family: "Futura";
+  src: url("../../public/font/futura/FuturaLTPro-Bold2698190374575161979.92f5.f0b877bda89bd0a9ef6dc6430979813.woff2")
+    format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Futura';
-  src: url('../../public/font/futura/FuturaLTPro-Light.bad942be600a1b909942cb.dd75b7ebd4d8b78ba940560c9a5568f.woff2') format('truetype');
+  font-family: "Futura";
+  src: url("../../public/font/futura/FuturaLTPro-Light.bad942be600a1b909942cb.dd75b7ebd4d8b78ba940560c9a5568f.woff2")
+    format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Futura';
-  src: url('../../public/font/futura/FuturaLTPro-Medium.6d46014eba66a33b0027f.35a2e0c77d11392949303dc39682d46.woff2') format('truetype');
+  font-family: "Futura";
+  src: url("../../public/font/futura/FuturaLTPro-Medium.6d46014eba66a33b0027f.35a2e0c77d11392949303dc39682d46.woff2")
+    format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Futura';
-  src: url('../../public/font/futura/FuturaLTPro-MediumOblique.7d7a1f6fb85780.85bd32cebcc4b42594cc704d96c8192.woff2') format('truetype');
+  font-family: "Futura";
+  src: url("../../public/font/futura/FuturaLTPro-MediumOblique.7d7a1f6fb85780.85bd32cebcc4b42594cc704d96c8192.woff2")
+    format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -64,8 +72,6 @@ body {
   height: 100%;
   cursor: none;
 }
-
-
 
 .loading-screen {
   position: fixed;
@@ -93,7 +99,6 @@ body {
   }
 }
 
-
 #main::-webkit-scrollbar {
   display: none;
 }
@@ -112,18 +117,22 @@ button {
   font-size: 10rem;
   line-height: 46px;
   font-weight: 300;
-  letter-spacing: .03571em;
+  letter-spacing: 0.03571em;
 }
 
 .content {
   font-size: 2rem;
   line-height: 1.1;
   font-weight: 300;
-  letter-spacing: .02571em;
+  letter-spacing: 0.02571em;
 }
 
 .gradient-header {
-  background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8435749299719888) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8435749299719888) 100%
+  );
 }
 
 /*#Home {
@@ -148,8 +157,8 @@ button {
 
 .contact-us {
   font-weight: 400;
-  letter-spacing: .16667em;
-  font-size: .4rem;
+  letter-spacing: 0.16667em;
+  font-size: 0.4rem;
   line-height: 1;
 }
 
@@ -198,7 +207,6 @@ video {
   align-items: center;
 }
 
-
 .slider {
   width: 800px;
   height: 500px;
@@ -236,7 +244,7 @@ video {
 }
 
 .manual-btn {
-  border: 2px solid #40D3DC;
+  border: 2px solid #40d3dc;
   padding: 5px;
   border-radius: 10px;
   cursor: pointer;
@@ -248,7 +256,7 @@ video {
 }
 
 .manual-btn:hover {
-  background: #40D3DC;
+  background: #40d3dc;
 }
 
 /* CSS pour la navigation automatique */
@@ -261,7 +269,7 @@ video {
 }
 
 .navigation-auto div {
-  border: 2px solid #40D3DC;
+  border: 2px solid #40d3dc;
   padding: 5px;
   border-radius: 10px;
   transition: 1s;
@@ -271,19 +279,41 @@ video {
   margin-right: 40px;
 }
 
-#radio1:checked~.navigation-auto .auto-btn1,
-#radio2:checked~.navigation-auto .auto-btn2,
-#radio3:checked~.navigation-auto .auto-btn3,
-#radio4:checked~.navigation-auto .auto-btn4 {
-  background: #40D3DC;
+#radio1:checked ~ .navigation-auto .auto-btn1,
+#radio2:checked ~ .navigation-auto .auto-btn2,
+#radio3:checked ~ .navigation-auto .auto-btn3,
+#radio4:checked ~ .navigation-auto .auto-btn4 {
+  background: #40d3dc;
 }
 
 ::selection {
-  background: #251E26;
+  background: #251e26;
   color: #ffffff;
 }
 
 ::-moz-selection {
-  background: #251E26;
+  background: #251e26;
   color: #ffffff;
+}
+
+.menu {
+  transition: transform 0.5s ease;
+  position: fixed; /* ou absolute selon votre mise en page */
+  left: 0;
+  top: 0;
+  height: 100%; /* Ajustez selon le besoin */
+  width: 100vw; /* Ajustez selon le besoin */
+  transform: translateX(-100%); /* Démarre hors de l'écran */
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.menu {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.menu.open {
+  transform: translateX(0);
 }
