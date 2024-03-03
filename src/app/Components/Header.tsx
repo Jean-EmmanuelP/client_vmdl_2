@@ -3,12 +3,12 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
-import { isMobile } from "react-device-detect";
 import { useData } from "../utils/DataContext";
 import _ from "lodash";
 import Back from "../assets/svg/Back";
 import Home from "../assets/svg/Home";
 import Menu from "../assets/svg/Menu";
+import { COUNTRIES } from "../utils/countries";
 
 interface HeaderProps {
   height: "64px" | "128px" | "90px";
@@ -17,11 +17,57 @@ interface HeaderProps {
 export default function Header({ height }: HeaderProps) {
   const { setCurrentSection } = useSection();
   const { subExpertise, setSubExpertise } = useExpertise();
-  const { langueCourante } = useSection();
+  const { langueCourante, setLangueCourante } = useSection();
   const { loadData, data } = useData();
+  const [isMobile, setIsMobile] = useState(false);
   const { menuOpen, goingOut, toggleMenu } = useSection();
   const [lastScrollY, setLastScrollY] = useState(window.scrollY);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth <= 768);
+    }
+    const supportedLangs: LangueCode[] = [
+      "FR",
+      "EN",
+      "IT",
+      "ES",
+      "عربي",
+      "PT",
+      "DE",
+      "中文",
+    ];
+
+    const browserLang = navigator.language.slice(0, 2).toUpperCase();
+    const isLangueCode = (lang: any): lang is LangueCode =>
+      supportedLangs.includes(lang);
+
+    const appLang = isLangueCode(browserLang) ? browserLang : "FR";
+
+    setLangueCourante(appLang);
+  }, []);
+  type LangueCode = 'FR' | 'EN' | 'IT' | 'ES' | 'عربي' | 'PT' | 'DE' | '中文';
+  const LANGUAGE_TO_COUNTRY_CODES: Record<LangueCode, string[]> = {
+    FR: ['FR'], // France pour le français
+    EN: ['US', 'GB'], // États-Unis et Royaume-Uni pour l'anglais
+    IT: ['IT'], // Italie pour l'italien
+    ES: ['ES', 'MX'], // Espagne et Mexique pour l'espagnol
+    عربي: ['SA'], // Arabie Saoudite pour l'arabe
+    PT: ['PT', 'BR'], // Portugal et Brésil pour le portugais
+    DE: ['DE'], // Allemagne pour l'allemand
+    中文: ['CN'], // Chine pour le chinois
+  };
+  interface Country {
+    title: string;
+    value: string;
+  }
+  const filteredCountries: Country[] = COUNTRIES.filter((country) =>
+    LANGUAGE_TO_COUNTRY_CODES[langueCourante].includes(country.value)
+  );
+  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setLangueCourante(event.target.value as LangueCode);
+  };
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -76,6 +122,17 @@ export default function Header({ height }: HeaderProps) {
   };
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
+  const actualLanguage: { [key in LangueCode]: string } = {
+    FR: "Langue",
+    EN: "Language",
+    IT: "Lingua",
+    ES: "Idioma",
+    عربي: "اللغة",
+    PT: "Língua",
+    DE: "Sprache",
+    中文: "语言",
+  };
+
   const { section_1, section_2, section_3, section_4 } = data[langCode].header;
 
   const handleScroll = (value: number) => {
@@ -135,11 +192,10 @@ export default function Header({ height }: HeaderProps) {
         className="w-full z-10 text-blanc flex justify-center items-center text-sm md:text-lg gap-28"
       >
         <div
-          className={`${
-            height === "128px" || height === "90px"
-              ? "border-b border-slate-50"
-              : ""
-          } h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
+          className={`${height === "128px" || height === "90px"
+            ? "border-b border-slate-50"
+            : ""
+            } h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
         >
           {/* Montrer a Vincent Machado Da Luz et lui demander ce qu'il en pense */}
           {true ? (
@@ -180,9 +236,8 @@ export default function Header({ height }: HeaderProps) {
               )}
               <div
                 ref={wrapperRef}
-                className={`menu ${menuOpen ? "open" : ""} ${
-                  goingOut ? "close" : ""
-                }`}
+                className={`menu ${menuOpen ? "open" : ""} ${goingOut ? "close" : ""
+                  }`}
               >
                 <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[2px] -translate-y-1/2">
                   <button
@@ -245,7 +300,22 @@ export default function Header({ height }: HeaderProps) {
                   className="h-12 md:h-20"
                 />
               </button>
-              <button>Language</button>
+              <div className="flex justify-center items-center p-2">
+                <select onChange={handleLanguageChange} value={langueCourante} className="text-noir bg-blanc p-2">
+                  {Object.entries(LANGUAGE_TO_COUNTRY_CODES).map(([code,]) => (
+                    <option key={code} value={code}>
+                      {code}
+                    </option>
+                  ))}
+                </select>
+                {/* {langueCourante && (
+                  <img
+                    src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${langueCourante}.svg`}
+                    alt="Country Flag"
+                    className="w-6 h-8"
+                  />
+                )} */}
+              </div>
             </div>
           ) : (
             <AnimatePresence mode="wait">
