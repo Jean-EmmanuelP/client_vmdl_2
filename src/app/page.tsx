@@ -9,17 +9,25 @@ import {
 import { DataProvider } from "./utils/DataContext";
 import dynamic from "next/dynamic";
 
-
 import Home from "./Home/Home";
 import Cabinet from "./Cabinet/Cabinet";
-const Contact = dynamic(() => import('./Contact/Contact'), { ssr: false });
-const Expertise = dynamic(() => import('./Expertise/Expertise'), { ssr: false });
-const Fondateur = dynamic(() => import('./Fondateur/Fondateur'), { ssr: false });
-const Footer = dynamic(() => import('./Footer/Footer'), { ssr: false });
-const Vision = dynamic(() => import('./Vision/Vision'), { ssr: false });
-const Header = dynamic(() => import('./Components/Header'), { ssr: false });
-const BackgroundEiffel = dynamic(() => import('./Components/BackgroundEiffel'), { ssr: false });
-const CustomCursor = dynamic(() => import('./Components/Cursor'), { ssr: false });
+const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
+const Expertise = dynamic(() => import("./Expertise/Expertise"), {
+  ssr: false,
+});
+const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), {
+  ssr: false,
+});
+const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
+const Vision = dynamic(() => import("./Vision/Vision"), { ssr: false });
+const Header = dynamic(() => import("./Components/Header"), { ssr: false });
+const BackgroundEiffel = dynamic(
+  () => import("./Components/BackgroundEiffel"),
+  { ssr: false }
+);
+const CustomCursor = dynamic(() => import("./Components/Cursor"), {
+  ssr: false,
+});
 
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);
@@ -199,8 +207,6 @@ export default function App() {
     fetchData();
   }, []);
 
-
-
   useEffect(() => {
     const newHeaderHeight =
       currentSection === 0 ? (!isMobile ? "128px" : "90px") : "64px";
@@ -251,20 +257,74 @@ export default function App() {
           className="loading-screen"
           onAnimationEnd={() => setIsLoading(false)}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" stroke="#fff">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="57"
+            height="57"
+            viewBox="0 0 57 57"
+            stroke="#fff"
+          >
             <g fill="none" fillRule="evenodd">
               <g transform="translate(1 1)" strokeWidth="2">
                 <circle cx="5" cy="50" r="5">
-                  <animate attributeName="cy" begin="0s" dur="2.2s" values="50;5;50;50" calcMode="linear" repeatCount="indefinite" />
-                  <animate attributeName="cx" begin="0s" dur="2.2s" values="5;27;49;5" calcMode="linear" repeatCount="indefinite" />
+                  <animate
+                    attributeName="cy"
+                    begin="0s"
+                    dur="2.2s"
+                    values="50;5;50;50"
+                    calcMode="linear"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="cx"
+                    begin="0s"
+                    dur="2.2s"
+                    values="5;27;49;5"
+                    calcMode="linear"
+                    repeatCount="indefinite"
+                  />
                 </circle>
                 <circle cx="27" cy="5" r="5">
-                  <animate attributeName="cy" begin="0s" dur="2.2s" from="5" to="5" values="5;50;50;5" calcMode="linear" repeatCount="indefinite" />
-                  <animate attributeName="cx" begin="0s" dur="2.2s" from="27" to="27" values="27;49;5;27" calcMode="linear" repeatCount="indefinite" />
+                  <animate
+                    attributeName="cy"
+                    begin="0s"
+                    dur="2.2s"
+                    from="5"
+                    to="5"
+                    values="5;50;50;5"
+                    calcMode="linear"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="cx"
+                    begin="0s"
+                    dur="2.2s"
+                    from="27"
+                    to="27"
+                    values="27;49;5;27"
+                    calcMode="linear"
+                    repeatCount="indefinite"
+                  />
                 </circle>
                 <circle cx="49" cy="50" r="5">
-                  <animate attributeName="cy" begin="0s" dur="2.2s" values="50;50;5;50" calcMode="linear" repeatCount="indefinite" />
-                  <animate attributeName="cx" from="49" to="49" begin="0s" dur="2.2s" values="49;5;27;49" calcMode="linear" repeatCount="indefinite" />
+                  <animate
+                    attributeName="cy"
+                    begin="0s"
+                    dur="2.2s"
+                    values="50;50;5;50"
+                    calcMode="linear"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="cx"
+                    from="49"
+                    to="49"
+                    begin="0s"
+                    dur="2.2s"
+                    values="49;5;27;49"
+                    calcMode="linear"
+                    repeatCount="indefinite"
+                  />
                 </circle>
               </g>
             </g>
@@ -273,7 +333,6 @@ export default function App() {
       )}
 
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
-
         <currentSectionContext.Provider
           value={{
             bgIsBlackFondateur,
@@ -288,7 +347,7 @@ export default function App() {
             setHeaderHeight,
             mediaPaths,
             updateMediaPaths,
-            setIsLoading
+            setIsLoading,
           }}
         >
           <CustomCursor />

@@ -46,7 +46,7 @@ export default function Fondateur() {
   const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title, content } = data[langCode].section_5;
   return (
-    <div
+    <section
       ref={fondateurRef}
       id="Fondateur"
       className="relative w-full h-full flex justify-center items-center z-10 bg-noir"
@@ -57,6 +57,6 @@ export default function Fondateur() {
           {content}
         </span>
       </Paragraph>
-    </div>
+    </section>
   );
 }

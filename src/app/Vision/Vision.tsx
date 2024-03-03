@@ -21,7 +21,7 @@ export default function Vision() {
   const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title, content, button, content_after_clicking_button } = data[langCode].section_4
   return (
-    <div
+    <section
       id="Vision"
       className="w-full h-full flex justify-center relative items-center gap-4 bg-blanc"
     >
@@ -35,6 +35,6 @@ export default function Vision() {
           {content_after_clicking_button}
         </span>
       </Paragraph>
-    </div>
+    </section>
   );
 }

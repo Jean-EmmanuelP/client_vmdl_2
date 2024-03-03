@@ -122,11 +122,11 @@ export default function Conseil() {
         </div>
         <div className="absolute right-0 w-full h-full sm:w-[70%] flex flex-col text-center">
           <div className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[65%] -translate-y-1/2 flex flex-col gap-2 justify-center items-center">
-            <p className="text-[40px] sm:text-[60px] font-light uppercase">
+            <p className="text-[30px] sm:text-[60px] font-light uppercase">
               {title}
             </p>
             <p
-              className="text-[20px] sm:text-[24px] sm:content"
+              className="text-[16px] sm:text-[24px] sm:content"
               dangerouslySetInnerHTML={{ __html: formattedContent }}
             ></p>
           </div>

@@ -1,9 +1,11 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
 import { Fragment, useEffect, useState } from "react";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
+import Back from "../assets/svg/Back";
+import Home from "../assets/svg/Home";
 
 interface HeaderProps {
   height: "64px" | "128px" | "90px";
@@ -15,7 +17,6 @@ export default function Header({ height }: HeaderProps) {
   const { langueCourante } = useSection();
   const { loadData, data } = useData();
 
-  
   useEffect(() => {
     loadData();
   }, []);
@@ -25,16 +26,17 @@ export default function Header({ height }: HeaderProps) {
   }
 
   const langCodeMap: { [key in LangueCode]: string } = {
-    FR: 'fr',
-    EN: 'en',
-    IT: 'it',
-    ES: 'es',
-    عربي: 'عربي',
-    PT: 'pt',
-    DE: 'de',
-	  中文: '中文'
+    FR: "fr",
+    EN: "en",
+    IT: "it",
+    ES: "es",
+    عربي: "عربي",
+    PT: "pt",
+    DE: "de",
+    中文: "中文",
   };
-  const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
+  const langCode =
+    langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { section_1, section_2, section_3, section_4 } = data[langCode].header;
 
   const handleScroll = (value: number) => {
@@ -53,14 +55,15 @@ export default function Header({ height }: HeaderProps) {
       style={{ height }}
       animate={{
         height,
-        backgroundColor: height === "128px" || height === '90px' ? "#03030300" : "#0303034B",
+        backgroundColor:
+          height === "128px" || height === "90px" ? "#03030300" : "#0303034B",
       }}
       transition={{ duration: 0.6 }}
       className="w-full z-10 text-blanc flex justify-center items-center text-sm md:text-lg gap-28"
     >
       <div
         className={`${
-          height === "128px" || height === '90px' ? "border-b" : ""
+          height === "128px" || height === "90px" ? "border-b" : ""
         } h-full flex justify-center items-center gap-10 md:gap-28`}
       >
         {!subExpertise ? (
@@ -101,14 +104,7 @@ export default function Header({ height }: HeaderProps) {
               onClick={() => setSubExpertise(null)}
               className="hover:scale-105"
             >
-              {langCode === 'fr' && 'Retour'}
-              {langCode === 'es' && 'Volver'}
-              {langCode === 'en' && 'Back'}
-              {langCode === 'it' && 'Indietro'}
-              {langCode === 'عربي' && 'عربي'}
-              {langCode === 'pt' && 'Voltar'}
-              {langCode === 'de' && 'Zurück'}
-              {langCode === '中文' && '返回'}
+              <Back />
             </button>
             <button
               data-clickable="true"
@@ -118,14 +114,7 @@ export default function Header({ height }: HeaderProps) {
               }}
               className="hover:scale-105"
             >
-              {langCode === 'fr' && 'Accueil'}
-              {langCode === 'es' && 'Inicio'}
-              {langCode === 'en' && 'Home'}
-              {langCode === 'it' && 'Pagina principale'}
-              {langCode === 'عربي' && 'عربي'}
-              {langCode === 'pt' && 'Página inicial'}
-              {langCode === 'de' && 'Startseite'}
-              {langCode === '中文' && '首页'}
+              <Home />
             </button>
           </Fragment>
         )}

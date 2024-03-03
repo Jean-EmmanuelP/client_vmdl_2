@@ -91,7 +91,7 @@ export default function Home() {
   };
 
   return (
-    <div
+    <section
       id="Home"
       className="w-full h-full flex justify-center items-center transparent"
     >
@@ -166,6 +166,6 @@ export default function Home() {
             ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

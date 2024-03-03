@@ -24,7 +24,7 @@ export default function Contact() {
   const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title } = data[langCode].contact;
   return (
-    <div
+    <section
       id="Contact"
       className="relative w-full h-full flex justify-center z-10 items-center"
     >
@@ -36,6 +36,6 @@ export default function Contact() {
           <FormContact></FormContact>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -59,7 +59,7 @@ export default function Expertise() {
 
   return (
     <Fragment key="ExpertiseFragment">
-      <div className="relative w-full h-full">
+      <section className="relative w-full h-full">
         <motion.div
           animate={{ x: !subExpertise ? "0" : "-100vw" }}
           transition={{ duration: 1 }}
@@ -165,7 +165,7 @@ export default function Expertise() {
         <Conseil />
         <Contentieux />
         <Affaires />
-      </div>
+      </section>
     </Fragment>
   );
 }
