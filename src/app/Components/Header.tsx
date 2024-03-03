@@ -2,22 +2,61 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
+import { useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
+import makeAnimated from 'react-select/animated';
+import Select from 'react-select';
+import OptionTypeBase from "react-select"
+import { StylesConfig } from 'react-select'
 import _ from "lodash";
 import Back from "../assets/svg/Back";
 import Home from "../assets/svg/Home";
 import Menu from "../assets/svg/Menu";
-import { COUNTRIES } from "../utils/countries";
 
 interface HeaderProps {
   height: "64px" | "128px" | "90px";
 }
 
+const customStyles: StylesConfig = {
+  control: (styles) => ({
+    ...styles,
+    backgroundColor: '#F9F9F9',
+    zIndex: 2000,
+    borderRadius: '0',
+    boxShadow: 'none',
+    '&:hover': { borderColor: 'gray' },
+  }),
+  option: (styles, { isFocused, isSelected }) => ({
+    ...styles,
+    zIndex: 2000,
+    color: 'black',
+    backgroundColor: isFocused ? 'lightgray' : isSelected ? 'gray' : '#F9F9F9',
+    padding: 20,
+    '&:active': { backgroundColor: 'gray' },
+  }),
+  menu: (styles) => ({
+    ...styles,
+    zIndex: 2000,
+    borderColor: 'black',
+    borderRadius: '0',
+  }),
+  placeholder: (styles) => ({
+    ...styles,
+    zIndex: 2000,
+    color: 'black',
+  }),
+  singleValue: (styles) => ({
+    ...styles,
+    zIndex: 2000,
+    color: 'black',
+  }),
+};
+
 export default function Header({ height }: HeaderProps) {
   const { setCurrentSection } = useSection();
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, setLangueCourante } = useSection();
+  const [selectedOption, setSelectedOption] = useState<{ value: string, label: JSX.Element } | undefined>();
   const { loadData, data } = useData();
   const [isMobile, setIsMobile] = useState(false);
   const { menuOpen, goingOut, toggleMenu } = useSection();
@@ -41,33 +80,85 @@ export default function Header({ height }: HeaderProps) {
     const browserLang = navigator.language.slice(0, 2).toUpperCase();
     const isLangueCode = (lang: any): lang is LangueCode =>
       supportedLangs.includes(lang);
-
     const appLang = isLangueCode(browserLang) ? browserLang : "FR";
-
+    const matchingOption = options.find(option => option.value === langueCourante);
+    setSelectedOption(matchingOption);
     setLangueCourante(appLang);
   }, []);
+  const animatedComponents = makeAnimated();
+
+
   type LangueCode = 'FR' | 'EN' | 'IT' | 'ES' | 'عربي' | 'PT' | 'DE' | '中文';
-  const LANGUAGE_TO_COUNTRY_CODES: Record<LangueCode, string[]> = {
-    FR: ['FR'], // France pour le français
-    EN: ['US', 'GB'], // États-Unis et Royaume-Uni pour l'anglais
-    IT: ['IT'], // Italie pour l'italien
-    ES: ['ES', 'MX'], // Espagne et Mexique pour l'espagnol
-    عربي: ['SA'], // Arabie Saoudite pour l'arabe
-    PT: ['PT', 'BR'], // Portugal et Brésil pour le portugais
-    DE: ['DE'], // Allemagne pour l'allemand
-    中文: ['CN'], // Chine pour le chinois
+  const LANGUAGE_NAMES = {
+    FR: { native: "Français", en: "French", fr: "Français" },
+    EN: { native: "English", en: "English", fr: "Anglais" },
+    IT: { native: "Italiano", en: "Italian", fr: "Italien" },
+    ES: { native: "Español", en: "Spanish", fr: "Espagnol" },
+    عربي: { native: "العربية", en: "Arabic", fr: "Arabe" },
+    PT: { native: "Português", en: "Portuguese", fr: "Portugais" },
+    DE: { native: "Deutsch", en: "German", fr: "Allemand" },
+    中文: { native: "中文", en: "Chinese", fr: "Chinois" },
   };
-  interface Country {
-    title: string;
-    value: string;
-  }
-  const filteredCountries: Country[] = COUNTRIES.filter((country) =>
-    LANGUAGE_TO_COUNTRY_CODES[langueCourante].includes(country.value)
+  const LANGUAGE_TO_COUNTRY_CODES: Record<LangueCode, string[]> = {
+    FR: ['FR'],
+    EN: ['US', 'GB'],
+    IT: ['IT'],
+    ES: ['ES', 'MX'],
+    عربي: ['SA', 'QA', 'AE'],
+    PT: ['PT', 'BR'],
+    DE: ['DE'],
+    中文: ['CN'],
+  };
+  const options = Object.entries(LANGUAGE_TO_COUNTRY_CODES).flatMap(([langue, countries]) =>
+    countries.map(country => {
+      const languageDetails = LANGUAGE_NAMES[langue as keyof typeof LANGUAGE_NAMES];
+
+      return {
+        value: country,
+        label: (
+          <>
+            <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country}.svg`} alt={country} style={{ width: '20px', marginRight: '10px' }} />
+          </>
+        ),
+        searchTerms: [languageDetails?.native, languageDetails?.en, languageDetails?.fr]
+      };
+    })
   );
-  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setLangueCourante(event.target.value as LangueCode);
+  interface Option {
+    value: string;
+    label: JSX.Element;
+    searchTerms: string[];
+  }
+
+  const filterOption = (option: any, inputValue: string) => {
+    const { data } = option as { label: string; value: string; data: Option };
+    return data.searchTerms.some((term: string) => term.toLowerCase().includes(inputValue.toLowerCase()));
   };
 
+  const COUNTRY_TO_DEFAULT_LANGUAGE: Record<string, LangueCode> = {
+    US: 'EN',
+    GB: 'EN',
+    FR: 'FR',
+    IT: 'IT',
+    ES: 'ES',
+    MX: 'ES',
+    SA: 'عربي',
+    QA: 'عربي',
+    AE: 'عربي',
+    PT: 'PT',
+    BR: 'PT',
+    DE: 'DE',
+    CN: '中文',
+  };
+
+  const handleLanguageChange = (newValue: any, actionMeta: any) => {
+    if (newValue) {
+      const langue = COUNTRY_TO_DEFAULT_LANGUAGE[newValue.value];
+      setLangueCourante(langue as LangueCode);
+      const matchingOption = options.find(option => option.value === newValue.value);
+      setSelectedOption(matchingOption);
+    }
+  };
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -120,18 +211,9 @@ export default function Header({ height }: HeaderProps) {
     DE: "de",
     中文: "中文",
   };
+
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
-  const actualLanguage: { [key in LangueCode]: string } = {
-    FR: "Langue",
-    EN: "Language",
-    IT: "Lingua",
-    ES: "Idioma",
-    عربي: "اللغة",
-    PT: "Língua",
-    DE: "Sprache",
-    中文: "语言",
-  };
 
   const { section_1, section_2, section_3, section_4 } = data[langCode].header;
 
@@ -203,6 +285,7 @@ export default function Header({ height }: HeaderProps) {
               <button
                 onClick={toggleMenu}
                 className="uppercase flex justify-center items-center gap-2 z-[20000]"
+                data-clickable={true}
               >
                 <div className="w-4 h-4">
                   <Menu toggleMenu={menuOpen} />
@@ -301,13 +384,15 @@ export default function Header({ height }: HeaderProps) {
                 />
               </button>
               <div className="flex justify-center items-center p-2">
-                <select onChange={handleLanguageChange} value={langueCourante} className="text-noir bg-blanc p-2">
-                  {Object.entries(LANGUAGE_TO_COUNTRY_CODES).map(([code,]) => (
-                    <option key={code} value={code}>
-                      {code}
-                    </option>
-                  ))}
-                </select>
+                <Select
+                  data-clickable={true}
+                  styles={customStyles}
+                  components={animatedComponents}
+                  options={options as any}
+                  filterOption={filterOption}
+                  value={selectedOption}
+                  onChange={handleLanguageChange}
+                />
                 {/* {langueCourante && (
                   <img
                     src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${langueCourante}.svg`}
