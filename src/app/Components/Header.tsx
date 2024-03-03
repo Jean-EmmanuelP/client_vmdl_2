@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Fragment, useEffect } from "react";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
@@ -50,6 +50,40 @@ export default function Header({ height }: HeaderProps) {
     setCurrentSection(value);
   };
 
+  const sectionButtonsVariants = {
+    initial: {
+      opacity: 0,
+      x: -20,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5 },
+    },
+    exit: {
+      opacity: 0,
+      x: -20,
+      transition: { duration: 0.5 },
+    },
+  };
+
+  const backHomeButtonsVariants = {
+    initial: {
+      opacity: 0,
+      x: 20,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5 },
+    },
+    exit: {
+      opacity: 0,
+      x: 20,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
     <motion.div
       style={{ height }}
@@ -63,61 +97,77 @@ export default function Header({ height }: HeaderProps) {
     >
       <div
         className={`${
-          height === "128px" || height === "90px" ? "border-b border-slate-50" : ""
+          height === "128px" || height === "90px"
+            ? "border-b border-slate-50"
+            : ""
         } h-full flex justify-center items-center gap-10 md:gap-28`}
       >
-        {!subExpertise ? (
-          <Fragment>
-            <button
-              data-clickable="true"
-              onClick={() => handleScroll(1)}
-              className="hover:scale-105"
+        <AnimatePresence mode="wait">
+          {!subExpertise ? (
+            <motion.div
+              key="sectionButtons"
+              variants={sectionButtonsVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
             >
-              {section_1}
-            </button>
-            <button
-              data-clickable="true"
-              onClick={() => handleScroll(2)}
-              className="hover:scale-105"
+              <button
+                data-clickable="true"
+                onClick={() => handleScroll(1)}
+                className="hover:scale-105 mr-6 sm:mr-28"
+              >
+                {section_1}
+              </button>
+              <button
+                data-clickable="true"
+                onClick={() => handleScroll(2)}
+                className="hover:scale-105 mr-6 sm:mr-28"
+              >
+                {section_2}
+              </button>
+              <button
+                data-clickable="true"
+                onClick={() => handleScroll(3)}
+                className="hover:scale-105 mr-6 sm:mr-28"
+              >
+                {section_3}
+              </button>
+              <button
+                data-clickable="true"
+                onClick={() => handleScroll(4)}
+                className="hover:scale-105"
+              >
+                {section_4}
+              </button>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="backHomeButtons"
+              variants={backHomeButtonsVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
             >
-              {section_2}
-            </button>
-            <button
-              data-clickable="true"
-              onClick={() => handleScroll(3)}
-              className="hover:scale-105"
-            >
-              {section_3}
-            </button>
-            <button
-              data-clickable="true"
-              onClick={() => handleScroll(4)}
-              className="hover:scale-105"
-            >
-              {section_4}
-            </button>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <button
-              data-clickable="true"
-              onClick={() => setSubExpertise(null)}
-              className="hover:scale-105"
-            >
-              <Back />
-            </button>
-            <button
-              data-clickable="true"
-              onClick={() => {
-                handleScroll(0);
-                setSubExpertise(null);
-              }}
-              className="hover:scale-105"
-            >
-              <Home />
-            </button>
-          </Fragment>
-        )}
+              <button
+                data-clickable="true"
+                onClick={() => setSubExpertise(null)}
+                className="hover:scale-105 mr-6 sm:mr-28"
+              >
+                <Back />
+              </button>
+              <button
+                data-clickable="true"
+                onClick={() => {
+                  handleScroll(0);
+                  setSubExpertise(null);
+                }}
+                className="hover:scale-105"
+              >
+                <Home />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
