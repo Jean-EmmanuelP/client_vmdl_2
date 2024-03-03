@@ -127,7 +127,7 @@ export default function FormContact() {
             <p className="text-center">A bientôt</p>
             </div>
             <div className="absolute bottom-4 right-4 w-12 h-12">
-            <img src="/favicon/vmdl.png" alt="" />
+            <img src="/favicon/vmdl.ico" alt="" />
             </div>
         </div>}
         <Formik

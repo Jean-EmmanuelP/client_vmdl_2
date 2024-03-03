@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   icons: {
-    icon: '/favicon/vmdl.png'
+    icon: '/favicon/vmdl.ico'
   },
   title: "VMDL - Law firm & Cover group",
   description: "VMDL est un cabinet d'avocat",

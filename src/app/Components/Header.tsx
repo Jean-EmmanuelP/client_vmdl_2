@@ -21,14 +21,14 @@ const customStyles: StylesConfig = {
   control: (styles) => ({
     ...styles,
     backgroundColor: '#F9F9F9',
-    zIndex: 2000,
+    zIndex: 1999,
     borderRadius: '0',
     boxShadow: 'none',
     '&:hover': { borderColor: 'gray' },
   }),
   option: (styles, { isFocused, isSelected }) => ({
     ...styles,
-    zIndex: 2000,
+    zIndex: 1999,
     color: 'black',
     backgroundColor: isFocused ? 'lightgray' : isSelected ? 'gray' : '#F9F9F9',
     padding: 20,
@@ -36,18 +36,18 @@ const customStyles: StylesConfig = {
   }),
   menu: (styles) => ({
     ...styles,
-    zIndex: 2000,
+    zIndex: 1999,
     borderColor: 'black',
     borderRadius: '0',
   }),
   placeholder: (styles) => ({
     ...styles,
-    zIndex: 2000,
+    zIndex: 1999,
     color: 'black',
   }),
   singleValue: (styles) => ({
     ...styles,
-    zIndex: 2000,
+    zIndex: 1999,
     color: 'black',
   }),
 };
@@ -376,12 +376,8 @@ export default function Header({ height }: HeaderProps) {
                   </button>
                 </div>
               </div>
-              <button>
-                <img
-                  src="/favicon/vmdl.png"
-                  alt="logo"
-                  className="h-12 md:h-20"
-                />
+              <button onClick={() => {handleScroll(0)}}>
+                VMDL
               </button>
               <div className="flex justify-center items-center p-2">
                 <Select
