@@ -4,10 +4,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
-import makeAnimated from 'react-select/animated';
-import Select from 'react-select';
-import OptionTypeBase from "react-select"
-import { StylesConfig } from 'react-select'
+import makeAnimated from "react-select/animated";
+import Select from "react-select";
+import OptionTypeBase from "react-select";
+import { StylesConfig } from "react-select";
 import _ from "lodash";
 import Back from "../assets/svg/Back";
 import Home from "../assets/svg/Home";
@@ -20,35 +20,35 @@ interface HeaderProps {
 const customStyles: StylesConfig = {
   control: (styles) => ({
     ...styles,
-    backgroundColor: '#F9F9F9',
+    backgroundColor: "#F9F9F9",
     zIndex: 1999,
-    borderRadius: '0',
-    boxShadow: 'none',
-    '&:hover': { borderColor: 'gray' },
+    borderRadius: "0",
+    boxShadow: "none",
+    "&:hover": { borderColor: "gray" },
   }),
   option: (styles, { isFocused, isSelected }) => ({
     ...styles,
     zIndex: 1999,
-    color: 'black',
-    backgroundColor: isFocused ? 'lightgray' : isSelected ? 'gray' : '#F9F9F9',
+    color: "black",
+    backgroundColor: isFocused ? "lightgray" : isSelected ? "gray" : "#F9F9F9",
     padding: 20,
-    '&:active': { backgroundColor: 'gray' },
+    "&:active": { backgroundColor: "gray" },
   }),
   menu: (styles) => ({
     ...styles,
     zIndex: 1999,
-    borderColor: 'black',
-    borderRadius: '0',
+    borderColor: "black",
+    borderRadius: "0",
   }),
   placeholder: (styles) => ({
     ...styles,
     zIndex: 1999,
-    color: 'black',
+    color: "black",
   }),
   singleValue: (styles) => ({
     ...styles,
     zIndex: 1999,
-    color: 'black',
+    color: "black",
   }),
 };
 
@@ -56,7 +56,9 @@ export default function Header({ height }: HeaderProps) {
   const { setCurrentSection } = useSection();
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, setLangueCourante } = useSection();
-  const [selectedOption, setSelectedOption] = useState<{ value: string, label: JSX.Element } | undefined>();
+  const [selectedOption, setSelectedOption] = useState<
+    { value: string; label: JSX.Element } | undefined
+  >();
   const { loadData, data } = useData();
   const [isMobile, setIsMobile] = useState(false);
   const { menuOpen, goingOut, toggleMenu } = useSection();
@@ -81,14 +83,15 @@ export default function Header({ height }: HeaderProps) {
     const isLangueCode = (lang: any): lang is LangueCode =>
       supportedLangs.includes(lang);
     const appLang = isLangueCode(browserLang) ? browserLang : "FR";
-    const matchingOption = options.find(option => option.value === langueCourante);
+    const matchingOption = options.find(
+      (option) => option.value === langueCourante
+    );
     setSelectedOption(matchingOption);
     setLangueCourante(appLang);
   }, []);
   const animatedComponents = makeAnimated();
 
-
-  type LangueCode = 'FR' | 'EN' | 'IT' | 'ES' | 'عربي' | 'PT' | 'DE' | '中文';
+  type LangueCode = "FR" | "EN" | "IT" | "ES" | "عربي" | "PT" | "DE" | "中文";
   const LANGUAGE_NAMES = {
     FR: { native: "Français", en: "French", fr: "Français" },
     EN: { native: "English", en: "English", fr: "Anglais" },
@@ -100,29 +103,39 @@ export default function Header({ height }: HeaderProps) {
     中文: { native: "中文", en: "Chinese", fr: "Chinois" },
   };
   const LANGUAGE_TO_COUNTRY_CODES: Record<LangueCode, string[]> = {
-    FR: ['FR'],
-    EN: ['US', 'GB'],
-    IT: ['IT'],
-    ES: ['ES', 'MX'],
-    عربي: ['SA', 'QA', 'AE'],
-    PT: ['PT', 'BR'],
-    DE: ['DE'],
-    中文: ['CN'],
+    FR: ["FR"],
+    EN: ["US", "GB"],
+    IT: ["IT"],
+    ES: ["ES", "MX"],
+    عربي: ["SA", "QA", "AE"],
+    PT: ["PT", "BR"],
+    DE: ["DE"],
+    中文: ["CN"],
   };
-  const options = Object.entries(LANGUAGE_TO_COUNTRY_CODES).flatMap(([langue, countries]) =>
-    countries.map(country => {
-      const languageDetails = LANGUAGE_NAMES[langue as keyof typeof LANGUAGE_NAMES];
+  const options = Object.entries(LANGUAGE_TO_COUNTRY_CODES).flatMap(
+    ([langue, countries]) =>
+      countries.map((country) => {
+        const languageDetails =
+          LANGUAGE_NAMES[langue as keyof typeof LANGUAGE_NAMES];
 
-      return {
-        value: country,
-        label: (
-          <>
-            <img src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country}.svg`} alt={country} style={{ width: '20px', marginRight: '10px' }} />
-          </>
-        ),
-        searchTerms: [languageDetails?.native, languageDetails?.en, languageDetails?.fr]
-      };
-    })
+        return {
+          value: country,
+          label: (
+            <>
+              <img
+                src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country}.svg`}
+                alt={country}
+                style={{ width: "20px", marginRight: "10px" }}
+              />
+            </>
+          ),
+          searchTerms: [
+            languageDetails?.native,
+            languageDetails?.en,
+            languageDetails?.fr,
+          ],
+        };
+      })
   );
   interface Option {
     value: string;
@@ -132,30 +145,34 @@ export default function Header({ height }: HeaderProps) {
 
   const filterOption = (option: any, inputValue: string) => {
     const { data } = option as { label: string; value: string; data: Option };
-    return data.searchTerms.some((term: string) => term.toLowerCase().includes(inputValue.toLowerCase()));
+    return data.searchTerms.some((term: string) =>
+      term.toLowerCase().includes(inputValue.toLowerCase())
+    );
   };
 
   const COUNTRY_TO_DEFAULT_LANGUAGE: Record<string, LangueCode> = {
-    US: 'EN',
-    GB: 'EN',
-    FR: 'FR',
-    IT: 'IT',
-    ES: 'ES',
-    MX: 'ES',
-    SA: 'عربي',
-    QA: 'عربي',
-    AE: 'عربي',
-    PT: 'PT',
-    BR: 'PT',
-    DE: 'DE',
-    CN: '中文',
+    US: "EN",
+    GB: "EN",
+    FR: "FR",
+    IT: "IT",
+    ES: "ES",
+    MX: "ES",
+    SA: "عربي",
+    QA: "عربي",
+    AE: "عربي",
+    PT: "PT",
+    BR: "PT",
+    DE: "DE",
+    CN: "中文",
   };
 
   const handleLanguageChange = (newValue: any, actionMeta: any) => {
     if (newValue) {
       const langue = COUNTRY_TO_DEFAULT_LANGUAGE[newValue.value];
       setLangueCourante(langue as LangueCode);
-      const matchingOption = options.find(option => option.value === newValue.value);
+      const matchingOption = options.find(
+        (option) => option.value === newValue.value
+      );
       setSelectedOption(matchingOption);
     }
   };
@@ -274,20 +291,21 @@ export default function Header({ height }: HeaderProps) {
         className="w-full z-10 text-blanc flex justify-center items-center text-sm md:text-lg gap-28"
       >
         <div
-          className={`${height === "128px" || height === "90px"
-            ? "border-b border-slate-50"
-            : ""
-            } h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
+          className={`${
+            height === "128px" || height === "90px"
+              ? "border-b border-slate-50"
+              : ""
+          } h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
         >
           {/* Montrer a Vincent Machado Da Luz et lui demander ce qu'il en pense */}
           {true ? (
             <div className="flex justify-between w-full">
               <button
                 onClick={toggleMenu}
-                className="uppercase flex justify-center items-center gap-2 z-[20000]"
+                className="uppercase flex justify-center items-center gap-2 z-[4100]"
                 data-clickable={true}
               >
-                <div className="w-4 h-4">
+                <div className="w-4 h-4" data-clickable={true}>
                   <Menu toggleMenu={menuOpen} />
                 </div>
                 <AnimatePresence mode="wait">
@@ -298,6 +316,7 @@ export default function Header({ height }: HeaderProps) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
+                      data-clickable={true}
                       transition={{ duration: 0.2 }}
                     >
                       Close
@@ -309,6 +328,7 @@ export default function Header({ height }: HeaderProps) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
+                      data-clickable={true}
                       transition={{ duration: 0.5 }}
                     >
                       Menu
@@ -321,8 +341,9 @@ export default function Header({ height }: HeaderProps) {
               )}
               <div
                 ref={wrapperRef}
-                className={`menu ${menuOpen ? "open" : ""} ${goingOut ? "close" : ""
-                  }`}
+                className={`menu ${menuOpen ? "open" : ""} ${
+                  goingOut ? "close" : ""
+                }`}
               >
                 <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[2px] -translate-y-1/2">
                   <button
@@ -378,8 +399,30 @@ export default function Header({ height }: HeaderProps) {
                   </button>
                 </div>
               </div>
-              <button onClick={() => {handleScroll(0)}}>
-                VMDL
+              <button
+                onClick={() => {
+                  handleScroll(0);
+                }}
+              >
+                <div
+                  data-clickable={true}
+                  className="w-14 h-14 border border-blanc items-center flex flex-col"
+                >
+                  <div
+                    data-clickable={true}
+                    className="flex justify-center gap-1 items-center w-full"
+                  >
+                    <span>V</span>
+                    <span>M</span>
+                  </div>
+                  <div
+                    data-clickable={true}
+                    className="flex justify-center gap-1 items-center w-full"
+                  >
+                    <span>D</span>
+                    <span>L</span>
+                  </div>
+                </div>
               </button>
               <div className="flex justify-center items-center p-2">
                 <Select

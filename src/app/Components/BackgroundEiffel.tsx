@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useSection } from '../utils/Contextboard';
+import React, { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSection } from "../utils/Contextboard";
 
 const BackgroundEiffel: React.FC = () => {
-  const { mediaPaths, setIsLoading } = useSection();
+  const { mediaPaths } = useSection();
 
   const videoVariants = {
     hidden: { opacity: 0 },
@@ -12,54 +12,59 @@ const BackgroundEiffel: React.FC = () => {
 
   const isIOS = (): boolean => /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  const convertToMp4Path = (webmPath: string): string => webmPath.replace('.webm', '.mp4');
+  const convertToMp4Path = (webmPath: string): string =>
+    webmPath.replace(".webm", ".mp4");
 
   useEffect(() => {
-    const videoContainer = document.getElementById('videoContainer') as HTMLDivElement | null;
+    const videoContainer = document.getElementById(
+      "videoContainer"
+    ) as HTMLDivElement | null;
     if (videoContainer) {
-      const videoSource = isIOS() ? convertToMp4Path(mediaPaths.paris) : mediaPaths.paris;
-      const videoType = isIOS() ? 'video/mp4' : 'video/webm';
-      const posterPath = '/videos/mobile/paris/paris_white.jpeg';
+      const videoSource = isIOS()
+        ? convertToMp4Path(mediaPaths.paris)
+        : mediaPaths.paris;
+      const videoType = isIOS() ? "video/mp4" : "video/webm";
+      const posterPath = "/videos/mobile/paris/paris_white.jpeg";
 
-      const videoElement = document.createElement('video');
-      videoElement.className = 'video-js';
-      videoElement.setAttribute('webkit-playsinline', '');
-      videoElement.setAttribute('playsinline', '');
+      const videoElement = document.createElement("video");
+      videoElement.className = "video-js";
+      videoElement.setAttribute("webkit-playsinline", "");
+      videoElement.setAttribute("playsinline", "");
       videoElement.autoplay = true;
       videoElement.loop = true;
       videoElement.muted = true;
       if (isIOS()) {
         videoElement.poster = posterPath;
       }
-      videoElement.style.cssText = 'position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; z-index: -1;';
-      const sourceElement = document.createElement('source');
+      videoElement.style.cssText =
+        "position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; z-index: -1;";
+      const sourceElement = document.createElement("source");
       sourceElement.src = videoSource;
       sourceElement.type = videoType;
 
       videoElement.appendChild(sourceElement);
 
-      videoElement.onloadeddata = () => setIsLoading(false);
       videoElement.onplay = () => {
-        videoElement.style.display = 'block';
+        videoElement.style.display = "block";
       };
       videoElement.onerror = () => {
-        videoElement.style.display = 'none';
+        videoElement.style.display = "none";
         videoContainer.style.backgroundImage = `url('${posterPath}')`;
-        videoContainer.style.backgroundSize = 'cover';
-        videoContainer.style.backgroundPosition = 'center';
+        videoContainer.style.backgroundSize = "cover";
+        videoContainer.style.backgroundPosition = "center";
       };
 
       videoElement.play().catch(() => {
-        videoElement.style.display = 'none';
+        videoElement.style.display = "none";
         videoContainer.style.backgroundImage = `url('${posterPath}')`;
-        videoContainer.style.backgroundSize = 'cover';
-        videoContainer.style.backgroundPosition = 'center';
+        videoContainer.style.backgroundSize = "cover";
+        videoContainer.style.backgroundPosition = "center";
       });
 
-      videoContainer.innerHTML = '';
+      videoContainer.innerHTML = "";
       videoContainer.appendChild(videoElement);
     }
-  }, [mediaPaths.paris, setIsLoading]);
+  }, [mediaPaths.paris]);
 
   return (
     <AnimatePresence>
@@ -73,11 +78,9 @@ const BackgroundEiffel: React.FC = () => {
         className="fixed top-0 w-full h-full justify-center items-center"
         style={{ zIndex: -1 }}
         id="videoContainer"
-      >
-        {/* La vidéo ou l'image sera affichée ici */}
-      </motion.div>
+      ></motion.div>
     </AnimatePresence>
   );
-}
+};
 
 export default BackgroundEiffel;
