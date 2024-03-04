@@ -167,7 +167,7 @@ export default function CMS() {
         {selectedSubSection &&
           typeof jsonData.fr[selectedSection] === "object" && (
             <select
-              className="p-2 rounded-md bg-red-500"
+              className="p-2 rounded-md"
               value={selectedSubSection || undefined}
               onChange={handleSubSectionChange}
             >

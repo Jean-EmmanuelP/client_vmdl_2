@@ -269,8 +269,8 @@ export default function App() {
       {isLoading && (
         <div
           className="loading-screen"
-          onAnimationEnd={() => setIsLoading(false)}
         >
+          {/* Personnaliser ceci avec plutot un "VMDL Presents" */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="57"

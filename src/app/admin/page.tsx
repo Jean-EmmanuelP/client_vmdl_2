@@ -39,7 +39,7 @@ const AuthPage = () => {
       <div className="bg-white p-2 w-1/4 h-1/4 rounded-md shadow-2xl gap-10 flex flex-col justify-center items-center">
         <h1 className="text-2xl">Page d&apos;Authentification</h1>
         {error && (
-          <p className="absolute top-10 left-10 p-10 bg-red-500 text-xl text-white rounded-md transition duration-150">
+          <p className="absolute top-10 left-10 p-10 text-xl text-white rounded-md transition duration-150">
             {error}
           </p>
         )}

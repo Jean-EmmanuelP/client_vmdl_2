@@ -294,6 +294,7 @@ export default function Header({ height }: HeaderProps) {
                   {menuOpen ? (
                     <motion.p
                       key="close"
+                      className="text-[13px]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -304,6 +305,7 @@ export default function Header({ height }: HeaderProps) {
                   ) : (
                     <motion.p
                       key="menu"
+                      className="text-[13px]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -329,7 +331,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       handleScroll(1);
                     }}
-                    className="hover:scale-105 pr-16 uppercase"
+                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
                     {section_1}
                   </button>
@@ -339,7 +341,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       handleScroll(2);
                     }}
-                    className="hover:scale-105 pr-16 uppercase"
+                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
                     {section_2}
                   </button>
@@ -349,7 +351,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       handleScroll(3);
                     }}
-                    className="hover:scale-105 pr-16 uppercase"
+                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
                     {section_3}
                   </button>
@@ -359,7 +361,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       handleScroll(4);
                     }}
-                    className="hover:scale-105 pr-16 uppercase"
+                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
                     {section_4}
                   </button>
@@ -369,7 +371,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       handleScroll(4);
                     }}
-                    className="hover:scale-105 pr-16 uppercase"
+                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
                     {/* TODO */}
                     Carrieres
