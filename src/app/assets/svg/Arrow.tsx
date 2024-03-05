@@ -1,13 +1,4 @@
-interface ArrowProps {
-  fill?: string;
-  width?: string;
-  height?: string;
-  viewBox?: string;
-  baseProfile?: string;
-  xmlns?: string;
-  overflow?: string;
-  reversed?: boolean;
-}
+import { ArrowProps } from "@/app/utils/interface";
 
 const Arrow = (props: ArrowProps) => (
   <svg

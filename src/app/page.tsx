@@ -1,5 +1,12 @@
 "use client";
-
+/*
+  La question qui se pose c'est comment ameliorer le code ?
+  Faut il faire moins de useEffect ? faut-il reduire la taille de son code, le nombre de loop utilise ?
+  La question qui se pose c'est est-ce que le code qui se repete affecte les performances,
+  est-ce que les librairies utilises et trop lourdes impactent
+  les performances et comment savoir qui elles sont ?
+  Aussi comment le contextboard, soit les proprietes partage entre tout mes composants peut affecter les performances de mon site ?
+*/
 import { useCallback, useEffect, useState } from "react";
 import {
   LangueCode,
@@ -8,9 +15,9 @@ import {
 } from "./utils/Contextboard";
 import { DataProvider } from "./utils/DataContext";
 import dynamic from "next/dynamic";
-
 import Home from "./Home/Home";
 import Cabinet from "./Cabinet/Cabinet";
+import { NavigatorWithConnection } from "./utils/interface";
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
 const Expertise = dynamic(() => import("./Expertise/Expertise"), {
   ssr: false,
@@ -227,13 +234,6 @@ export default function App() {
     setHeaderHeight(newHeaderHeight);
   }, [currentSection, isMobile]);
 
-  interface NavigatorWithConnection extends Navigator {
-    connection?: {
-      downlink?: number;
-      effectiveType?: string;
-    };
-  }
-
   const updateMediaPaths = useCallback(() => {
     const isMobile = window.innerWidth <= 768;
 
@@ -258,7 +258,9 @@ export default function App() {
       vosges: `${videoBasePath}vosges/vosges_${qualitySuffix}.webm`,
     });
   }, []);
-
+  const [isHoveringExpertiseButton, setIsHoveringExpertiseButton] = useState<
+    "conseil" | "contentieux" | "affaires" | "none"
+  >("none");
   useEffect(() => {
     updateMediaPaths();
   }, []);
@@ -275,6 +277,9 @@ export default function App() {
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
         <currentSectionContext.Provider
           value={{
+            isHoveringExpertiseButton,
+            setIsHoveringExpertiseButton,
+            isMobile,
             menuOpen,
             setMenuOpen,
             goingOut,

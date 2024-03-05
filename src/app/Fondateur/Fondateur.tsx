@@ -8,13 +8,13 @@ export default function Fondateur() {
   const { langueCourante } = useSection();
   const fondateurRef = useRef<HTMLDivElement>(null);
   const { setBgIsBlackFondateur } = useSection();
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setBgIsBlackFondateur(true);
         } else {
-          console.log('not intersecting');
           setBgIsBlackFondateur(false);
         }
       });
@@ -33,6 +33,7 @@ export default function Fondateur() {
   if (!data) {
     return;
   }
+  // langCodeMap doubled
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: 'fr',
     EN: 'en',
@@ -43,6 +44,7 @@ export default function Fondateur() {
     DE: 'de',
     中文: '中文'
   };
+  // langCode doubled
   const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title, content } = data[langCode].section_5;
   return (
@@ -52,7 +54,7 @@ export default function Fondateur() {
       className="relative w-full h-full flex justify-center items-center z-10 bg-noir"
     >
       <Paragraph textColor="#F9F9F9">
-        <span className="uppercase text-[30px] sm:text-[60px] sm:title font-light">{title}</span>
+        <span className="uppercase text-[30px] sm:text-[40px] sm:title font-light">{title}</span>
         <span className="text-[16px] sm:text-[24px] sm:content leading-[26px] font-light">
           {content}
         </span>

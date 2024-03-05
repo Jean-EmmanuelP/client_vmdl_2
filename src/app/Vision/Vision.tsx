@@ -26,7 +26,7 @@ export default function Vision() {
       className="w-full h-full flex justify-center relative items-center gap-4 bg-blanc"
     >
       <Paragraph textColor="#030303">
-        <span className="uppercase text-[30px] sm:text-[60px] font-light">{title}</span>
+        <span className="uppercase text-[30px] sm:text-[40px] font-light">{title}</span>
         <span className="text-[16px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
           {content}
         </span>

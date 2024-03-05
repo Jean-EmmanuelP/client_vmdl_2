@@ -25,10 +25,10 @@ export default function Cabinet() {
   return (
       <section
         id="Cabinet"
-        className="relative w-full h-full flex justify-center items-center gap-4 z-10  bg-blanc z-100"
+        className="relative w-full h-full flex justify-center items-center gap-4  bg-blanc"
       >
         <Paragraph textColor="#030303">
-          <span className="uppercase text-[30px] sm:text-[60px] sm:title font-light">
+          <span className="uppercase text-[30px] sm:text-[40px] sm:title font-light">
             {title}
           </span>
           <span className="text-[16px] sm:text-[24px] sm:content leading-[26px] font-light">

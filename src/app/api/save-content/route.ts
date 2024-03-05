@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { Octokit } from "@octokit/core";
-
-interface FileInfoResponseData {
-  sha?: string;
-}
+import { FileInfoResponseData } from "@/app/utils/interface";
 
 export async function POST(req: Request) {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });

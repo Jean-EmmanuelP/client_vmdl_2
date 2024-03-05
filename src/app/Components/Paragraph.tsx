@@ -24,12 +24,11 @@ export default function Paragraph({
   classText,
   homeSection,
 }: ParagraphProps) {
-  const { setCurrentSection, setHeaderHeight } = useSection();
+  const { setCurrentSection, setHeaderHeight, isMobile } = useSection();
   const [isVisible, setIsVisible] = useState(false);
   const paragraphRef = useRef<HTMLDivElement | null>(null);
   const [toggle, setToggle] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState(false);
   const { setSubExpertise } = useExpertise();
 
   const handleScroll = (value: number) => {
@@ -49,7 +48,6 @@ export default function Paragraph({
         entries.forEach((entry) => {
           const isIntersecting = entry.isIntersecting;
 
-          // Si l'élément est visible, on marque comme visible et on ne fait rien de plus
           if (isIntersecting) {
             setSubExpertise(null);
             setIsVisible(true);
@@ -59,10 +57,8 @@ export default function Paragraph({
               setHeaderHeight("90px");
             }
           } else {
-            // Si l'élément n'est plus visible, on marque comme non visible
             setIsVisible(false);
 
-            // Réinitialiser l'état toggle à false
             setToggle(false);
           }
         });
@@ -82,20 +78,6 @@ export default function Paragraph({
       if (paragraphRef.current) {
         observer.unobserve(paragraphRef.current);
       }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkIfMobile);
     };
   }, []);
 
@@ -143,7 +125,6 @@ export default function Paragraph({
         <AnimatePresence>
           {isVisible && (
             <Fragment>
-              {/* Arrow a gauche quand toggle === true */}
               <motion.button
                 onClick={() => setToggle(false)}
                 initial={{ y: "0px", opacity: 0 }}
@@ -154,7 +135,6 @@ export default function Paragraph({
                 {!toggle ? children[0] : <ReversedArrow />}
               </motion.button>
 
-              {/* Texte de base */}
               <motion.p
                 initial={{ y: "40px" }}
                 animate={{ y: toggle ? "-10px" : 0, opacity: toggle ? 0 : 1 }}

@@ -20,11 +20,12 @@ interface HeaderProps {
 const customStyles: StylesConfig = {
   control: (styles) => ({
     ...styles,
-    backgroundColor: "#F9F9F9",
+    backgroundColor: "none",
     zIndex: 1999,
     borderRadius: "0",
     boxShadow: "none",
-    "&:hover": { borderColor: "gray" },
+    border: '1px',
+    "&:hover": { backgroundColor: "#F9F9F9" }
   }),
   option: (styles, { isFocused, isSelected }) => ({
     ...styles,
@@ -32,7 +33,7 @@ const customStyles: StylesConfig = {
     color: "black",
     backgroundColor: isFocused ? "lightgray" : isSelected ? "gray" : "#F9F9F9",
     padding: 20,
-    "&:active": { backgroundColor: "gray" },
+    // "&:active": { backgroundColor: "gray" },
   }),
   menu: (styles) => ({
     ...styles,
@@ -55,19 +56,16 @@ const customStyles: StylesConfig = {
 export default function Header({ height }: HeaderProps) {
   const { setCurrentSection } = useSection();
   const { subExpertise, setSubExpertise } = useExpertise();
-  const { langueCourante, setLangueCourante } = useSection();
+  const { langueCourante, setLangueCourante, isMobile } = useSection();
   const [selectedOption, setSelectedOption] = useState<
     { value: string; label: JSX.Element } | undefined
   >();
   const { loadData, data } = useData();
-  const [isMobile, setIsMobile] = useState(false);
   const { menuOpen, goingOut, toggleMenu } = useSection();
   const [lastScrollY, setLastScrollY] = useState(window.scrollY);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  // check si ca c'est pas une logique commune et utiliser dans d'autres composants
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsMobile(window.innerWidth <= 768);
-    }
     const supportedLangs: LangueCode[] = [
       "FR",
       "EN",
@@ -91,7 +89,9 @@ export default function Header({ height }: HeaderProps) {
   }, []);
   const animatedComponents = makeAnimated();
 
+  // langue code ici utilise deux fois
   type LangueCode = "FR" | "EN" | "IT" | "ES" | "عربي" | "PT" | "DE" | "中文";
+  //  pareil ici cest un const on sen fou de le mettre ici
   const LANGUAGE_NAMES = {
     FR: { native: "Français", en: "French", fr: "Français" },
     EN: { native: "English", en: "English", fr: "Anglais" },
@@ -102,6 +102,7 @@ export default function Header({ height }: HeaderProps) {
     DE: { native: "Deutsch", en: "German", fr: "Allemand" },
     中文: { native: "中文", en: "Chinese", fr: "Chinois" },
   };
+  //  pareil ici cest un const on sen fou de le mettre ici
   const LANGUAGE_TO_COUNTRY_CODES: Record<LangueCode, string[]> = {
     FR: ["FR"],
     EN: ["US", "GB"],
@@ -137,6 +138,7 @@ export default function Header({ height }: HeaderProps) {
         };
       })
   );
+  // interface ici faire un fichier pour les interfaces
   interface Option {
     value: string;
     label: JSX.Element;
@@ -150,6 +152,7 @@ export default function Header({ height }: HeaderProps) {
     );
   };
 
+  // meme chose
   const COUNTRY_TO_DEFAULT_LANGUAGE: Record<string, LangueCode> = {
     US: "EN",
     GB: "EN",
@@ -166,7 +169,7 @@ export default function Header({ height }: HeaderProps) {
     CN: "中文",
   };
 
-  const handleLanguageChange = (newValue: any, actionMeta: any) => {
+  const handleLanguageChange = (newValue: any) => {
     if (newValue) {
       const langue = COUNTRY_TO_DEFAULT_LANGUAGE[newValue.value];
       setLangueCourante(langue as LangueCode);
@@ -192,6 +195,7 @@ export default function Header({ height }: HeaderProps) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuOpen, toggleMenu]);
+  // le detectScroll jai limpression que il est utilise ici mais aussi quelque part dautre check ca
   const detectScroll = () => {
     const currentScrollY = window.scrollY;
 
@@ -200,6 +204,7 @@ export default function Header({ height }: HeaderProps) {
     }
     setLastScrollY(currentScrollY);
   };
+  // se renseigner a quel point ceci est energivore
   useEffect(() => {
     const handleScrollThrottled = _.throttle(detectScroll, 100);
 
@@ -218,6 +223,7 @@ export default function Header({ height }: HeaderProps) {
     return;
   }
 
+  // fichier global pour ses const
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -228,7 +234,7 @@ export default function Header({ height }: HeaderProps) {
     DE: "de",
     中文: "中文",
   };
-
+  // pareil ici mettre dans un fichier global
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
 

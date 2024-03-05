@@ -7,7 +7,7 @@ export default function Contentieux() {
   const { subExpertise } = useExpertise();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [textOpacity, setTextOpacity] = useState(0);
-  const { langueCourante, mediaPaths } = useSection();
+  const { langueCourante, mediaPaths, isMobile } = useSection();
   const { data } = useData();
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,6 +34,7 @@ export default function Contentieux() {
       }
     };
   }, []);
+
   useEffect(() => {
     const videoElement = videoRef.current;
 
@@ -54,26 +55,11 @@ export default function Contentieux() {
       }
     };
   }, [videoRef]);
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);
-      };
 
-      handleResize();
-
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, []);
   if (!data) {
     return null;
   }
-
+  // creer un fichier global pour le langCodeMap
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -84,9 +70,11 @@ export default function Contentieux() {
     DE: "de",
     中文: "中文",
   };
+  // creer un fichier global pour le langCode
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { content } = data[langCode].section_3.box_2;
+  // la fonction formatContent est utilise deux fois donc autant avoir un fichier qui stock ses fonctions
   const formatContent = (content: string): string => {
     return (
       content
@@ -96,17 +84,20 @@ export default function Contentieux() {
     );
   };
   const formattedContent = formatContent(content);
+  // la fonction convertToMp4Path est utilise deux fois donc autant avoir un fichier qui stock ses fonctions
   function convertToMp4Path(webmPath: string) {
     return webmPath.replace(".webm", ".mp4");
   }
+  // isIOS, reflechir pareil ici pour savoir si soit je fais une fonction globale pour tout le monde ou soit je mets dans le contextBoard
   const isIOS = (): boolean => /iPad|iPhone|iPod/.test(navigator.userAgent);
   return (
     <motion.div
       animate={{ x: subExpertise === "contentieux" ? "0vw" : "100vw" }}
       style={{ y: "-100vh" }}
       transition={{ duration: 1 }}
-      className={`absolute w-full overflow-hidden ${isMobile ? "h-[110vh]" : "h-full"
-        } flex justify-center items-center text-blanc`}
+      className={`absolute w-full overflow-hidden ${
+        isMobile ? "h-[110vh]" : "h-full"
+      } flex justify-center items-center text-blanc`}
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -137,7 +128,7 @@ export default function Contentieux() {
           ref={videoRef}
           playsInline
           className="w-full h-full object-cover bg-blanc"
-        // poster={`/images/vosges.jpeg`}
+          // poster={`/images/vosges.jpeg`}
         >
           <source src={`${mediaPaths.vosges}`} type="video/webm" />
           <source

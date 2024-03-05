@@ -1,14 +1,5 @@
+import { JudgeSVGProps } from "@/app/utils/interface";
 import * as React from "react";
-
-interface JudgeSVGProps {
-    fill?: string;
-    width?: string;
-    height?: string;
-    viewBox?: string;
-    baseProfile?: string;
-    xmlns?: string;
-    overflow?: string;
-}
 
 const JudgeSVG: React.FC<JudgeSVGProps> = (props) => (
     <svg

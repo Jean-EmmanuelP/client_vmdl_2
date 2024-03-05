@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 
+/* cree un fichier avec tout les types */
 export type LangueCode =
   | "FR"
   | "EN"
@@ -9,7 +10,7 @@ export type LangueCode =
   | "PT"
   | "DE"
   | "中文";
-
+// pour les interfaces ici creer un fichier interface
 interface MediaPaths {
   paris: string;
   dubai: string;
@@ -19,6 +20,11 @@ interface MediaPaths {
 }
 
 interface currentSectionProps {
+  isHoveringExpertiseButton: "conseil" | "contentieux" | "affaires" | "none";
+  setIsHoveringExpertiseButton: React.Dispatch<
+    React.SetStateAction<"conseil" | "contentieux" | "affaires" | "none">
+  >;
+  isMobile: boolean;
   currentSection: number;
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,21 +47,24 @@ interface currentSectionProps {
 }
 
 const defaultValues: currentSectionProps = {
+  isHoveringExpertiseButton: "none",
+  setIsHoveringExpertiseButton: () => {},
+  isMobile: false,
   currentSection: 0,
   menuOpen: false,
-  setMenuOpen: () => { },
-  toggleMenu: () => { },
+  setMenuOpen: () => {},
+  toggleMenu: () => {},
   goingOut: false,
-  setIsGoingOut: () => { },
+  setIsGoingOut: () => {},
   bgIsBlackFondateur: false,
   bgIsBlackFooter: false,
-  setBgIsBlackFooter: () => { },
-  setBgIsBlackFondateur: () => { },
-  setCurrentSection: () => { },
+  setBgIsBlackFooter: () => {},
+  setBgIsBlackFondateur: () => {},
+  setCurrentSection: () => {},
   headerHeight: "64px",
-  setHeaderHeight: () => { },
+  setHeaderHeight: () => {},
   langueCourante: "FR",
-  setLangueCourante: () => { },
+  setLangueCourante: () => {},
   mediaPaths: {
     paris: `/videos/laptop/paris/paris_low.webm`,
     dubai: `/videos/laptop/dubai/dubai_low.webm`,
@@ -63,7 +72,7 @@ const defaultValues: currentSectionProps = {
     rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
     vosges: `/videos/laptop/vosges/vosges_low.webm`,
   },
-  updateMediaPaths: () => { },
+  updateMediaPaths: () => {},
 };
 
 export const currentSectionContext = createContext<

@@ -1,14 +1,5 @@
+import { RoofSVGProps } from "@/app/utils/interface";
 import * as React from "react";
-
-interface RoofSVGProps {
-  fill?: string;
-  width?: string;
-  height?: string;
-  viewBox?: string;
-  baseProfile?: string;
-  xmlns?: string;
-  overflow?: string;
-}
 
 const RoofSVG: React.FC<RoofSVGProps> = (props) => (
   <svg

@@ -5,29 +5,12 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Conseil() {
   const { subExpertise } = useExpertise();
-  const { langueCourante } = useSection();
+  const { langueCourante, isMobile } = useSection();
   const { data } = useData();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoVisible, setVideoVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    // check if it work
-    console.log(`the push went well no error !`);
-    if (typeof window !== "undefined") {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);
-      };
 
-      handleResize();
-
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, []);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,6 +33,7 @@ export default function Conseil() {
       }
     };
   }, []);
+
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -60,9 +44,11 @@ export default function Conseil() {
       setIsPlaying(!isPlaying);
     }
   };
+
   if (!data) {
     return null;
   }
+  // pareil ici langCodeMap creer un fichier global
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -73,6 +59,7 @@ export default function Conseil() {
     DE: "de",
     中文: "中文",
   };
+  // meme chose ici
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content } = data[langCode].section_3.box_1;
@@ -96,14 +83,16 @@ export default function Conseil() {
         animate={{ x: subExpertise === "conseil" ? "0vw" : "100vw" }}
         style={{ y: "-100vh" }}
         transition={{ duration: 1 }}
-        className={`absolute w-full ${isMobile ? "h-[110vh]" : "h-full"
-          } flex text-noir bg-blanc`}
+        className={`absolute w-full ${
+          isMobile ? "h-[110vh]" : "h-full"
+        } flex text-noir bg-blanc`}
       >
         <div className={`relative hidden sm:block w-[30%] h-full`}>
           <video
             ref={videoRef}
-            className={`object-cover w-full h-full transition duration-75 ${!isPlaying && "blur-lg"
-              }`}
+            className={`object-cover w-full h-full transition duration-75 ${
+              !isPlaying && "blur-lg"
+            }`}
             onClick={togglePlay}
           >
             <source src="/videos/kaka.webm" type="video/webm" />
@@ -111,8 +100,9 @@ export default function Conseil() {
           {!isPlaying && (
             <button
               onClick={togglePlay}
-              className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 ${isMobile ? "-mt-[64px]" : "-mt-[50px]"
-                } -translate-y-1/2 w-16 h-16 bg-white rounded-full flex justify-center items-center`}
+              className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 ${
+                isMobile ? "-mt-[64px]" : "-mt-[50px]"
+              } -translate-y-1/2 w-16 h-16 bg-white rounded-full flex justify-center items-center`}
             >
               <svg viewBox="0 0 24 24" className="w-10 h-10 text-black">
                 <path fill="currentColor" d="M8 5v14l11-7z" />
@@ -175,4 +165,3 @@ export default function Conseil() {
     );
   }
 }
-

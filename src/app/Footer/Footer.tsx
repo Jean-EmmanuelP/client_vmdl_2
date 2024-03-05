@@ -10,6 +10,7 @@ export default function Footer() {
   if (!data) {
     return;
   }
+  // langCodeMap doubled
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -20,6 +21,7 @@ export default function Footer() {
     DE: "de",
     中文: "中文",
   };
+  // langCode doubled
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, subtitle, phoneNumber, fixNumber, address } =
@@ -44,11 +46,9 @@ export default function Footer() {
       className="relative w-full h-[45%] sm:h-[27%] flex flex-col z-10 bg-noir text-blanc mt-[-40px] sm:mt-0"
       onMouseEnter={() => {
         setBgIsBlackFooter(true);
-        console.log("in the footer");
       }}
       onMouseLeave={() => {
         setBgIsBlackFooter(false);
-        console.log("left the footer");
       }}
     >
       <div

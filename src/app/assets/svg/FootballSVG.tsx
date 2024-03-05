@@ -1,12 +1,4 @@
-interface FootballPropsSVG {
-  fill?: string;
-  width?: string;
-  height?: string;
-  viewBox?: string;
-  baseProfile?: string;
-  xmlns?: string;
-  overflow?: string;
-}
+import { FootballPropsSVG } from "@/app/utils/interface";
 
 const FootballSVG = (props: FootballPropsSVG) => (
   <svg
@@ -16,9 +8,11 @@ const FootballSVG = (props: FootballPropsSVG) => (
     y="0px"
     fill="#ffffff"
     viewBox="0 0 172.014 171.123"
-    style={{
-      // enableBackground: "new 0 0 172.014 171.123",
-    }}
+    style={
+      {
+        // enableBackground: "new 0 0 172.014 171.123",
+      }
+    }
     xmlSpace="preserve"
     {...props}
   >

@@ -10,7 +10,7 @@ export default function Home() {
   if (!data) {
     return;
   }
-
+  // langCodeMap doubled
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -21,6 +21,7 @@ export default function Home() {
     DE: "de",
     中文: "中文",
   };
+  // langCode doubled
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, subtitle, contact_button } = data[langCode].section_1;

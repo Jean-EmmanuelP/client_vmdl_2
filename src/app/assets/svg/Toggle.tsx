@@ -1,9 +1,5 @@
+import { ToggleProps } from '@/app/utils/interface';
 import React from 'react';
-
-interface ToggleProps {
-    isToggled: boolean;
-    size?: string; // La taille est optionnelle et a une valeur par défaut si non fournie
-}
 
 const Toggle: React.FC<ToggleProps> = ({ isToggled, size }) => {
     const rotationStyle = {

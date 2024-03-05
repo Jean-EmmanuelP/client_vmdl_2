@@ -1,17 +1,5 @@
+import { ReverseArrowProps } from "@/app/utils/interface";
 import React, { useState, useEffect } from "react";
-
-interface ReverseArrowProps {
-  fill?: string;
-  width?: string;
-  height?: string;
-  viewBox?: string;
-  baseProfile?: string;
-  xmlns?: string;
-  overflow?: string;
-  reversed?: boolean;
-  isGrey?: boolean;
-  lilArrow?: boolean;
-}
 
 const ReversedArrow = ({
   reversed = false,
