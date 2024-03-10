@@ -13,7 +13,8 @@ const config: Config = {
       },
       fontFamily: {
         'riviera': ['Riviera', 'sans-serif'],
-        'futura': ['Futura', 'sans-serif']
+        'futura': ['Futura', 'sans-serif'],
+        'larsseit': ['Larsseit', 'sans-serif']
       },
       colors: {
         'noir': '#030303',

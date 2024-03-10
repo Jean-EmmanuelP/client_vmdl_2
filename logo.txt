@@ -3,13 +3,7 @@ un logo qui capitalise sur la tour eiffel,
 sur le globe
 sur la lettre V
 
-
-note sur split de task :
-- d'abord comprendre comment le backgorund eiffel se met derriere les conseil, contentieux, affaires
-ensuite faire en sorte de lenlever puis mettre a chacun limage que je desire symbole pour chacuns de leur section
-- associer au texte une image dopacite 0 et translateY(5px) puis ensuite si tu hover alors opacity1 translateY(0px)
-- avoir 3 useState qui vont se mettre en true false en fonction de onMouseEnter et onMouseLeave et vont changer le cursor
-- lidee cest de dire que si tu cliques sur lun des bouttons alors un drapeau apparait et le component associe au boutton saffiche
-- je me dis que ikl faudrait calculer la taille de limage avec un  espacement en haut et en bas de 10px pour que en haut je puisse mettre
-le boutton retour
-- si tu cliques sur le boutton retour leffet inverse se passe et donc le rideau se baisse
+note sur l'expertise:
+1. faire sur telephone la version
+2. comprendre comment faire les img depuis iphone HEIC to webm (check quality)
+3.  

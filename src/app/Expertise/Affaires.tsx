@@ -23,9 +23,9 @@ interface Video {
   peut etre quelque chose plus epure, plus simple et plus intuitif
   */
 export default function Affaires() {
-  const { subExpertise } = useExpertise();
+  const { subExpertise, setSubExpertise } = useExpertise();
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
-  const { mediaPaths } = useSection();
+  const { mediaPaths, headerHeight } = useSection();
   const [isIOS, setIsIOS] = useState<boolean>(false);
   useEffect(() => {
     setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent));
@@ -170,16 +170,23 @@ export default function Affaires() {
   function convertToMp4Path(webmPath: string) {
     return webmPath.replace(".webm", ".mp4");
   }
+  const videoVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
   return (
-    <motion.div
-      animate={{ x: subExpertise === "affaires" ? "100vw" : "200vw" }}
-      style={{ y: "-100vh" }}
-      transition={{ duration: 1 }}
-      className={`relative w-full ${
-        isMobile ? "h-[110vh]" : "h-full"
-      } flex justify-center items-center text-blanc z-1 bg-blanc`}
+    <div
+      className={`w-full h-full flex justify-center items-center text-blanc`}
     >
-      <div className="absolute flex w-[300%] h-full overflow-hidden z-10 bg-blanc">
+      <div
+        className={`flex w-[80%] h-[80%] ${
+          headerHeight === "64px"
+            ? "-mt-[64px]"
+            : headerHeight === "128px"
+            ? "-mt-[128px]"
+            : "-mt-[90px]"
+        }`}
+      >
         {videos &&
           videos.map((video, index) => {
             let title, content;
@@ -200,74 +207,85 @@ export default function Affaires() {
               title = rio.title;
               content = rio.content;
             }
-            return (
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: video.isActive ? 1 : 0,
-                }}
-                transition={{ duration: 0.5 }}
-                key={video.src}
-                className={`absolute w-1/3 h-full text-4xl`}
-              >
-                {isIOS ? (
-                  <>
-                    <img
-                      src={video.image}
-                      alt={title}
-                      className="absolute w-full h-full object-cover -translate-y-1/2"
-                    />
-                    <div className="absolute p-4 top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white sm:text-xl tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm">
-                      <p>{title}</p>
-                      <p>{content}</p>
-                    </div>
-                  </>
-                ) : (
-                  <video
-                    className="absolute flex justify-center items-center object-cover h-full w-full -translate-y-1/2"
-                    ref={(el) => {
-                      if (el) {
-                        videoRefs.current[index] = el;
-                      }
-                    }}
-                    playsInline
-                    muted
-                  >
-                    <source src={`${video.src}`} type="video/webm" />
-                    <source
-                      src={`${convertToMp4Path(video.src)}`}
-                      type="video/mp4"
-                    />
-                  </video>
-                )}
+            if (video.isActive) {
+              return (
+                <motion.div
+                  key={video.src}
+                  className="relative w-full h-full text-4xl"
+                  initial="hidden"
+                  animate={video.isActive ? "visible" : "hidden"}
+                  variants={videoVariants}
+                  transition={{ duration: 1 }}
+                >
+                  {isIOS ? (
+                    <>
+                      <img
+                        src={video.image}
+                        alt={title}
+                        className="absolute w-full h-full object-cover"
+                      />
+                      <div className="absolute p-4 top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white sm:text-xl tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm">
+                        <p>{title}</p>
+                        <p>{content}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <video
+                      className="flex justify-center items-center object-cover h-full w-full"
+                      ref={(el) => {
+                        if (el) {
+                          videoRefs.current[index] = el;
+                        }
+                      }}
+                      playsInline
+                      muted
+                      preload="metadata"
+                    >
+                      <source src={`${video.src}`} type="video/webm" />
+                      <source
+                        src={`${convertToMp4Path(video.src)}`}
+                        type="video/mp4"
+                      />
+                    </video>
+                  )}
 
-                <div
-                  style={{ opacity: opacities[index] }}
-                  className={`transition duration-150 text-white text-[18px] tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
-                >
-                  <p>{title}</p>
-                  <p>{content}</p>
-                </div>
-                <div
-                  className="absolute flex transition duration-100 hover:scale-105 justify-center items-center left-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
-                  data-clickable={"true"}
-                  onClick={() => handleSelection(-1)}
-                >
-                  <ReversedArrow lilArrow={true} isGrey={true} />
-                </div>
-                <div
-                  className="absolute flex justify-center transition duration-100 hover:scale-105 items-center right-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
-                  data-clickable={"true"}
-                  onClick={() => handleSelection(1)}
-                >
-                  <div className="scale-x-[-1]">
+                  <div
+                    style={{ opacity: opacities[index] }}
+                    className={`transition duration-150 text-white text-[18px] tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
+                  >
+                    <p>{title}</p>
+                    <p>{content}</p>
+                  </div>
+                  <div
+                    className="absolute flex transition duration-100 hover:scale-105 justify-center items-center left-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
+                    data-clickable={"true"}
+                    onClick={() => handleSelection(-1)}
+                  >
                     <ReversedArrow lilArrow={true} isGrey={true} />
                   </div>
-                </div>
-              </motion.button>
-            );
+                  <div
+                    className="absolute flex justify-center transition duration-100 hover:scale-105 items-center right-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
+                    data-clickable={"true"}
+                    onClick={() => handleSelection(1)}
+                  >
+                    <div className="scale-x-[-1]">
+                      <ReversedArrow lilArrow={true} isGrey={true} />
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            }
           })}
+        <div
+          className="absolute top-[40%] left-[6%] w-[10%] h-[10%]"
+          data-clickable={true}
+          onClick={() => {
+            setSubExpertise(null);
+          }}
+        >
+          <ReversedArrow />
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

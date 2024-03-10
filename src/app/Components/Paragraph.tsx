@@ -104,7 +104,7 @@ export default function Paragraph({
     className
   );
   const mergedTitleClass = twMerge(
-    `text-[40px] ${toggle ? "absolute left-2" : ""}`,
+    `text-[40px] ${toggle ? "absolute left-[10%]" : ""}`,
     classTitle
   );
   const mergedTextClass = twMerge(

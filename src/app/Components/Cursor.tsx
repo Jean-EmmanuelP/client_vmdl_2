@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactDOM from 'react-dom';
 import { useSection } from "../utils/Contextboard";
 
 const CustomCursor: React.FC = () => {
@@ -87,30 +88,48 @@ const CustomCursor: React.FC = () => {
     checkIfClickable();
   }, [position]);
   const MappingBgColor = {
-    conseil: "blue",
-    contentieux: "red",
-    affaires: "yellow",
+    conseil: "#ADD8E6",
+    contentieux: "#9EC8DB",
+    affaires: "#BFE0E9",
     none: "transparent",
   };
   const cursorStyle: React.CSSProperties = {
     position: "fixed",
-    width: `${isHoveringExpertiseButton !== "none" ? '40px' : '18px'}`,
-    height: `${isHoveringExpertiseButton !== "none" ? '40px' : '18px'}`,
+    width: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
+    height: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
     border: `2px solid ${
-      bgIsBlackFondateur || bgIsBlackFooter ? "#FFFFFF" : "#1D1D1B"
+      bgIsBlackFondateur || bgIsBlackFooter
+        ? "#FFFFFF"
+        : isHoveringExpertiseButton !== "none"
+        ? `${MappingBgColor[isHoveringExpertiseButton]}`
+        : "#1D1D1B"
     }`,
     borderRadius: "50%",
     transform: `translate(-50%, -50%) ${clickable ? "scale(1.5)" : "scale(1)"}`,
     pointerEvents: "none",
-    zIndex: 3000,
+    zIndex: 2000,
     left: `${position.x}px`,
     top: `${position.y}px`,
-    opacity: visible && windowWidth > SCREEN_WIDTH_THRESHOLD ? 1 : 0,
-    transition: "opacity 0.2s, transform 0.2s",
+    opacity:
+      visible && windowWidth > SCREEN_WIDTH_THRESHOLD
+        ? isHoveringExpertiseButton
+          ? 0.8
+          : 1
+        : 0,
+    transition:
+      "opacity 0.2s, transform 0.2s, width 0.3s ease-in-out, height 0.3s ease-in-out, background .7s ease-in-out, border .7s ease-in-out",
     backgroundColor: `${MappingBgColor[isHoveringExpertiseButton]}`,
   };
 
-  return <div className="circle" style={cursorStyle}></div>;
+  if (isHoveringExpertiseButton !== "none") {
+    return ReactDOM.createPortal(
+      <div style={cursorStyle} className="cursor"></div>,
+      document.getElementById("cursor-root") as HTMLElement
+    );
+  } else {
+    return <div className="circle" style={cursorStyle}></div>;
+  }
+
 };
 
 export default CustomCursor;
