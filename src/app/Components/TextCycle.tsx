@@ -9,7 +9,7 @@ const TextCycle = ({ texts }: any) => {
     const changeText = () => {
       uniqueKeyRef.current += 1;
       setChars(
-        texts[currentIndex].split("").map((c) => (c === " " ? "\u00A0" : c))
+        texts[currentIndex].split("").map((c:string) => (c === " " ? "\u00A0" : c))
       );
     };
 
