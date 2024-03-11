@@ -95,6 +95,9 @@ const CustomCursor: React.FC = () => {
     none: "transparent",
   };
   const cursorStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     position: "fixed",
     width: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
     height: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
@@ -126,9 +129,7 @@ const CustomCursor: React.FC = () => {
     return ReactDOM.createPortal(
       <div style={cursorStyle} className="relative">
         {/* trouver comment bien mettre la croix au milieu */}
-        <div>
           <Plus />
-        </div>
       </div>,
       document.getElementById("cursor-root") as HTMLElement
     );
