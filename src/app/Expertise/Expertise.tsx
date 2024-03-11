@@ -7,6 +7,10 @@ import Affaires from "./Affaires";
 import TextCycle from "../Components/TextCycle";
 
 export default function Expertise() {
+  const [activeContent, setActiveContent] = useState(null); // Le contenu actuellement actif
+  const changeContent = (content: any) => {
+    setActiveContent(content);
+  };
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, isMobile, setIsHoveringExpertiseButton } =
     useSection();
@@ -66,9 +70,8 @@ export default function Expertise() {
   return (
     <div className="relative w-full h-full bg-blanc">
       <div
-        className={`relative w-full px-[10%] h-full gap-[4vw] flex justify-center items-center fade-transition ${
-          isVisible ? "fade-visible" : "fade-hidden z-0"
-        }`}
+        className={`relative w-full px-[10%] h-full gap-[4vw] flex justify-center items-center fade-transition ${isVisible ? "fade-visible" : "fade-hidden z-0"
+          }`}
       >
         <div
           className={`absolute top-[12%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
@@ -88,7 +91,7 @@ export default function Expertise() {
           }}
         >
           <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-            <h1 className="top-[10%] left-[20%] absolute">{box_1_title}</h1>
+            <h1 className="top-[10%] left-[20%] absolute uppercase">{box_1_title}</h1>
             <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
               <span className="pl-[20%] text-line">VMDL vous conseille</span>
               <span className="pl-[20%] text-line">au jour le jour</span>
@@ -110,7 +113,7 @@ export default function Expertise() {
           }}
         >
           <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-            <h1 className="top-[10%] left-[20%] absolute">{box_2_title}</h1>
+            <h1 className="top-[10%] left-[20%] absolute uppercase">{box_2_title}</h1>
             <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
               <span className="pl-[20%] text-line">VMDL vous conseille</span>
               <span className="pl-[20%] text-line">au jour le jour</span>
@@ -132,7 +135,7 @@ export default function Expertise() {
           }}
         >
           <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-            <h1 className="top-[10%] left-[20%] absolute">{box_3_title}</h1>
+            <h1 className="top-[10%] left-[20%] absolute uppercase">{box_3_title}</h1>
             <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
               <span className="pl-[20%] text-line">VMDL vous conseille</span>
               <span className="pl-[20%] text-line">au jour le jour</span>
@@ -147,14 +150,11 @@ export default function Expertise() {
           </div> */}
       </div>
       <div id="cursor-root"></div>
-      <div
-        className={`absolute inset-0 w-full h-full fade-transition ${
-          !isVisible ? "fade-visible" : "fade-hidden z-0"
-        }`}
-      >
-        {isActiveContent === "conseil" && <Conseil />}
-        {isActiveContent === "contentieux" && <Contentieux />}
-        {isActiveContent === "affaires" && <Affaires />}
+      {/* Contenu actif */}
+      <div className="absolute inset-0 w-full h-full">
+        {activeContent === 'conseil' && <Conseil />}
+        {activeContent === 'contentieux' && <Contentieux />}
+        {activeContent === 'affaires' && <Affaires />}
       </div>
     </div>
   );

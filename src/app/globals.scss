@@ -349,7 +349,7 @@ video {
   width: 100vw;
   transform: translateX(-100%);
   backdrop-filter: blur(10px);
-  z-index: 1000;
+  z-index: 10000000;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -517,7 +517,7 @@ $images: (
       bottom: 0;
       left: 0;
       right: 0;
-      height: 20%;
+      height: 45%;
       background-image: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.7) 0%,
@@ -551,6 +551,7 @@ $images: (
 
 .text-line {
   display: block;
+  font-weight: bold;
   opacity: 0;
   transition: opacity 0.5s ease-in;
 }
@@ -594,16 +595,4 @@ $images: (
     opacity: 0;
     transform: translateX(-2px);
   }
-}
-
-.fade-transition {
-  transition: opacity 0.5s ease-in-out; /* Durée de 0.5 seconde avec un effet d'accélération au début et à la fin */
-}
-
-.fade-visible {
-  opacity: 1; /* Complètement visible */
-}
-
-.fade-hidden {
-  opacity: 0; /* Complètement transparent */
 }

@@ -21,7 +21,7 @@ const customStyles: StylesConfig = {
   control: (styles) => ({
     ...styles,
     backgroundColor: "none",
-    zIndex: 1999,
+    zIndex: 2147483645,
     borderRadius: "0",
     boxShadow: "none",
     border: '1px',
@@ -29,26 +29,25 @@ const customStyles: StylesConfig = {
   }),
   option: (styles, { isFocused, isSelected }) => ({
     ...styles,
-    zIndex: 1999,
+    zIndex: 2145483645,
     color: "black",
     backgroundColor: isFocused ? "lightgray" : isSelected ? "gray" : "#F9F9F9",
     padding: 20,
-    // "&:active": { backgroundColor: "gray" },
   }),
   menu: (styles) => ({
     ...styles,
-    zIndex: 1999,
+    zIndex: 2145483645,
     borderColor: "black",
     borderRadius: "0",
   }),
   placeholder: (styles) => ({
     ...styles,
-    zIndex: 1999,
+    zIndex: 2145483645,
     color: "black",
   }),
   singleValue: (styles) => ({
     ...styles,
-    zIndex: 1999,
+    zIndex: 2145483645,
     color: "black",
   }),
 };
@@ -80,11 +79,16 @@ export default function Header({ height }: HeaderProps) {
     const browserLang = navigator.language.slice(0, 2).toUpperCase();
     const isLangueCode = (lang: any): lang is LangueCode =>
       supportedLangs.includes(lang);
-    const appLang = isLangueCode(browserLang) ? browserLang : "FR";
+    const appLang = isLangueCode(browserLang) ? browserLang : "EN";
+    console.log(`this is the appLangue`, appLang);
+    console.log(`this is the langueCourante`, langueCourante);
+    console.log(`options available:`, options); // Ajoutez cette ligne pour inspecter les options disponibles
     const matchingOption = options.find(
-      (option) => option.value === langueCourante
+      (option) => option.value === (appLang === 'EN' && "US")
     );
+    console.log(`this is the matchingOption:`, matchingOption);
     setSelectedOption(matchingOption);
+    console.log(`this is the selectedOption`, matchingOption);
     setLangueCourante(appLang);
   }, []);
   const animatedComponents = makeAnimated();
@@ -297,18 +301,17 @@ export default function Header({ height }: HeaderProps) {
         className="w-full z-10 text-blanc flex justify-center items-center text-sm md:text-lg gap-28"
       >
         <div
-          className={`${
-            height === "128px" || height === "90px"
-              ? "border-b border-slate-50"
-              : ""
-          } h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
+          className={`${height === "128px" || height === "90px"
+            ? "border-b border-slate-50"
+            : ""
+            } h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
         >
           {/* Montrer a Vincent Machado Da Luz et lui demander ce qu'il en pense */}
           {true ? (
             <div className="flex justify-between w-full">
               <button
                 onClick={toggleMenu}
-                className="uppercase flex justify-center items-center gap-2 z-[4100]"
+                className="uppercase flex justify-center items-center gap-2 z-[1000000110]"
                 data-clickable={true}
               >
                 <div className="w-4 h-4" data-clickable={true}>
@@ -347,9 +350,8 @@ export default function Header({ height }: HeaderProps) {
               )}
               <div
                 ref={wrapperRef}
-                className={`menu ${menuOpen ? "open" : ""} ${
-                  goingOut ? "close" : ""
-                }`}
+                className={`menu ${menuOpen ? "open" : ""} ${goingOut ? "close" : ""
+                  }`}
               >
                 <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[2px] -translate-y-1/2">
                   <button

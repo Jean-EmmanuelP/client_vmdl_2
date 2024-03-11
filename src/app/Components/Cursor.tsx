@@ -8,7 +8,7 @@ const CustomCursor: React.FC = () => {
     x: 0,
     y: 0,
   });
-  const { bgIsBlackFondateur, bgIsBlackFooter, isHoveringExpertiseButton } =
+  const { menuOpen, bgIsBlackFondateur, bgIsBlackFooter, isHoveringExpertiseButton } =
     useSection();
   const [visible, setVisible] = useState<boolean>(false);
   const [clickable, setClickable] = useState<boolean>(false);
@@ -102,7 +102,7 @@ const CustomCursor: React.FC = () => {
     width: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
     height: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
     border: `2px solid ${
-      bgIsBlackFondateur || bgIsBlackFooter
+      bgIsBlackFondateur || bgIsBlackFooter ||  menuOpen === true
         ? "#FFFFFF"
         : isHoveringExpertiseButton !== "none"
         ? `${MappingBgColor[isHoveringExpertiseButton]}`
@@ -111,7 +111,7 @@ const CustomCursor: React.FC = () => {
     borderRadius: "50%",
     transform: `translate(-50%, -50%) ${clickable ? "scale(1.5)" : "scale(1)"}`,
     pointerEvents: "none",
-    zIndex: 2000,
+    zIndex: 2147483647,
     left: `${position.x}px`,
     top: `${position.y}px`,
     opacity:
@@ -127,7 +127,7 @@ const CustomCursor: React.FC = () => {
 
   if (isHoveringExpertiseButton !== "none") {
     return ReactDOM.createPortal(
-      <div style={cursorStyle} className="relative">
+      <div style={cursorStyle}>
         {/* trouver comment bien mettre la croix au milieu */}
           <Plus />
       </div>,

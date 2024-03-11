@@ -267,7 +267,7 @@ export default function App() {
   return (
     <DataProvider>
       {true && (
-        <div className="loading-screen z-[5000]">
+        <div className="loading-screen z-[2147483647]">
           <div className="content-animation">
             <img src="/images/vmdl.png" alt="" />
           </div>
