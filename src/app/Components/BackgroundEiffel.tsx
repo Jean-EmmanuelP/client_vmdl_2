@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSection } from "../utils/Contextboard";
 
 const BackgroundEiffel: React.FC = () => {
-  const { mediaPaths } = useSection();
+  const { mediaPaths, isMobile } = useSection();
 
   const videoVariants = {
     hidden: { opacity: 0 },
@@ -25,6 +25,7 @@ const BackgroundEiffel: React.FC = () => {
         : mediaPaths.paris;
       const videoType = isIOS() ? "video/mp4" : "video/webm";
       const posterPath = "/videos/mobile/paris/paris_white.jpeg";
+      const posterPathLaptop = "/images/paris.jpeg";
 
       const videoElement = document.createElement("video");
       videoElement.className = "video-js";
@@ -49,7 +50,9 @@ const BackgroundEiffel: React.FC = () => {
       };
       videoElement.onerror = () => {
         videoElement.style.display = "none";
-        videoContainer.style.backgroundImage = `url('${posterPath}')`;
+        if (!isIOS() && !isMobile) {
+          videoContainer.style.backgroundImage = `url('${posterPathLaptop}')`;
+        }
         videoContainer.style.backgroundSize = "cover";
         videoContainer.style.backgroundPosition = "center";
       };

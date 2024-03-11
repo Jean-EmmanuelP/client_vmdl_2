@@ -87,14 +87,14 @@ export default function Expertise() {
             handleClick("conseil");
           }}
         >
-          <div className="absolute top-[10%] left-[20%] text-blanc z-[2001]">
-            {box_1_title}
-          </div>
-          <div className="text-wrapper absolute text-blanc bottom-[20%] w-full -translate-y-1/2">
-            <span className="pl-[20%] text-line">VMDL vous conseille</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
+          <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+            <h1 className="top-[10%] left-[20%] absolute">{box_1_title}</h1>
+            <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+              <span className="pl-[20%] text-line">VMDL vous conseille</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+            </div>
           </div>
         </div>
         <div
@@ -109,14 +109,14 @@ export default function Expertise() {
             handleClick("contentieux");
           }}
         >
-          <div className="absolute top-[10%] left-[20%] text-blanc z-[2001]">
-            {box_2_title}
-          </div>
-          <div className="text-wrapper absolute text-blanc bottom-[20%] w-full -translate-y-1/2">
-            <span className="pl-[20%] text-line">VMDL vous conseille</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
+          <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+            <h1 className="top-[10%] left-[20%] absolute">{box_2_title}</h1>
+            <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+              <span className="pl-[20%] text-line">VMDL vous conseille</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+            </div>
           </div>
         </div>
         <div
@@ -131,15 +131,14 @@ export default function Expertise() {
             handleClick("affaires");
           }}
         >
-          <div className="absolute top-[10%] left-[20%] text-blanc z-[2001]">
-            {box_3_title}
-          </div>
-
-          <div className="text-wrapper absolute text-blanc bottom-[20%] w-full -translate-y-1/2">
-            <span className="pl-[20%] text-line">VMDL vous conseille</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
-            <span className="pl-[20%] text-line">au jour le jour</span>
+          <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+            <h1 className="top-[10%] left-[20%] absolute">{box_3_title}</h1>
+            <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+              <span className="pl-[20%] text-line">VMDL vous conseille</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+              <span className="pl-[20%] text-line">au jour le jour</span>
+            </div>
           </div>
         </div>
         {/* <div className="absolute w-full px-[14%] bottom-[13%] mb-2">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import { useSection } from "../utils/Contextboard";
+import Plus from "../assets/svg/Plus";
 
 const CustomCursor: React.FC = () => {
   const [position, setPosition] = useState<{ x: number; y: number }>({
@@ -123,13 +124,17 @@ const CustomCursor: React.FC = () => {
 
   if (isHoveringExpertiseButton !== "none") {
     return ReactDOM.createPortal(
-      <div style={cursorStyle} className="cursor"></div>,
+      <div style={cursorStyle} className="relative">
+        {/* trouver comment bien mettre la croix au milieu */}
+        <div>
+          <Plus />
+        </div>
+      </div>,
       document.getElementById("cursor-root") as HTMLElement
     );
   } else {
     return <div className="circle" style={cursorStyle}></div>;
   }
-
 };
 
 export default CustomCursor;
