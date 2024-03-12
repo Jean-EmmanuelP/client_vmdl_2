@@ -68,18 +68,20 @@ export default function Expertise() {
   const { title: box_3_title } = box_3;
 
   return (
-    <div className="relative w-full h-full bg-blanc">
+    <div className={`relative w-full h-[300vh] sm:h-full bg-blanc`}>
       <div
         className={`relative w-full px-[10%] h-full gap-[4vw] flex justify-center items-center fade-transition ${isVisible ? "fade-visible" : "fade-hidden z-0"
           }`}
       >
+        {/* title */}
         <div
-          className={`absolute top-[12%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
+          className={`absolute top-[6%] sm:top-[12%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
         >
           {title}
         </div>
+        {/* first Box */}
         <div
-          className="expertiseWrapper wrapper1 relative w-1/3 h-[55%] overflow-hidden"
+          className={`expertiseWrapper wrapper1 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden`}
           onMouseEnter={() => {
             setIsHoveringExpertiseButton("conseil");
           }}
@@ -100,8 +102,9 @@ export default function Expertise() {
             </div>
           </div>
         </div>
+        {/* second Box */}
         <div
-          className="expertiseWrapper wrapper2 relative w-1/3 h-[55%] overflow-hidden"
+          className="expertiseWrapper wrapper2 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden"
           onMouseEnter={() => {
             setIsHoveringExpertiseButton("contentieux");
           }}
@@ -122,8 +125,9 @@ export default function Expertise() {
             </div>
           </div>
         </div>
+        {/* third Box */}
         <div
-          className="expertiseWrapper wrapper3 relative w-1/3 h-[55%] overflow-hidden"
+          className="expertiseWrapper wrapper3 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden"
           onMouseEnter={() => {
             setIsHoveringExpertiseButton("affaires");
           }}
