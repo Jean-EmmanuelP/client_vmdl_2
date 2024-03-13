@@ -2,7 +2,7 @@
 
 import FormContact from "../Components/Form";
 import { LangueCode, useSection } from "../utils/Contextboard";
-import { useData } from "../utils/DataContext"; 
+import { useData } from "../utils/DataContext";
 
 export default function Contact() {
   const { data } = useData();
@@ -19,7 +19,7 @@ export default function Contact() {
     عربي: 'عربي',
     PT: 'pt',
     DE: 'de',
-	  中文: '中文'
+    中文: '中文'
   };
   const langCode = langCodeMap[langueCourante as LangueCode] || langCodeMap['FR'];
   const { title } = data[langCode].contact;

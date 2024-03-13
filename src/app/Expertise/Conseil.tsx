@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import ReversedArrow from "../assets/svg/reverseArrow";
 import { motion } from "framer-motion";
 
-export default function Conseil({isActive}: any) {
+export default function Conseil() {
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, isMobile } = useSection();
   const { data } = useData();
@@ -13,7 +13,7 @@ export default function Conseil({isActive}: any) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const observer = new IntersectionObserver(  
       (entries) => {
         const entry = entries[0];
         if (!entry.isIntersecting) {
@@ -77,10 +77,14 @@ export default function Conseil({isActive}: any) {
   /*
     ajouter la video de kaka avec une belle entree
   */
+    const variants = {
+      hidden: { opacity: 0, x: -100, transition: { duration: 0.5 } },
+      visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+    };
   if (typeof window !== "undefined") {
     return (
       <div
-        className={`relative w-full h-full gap-[4vw] px-[15vw] flex justify-center items-center z-1 text-black`}
+        className={`relative w-full h-full gap-[4vw] px-[15vw] flex justify-center items-center z-10 text-black`}
       >
         <div
           className="absolute top-[40%] left-[10%] w-[10%] h-[10%]"
