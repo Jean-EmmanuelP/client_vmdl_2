@@ -596,3 +596,19 @@ $images: (
     transform: translateX(-2px);
   }
 }
+
+@keyframes rideau {
+  0% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.rideau-animation {
+  animation: rideau 2s ease-in-out forwards;
+}
