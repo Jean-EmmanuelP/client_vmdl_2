@@ -13,7 +13,7 @@ export default function Conseil() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(  
+    const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
         if (!entry.isIntersecting) {
@@ -77,31 +77,33 @@ export default function Conseil() {
   /*
     ajouter la video de kaka avec une belle entree
   */
-    const variants = {
-      hidden: { opacity: 0, x: -100, transition: { duration: 0.5 } },
-      visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-    };
-  if (typeof window !== "undefined") {
-    return (
+ if (!isMobile) {
+  return (
+    <div
+      className={`relative w-full h-full gap-[4vw] px-[15vw] flex justify-center items-center z-10 text-black`}
+    >
       <div
-        className={`relative w-full h-full gap-[4vw] px-[15vw] flex justify-center items-center z-10 text-black`}
+        className="absolute top-[40%] left-[10%] w-[10%] h-[10%]"
+        data-clickable={true}
+        onClick={() => {
+          setSubExpertise(null);
+        }}
       >
-        <div
-          className="absolute top-[40%] left-[10%] w-[10%] h-[10%]"
-          data-clickable={true}
-          onClick={() => {
-            setSubExpertise(null);
-          }}
-        >
-          <ReversedArrow />
-        </div>
-        <div className="absolute top-[12%] text-[30px] sm:text-[40px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
-          {title}
-        </div>
-        <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
-          {content}
-        </p>
+        <ReversedArrow />
       </div>
-    );
-  }
+      <div className="absolute top-[12%] text-[30px] sm:text-[40px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+        {title}
+      </div>
+      <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
+        {content}
+      </p>
+    </div>
+  );
+} else {
+  return (
+    <div className="w-full h-[150vh] bg-blanc relative">
+
+    </div>
+  )
+}
 }

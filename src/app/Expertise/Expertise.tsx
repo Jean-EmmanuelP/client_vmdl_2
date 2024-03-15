@@ -13,8 +13,12 @@ export default function Expertise() {
     setActiveContent(content);
   };
   const { subExpertise, setSubExpertise } = useExpertise();
-  const { langueCourante, isMobile, setIsHoveringExpertiseButton } =
-    useSection();
+  const {
+    langueCourante,
+    isMobile,
+    setIsHoveringExpertiseButton,
+    headerHeight,
+  } = useSection();
   const { data } = useData();
   const [isVisible, setIsVisible] = useState(true);
   const [showRideau, setShowRideau] = useState(false);
@@ -105,10 +109,11 @@ export default function Expertise() {
             top: 0,
             left: 0,
             opacity: 0,
+            zIndex: -10,
             width: "100%",
             height: "100%",
             transform: "translateY(-100%)",
-            backgroundColor: "white",
+            backgroundColor: "#030303",
           }}
         ></div>
         {subExpertise === null && (
@@ -219,36 +224,62 @@ export default function Expertise() {
     );
   } else {
     return (
-      <div
-        className={`border-2 w-full h-[150vh] bg-blanc relative`}
-        ref={expertiseRef}
-      >
-        {/* title */}
+      <div className="w-full h-[150vh] bg-blanc relative" ref={expertiseRef}>
+        {/* Rideau */}
         <div
-          className={`absolute top-[10%] text-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 font-light`}
-        >
-          {title}
-        </div>
-        <div className="absolute top-[50%] w-[80%] h-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 justify-center items-center flex-col">
-          {/* first box */}
-          <div className="w-full h-1/3 bg-blue-500 expertiseWrapper wrapper1 relative">
-            <h1 className="top-[10%] left-[20%] absolute uppercase">
-              {box_1_title}
-            </h1>
-          </div>
-          {/* second box */}
-          <div className="w-full h-1/3 bg-blue-500 expertiseWrapper wrapper2 relative">
-            <h1 className="top-[10%] left-[20%] absolute uppercase">
-              {box_2_title}
-            </h1>
-          </div>
-          {/* third box */}
-          <div className="w-full h-1/3 bg-blue-500 expertiseWrapper wrapper3 relative">
-            <h1 className="top-[10%] left-[20%] absolute uppercase">
-              {box_3_title}
-            </h1>
-          </div>
-        </div>
+          className={`rideau ${showRideau ? "rideau-animation" : ""}`}
+          style={{
+            position: "absolute",
+            top: headerHeight,
+            left: 0,
+            opacity: 0,
+            zIndex: showRideau ? 9 : -9,
+            width: "100%",
+            height: "100%",
+            transform: "translateY(-100%)",
+            backgroundColor: "#030303",
+            transition: "transform 2.3s ease",
+          }}
+        ></div>
+        {subExpertise === null && (
+          <>
+            {/* Titre */}
+            <div className="absolute top-[10%] text-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 font-light">
+              {title}
+            </div>
+
+            {/* Boîtes cliquables */}
+            <div className="absolute top-[50%] w-[80%] h-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-12 justify-center items-center flex-col">
+              {[1, 2, 3].map((number) => (
+                <div
+                  key={number}
+                  className={`w-full h-1/3 bg-blue-500 expertiseWrapper wrapper${number} relative cursor-pointer`} // Ajout de cursor-pointer pour indiquer la cliquabilité
+                  onClick={() => {
+                    const targetContent =
+                      number === 1
+                        ? "conseil"
+                        : number === 2
+                        ? "contentieux"
+                        : "affaires";
+                    handleClick(targetContent); // Utilisation de handleClick pour déclencher le rideau et changer le contenu
+                  }}
+                >
+                  <h1 className="top-[10%] left-[20%] absolute uppercase">
+                    {number === 1
+                      ? box_1_title
+                      : number === 2
+                      ? box_2_title
+                      : box_3_title}
+                  </h1>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        {/* Affichage conditionnel des composants */}
+        {subExpertise === "conseil" && <Conseil />}
+        {subExpertise === "contentieux" && <Contentieux />}
+        {subExpertise === "affaires" && <Affaires />}
       </div>
     );
   }

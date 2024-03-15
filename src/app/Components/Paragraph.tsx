@@ -24,7 +24,8 @@ export default function Paragraph({
   classText,
   homeSection,
 }: ParagraphProps) {
-  const { currentSection, setCurrentSection, setHeaderHeight, isMobile } = useSection();
+  const { currentSection, setCurrentSection, setHeaderHeight, isMobile } =
+    useSection();
   const [isVisible, setIsVisible] = useState(false);
   const paragraphRef = useRef<HTMLDivElement | null>(null);
   const [toggle, setToggle] = useState<boolean>(false);
@@ -108,114 +109,117 @@ export default function Paragraph({
     classTitle
   );
   const mergedTextClass = twMerge(
-    `w-[70%] transition ${currentSection !== 4 ? 'text-center' : 'text-left'} leading-5 sm:leading-8 mb-2`,
+    `w-[70%] transition leading-5 sm:leading-8 mb-2 text-center`,
     classText
   );
 
-if (typeof window !== "undefined")
-  return (
-    <motion.div
-      ref={paragraphRef}
-      initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
-      exit="exit"
-      variants={variants}
-      className={mergedClass}
-    >
-      <AnimatePresence>
-        {isVisible && (
-          <Fragment>
-            <motion.button
-              onClick={() => setToggle(false)}
-              initial={{ y: "0px", opacity: 0 }}
-              animate={{ y: toggle ? "-20px" : 0, opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className={mergedTitleClass}
-            >
-              {!toggle ? children[0] : <ReversedArrow />}
-            </motion.button>
-
-            <motion.p
-              initial={{ y: "40px" }}
-              animate={{ y: toggle ? "-10px" : 0, opacity: toggle ? 0 : 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className={mergedTextClass}
-            >
-              {children[1]}
-            </motion.p>
-
-            {toggle && (
-              <motion.p
-                initial={{ y: "0px", opacity: 0 }}
-                animate={{ y: "-40px", opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ delay: 0.2, duration: 0.7 }}
-                className={`text-xl w-1/2 text-left leading-5 sm:leading-8 mb-2 max-h-[50%] max-w-[70%] overflow-auto ${isMobile ? "-mt-[200px]" : "-mt-[50px]"
-                  }`}
-              >
-                {children[3]}
-              </motion.p>
-            )}
-
-            {children.length > 2 && !toggle && (
+  if (typeof window !== "undefined")
+    return (
+      <motion.div
+        ref={paragraphRef}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        exit="exit"
+        variants={variants}
+        className={mergedClass}
+      >
+        <AnimatePresence>
+          {isVisible && (
+            <Fragment>
               <motion.button
-                data-clickable="true"
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
-                initial={{
-                  y: "20px",
-                  opacity: 0,
-                }}
-                animate={{
-                  y: isVisible ? 0 : "40px",
-                  opacity: isVisible ? 1 : 0,
-                }}
+                onClick={() => setToggle(false)}
+                initial={{ y: "0px", opacity: 0 }}
+                animate={{ y: toggle ? "-20px" : 0, opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{
-                  y: { type: "tween", ease: "linear", duration: 0.5 },
-                  opacity: { type: "tween", ease: "linear", duration: 0.5 },
-                  backgroundColor: {
-                    type: "tween",
-                    ease: "linear",
-                    duration: 0.5,
-                  },
-                  delay: toggle ? 0 : 0.7,
-                }}
-                onClick={() => {
-                  homeSection ? handleScroll(5) : setToggle(!toggle);
-                  setIsHovering(false);
-                }}
-                className={`text-[#181a1b] p-4 ${!homeSection
-                    ? `rounded-full w-[280px] bg-gray-500/5 transition duration-150`
-                    : `text-noir bg-blanc shadow-2xl sm:h-[50px] sm:w-[300px]`
-                  } uppercase flex justify-center items-center leading-3 text-xs contact-us`}
+                className={mergedTitleClass}
               >
-                <motion.span
-                  animate={{ x: isHovering ? "0" : "8px" }}
-                  transition={{
-                    type: "tween",
-                    ease: "linear",
-                    duration: 0.5,
-                  }}
-                >
-                  {children[2]}
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, paddingLeft: "0px" }}
-                  animate={{
-                    opacity: isHovering ? 1 : 0,
-                    paddingLeft: isHovering ? "10px" : "0px",
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Arrow />
-                </motion.span>
+                {!toggle ? children[0] : <ReversedArrow />}
               </motion.button>
-            )}
-          </Fragment>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
+
+              <motion.p
+                initial={{ y: "40px" }}
+                animate={{ y: toggle ? "-10px" : 0, opacity: toggle ? 0 : 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className={mergedTextClass}
+              >
+                {children[1]}
+              </motion.p>
+
+              {toggle && (
+                <motion.p
+                  initial={{ y: "0px", opacity: 0 }}
+                  animate={{ y: "-40px", opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.2, duration: 0.7 }}
+                  className={`text-xl w-1/2 text-left leading-5 sm:leading-8 mb-2 max-h-[50%] max-w-[70%] overflow-auto ${
+                    isMobile ? "-mt-[200px]" : "-mt-[50px]"
+                  }`}
+                >
+                  {children[3]}
+                </motion.p>
+              )}
+
+              {children.length > 2 && !toggle && (
+                <motion.button
+                  data-clickable="true"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                  initial={{
+                    y: "20px",
+                    opacity: 0,
+                  }}
+                  animate={{
+                    y: isVisible ? 0 : "40px",
+                    opacity: isVisible ? 1 : 0,
+                  }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    y: { type: "tween", ease: "linear", duration: 0.5 },
+                    opacity: { type: "tween", ease: "linear", duration: 0.5 },
+                    backgroundColor: {
+                      type: "tween",
+                      ease: "linear",
+                      duration: 0.5,
+                    },
+                    delay: toggle ? 0 : 0.7,
+                  }}
+                  onClick={() => {
+                    homeSection ? handleScroll(5) : setToggle(!toggle);
+                    setIsHovering(false);
+                  }}
+                  className={`text-[#181a1b] p-4 ${
+                    !homeSection
+                      ? `parentButton relative w-[180px] sm:w-[280px] border-[0.5px] border-noir transition duration-150`
+                      : `text-noir bg-blanc  shadow-2xl sm:h-[50px] sm:w-[300px]`
+                  } uppercase flex justify-center items-center leading-3 sm:text-xs contact-us overflow-hidden`}
+                >
+                  <div className="button-animation"></div>
+                  <motion.span
+                    animate={{ x: isHovering ? "0" : "8px" }}
+                    transition={{
+                      type: "tween",
+                      ease: "linear",
+                      duration: 0.5,
+                    }}
+                  >
+                    {children[2]}
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, paddingLeft: "0px" }}
+                    animate={{
+                      opacity: isHovering ? 1 : 0,
+                      paddingLeft: isHovering ? "10px" : "0px",
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Arrow />
+                  </motion.span>
+                </motion.button>
+              )}
+            </Fragment>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    );
 }

@@ -30,7 +30,7 @@ export default function Vision() {
         <span className="text-[16px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
           {content}
         </span>
-        <span className="text-sm">{button}</span>
+        <span className="text-[12px] sm:text-base">{button}</span>
         <span className="text-[16px] sm:text-[24px] sm:content leading-[26px] font-light">
           {content_after_clicking_button}
         </span>

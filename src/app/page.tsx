@@ -302,7 +302,6 @@ export default function App() {
           <CustomCursor />
           <expertiseContext.Provider value={{ subExpertise, setSubExpertise }}>
             <Header height={headerHeight} />
-
             <div
               id="main"
               style={{ height: mainHeight }}

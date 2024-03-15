@@ -600,6 +600,7 @@ $images: (
 @keyframes rideau {
   0% {
     opacity: 1;
+    z-index: 2147483647;
     transform: translateY(-100%);
   }
   30% {
@@ -610,6 +611,7 @@ $images: (
   }
   100% {
     opacity: 1;
+    z-index: 2147483647;
     transform: translateY(-100%);
   }
 }

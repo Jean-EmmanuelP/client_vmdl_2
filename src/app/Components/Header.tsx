@@ -6,7 +6,6 @@ import { useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
-import OptionTypeBase from "react-select";
 import { StylesConfig } from "react-select";
 import _ from "lodash";
 import Back from "../assets/svg/Back";
@@ -198,7 +197,6 @@ export default function Header({ height }: HeaderProps) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuOpen, toggleMenu]);
-  // le detectScroll jai limpression que il est utilise ici mais aussi quelque part dautre check ca
   const detectScroll = () => {
     const currentScrollY = window.scrollY;
 
