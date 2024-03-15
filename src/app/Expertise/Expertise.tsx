@@ -28,8 +28,10 @@ export default function Expertise() {
     setTimeout(() => {
       setShowRideau(false);
       setIsVisible(false);
-      setSubExpertise(activeContent);
     }, 2300);
+    setTimeout(() => {
+      setSubExpertise(activeContent);
+    }, 1000);
   }
   const memoizedTextCycle = useMemo(() => {
     return (
@@ -109,100 +111,110 @@ export default function Expertise() {
             backgroundColor: "white",
           }}
         ></div>
-        <div
-          className={`relative w-full px-[10%] h-full gap-[4vw] flex justify-center items-center`}
-        >
-          {/* title */}
-          <div
-            className={`absolute top-[6%] sm:top-[12%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
-          >
-            {title}
-          </div>
-          {/* first Box */}
-          <div
-            className={`expertiseWrapper wrapper1 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden`}
-            onMouseEnter={() => {
-              setIsHoveringExpertiseButton("conseil");
-            }}
-            onMouseLeave={() => {
-              setIsHoveringExpertiseButton("none");
-            }}
-            onClick={() => {
-              handleClick("conseil");
-            }}
-          >
-            <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-              <h1 className="top-[10%] left-[20%] absolute uppercase">
-                {box_1_title}
-              </h1>
-              <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                <span className="pl-[20%] text-line">VMDL vous conseille</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
+        {subExpertise === null && (
+          <>
+            <div
+              className={`relative w-full px-[10%] h-full gap-[4vw] flex justify-center items-center`}
+            >
+              {/* title */}
+              <div
+                className={`absolute top-[6%] sm:top-[12%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
+              >
+                {title}
               </div>
-            </div>
-          </div>
-          {/* second Box */}
-          <div
-            className="expertiseWrapper wrapper2 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden"
-            onMouseEnter={() => {
-              setIsHoveringExpertiseButton("contentieux");
-            }}
-            onMouseLeave={() => {
-              setIsHoveringExpertiseButton("none");
-            }}
-            onClick={() => {
-              handleClick("contentieux");
-            }}
-          >
-            <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-              <h1 className="top-[10%] left-[20%] absolute uppercase">
-                {box_2_title}
-              </h1>
-              <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                <span className="pl-[20%] text-line">VMDL vous conseille</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
+              {/* first Box */}
+              <div
+                className={`expertiseWrapper wrapper1 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden`}
+                onMouseEnter={() => {
+                  setIsHoveringExpertiseButton("conseil");
+                }}
+                onMouseLeave={() => {
+                  setIsHoveringExpertiseButton("none");
+                }}
+                onClick={() => {
+                  handleClick("conseil");
+                }}
+              >
+                <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+                  <h1 className="top-[10%] left-[20%] absolute uppercase">
+                    {box_1_title}
+                  </h1>
+                  <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+                    <span className="pl-[20%] text-line">
+                      VMDL vous conseille
+                    </span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          {/* third Box */}
-          <div
-            className="expertiseWrapper wrapper3 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden"
-            onMouseEnter={() => {
-              setIsHoveringExpertiseButton("affaires");
-            }}
-            onMouseLeave={() => {
-              setIsHoveringExpertiseButton("none");
-            }}
-            onClick={() => {
-              handleClick("affaires");
-            }}
-          >
-            <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-              <h1 className="top-[10%] left-[20%] absolute uppercase">
-                {box_3_title}
-              </h1>
-              <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                <span className="pl-[20%] text-line">VMDL vous conseille</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
-                <span className="pl-[20%] text-line">au jour le jour</span>
+              {/* second Box */}
+              <div
+                className="expertiseWrapper wrapper2 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden"
+                onMouseEnter={() => {
+                  setIsHoveringExpertiseButton("contentieux");
+                }}
+                onMouseLeave={() => {
+                  setIsHoveringExpertiseButton("none");
+                }}
+                onClick={() => {
+                  handleClick("contentieux");
+                }}
+              >
+                <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+                  <h1 className="top-[10%] left-[20%] absolute uppercase">
+                    {box_2_title}
+                  </h1>
+                  <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+                    <span className="pl-[20%] text-line">
+                      VMDL vous conseille
+                    </span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          {/* <div className="absolute w-full px-[14%] bottom-[13%] mb-2">
+              {/* third Box */}
+              <div
+                className="expertiseWrapper wrapper3 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden"
+                onMouseEnter={() => {
+                  setIsHoveringExpertiseButton("affaires");
+                }}
+                onMouseLeave={() => {
+                  setIsHoveringExpertiseButton("none");
+                }}
+                onClick={() => {
+                  handleClick("affaires");
+                }}
+              >
+                <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+                  <h1 className="top-[10%] left-[20%] absolute uppercase">
+                    {box_3_title}
+                  </h1>
+                  <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+                    <span className="pl-[20%] text-line">
+                      VMDL vous conseille
+                    </span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                    <span className="pl-[20%] text-line">au jour le jour</span>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="absolute w-full px-[14%] bottom-[13%] mb-2">
               {memoizedTextCycle}
               <div className="border-b border-noir"></div>
             </div> */}
-        </div>
-        <div id="cursor-root"></div>
+            </div>
+            <div id="cursor-root"></div>
+          </>
+        )}
         {/* Contenu actif */}
-        {activeContent === "conseil" && <Conseil />}
-        {activeContent === "contentieux" && <Contentieux />}
-        {activeContent === "affaires" && <Affaires />}
+        {subExpertise === "conseil" && <Conseil />}
+        {subExpertise === "contentieux" && <Contentieux />}
+        {subExpertise === "affaires" && <Affaires />}
       </div>
     );
   } else {
