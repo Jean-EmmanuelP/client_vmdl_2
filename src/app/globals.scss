@@ -599,16 +599,22 @@ $images: (
 
 @keyframes rideau {
   0% {
+    opacity: 1;
     transform: translateY(-100%);
   }
-  50% {
+  30% {
+    transform: translateY(0);
+  }
+  52% {
     transform: translateY(0);
   }
   100% {
+    opacity: 1;
     transform: translateY(-100%);
   }
 }
 
 .rideau-animation {
-  animation: rideau 2s ease-in-out forwards;
+  z-index: 2147483647;
+  animation: rideau 2.3s ease-in-out forwards;
 }

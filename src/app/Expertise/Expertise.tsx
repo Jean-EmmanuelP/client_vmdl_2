@@ -29,7 +29,7 @@ export default function Expertise() {
       setShowRideau(false);
       setIsVisible(false);
       setSubExpertise(activeContent);
-    }, 2500);
+    }, 2300);
   }
   const memoizedTextCycle = useMemo(() => {
     return (
@@ -102,14 +102,13 @@ export default function Expertise() {
             position: "absolute",
             top: 0,
             left: 0,
+            opacity: 0,
             width: "100%",
             height: "100%",
             transform: "translateY(-100%)",
-            backgroundColor: "black",
-            zIndex: 3000,
+            backgroundColor: "white",
           }}
-        >
-        </div>
+        ></div>
         <div
           className={`relative w-full px-[10%] h-full gap-[4vw] flex justify-center items-center`}
         >
