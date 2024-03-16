@@ -5,6 +5,7 @@ import Conseil from "./Conseil";
 import Contentieux from "./Contentieux";
 import Affaires from "./Affaires";
 import TextCycle from "../Components/TextCycle";
+import { CSSTransition } from "react-transition-group";
 import { motion } from "framer-motion";
 
 export default function Expertise() {
@@ -33,9 +34,13 @@ export default function Expertise() {
       setShowRideau(false);
       setIsVisible(false);
     }, 2300);
-    setTimeout(() => {
+    if (!isMobile) {
+      setTimeout(() => {
+        setSubExpertise(activeContent);
+      }, 1000);
+    } else {
       setSubExpertise(activeContent);
-    }, 1000);
+    }
   }
   const memoizedTextCycle = useMemo(() => {
     return (
@@ -48,7 +53,6 @@ export default function Expertise() {
     );
   }, []);
   useEffect(() => {
-    console.log(`this is the current value of subExpertise:`, subExpertise);
     subExpertise === null && setIsVisible(true);
   }, [subExpertise]);
   const expertiseRef = useRef(null);
@@ -224,23 +228,7 @@ export default function Expertise() {
     );
   } else {
     return (
-      <div className="w-full h-[150vh] bg-blanc relative" ref={expertiseRef}>
-        {/* Rideau */}
-        <div
-          className={`rideau ${showRideau ? "rideau-animation" : ""}`}
-          style={{
-            position: "absolute",
-            top: headerHeight,
-            left: 0,
-            opacity: 0,
-            zIndex: showRideau ? 9 : -9,
-            width: "100%",
-            height: "100%",
-            transform: "translateY(-100%)",
-            backgroundColor: "#030303",
-            transition: "transform 2.3s ease",
-          }}
-        ></div>
+      <div className="w-full h-[130vh] bg-blanc relative" ref={expertiseRef}>
         {subExpertise === null && (
           <>
             {/* Titre */}
@@ -249,7 +237,7 @@ export default function Expertise() {
             </div>
 
             {/* Boîtes cliquables */}
-            <div className="absolute top-[50%] w-[80%] h-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-12 justify-center items-center flex-col">
+            <div className="absolute top-[55%] w-[80%] h-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-12 justify-center items-center flex-col">
               {[1, 2, 3].map((number) => (
                 <div
                   key={number}
@@ -277,9 +265,32 @@ export default function Expertise() {
           </>
         )}
         {/* Affichage conditionnel des composants */}
-        {subExpertise === "conseil" && <Conseil />}
-        {subExpertise === "contentieux" && <Contentieux />}
-        {subExpertise === "affaires" && <Affaires />}
+        <CSSTransition
+          in={subExpertise === "conseil"}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <Conseil />
+        </CSSTransition>
+
+        <CSSTransition
+          in={subExpertise === "contentieux"}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <Contentieux />
+        </CSSTransition>
+
+        <CSSTransition
+          in={subExpertise === "affaires"}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <Affaires />
+        </CSSTransition>
       </div>
     );
   }
