@@ -489,9 +489,9 @@ video {
 }
 
 $images: (
-  "wrapper1": "/images/pic_1.jpg",
-  "wrapper2": "/images/pic_2.jpg",
-  "wrapper3": "/images/pic_3.jpg",
+  "wrapper1": "/images/conseil_cabinet.jpg",
+  "wrapper2": "/images/justice.jpg",
+  "wrapper3": "/images/affaires_immobilieres.jpg",
 );
 
 %expertiseWrapper-common {
@@ -640,5 +640,9 @@ $images: (
 .fade-exit-active {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 500ms, visibility 500ms;
+  transition: none;
+}
+
+.transition-top {
+  transition: top 0.5s ease;
 }

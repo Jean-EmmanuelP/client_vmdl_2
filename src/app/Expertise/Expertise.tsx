@@ -117,7 +117,7 @@ export default function Expertise() {
             width: "100%",
             height: "100%",
             transform: "translateY(-100%)",
-            backgroundColor: "#030303",
+            backgroundColor: "#4D8FE7",
           }}
         ></div>
         {subExpertise === null && (
