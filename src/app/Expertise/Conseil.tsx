@@ -119,7 +119,7 @@ export default function Conseil() {
             <p className={`-mt-6 transition-opacity duration-700 ease-in-out`}>{!showVideo ? 'See highlight' : 'Hide hightlight'}</p>
           </div>
 
-          <div onClick={() => setShowVideo(false)} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${showVideo ? 'opacity-100' : 'opacity-0'} z-50`} style={{ pointerEvents: showVideo ? 'all' : 'none' }}>
+          <div onClick={() => setShowVideo(false)} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${showVideo ? 'opacity-100' : 'opacity-0'} z-50`}>
             <video className="w-full h-full" autoPlay ref={videoRef}>
               <source src="/videos/kaka.mp4" type="video/mp4" />
             </video>
