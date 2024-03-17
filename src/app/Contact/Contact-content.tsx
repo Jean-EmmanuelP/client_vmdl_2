@@ -59,25 +59,27 @@ export default function ContactContent() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  return (
-    <motion.div
-      ref={contactRef}
-      initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
-      variants={containerVariants}
-      className="w-full h-full flex justify-center items-center"
-    >
-      <div className="flex flex-col w-[45%]">
-        <motion.h1
-          variants={itemVariants}
-          className="uppercase text-center py-4 text-2xl mt-[-50px] text-[30px] sm:text-[40px] sm:title font-light"
-        >
-          {title}
-        </motion.h1>
-        <motion.div variants={itemVariants}>
-          <FormContact />
-        </motion.div>
-      </div>
-    </motion.div>
-  );
+  if (typeof window !== "undefined") {
+    return (
+      <motion.div
+        ref={contactRef}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        variants={containerVariants}
+        className="w-full h-full flex justify-center items-center"
+      >
+        <div className="flex flex-col w-[45%]">
+          <motion.h1
+            variants={itemVariants}
+            className="uppercase text-center py-4 text-2xl mt-[-50px] text-[30px] sm:text-[40px] sm:title font-light"
+          >
+            {title}
+          </motion.h1>
+          <motion.div variants={itemVariants}>
+            <FormContact />
+          </motion.div>
+        </div>
+      </motion.div>
+    );
+  }
 }

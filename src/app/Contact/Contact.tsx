@@ -1,6 +1,11 @@
 import ContactContent from "./Contact-content";
+import { useData } from "../utils/DataContext";
 
 export default function Contact() {
+  const { data } = useData();
+  if (!data) {
+    return;
+  }
   return (
     <section
       id="Contact"
