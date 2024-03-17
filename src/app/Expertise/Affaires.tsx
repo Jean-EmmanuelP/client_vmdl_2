@@ -90,13 +90,11 @@ export default function Affaires() {
       },
       { threshold: 0.5 }
     );
-    // comprendre si lindex est utile ici
     videoRefs.current.forEach((video, index) => {
       if (video) observer.observe(video);
     });
 
     return () => {
-      // comprendre si lindex est utile ici
       videoRefs.current.forEach((video, index) => {
         if (video) observer.unobserve(video);
       });
@@ -125,7 +123,6 @@ export default function Affaires() {
   if (!data) {
     return;
   }
-  // pareil ici fichier global
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -136,7 +133,6 @@ export default function Affaires() {
     DE: "de",
     中文: "中文",
   };
-  // meme chose ici
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { qatar, rio, dubai } = data[langCode].section_3.box_3;
@@ -277,7 +273,7 @@ export default function Affaires() {
             }
           })}
         <div
-          className="absolute top-[10%] sm:top-[40%] left-[10%] sm:left-[6%] w-[50px] h-[50px] sm:w-[10%] sm:h-[10%] rounded-full bg-blanc flex items-center justify-center pr-2"
+          className="absolute top-[10%] sm:top-[40%] left-[10%] sm:left-[3%] w-[50px] h-[50px] sm:w-[10%] sm:h-[10%] rounded-full bg-blanc sm:bg-transparent flex items-center justify-center pr-2"
           data-clickable={true}
           onClick={() => {
             setSubExpertise(null);

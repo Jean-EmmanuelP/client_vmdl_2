@@ -120,7 +120,7 @@ export default function Contentieux() {
         />
       </video>
       <div
-        className="absolute top-[10%] sm:top-[40%] left-[10%] sm:left-[6%] w-[50px] h-[50px] sm:w-[10%] sm:h-[10%] rounded-full bg-blanc flex items-center justify-center pr-2"
+        className="absolute top-[10%] sm:top-[40%] left-[10%] sm:left-[3%] w-[50px] h-[50px] sm:w-[10%] sm:h-[10%] rounded-full bg-blanc sm:bg-transparent flex items-center justify-center pr-2"
         data-clickable={true}
         onClick={() => {
           setSubExpertise(null);
