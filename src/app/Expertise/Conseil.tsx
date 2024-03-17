@@ -13,18 +13,13 @@ export default function Conseil() {
   const [isPlaying, setIsPlaying] = useState(false);
   useEffect(() => {
     if (showVideo) {
+      console.log(`video will be playing`);
       videoRef.current?.play();
     } else {
+      console.log(`video will be paused`);
       videoRef.current?.pause();
     }
   }, [showVideo]);
-
-  const handleVideoTransitionEnd = () => {
-    if (videoRef.current) {
-      console.log(`its playing`)
-      videoRef.current.play();
-    }
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -48,7 +43,7 @@ export default function Conseil() {
       }
     };
   }, []);
-  useEffect(() => { }, [subExpertise]);
+  useEffect(() => {}, [subExpertise]);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -112,14 +107,26 @@ export default function Conseil() {
       </p>
       {isMobile && (
         <>
-          <div onClick={() => setShowVideo(!showVideo)} className={`absolute font-light text-sm py-2 px-4 rounded-md flex flex-col cursor-pointer transition-top ${showVideo ? 'top-[83%]':'top-[78%]'}`}>
+          <div
+            onClick={() => setShowVideo(!showVideo)}
+            className={`absolute font-light text-sm py-2 px-4 rounded-md flex flex-col cursor-pointer transition-top ${
+              showVideo ? "top-[83%]" : "top-[78%]"
+            }`}
+          >
             <div className="transform rotate-90">
               <ReversedArrow />
             </div>
-            <p className={`-mt-6 transition-opacity duration-700 ease-in-out`}>{!showVideo ? 'See highlight' : 'Hide hightlight'}</p>
+            <p className={`-mt-6 transition-opacity duration-700 ease-in-out`}>
+              {!showVideo ? "See highlight" : "Hide hightlight"}
+            </p>
           </div>
 
-          <div onClick={() => setShowVideo(false)} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${showVideo ? 'opacity-100' : 'opacity-0'} z-50`}>
+          <div
+            onClick={() => setShowVideo(false)}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              showVideo ? "opacity-100" : "opacity-0 hidden"
+            } z-50`}
+          >
             <video className="w-full h-full" autoPlay ref={videoRef}>
               <source src="/videos/kaka.mp4" type="video/mp4" />
             </video>

@@ -411,25 +411,7 @@ export default function Header({ height }: HeaderProps) {
                   handleScroll(0);
                 }}
               >
-                <div
-                  data-clickable={true}
-                  className="w-14 h-14 border border-blanc items-center flex flex-col"
-                >
-                  <div
-                    data-clickable={true}
-                    className="flex justify-center gap-1 items-center w-full"
-                  >
-                    <span>V</span>
-                    <span>M</span>
-                  </div>
-                  <div
-                    data-clickable={true}
-                    className="flex justify-center gap-1 items-center w-full"
-                  >
-                    <span>D</span>
-                    <span>L</span>
-                  </div>
-                </div>
+                <p className="tracking-wider text-[20px] sm:text-[30px]">VMDL</p>
               </button>
               <div className="flex justify-center items-center p-2">
                 <Select

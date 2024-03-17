@@ -179,7 +179,7 @@ export default function Affaires() {
       className={`w-full h-full flex justify-center items-center text-blanc`}
     >
       <div
-        className={`flex w-[80%] h-[80%] ${
+        className={`flex w-full h-full sm:w-[80%] sm:h-[80%] ${
           headerHeight === "64px"
             ? "-mt-[64px]"
             : headerHeight === "128px"
@@ -277,7 +277,7 @@ export default function Affaires() {
             }
           })}
         <div
-          className="absolute top-[40%] left-[6%] w-[10%] h-[10%]"
+          className="absolute top-[10%] sm:top-[40%] left-[10%] sm:left-[6%] w-[50px] h-[50px] sm:w-[10%] sm:h-[10%] rounded-full bg-blanc flex items-center justify-center pr-2"
           data-clickable={true}
           onClick={() => {
             setSubExpertise(null);

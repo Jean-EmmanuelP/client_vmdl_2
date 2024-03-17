@@ -249,10 +249,10 @@ export default function Expertise() {
                         : number === 2
                         ? "contentieux"
                         : "affaires";
-                    handleClick(targetContent); // Utilisation de handleClick pour déclencher le rideau et changer le contenu
+                    handleClick(targetContent);
                   }}
                 >
-                  <h1 className="top-[10%] left-[20%] absolute uppercase">
+                  <h1 className="top-[10%] text-blanc left-[20%] absolute uppercase font-semibold">
                     {number === 1
                       ? box_1_title
                       : number === 2
