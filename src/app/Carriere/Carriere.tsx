@@ -14,9 +14,9 @@ export default function Carriere() {
           avocats-stagiaires de talent.
           <br/>
           <br />
-          Si vous souhaitez rejoindre notee cabinet et disposez d'excellentes
+          Si vous souhaitez rejoindre notee cabinet et disposez d&apos;excellentes
           references tout en etant au benefice dun parcours academique
-          exemplaire, n'hesitez pas a nous faire parvenir votre dossier.
+          exemplaire, n&apos;hesitez pas a nous faire parvenir votre dossier.
           <br/>
           <br />    
           Toutes les candidatures seront traitees de maniere confidentielle.

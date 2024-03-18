@@ -146,7 +146,7 @@ export default function ExpertiseContent() {
                   </h1>
                   <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
                     <span className="pl-[20%] text-line">
-                      VMDL, un cabinet d'avocats
+                      VMDL, un cabinet d&apos;avocats
                     </span>
                     <span className="pl-[20%] text-line">en lien avec le football</span>
                     <span className="pl-[20%] text-line">dans differentes regions du monde</span>
