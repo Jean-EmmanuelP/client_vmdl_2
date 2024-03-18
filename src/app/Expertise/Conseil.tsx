@@ -59,7 +59,6 @@ export default function Conseil() {
   if (!data) {
     return null;
   }
-  // pareil ici langCodeMap creer un fichier global
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -70,7 +69,6 @@ export default function Conseil() {
     DE: "de",
     中文: "中文",
   };
-  // meme chose ici
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content } = data[langCode].section_3.box_1;

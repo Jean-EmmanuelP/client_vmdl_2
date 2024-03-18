@@ -190,11 +190,10 @@ export default function Paragraph({
                   }}
                   className={`text-[#181a1b] p-4 ${
                     !homeSection
-                      ? `parentButton relative w-[180px] sm:w-[280px] border-[0.5px] border-noir transition duration-150`
+                      ? `relative w-[180px] sm:w-[280px] border-[0.5px] border-noir transition duration-150`
                       : `text-noir bg-blanc  shadow-2xl sm:h-[50px] sm:w-[300px]`
-                  } uppercase flex justify-center items-center leading-3 sm:text-xs contact-us overflow-hidden`}
+                  } uppercase flex justify-center items-center leading-3 sm:h-[50px] sm:text-xs contact-us overflow-hidden`}
                 >
-                  <div className="button-animation"></div>
                   <motion.span
                     animate={{ x: isHovering ? "0" : "8px" }}
                     transition={{

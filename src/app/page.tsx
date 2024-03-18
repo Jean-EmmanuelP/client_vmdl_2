@@ -18,6 +18,7 @@ import dynamic from "next/dynamic";
 import Home from "./Home/Home";
 import Cabinet from "./Cabinet/Cabinet";
 import { NavigatorWithConnection } from "./utils/interface";
+import Carriere from "./Carriere/Carriere";
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
 const Expertise = dynamic(() => import("./Expertise/Expertise"), {
   ssr: false,
@@ -97,10 +98,12 @@ export default function App() {
     /* check si cest sur telephone */
   }
   useEffect(() => {
-    if (isMobile) {
-      setHeaderHeight("90px");
-    } else {
-      setHeaderHeight("128px");
+    if (pageIs === "/") {
+      if (isMobile) {
+        setHeaderHeight("90px");
+      } else {
+        setHeaderHeight("128px");
+      }
     }
   }, [isMobile]);
 
@@ -187,7 +190,7 @@ export default function App() {
               top: mainDiv.clientHeight * (currentSection - 1),
               behavior: "smooth",
             });
-            if (currentSection === 1) {
+            if (currentSection === 1 && pageIs === "/") {
               setHeaderHeight(!isMobile ? "128px" : "90px");
             }
             setCurrentSection(currentSection - 1);
@@ -231,8 +234,12 @@ export default function App() {
   useEffect(() => {
     const newHeaderHeight =
       currentSection === 0 ? (!isMobile ? "128px" : "90px") : "64px";
-    setHeaderHeight(newHeaderHeight);
+    pageIs === "/" && setHeaderHeight(newHeaderHeight);
   }, [currentSection, isMobile]);
+  const [pageIs, setPageIs] = useState<string>("/");
+  useEffect(() => {
+    setHeaderHeight("64px");
+  }, [pageIs]);
 
   const updateMediaPaths = useCallback(() => {
     const isMobile = window.innerWidth <= 768;
@@ -261,12 +268,16 @@ export default function App() {
   const [isHoveringExpertiseButton, setIsHoveringExpertiseButton] = useState<
     "conseil" | "contentieux" | "affaires" | "none"
   >("none");
+  const [isHere, setIsHere] = useState(true);
   useEffect(() => {
     updateMediaPaths();
+    setTimeout(() => {
+      setIsHere(false);
+    }, 4000);
   }, []);
   return (
     <DataProvider>
-      {true && (
+      {isHere && (
         <div className="loading-screen z-[2147483647]">
           <div className="content-animation">
             <img src="/images/vmdl.png" alt="" />
@@ -297,6 +308,8 @@ export default function App() {
             setHeaderHeight,
             mediaPaths,
             updateMediaPaths,
+            pageIs,
+            setPageIs,
           }}
         >
           <CustomCursor />
@@ -307,13 +320,23 @@ export default function App() {
               style={{ height: mainHeight }}
               className="w-full z-1 overflow-y-auto overflow-x-hidden"
             >
-              <Home />
-              <Cabinet />
-              <Expertise />
-              <Vision />
-              <Fondateur />
-              <Contact />
-              <Footer />
+              {pageIs === "/" ? (
+                <>
+                  <Home />
+                  <Cabinet />
+                  <Expertise />
+                  <Vision />
+                  <Fondateur />
+                  <Contact />
+                  <Footer />
+                </>
+              ) : (
+                <>
+                  <Carriere />
+                  <Contact />
+                  <Footer />
+                </>
+              )}
             </div>
             <BackgroundEiffel />
           </expertiseContext.Provider>

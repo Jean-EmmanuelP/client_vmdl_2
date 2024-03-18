@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import contentData from "./content.json";
+import { useRouter } from "next/navigation";
 
 type JsonDataType = typeof contentData;
 type LanguageKeys = keyof JsonDataType;
@@ -27,8 +28,7 @@ export default function CMS() {
     updateSubSections(selectedSection);
   }, [selectedSection, language]);
 
-  useEffect(() => {
-  }, [selectedSubSubSection]);
+  useEffect(() => {}, [selectedSubSubSection]);
 
   const updateSubSections = (section: SectionKeys) => {
     const sectionData = jsonData[language][section];
@@ -135,7 +135,39 @@ export default function CMS() {
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value as LanguageKeys);
   };
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const useAuth = async () => {
+    const router = useRouter();
 
+    useEffect(() => {
+      const validateToken = async () => {
+        const token = sessionStorage.getItem("authToken");
+        if (!token) {
+          router.push("/");
+          return;
+        }
+
+        try {
+          const response = await fetch("/api/check-token", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Token validation failed");
+          }
+        } catch (error) {
+          sessionStorage.removeItem("authToken");
+          router.push("/");
+        }
+      };
+
+      validateToken();
+    }, [router]);
+  };
+  useAuth();
   return (
     <div className="cursor-default bg-blanc bg-cover w-full h-full flex justify-center items-center">
       <div className="backdrop-blur-xl bg-cyan-500/20 flex flex-col justify-center gap-10 p-10 w-fit h-fit rounded-md shadow-2xl">

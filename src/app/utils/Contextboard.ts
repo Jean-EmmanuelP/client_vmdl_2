@@ -44,9 +44,13 @@ interface currentSectionProps {
   setLangueCourante: React.Dispatch<React.SetStateAction<LangueCode>>;
   mediaPaths: MediaPaths;
   updateMediaPaths: () => void;
+  pageIs: string;
+  setPageIs: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const defaultValues: currentSectionProps = {
+  pageIs: "/",
+  setPageIs: () => {},
   isHoveringExpertiseButton: "none",
   setIsHoveringExpertiseButton: () => {},
   isMobile: false,

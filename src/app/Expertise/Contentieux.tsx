@@ -104,7 +104,7 @@ export default function Contentieux() {
       <video
         ref={videoRef}
         playsInline
-        className={`w-full h-full sm:w-[80%] sm:h-[80%] object-cover ${
+        className={`w-full h-full sm:w-full sm:h-full object-cover ${
           headerHeight === "64px"
             ? "-mt-[64px]"
             : headerHeight === "128px"
@@ -120,7 +120,7 @@ export default function Contentieux() {
         />
       </video>
       <div
-        className="absolute top-[10%] sm:top-[40%] left-[10%] sm:left-[3%] w-[50px] h-[50px] sm:w-[10%] sm:h-[10%] rounded-full bg-blanc sm:bg-transparent flex items-center justify-center pr-2"
+        className="absolute top-[10%] bg-blanc sm:top-[0%] left-[10%] sm:left-[0%] w-[50px] h-[50px] sm:w-[5%] sm:h-[8%] flex items-center justify-center pr-2"
         data-clickable={true}
         onClick={() => {
           setSubExpertise(null);

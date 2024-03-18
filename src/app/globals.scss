@@ -489,9 +489,9 @@ video {
 }
 
 $images: (
-  "wrapper1": "/images/paris_tribunal.jpeg",
+  "wrapper1": "/images/kaka_pc.png",
   "wrapper2": "/images/vosges.jpeg",
-  "wrapper3": "/images/paris_building.jpeg",
+  "wrapper3": "/images/paris_tribunal.jpeg",
 );
 
 %expertiseWrapper-common {
@@ -507,7 +507,7 @@ $images: (
   .expertiseWrapper.#{$name} {
     @extend %expertiseWrapper-common;
     background-image: url($url);
-    background-size: 100%;
+    background-size: 120%;
     background-repeat: no-repeat;
     transition: background-size 0.5s ease;
 
@@ -528,7 +528,7 @@ $images: (
       opacity: 0;
     }
     &:hover {
-      background-size: 105%;
+      background-size: 140%;
     }
   }
 }

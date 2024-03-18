@@ -52,7 +52,7 @@ const customStyles: StylesConfig = {
 };
 
 export default function Header({ height }: HeaderProps) {
-  const { setCurrentSection } = useSection();
+  const { setCurrentSection, setPageIs } = useSection();
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, setLangueCourante, isMobile } = useSection();
   const [selectedOption, setSelectedOption] = useState<
@@ -357,7 +357,10 @@ export default function Header({ height }: HeaderProps) {
                     data-clickable="true"
                     onClick={() => {
                       toggleMenu();
-                      handleScroll(1);
+                      setPageIs("/");
+                      setTimeout(() => {
+                        handleScroll(1);
+                      }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
@@ -367,7 +370,10 @@ export default function Header({ height }: HeaderProps) {
                     data-clickable="true"
                     onClick={() => {
                       toggleMenu();
-                      handleScroll(2);
+                      setPageIs("/");
+                      setTimeout(() => {
+                        handleScroll(2);
+                      }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
@@ -377,7 +383,10 @@ export default function Header({ height }: HeaderProps) {
                     data-clickable="true"
                     onClick={() => {
                       toggleMenu();
-                      handleScroll(3);
+                      setPageIs("/");
+                      setTimeout(() => {
+                        handleScroll(3);
+                      }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
@@ -387,7 +396,10 @@ export default function Header({ height }: HeaderProps) {
                     data-clickable="true"
                     onClick={() => {
                       toggleMenu();
-                      handleScroll(4);
+                      setPageIs("/");
+                      setTimeout(() => {
+                        handleScroll(4);
+                      }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
@@ -397,7 +409,8 @@ export default function Header({ height }: HeaderProps) {
                     data-clickable="true"
                     onClick={() => {
                       toggleMenu();
-                      handleScroll(4);
+                      setPageIs("carriere");
+                      handleScroll(0);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
@@ -409,9 +422,13 @@ export default function Header({ height }: HeaderProps) {
               <button
                 onClick={() => {
                   handleScroll(0);
+                  setPageIs("/");
                 }}
+                data-clickable="true"
               >
-                <p className="tracking-wider text-[20px] sm:text-[30px]">VMDL</p>
+                <p className="tracking-wider text-[20px] sm:text-[30px] z-[21020]">
+                  VMDL
+                </p>
               </button>
               <div className="flex justify-center items-center p-2">
                 <Select
@@ -444,28 +461,36 @@ export default function Header({ height }: HeaderProps) {
                 >
                   <button
                     data-clickable="true"
-                    onClick={() => handleScroll(1)}
+                    onClick={() => {
+                      handleScroll(1);
+                    }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
                     {section_1}
                   </button>
                   <button
                     data-clickable="true"
-                    onClick={() => handleScroll(2)}
+                    onClick={() => {
+                      handleScroll(2);
+                    }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
                     {section_2}
                   </button>
                   <button
                     data-clickable="true"
-                    onClick={() => handleScroll(3)}
+                    onClick={() => {
+                      handleScroll(3);
+                    }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
                     {section_3}
                   </button>
                   <button
                     data-clickable="true"
-                    onClick={() => handleScroll(4)}
+                    onClick={() => {
+                      handleScroll(4);
+                    }}
                     className="hover:scale-105"
                   >
                     {section_4}
