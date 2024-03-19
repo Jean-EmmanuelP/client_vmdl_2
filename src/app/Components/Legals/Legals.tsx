@@ -5,7 +5,7 @@ export default function Legals() {
         MENTIONS LÉGALES
       </div>
       <div className="relative overflow-y-auto bg-[url('/images/paris.jpeg')] bg-cover w-full h-full columns-1 md:columns-2 lg:columns-3 p-4 space-y-4 md:space-y-4">
-        <div className="break-inside bg-cyan-200/60 p-6 flex flex-col">
+        <div className="break-inside w-full bg-cyan-200/60 p-6 flex flex-col">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               I. Le site
@@ -63,7 +63,7 @@ export default function Legals() {
             </p>
           </div>
         </div>
-        <div className="break-inside bg-rose-200/60 p-6">
+        <div className="break-inside w-full bg-rose-200/60 p-6">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               II. Responsabilité
@@ -84,7 +84,7 @@ export default function Legals() {
             modifications.
           </div>
         </div>
-        <div className="break-inside bg-cyan-200/60 p-6 flex flex-col">
+        <div className="break-inside w-full bg-cyan-200/60 p-6 flex flex-col">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               III. Protection des données personnelles
@@ -100,7 +100,7 @@ export default function Legals() {
             2106644.
           </div>
         </div>
-        <div className="break-inside bg-rose-200/60 p-6">
+        <div className="break-inside w-full bg-rose-200/60 p-6">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               IV. Respect des droits de propriété intellectuelle
@@ -116,7 +116,7 @@ export default function Legals() {
             quelque procédé et sur quelque support que ce soit, est illicite.
           </div>
         </div>
-        <div className="break-inside bg-cyan-200/60 p-6">
+        <div className="break-inside w-full bg-cyan-200/60 p-6">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               V. Modification des mentions légales
@@ -129,7 +129,7 @@ export default function Legals() {
             régulièrement.
           </div>
         </div>
-        <div className="break-inside bg-cyan-200/60 p-2">
+        <div className="break-inside w-full bg-cyan-200/60 p-2">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               VI. Politique de confidentialité des données
