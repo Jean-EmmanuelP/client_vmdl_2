@@ -18,7 +18,8 @@ import dynamic from "next/dynamic";
 import Home from "./Home/Home";
 import Cabinet from "./Cabinet/Cabinet";
 import { NavigatorWithConnection } from "./utils/interface";
-import Carriere from "./Carriere/Carriere";
+import Carriere from "./Components/Carriere/Carriere";
+import Legals from "./Components/Legals/Legals";
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
 const Expertise = dynamic(() => import("./Expertise/Expertise"), {
   ssr: false,
@@ -343,7 +344,7 @@ export default function App() {
               )}
               {pageIs === "legals" && (
                 <>
-                  <Carriere />
+                  <Legals />
                   <Footer />
                 </>
               )}

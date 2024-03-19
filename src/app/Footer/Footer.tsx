@@ -3,8 +3,14 @@ import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
 export default function Footer() {
-  const { setCurrentSection, setHeaderHeight, setBgIsBlackFooter, setPageIs, isMobile } =
-    useSection();
+  const {
+    setCurrentSection,
+    setHeaderHeight,
+    setBgIsBlackFooter,
+    setPageIs,
+    pageIs,
+    isMobile,
+  } = useSection();
   const { data } = useData();
   const { langueCourante } = useSection();
   if (!data) {
@@ -36,14 +42,14 @@ export default function Footer() {
       });
     setCurrentSection(value);
 
-    if (value === 0 && !isMobile) setHeaderHeight("128px");
+    if (value === 0 && !isMobile && pageIs === "/") setHeaderHeight("128px");
     else setHeaderHeight("64px");
   };
 
   return (
     <div
       id="Footer"
-      className="relative w-full h-[45%] gap-4 sm:h-[60%] flex flex-col items-center z-10 bg-noir text-blanc"
+      className="relative w-full h-[45%] gap-4 sm:h-[44%] flex flex-col items-center z-10 bg-noir text-blanc"
       onMouseEnter={() => {
         setBgIsBlackFooter(true);
       }}
@@ -56,7 +62,9 @@ export default function Footer() {
         className="w-4/5 flex justify-center items-center mt-20"
       >
         <div
-          onClick={() => handleScroll(0)}
+          onClick={() => {
+            handleScroll(0);
+          }}
           className="group flex flex-col gap-1 sm:gap-2 mt-2"
         >
           <p className="md:text-2xl group-hover:text-gray-400 transition duration-150 text-[19px] sm:text-[32px] sm:title font-semibold">
@@ -72,15 +80,14 @@ export default function Footer() {
         className="w-full gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
       >
         <div className="w-4/5 text-left text-blanc h-fit">
-          <a
-            href=""
+          <button
             onClick={() => {
               setTimeout(() => handleScroll(0));
               setPageIs("legals");
             }}
           >
             Mentions legales
-          </a>
+          </button>
         </div>
         <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-4/5 flex justify-between items-center pb-2 sm:pb-0 sm:items-start sm:pt-3">
           <div
