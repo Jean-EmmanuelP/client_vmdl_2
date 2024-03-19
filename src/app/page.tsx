@@ -333,7 +333,7 @@ export default function App() {
               ) : (
                 <>
                   <Carriere />
-                  <Contact />
+                  {/* <Contact /> */}
                   <Footer />
                 </>
               )}
