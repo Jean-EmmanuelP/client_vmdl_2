@@ -16,7 +16,7 @@ const config: Config = {
         'futura': ['Futura', 'sans-serif'],
         'larsseit': ['Larsseit', 'sans-serif']
       },
-      colors: {
+      colors: { 
         'noir': '#030303',
         'blanc': '#F9F9F9',
         'boxesColor': '#FF9B20',

@@ -1,8 +1,11 @@
 export default function Legals() {
   return (
     <div className="w-full h-full bg-blanc">
-      <div className="w-full h-full grid grid-cols-3 grid-row-3 gap-4 p-4">
-        <div className="col-span-1 row-span-1 bg-blue-100 p-6 flex flex-col">
+      <div className="w-full h-[5%] flex items-center justify-start pl-[10%] bg-blanc">
+        MENTIONS LÉGALES
+      </div>
+      <div className="relative overflow-y-auto bg-[url('/images/paris.jpeg')] bg-cover w-full h-full columns-1 md:columns-2 lg:columns-3 p-4 space-y-4 md:space-y-4">
+        <div className="break-inside bg-cyan-200/60 p-6 flex flex-col">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               I. Le site
@@ -10,15 +13,17 @@ export default function Legals() {
           </div>
           <div className="text-[11px] flex flex-col">
             <p className="flex flex-col py-2">
-              <span>Accessible à l&apos;adresse URL suivante</span>:
-              http://www.vmdl.ai.com (ci-après le « Site »).
+              <span>Accessible à l&apos;adresse URL suivante</span>
+              <a href="http://www.vmdl.ai.com">
+                : http://www.vmdl.ai.com (ci-après le « Site »).
+              </a>
             </p>
             <p className="flex flex-col py-2">
               <span>I.I. Éditeur :</span>
               <ul>
                 <li>Vincent Machado Da Luz - Avocats à la Cour</li>
                 <li>27 boulevard Saint-Michel - 75005 PARIS</li>
-                <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 -</li>
+                <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
                 <li>M.cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>N° SIRET 83113986000017</li>
                 <li>Ci-après « le cabinet VMDL »</li>
@@ -35,20 +40,30 @@ export default function Legals() {
             </p>
             <p className="flex flex-col py-2">
               <span>
-                I.III. Concepteur et réalisateur du site Jean-Emmanuel Perramant
-                graphisme
+                I.III. Concepteur et réalisateur du site <br />
+                Jean-Emmanuel Perramant graphisme
               </span>
-              16 rue des Arènes - 96 Bd Bessières Paris T. +33 (0)6 95 51 14 61
-              - M. jperrama@gmail.com jperrama.com N° SIRET 83113986000017
+              <ul>
+                <li>96 Bd Bessières Paris</li>
+                <li>T. +33 (0)6 95 51 14 61</li>
+                <li>M. jperrama@gmail.com</li>
+                <li>
+                  <a href="jperrama.com">jperrama.com</a>
+                </li>
+                <li>N° SIRET 83113986000017</li>
+              </ul>
             </p>
             <p className="flex flex-col py-2">
               <span>I.IV. Responsable de l&apos;hébergement</span>
-              La société Wix boîte postale 40190 - San Francisco - CA 94140 -
-              États-Unis wix.com
+              <ul>
+                <li>La société Vercel</li>
+                <li>boîte postale 40190 - San Francisco - CA 94140 -</li>
+                <li>États-Unis vercel.com</li>
+              </ul>
             </p>
           </div>
         </div>
-        <div className="col-span-1 row-span-1 bg-red-500 p-6">
+        <div className="break-inside bg-rose-200/60 p-6">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               II. Responsabilité
@@ -69,20 +84,7 @@ export default function Legals() {
             modifications.
           </div>
         </div>
-        <div className="col-span-1 row-span-1 bg-green-500 p-6">
-          <div>
-            <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
-              VI. Modification des mentions légales
-            </h1>
-          </div>
-          <div className="text-[11px] pt-2">
-            Le cabinet VMDL se réserve le droit de modifier et d&apos;actualiser
-            les présentes mentions légales à tout moment et sans
-            préavis.L&apos;utilisateur est donc invité à le consulter
-            régulièrement.
-          </div>
-        </div>
-        <div className="col-span-1 row-span-1 bg-yellow-100 p-6 flex flex-col">
+        <div className="break-inside bg-cyan-200/60 p-6 flex flex-col">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               III. Protection des données personnelles
@@ -98,7 +100,7 @@ export default function Legals() {
             2106644.
           </div>
         </div>
-        <div className="col-span-1 row-span-1 bg-purple-100 p-6">
+        <div className="break-inside bg-rose-200/60 p-6">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
               IV. Respect des droits de propriété intellectuelle
@@ -114,10 +116,23 @@ export default function Legals() {
             quelque procédé et sur quelque support que ce soit, est illicite.
           </div>
         </div>
-        <div className="col-span-1 row-span-1 bg-indigo-100 p-2">
+        <div className="break-inside bg-cyan-200/60 p-6">
           <div>
             <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
-              VIIII. Politique de confidentialité des données
+              V. Modification des mentions légales
+            </h1>
+          </div>
+          <div className="text-[11px] pt-2">
+            Le cabinet VMDL se réserve le droit de modifier et d&apos;actualiser
+            les présentes mentions légales à tout moment et sans
+            préavis.L&apos;utilisateur est donc invité à le consulter
+            régulièrement.
+          </div>
+        </div>
+        <div className="break-inside bg-cyan-200/60 p-2">
+          <div>
+            <h1 className="border-1 border-b border-black pb-1 mt-3 font-semibold">
+              VI. Politique de confidentialité des données
             </h1>
           </div>
           <div className="p-2 text-[11px]">
@@ -222,7 +237,6 @@ export default function Legals() {
             </p>
           </div>
         </div>
-        <div className="col-span-1 row-span-1 bg-gray-100 p-2"></div>
       </div>
     </div>
   );
