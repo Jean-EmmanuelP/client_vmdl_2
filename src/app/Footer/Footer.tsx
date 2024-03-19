@@ -3,7 +3,7 @@ import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
 export default function Footer() {
-  const { setCurrentSection, setHeaderHeight, setBgIsBlackFooter } =
+  const { setCurrentSection, setHeaderHeight, setBgIsBlackFooter, setPageIs } =
     useSection();
   const { data } = useData();
   const { langueCourante } = useSection();
@@ -43,7 +43,7 @@ export default function Footer() {
   return (
     <div
       id="Footer"
-      className="relative w-full h-[45%] sm:h-[27%] flex flex-col z-10 bg-noir text-blanc mt-[-40px] sm:mt-0"
+      className="relative w-full h-[45%] gap-4 sm:h-[60%] flex flex-col items-center z-10 bg-noir text-blanc"
       onMouseEnter={() => {
         setBgIsBlackFooter(true);
       }}
@@ -53,11 +53,11 @@ export default function Footer() {
     >
       <div
         id="footer-title"
-        className="w-full h-2/5 sm:h-3/5 flex justify-center items-center"
+        className="w-4/5 flex justify-center items-center mt-20"
       >
         <div
           onClick={() => handleScroll(0)}
-          className="group flex flex-col gap-1 sm:gap-2 mt-2 sm:mt-4"
+          className="group flex flex-col gap-1 sm:gap-2 mt-2"
         >
           <p className="md:text-2xl group-hover:text-gray-400 transition duration-150 text-[19px] sm:text-[32px] sm:title font-semibold">
             {title}
@@ -69,12 +69,23 @@ export default function Footer() {
       </div>
       <div
         id="footer-content"
-        className="w-full h-2/5 sm:h-3/5 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
+        className="w-full gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
       >
-        <div className="border border-y-[0.5px] border-x-0 sm:gap-0 border-white/20 h-[90%] w-4/5 flex justify-between items-center pb-2 sm:pb-0 sm:items-start pt-0 sm:pt-3">
+        <div className="w-4/5 text-left text-blanc h-fit">
+          <a
+            href=""
+            onClick={() => {
+              setTimeout(() => handleScroll(0))
+              setPageIs("legals");
+            }}
+          >
+            Mentions legales
+          </a>
+        </div>
+        <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-4/5 flex justify-between items-center pb-2 sm:pb-0 sm:items-start sm:pt-3">
           <div
             id="footer-contact"
-            className="justify-center items-center gap-1 sm:gap-6 flex flex-col sm:flex-row"
+            className="justify-center items-center gap-1 sm:gap-6 flex flex-col sm:flex-row py-1"
           >
             <a
               href="https://www.google.com/maps/search/?api=1&query=2%20Rue%20de%20Poissy%2C%2075005%20Paris"
@@ -128,7 +139,7 @@ export default function Footer() {
             </p>
           </div>
           <div id="footer-social">
-            <div className="flex justify-center items-center gap-2 md:gap-10">
+            <div className="flex justify-center items-center gap-2 md:gap-10 py-1">
               <a
                 href="https://www.instagram.com/"
                 target="_blank"

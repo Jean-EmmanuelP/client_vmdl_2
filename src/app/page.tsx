@@ -269,11 +269,15 @@ export default function App() {
     "conseil" | "contentieux" | "affaires" | "none"
   >("none");
   const [isHere, setIsHere] = useState(true);
+  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
   useEffect(() => {
     updateMediaPaths();
-    setTimeout(() => {
-      setIsHere(false);
-    }, 4000);
+    if (isFirstLoad) {
+      setTimeout(() => {
+        setIsHere(false);
+      }, 4000);
+      setIsFirstLoad(false);
+    }
   }, []);
   return (
     <DataProvider>
@@ -320,7 +324,7 @@ export default function App() {
               style={{ height: mainHeight }}
               className="w-full z-1 overflow-y-auto overflow-x-hidden"
             >
-              {pageIs === "/" ? (
+              {pageIs === "/" && (
                 <>
                   <Home />
                   <Cabinet />
@@ -330,10 +334,16 @@ export default function App() {
                   <Contact />
                   <Footer />
                 </>
-              ) : (
+              )}
+              {pageIs === "carriere" && (
                 <>
                   <Carriere />
-                  {/* <Contact /> */}
+                  <Footer />
+                </>
+              )}
+              {pageIs === "legals" && (
+                <>
+                  <Carriere />
                   <Footer />
                 </>
               )}

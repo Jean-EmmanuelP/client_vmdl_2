@@ -24,7 +24,8 @@ const customStyles: StylesConfig = {
     borderRadius: "0",
     boxShadow: "none",
     border: "1px",
-    "&:hover": { backgroundColor: "#F9F9F9" },
+    color: "white",
+    "&:hover": { backgroundColor: "#F9F9F9", color: "black" },
   }),
   option: (styles, { isFocused, isSelected }) => ({
     ...styles,
@@ -32,6 +33,7 @@ const customStyles: StylesConfig = {
     color: "black",
     backgroundColor: isFocused ? "lightgray" : isSelected ? "gray" : "#F9F9F9",
     padding: 20,
+    "&:hover": { color: "black" }
   }),
   menu: (styles) => ({
     ...styles,
@@ -47,7 +49,7 @@ const customStyles: StylesConfig = {
   singleValue: (styles) => ({
     ...styles,
     zIndex: 2145483645,
-    color: "black",
+    color: "white",
   }),
 };
 
@@ -123,15 +125,7 @@ export default function Header({ height }: HeaderProps) {
 
         return {
           value: country,
-          label: (
-            <>
-              <img
-                src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country}.svg`}
-                alt={country}
-                style={{ width: "20px", marginRight: "10px" }}
-              />
-            </>
-          ),
+          label: <>{country}</>,
           searchTerms: [
             languageDetails?.native,
             languageDetails?.en,
@@ -243,7 +237,9 @@ export default function Header({ height }: HeaderProps) {
 
   const handleScroll = (value: number) => {
     const mainDiv = document.getElementById("main");
-
+    if ((value === 3 || value === 4) && isMobile) {
+      value = value + .3
+    }
     if (mainDiv)
       mainDiv.scrollTo({
         top: mainDiv.clientHeight * value,
