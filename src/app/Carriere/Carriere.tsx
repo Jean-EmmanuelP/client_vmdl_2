@@ -21,7 +21,7 @@ export default function Carriere() {
           <br />
           <br />
           Toutes les candidatures seront traitees de maniere confidentielle.
-          Pour candidatez, envoyez un mail a l'addresse ci-dessous:
+          Pour candidatez, envoyez un mail a l&apos;addresse ci-dessous:
           <br />
           <br />
           <a
