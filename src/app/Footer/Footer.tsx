@@ -3,7 +3,7 @@ import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
 export default function Footer() {
-  const { setCurrentSection, setHeaderHeight, setBgIsBlackFooter, setPageIs } =
+  const { setCurrentSection, setHeaderHeight, setBgIsBlackFooter, setPageIs, isMobile } =
     useSection();
   const { data } = useData();
   const { langueCourante } = useSection();
@@ -36,7 +36,7 @@ export default function Footer() {
       });
     setCurrentSection(value);
 
-    if (value === 0) setHeaderHeight("128px");
+    if (value === 0 && !isMobile) setHeaderHeight("128px");
     else setHeaderHeight("64px");
   };
 
@@ -75,7 +75,7 @@ export default function Footer() {
           <a
             href=""
             onClick={() => {
-              setTimeout(() => handleScroll(0))
+              setTimeout(() => handleScroll(0));
               setPageIs("legals");
             }}
           >
