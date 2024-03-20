@@ -52,60 +52,57 @@ export default function Legals() {
   const WebsiteContent = () => {
     switch (langCode) {
       case "fr":
-        return (
-          <div className="text-[11px] flex flex-col">
-            <p className="flex flex-col py-2">
-              <span>Accessible at the following URL</span>
-              <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (hereinafter referred to as the
-                &quot;Site&quot;).
-              </a>
-            </p>
-            <p className="flex flex-col py-2">
-              <span>I.I. Publisher:</span>
-              <ul>
-                <li>Vincent Machado Da Luz - Lawyers at the Court</li>
-                <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
-                <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
-                <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
-                <li>SIRET No. 83113986000017</li>
-                <li>Hereinafter referred to as &quot;VMDL firm&quot;</li>
-              </ul>
-            </p>
-            <p className="flex flex-col py-2">
-              <span>I.II. Publication Director</span>
-              <ul>
-                <li>Jean-Emmanuel Perramant</li>
-                <li>96 Bd Bessières - 75017 PARIS</li>
-                <li>T. +33 (0) 6 85 51 14 61</li>
-                <li>E. cabinet@vmdl.ai</li>
-              </ul>
-            </p>
-            <p className="flex flex-col py-2">
-              <span>
-                I.III. Site Designer and Developer <br />
-                Jean-Emmanuel Perramant Graphics
-              </span>
-              <ul>
-                <li>96 Bd Bessières Paris</li>
-                <li>T. +33 (0)6 95 51 14 61</li>
-                <li>E. jperrama@gmail.com</li>
-                <li>
-                  <a href="jperrama.com">jperrama.com</a>
-                </li>
-                <li>SIRET No. 83113986000017</li>
-              </ul>
-            </p>
-            <p className="flex flex-col py-2">
-              <span>I.IV. Hosting Provider</span>
-              <ul>
-                <li>Vercel Inc.</li>
-                <li>PO Box 40190 - San Francisco - CA 94140 -</li>
-                <li>United States vercel.com</li>
-              </ul>
-            </p>
-          </div>
-        );
+        return <div className="text-[11px] flex flex-col">
+        <p className="flex flex-col py-2">
+          <span>Accessible à l&apos;adresse URL suivante</span>
+          <a href="http://www.vmdl.ai.com">
+            : http://www.vmdl.ai.com (ci-après le « Site »).
+          </a>
+        </p>
+        <p className="flex flex-col py-2">
+          <span>I.I. Éditeur :</span>
+          <ul>
+            <li>Vincent Machado Da Luz - Avocats à la Cour</li>
+            <li>27 boulevard Saint-Michel - 75005 PARIS</li>
+            <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
+            <li>M.cabinet@vmdl.ai vmdl.ai.com</li>
+            <li>N° SIRET 83113986000017</li>
+            <li>Ci-après « le cabinet VMDL »</li>
+          </ul>
+        </p>
+        <p className="flex flex-col py-2">
+          <span>I.II. Directeur de la publication</span>
+          <ul>
+            <li>Jean-Emmanuel Perramant</li>
+            <li>96 Bd Bessières - 75017 PARIS</li>
+            <li>T. +33 (0) 6 85 51 14 61</li>
+            <li>M. cabinet@vmdl.ai</li>
+          </ul>
+        </p>
+        <p className="flex flex-col py-2">
+          <span>
+            I.III. Concepteur et réalisateur du site <br />
+            Jean-Emmanuel Perramant graphisme
+          </span>
+          <ul>
+            <li>96 Bd Bessières Paris</li>
+            <li>T. +33 (0)6 95 51 14 61</li>
+            <li>M. jperrama@gmail.com</li>
+            <li>
+              <a href="jperrama.com">jperrama.com</a>
+            </li>
+            <li>N° SIRET 83113986000017</li>
+          </ul>
+        </p>
+        <p className="flex flex-col py-2">
+          <span>I.IV. Responsable de l&apos;hébergement</span>
+          <ul>
+            <li>La société Vercel</li>
+            <li>boîte postale 40190 - San Francisco - CA 94140 -</li>
+            <li>États-Unis vercel.com</li>
+          </ul>
+        </p>
+      </div>
       case "en":
         return (
           <div className="text-[11px] flex flex-col">
