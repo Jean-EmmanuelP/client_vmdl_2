@@ -58,7 +58,7 @@ export default function Legals() {
               <span>Accessible at the following URL</span>
               <a href="http://www.vmdl.ai.com">
                 : http://www.vmdl.ai.com (hereinafter referred to as the
-                "Site").
+                &quot;Site&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -69,7 +69,7 @@ export default function Legals() {
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>SIRET No. 83113986000017</li>
-                <li>Hereinafter referred to as "VMDL firm"</li>
+                <li>Hereinafter referred to as &quot;VMDL firm&quot;</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -113,7 +113,7 @@ export default function Legals() {
               <span>Accessible at the following URL</span>
               <a href="http://www.vmdl.ai.com">
                 : http://www.vmdl.ai.com (hereinafter referred to as the
-                "Site").
+                &quot;Site&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -124,7 +124,7 @@ export default function Legals() {
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>SIRET No. 83113986000017</li>
-                <li>Hereinafter referred to as "VMDL firm"</li>
+                <li>Hereinafter referred to as &quot;VMDL firm&quot;</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -167,7 +167,7 @@ export default function Legals() {
             <p className="flex flex-col py-2">
               <span>Accesible en la siguiente URL</span>
               <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (en adelante, el "Sitio").
+                : http://www.vmdl.ai.com (en adelante, el &quot;Sitio&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -178,7 +178,7 @@ export default function Legals() {
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>Nº SIRET 83113986000017</li>
-                <li>En adelante "el despacho VMDL"</li>
+                <li>En adelante &quot;el despacho VMDL&quot;</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -221,7 +221,7 @@ export default function Legals() {
             <p className="flex flex-col py-2">
               <span>متاح على العنوان التالي</span>
               <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (يُشار إليه فيما بعد بـ "الموقع").
+                : http://www.vmdl.ai.com (يُشار إليه فيما بعد بـ &quot;الموقع&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -232,7 +232,7 @@ export default function Legals() {
                 <li>ت. +33 (0) 6 85 51 14 61 - ف. +33 (0)1 43 25 62 19 - </li>
                 <li>بريد إلكتروني: cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>رقم سيريت 83113986000017</li>
-                <li>يُشار إليه فيما بعد بـ "مكتب VMDL"</li>
+                <li>يُشار إليه فيما بعد بـ &quot;مكتب VMDL&quot;</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -275,7 +275,7 @@ export default function Legals() {
             <p className="flex flex-col py-2">
               <span>Acessível no seguinte URL</span>
               <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (doravante referido como "o Site").
+                : http://www.vmdl.ai.com (doravante referido como &quot;o Site&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -286,7 +286,7 @@ export default function Legals() {
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>Nº SIRET 83113986000017</li>
-                <li>Doravante denominado "o escritório VMDL"</li>
+                <li>Doravante denominado &quot;o escritório VMDL&quot;</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -329,7 +329,7 @@ export default function Legals() {
             <p className="flex flex-col py-2">
               <span>Accessibile al seguente URL</span>
               <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (di seguito denominato "il Sito").
+                : http://www.vmdl.ai.com (di seguito denominato &quot;il Sito&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -340,7 +340,7 @@ export default function Legals() {
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>N° SIRET 83113986000017</li>
-                <li>D'ora in poi denominato "lo studio VMDL"</li>
+                <li>D'ora in poi denominato &quot;lo studio VMDL&quot;</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -383,7 +383,7 @@ export default function Legals() {
             <p className="flex flex-col py-2">
               <span>Zugänglich unter der folgenden URL</span>
               <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (im Folgenden "die Website" genannt).
+                : http://www.vmdl.ai.com (im Folgenden &quot;die Website&quot; genannt).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -394,7 +394,7 @@ export default function Legals() {
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>SIRET Nr. 83113986000017</li>
-                <li>Im Folgenden "die Kanzlei VMDL" genannt</li>
+                <li>Im Folgenden &quot;die Kanzlei VMDL&quot; genannt</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
