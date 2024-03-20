@@ -7,7 +7,7 @@ import ReversedArrow from "../assets/svg/reverseArrow";
 export default function Conseil() {
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, isMobile } = useSection();
-  const { data } = useData();
+  const { data } = useData(); 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showVideo, setShowVideo] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);

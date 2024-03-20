@@ -1,4 +1,24 @@
+import { LangueCode, useSection } from "@/app/utils/Contextboard";
+import { useData } from "@/app/utils/DataContext";
+
 export default function Legals() {
+  const { langueCourante } = useSection();
+  const { data } = useData();
+  const langCodeMap: { [key in LangueCode]: string } = {
+    FR: "fr",
+    EN: "en",
+    IT: "it",
+    ES: "es",
+    عربي: "عربي",
+    PT: "pt",
+    DE: "de",
+    中文: "中文",
+  };
+  const langCode =
+    langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
+  if (!data) {
+    return null;
+  }
   return (
     <div className="w-full h-fit bg-blanc">
       <div className="w-full h-fit flex items-center justify-start pl-[10%] bg-blanc">

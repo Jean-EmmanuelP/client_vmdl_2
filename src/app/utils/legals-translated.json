@@ -1,0 +1,23 @@
+{
+  "fr": {
+    "title": "MENTIONS LÉGALES",
+    "subtitles": {
+      "I": "I. Le site",
+      "II": {
+        "title": "II. Responsabilité",
+        "content": "L'utilisateur du Site reconnaît avoir pris connaissance de la présente notice légale et s'engage à la respecter.Le cabinet VMDL s'engage à faire ses meilleurs efforts pour assurer aux utilisateurs une accessibilité du Site à tout moment et pour fournir des informations fiables. En cas d'erreur ou d'anomalie rencontrée par l'utilisateur, ce dernier peut adresser un courriel à l'adresse suivante : cabinet@vmdl.ai.En aucun cas le cabinet VMDL ne pourra être tenu pour responsable des erreurs rencontrées ou de l'inaccessibilité du présent Site internet.Les données présentes sur ce Site internet sont fournies à titre informatif. Elles sont susceptibles de subir des modifications."
+      },
+      "III": {
+        "title": "III. Protection des données personnelles",
+        "content": "En conformité avec les dispositions de la loi du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, modifiée par la loi du 6 août 2004, le traitement automatisé des données nominatives réalisé à partir de ce site internet a fait l'objet de deux déclarations auprès de la Commission Nationale de l'Informatique et des Libertés (CNIL) sous le numéro 2106644."
+      },
+      "IV": {
+        "title": "IV. Respect des droits de propriété intellectuelle",
+        "content": "En conformité avec les dispositions de la loi du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, modifiée par la loi du 6 août 2004, le traitement automatisé des données nominatives réalisé à partir de ce site internet a fait l'objet de deux déclarations auprès de la Commission Nationale de l'Informatique et des Libertés (CNIL) sous le numéro 2106644."
+      },
+      "V": {
+        "title": 
+      }
+    }
+  }
+}
