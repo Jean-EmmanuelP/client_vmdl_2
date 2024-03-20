@@ -1,9 +1,12 @@
 import { LangueCode, useSection } from "@/app/utils/Contextboard";
 import { useData } from "@/app/utils/DataContext";
+import legalsDataJson from "../../utils/legals-translated.json";
+import { useState } from "react";
 
 export default function Legals() {
   const { langueCourante } = useSection();
   const { data } = useData();
+  const [legalsData, setLegalsData] = useState(legalsDataJson);
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
