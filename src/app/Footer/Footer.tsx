@@ -13,6 +13,7 @@ export default function Footer() {
   } = useSection();
   const { data } = useData();
   const { langueCourante } = useSection();
+
   if (!data) {
     return;
   }
@@ -41,9 +42,9 @@ export default function Footer() {
         behavior: "smooth",
       });
     setCurrentSection(value);
-
-    if (value === 0 && !isMobile && pageIs === "/") setHeaderHeight("128px");
-    else setHeaderHeight("64px");
+    if (value === 0 && !isMobile && pageIs === "/") {
+      setHeaderHeight("128px");
+    } else setHeaderHeight("64px");
   };
 
   return (
@@ -82,8 +83,8 @@ export default function Footer() {
         <div className="w-4/5 text-left text-blanc h-fit">
           <button
             onClick={() => {
-              setTimeout(() => handleScroll(0));
-              setPageIs("legals");
+              handleScroll(0);
+              setPageIs("legals"); 
             }}
           >
             Mentions legales

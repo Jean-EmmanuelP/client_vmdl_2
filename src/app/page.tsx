@@ -103,6 +103,7 @@ export default function App() {
       if (isMobile) {
         setHeaderHeight("90px");
       } else {
+        console.log(`rojgoerg`);
         setHeaderHeight("128px");
       }
     }
@@ -167,54 +168,56 @@ export default function App() {
       sur telephone je peux ajoute le comportement ici */
   }
   useEffect(() => {
-    const handleScroll = (direction: string) => {
-      {
-        /* si il scroll alors on fait aucune action, pour eviter deux scroll a la fois */
-      }
-      if (isScrolling) return;
-
-      const mainDiv = document.getElementById("main");
-
-      if (mainDiv) {
-        if (direction === "down") {
-          if (currentSection < 6) {
-            mainDiv.scrollTo({
-              top: mainDiv.clientHeight * (currentSection + 1),
-              behavior: "smooth",
-            });
-            setHeaderHeight("64px");
-            setCurrentSection(currentSection + 1);
-          }
-        } else if (direction === "up") {
-          if (currentSection > 0) {
-            mainDiv.scrollTo({
-              top: mainDiv.clientHeight * (currentSection - 1),
-              behavior: "smooth",
-            });
-            if (currentSection === 1 && pageIs === "/") {
-              setHeaderHeight(!isMobile ? "128px" : "90px");
-            }
-            setCurrentSection(currentSection - 1);
-          }
+    if (pageIs === "/") {
+      const handleScroll = (direction: string) => {
+        {
+          /* si il scroll alors on fait aucune action, pour eviter deux scroll a la fois */
         }
-        setSubExpertise(null);
-        setIsScrolling(true);
-      }
-    };
+        if (isScrolling) return;
 
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      handleScroll(e.deltaY > 0 ? "down" : "up");
-    };
+        const mainDiv = document.getElementById("main");
 
-    const main = document.getElementById("main");
-
-    if (main) {
-      main.addEventListener("wheel", handleWheel, { passive: false });
-
-      return () => {
-        main.removeEventListener("wheel", handleWheel);
+        if (mainDiv) {
+          if (direction === "down") {
+            if (currentSection < 6) {
+              mainDiv.scrollTo({
+                top: mainDiv.clientHeight * (currentSection + 1),
+                behavior: "smooth",
+              });
+              setHeaderHeight("64px");
+              setCurrentSection(currentSection + 1);
+            }
+          } else if (direction === "up") {
+            if (currentSection > 0) {
+              mainDiv.scrollTo({
+                top: mainDiv.clientHeight * (currentSection - 1),
+                behavior: "smooth",
+              });
+              if (currentSection === 1 && pageIs === "/") {
+                setHeaderHeight(!isMobile ? "128px" : "90px");
+              }
+              setCurrentSection(currentSection - 1);
+            }
+          }
+          setSubExpertise(null);
+          setIsScrolling(true);
+        }
       };
+
+      const handleWheel = (e: WheelEvent) => {
+        e.preventDefault();
+        handleScroll(e.deltaY > 0 ? "down" : "up");
+      };
+
+      const main = document.getElementById("main");
+
+      if (main) {
+        main.addEventListener("wheel", handleWheel, { passive: false });
+
+        return () => {
+          main.removeEventListener("wheel", handleWheel);
+        };
+      }
     }
   }, [currentSection, isScrolling]);
 
@@ -234,7 +237,7 @@ export default function App() {
 
   useEffect(() => {
     const newHeaderHeight =
-      currentSection === 0 ? (!isMobile ? "128px" : "90px") : "64px";
+      currentSection === 0 ? (!isMobile && pageIs === '/' ? "128px" : "90px") : "64px";
     pageIs === "/" && setHeaderHeight(newHeaderHeight);
   }, [currentSection, isMobile]);
   const [pageIs, setPageIs] = useState<string>("/");

@@ -25,7 +25,7 @@ const customStyles: StylesConfig = {
     boxShadow: "none",
     border: "1px",
     color: "white",
-    "&:hover": { backgroundColor: "#F9F9F9", color: "black" },
+    "&:hover": { backgroundColor: "#A9A9A9", color: "black" },
   }),
   option: (styles, { isFocused, isSelected }) => ({
     ...styles,
@@ -40,16 +40,19 @@ const customStyles: StylesConfig = {
     zIndex: 2145483645,
     borderColor: "black",
     borderRadius: "0",
+    "&:hover": { color: "black" }
   }),
   placeholder: (styles) => ({
     ...styles,
     zIndex: 2145483645,
     color: "black",
+    "&:hover": { color: "black" }
   }),
   singleValue: (styles) => ({
     ...styles,
     zIndex: 2145483645,
     color: "white",
+    "&:hover": { color: "black" }
   }),
 };
 
