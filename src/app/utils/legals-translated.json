@@ -2,10 +2,6 @@
   "fr": {
     "title": "MENTIONS LÉGALES",
     "subtitles": {
-      "I": {
-        "title": "I. Le site"
-        /* trouver les parties qui sont identiques et voir comment je peux decomposer le tout pour en faire un json */
-      },
       "II": {
         "title": "II. Responsabilité",
         "content": "L'utilisateur du Site reconnaît avoir pris connaissance de la présente notice légale et s'engage à la respecter.Le cabinet VMDL s'engage à faire ses meilleurs efforts pour assurer aux utilisateurs une accessibilité du Site à tout moment et pour fournir des informations fiables. En cas d'erreur ou d'anomalie rencontrée par l'utilisateur, ce dernier peut adresser un courriel à l'adresse suivante : cabinet@vmdl.ai.En aucun cas le cabinet VMDL ne pourra être tenu pour responsable des erreurs rencontrées ou de l'inaccessibilité du présent Site internet.Les données présentes sur ce Site internet sont fournies à titre informatif. Elles sont susceptibles de subir des modifications."
@@ -21,10 +17,153 @@
       "V": {
         "title": "V. Modification des mentions légales",
         "content": "Le cabinet VMDL se réserve le droit de modifier et d'actualiser les présentes mentions légales à tout moment et sans préavis.L'utilisateur est donc invité à le consulter régulièrement."
+      }
+    }
+  },
+  "en": {
+    "title": "LEGAL NOTICE",
+    "subtitles": {
+      "II": {
+        "title": "II. Liability",
+        "content": "The user of the Site acknowledges having read this legal notice and undertakes to respect it.The VMDL firm undertakes to make its best efforts to ensure users access to the Site at all times and to provide reliable information. In case of error or anomaly encountered by the user, the latter can send an email to the following address: cabinet@vmdl.ai.In no event shall the VMDL firm be liable for errors encountered or for the inaccessibility of this website.The data on this website is provided for information purposes. They may be subject to modifications."
       },
-      "VI": {
-        "title": "VI. Politique de confidentialité des données"
-        /* trouver les parties qui sont identiques et voir comment je peux decomposer le tout pour en faire un json */
+      "III": {
+        "title": "III. Protection of personal data",
+        "content": "In compliance with the provisions of the law of January 6, 1978 relating to data processing, files and freedoms, amended by the law of August 6, 2004, the automated processing of personal data carried out from this website has been the subject of two declarations to the National Commission for Information Technology and Civil Liberties (CNIL) under number 2106644."
+      },
+      "IV": {
+        "title": "IV. Respect for intellectual property rights",
+        "content": "Any element composing this website (texts, photographs, logos, software, etc.) constitutes a work of the mind protected by articles L.111-1 and following of the Intellectual Property Code.Consequently, except with the prior and express authorization of its author, any reproduction or representation, in whole or in part, of this website, by any process and on any medium whatsoever, is unlawful."
+      },
+      "V": {
+        "title": "V. Modification of legal notices",
+        "content": "The VMDL firm reserves the right to modify and update these legal notices at any time and without notice.Users are therefore invited to consult it regularly."
+      }
+    }
+  },
+  "it": {
+    "title": "AVVISO LEGALE",
+    "subtitles": {
+      "II": {
+        "title": "II. Responsabilità",
+        "content": "L'utente del Sito riconosce di aver preso visione del presente avviso legale e si impegna a rispettarlo.Lo studio VMDL si impegna a fare il possibile per garantire agli utenti un accesso al Sito in qualsiasi momento e a fornire informazioni affidabili. In caso di errore o anomalia riscontrata dall'utente, quest'ultimo può inviare un'e-mail all'indirizzo seguente: cabinet@vmdl.ai.In nessun caso lo studio VMDL potrà essere ritenuto responsabile degli errori riscontrati o dell'inaccessibilità del presente sito internet.I dati presenti su questo sito internet sono forniti a scopo informativo. Essi possono subire modifiche."
+      },
+      "III": {
+        "title": "III. Protezione dei dati personali",
+        "content": "In conformità alle disposizioni della legge del 6 gennaio 1978 relativa all'informatica, ai file e alle libertà, modificata dalla legge del 6 agosto 2004, il trattamento automatizzato dei dati personali effettuato da questo sito internet è stato oggetto di due dichiarazioni presso la Commissione Nazionale per l'Informatica e le Libertà (CNIL) con il numero 2106644."
+      },
+      "IV": {
+        "title": "IV. Rispetto dei diritti di proprietà intellettuale",
+        "content": "Qualsiasi elemento che compone questo sito internet (testi, fotografie, loghi, software, ecc.) costituisce un'opera dell'ingegno protetta dagli articoli L.111-1 e seguenti del Codice della proprietà intellettuale.Conseguentemente, salvo autorizzazione preventiva ed espressa del suo autore, qualsiasi riproduzione o rappresentazione, totale o parziale, di questo sito internet, con qualsiasi mezzo e su qualsiasi supporto, è illecita."
+      },
+      "V": {
+        "title": "V. Modifica delle note legali",
+        "content": "Lo studio VMDL si riserva il diritto di modificare e aggiornare le presenti note legali in qualsiasi momento e senza preavviso.Si invita pertanto gli utenti sono invitati a consultarle regolarmente."
+      }
+    }
+  },
+  "es": {
+    "title": "AVISO LEGAL",
+    "subtitles": {
+      "II": {
+        "title": "II. Responsabilidad",
+        "content": "El usuario del Sitio reconoce haber leído el presente aviso legal y se compromete a respetarlo.El bufete VMDL se compromete a realizar sus mejores esfuerzos para garantizar a los usuarios un acceso al Sitio en todo momento y para proporcionar información fiable. En caso de error o anomalía encontrada por el usuario, este último puede enviar un correo electrónico a la siguiente dirección: cabinet@vmdl.ai.En ningún caso el bufete VMDL podrá ser considerado responsable de los errores encontrados o de la inaccesibilidad del presente sitio web.Los datos presentes en este sitio web se proporcionan a título informativo. Pueden estar sujetos a modificaciones."
+      },
+      "III": {
+        "title": "III. Protección de datos personales",
+        "content": "En cumplimiento de las disposiciones de la ley del 6 de enero de 1978 relativa a la informática, los archivos y las libertades, modificada por la ley del 6 de agosto de 2004, el tratamiento automatizado de los datos personales realizado a partir de este sitio web ha sido objeto de dos declaraciones ante la Comisión Nacional de Informática y Libertades (CNIL) con el número 2106644."
+      },
+      "IV": {
+        "title": "IV. Respeto de los derechos de propiedad intelectual",
+        "content": "Cualquier elemento que compone este sitio web (textos, fotografías, logotipos, software, etc.) constituye una obra del espíritu protegida por los artículos L.111-1 y siguientes del Código de Propiedad Intelectual.Consecuentemente, salvo autorización previa y expresa de su autor, cualquier reproducción o representación, total o parcial, de este sitio web, por cualquier procedimiento y en cualquier medio, es ilícita."
+      },
+      "V": {
+        "title": "V. Modificación de las menciones legales",
+        "content": "El bufete VMDL se reserva el derecho de modificar y actualizar las presentes menciones legales en cualquier momento y sin previo aviso.Se invita, por lo tanto, a los usuarios a consultarlas regularmente."
+      }
+    }
+  },
+  "عربي": {
+    "title": "تنويه قانوني",
+    "subtitles": {
+      "II": {
+        "title": "II. المسؤولية",
+        "content": "يعترف مستخدم الموقع بأنه قد قرأ هذا الإشعار القانوني ويتعهد بالالتزام به.يتعهد مكتب VMDL ببذل أفضل جهوده لضمان إتاحة الوصول للمستخدمين إلى الموقع في أي وقت وتقديم معلومات موثوقة. في حالة وجود خطأ أو شذوذ يواجهه المستخدم، يمكن لهذا الأخير إرسال بريد إلكتروني إلى العنوان التالي: cabinet@vmdl.ai. في أي حال من الأحوال، لا يمكن اعتبار مكتب VMDL مسؤولاً عن الأخطاء المواجهة أو عن عدم إمكانية الوصول إلى هذا الموقع. تُقدم البيانات المتوفرة على هذا الموقع الإلكتروني لأغراض معلوماتية. قد تخضع للتعديلات."
+      },
+      "III": {
+        "title": "III. حماية البيانات الشخصية",
+        "content": "تمشياً مع أحكام القانون المتعلق بالمعلوماتية والملفات والحريات الخاصة، المعدل بموجب القانون رقم 6 لسنة 2004، خضعت المعالجة الآلية للبيانات الشخصية التي تمت من هذا الموقع الإلكتروني لتصريحين أمام اللجنة الوطنية للمعلوماتية والحريات (CNIL) تحت الرقم 2106644."
+      },
+      "IV": {
+        "title": "IV. احترام حقوق الملكية الفكرية",
+        "content": "أي عنصر يتكون من هذا الموقع الإلكتروني (نصوص، صور فوتوغرافية، شعارات، برمجيات، إلخ) يشكل عملاً من عمل العقل محمي بموجب المواد L.111-1 وما بعدها من قانون الملكية الفكرية. ونتيجة لذلك، باستثناء الإذن السابق والصريح من مؤلفه، فإن أي استنساخ أو تمثيل، كلياً أو جزئياً، لهذا الموقع الإلكتروني، بواسطة أي إجراء وعلى أي وسيلة كانت، يعتبر غير قانوني."
+      },
+      "V": {
+        "title": "V. تعديل الإشعارات القانونية",
+        "content": "يحتفظ مكتب VMDL بالحق في تعديل وتحديث هذه الإشعارات القانونية في أي وقت ودون إشعار مسبق. لذلك،يُدعى المستخدمون بشدة بمراجعتها بانتظام."
+      }
+    }
+  },
+  "pt": {
+    "title": "AVISO LEGAL",
+    "subtitles": {
+      "II": {
+        "title": "II. Responsabilidade",
+        "content": "O usuário do Site reconhece ter lido o presente aviso legal e compromete-se a respeitá-lo.O escritório VMDL compromete-se a envidar seus melhores esforços para garantir aos usuários acesso ao Site a qualquer momento e fornecer informações confiáveis. Em caso de erro ou anomalia encontrada pelo usuário, este último pode enviar um e-mail para o seguinte endereço: cabinet@vmdl.ai.Em nenhuma circunstância o escritório VMDL poderá ser responsabilizado por erros encontrados ou pela inacessibilidade deste site da internet.Os dados presentes neste site da internet são fornecidos a título informativo. Eles podem estar sujeitos a modificações."
+      },
+      "III": {
+        "title": "III. Proteção de dados pessoais",
+        "content": "Em conformidade com as disposições da lei de 6 de janeiro de 1978 relativa à informática, aos arquivos e às liberdades, modificada pela lei de 6 de agosto de 2004, o tratamento automatizado de dados pessoais realizado a partir deste site da internet foi objeto de duas declarações à Comissão Nacional de Informática e Liberdades (CNIL) sob o número 2106644."
+      },
+      "IV": {
+        "title": "IV. Respeito aos direitos de propriedade intelectual",
+        "content": "Qualquer elemento que compõe o presente site da internet (textos, fotografias, logotipos, software, etc.) constitui uma obra do espírito protegida pelos artigos L.111-1 e seguintes do Código da Propriedade Intelectual.Consequentemente, exceto com autorização prévia e expressa de seu autor, qualquer reprodução ou representação, total ou parcial, deste site da internet, por qualquer processo e em qualquer suporte, é ilícita."
+      },
+      "V": {
+        "title": "V. Modificação das menções legais",
+        "content": "O escritório VMDL reserva-se o direito de modificar e atualizar as presentes menções legais a qualquer momento e sem aviso prévio. Portanto, os usuários são convidados a consultá-las regularmente."
+      }
+    }
+  },
+  "de": {
+    "title": "IMPRESSUM",
+    "subtitles": {
+      "II": {
+        "title": "II. Haftung",
+        "content": "Der Benutzer der Website erkennt an, diese rechtliche Hinweise gelesen zu haben, und verpflichtet sich, diese einzuhalten.Die Kanzlei VMDL verpflichtet sich, alles in ihrer Macht Stehende zu tun, um den Benutzern jederzeit Zugang zur Website zu gewähren und zuverlässige Informationen bereitzustellen. Im Falle eines Fehlers oder einer Anomalie, die der Benutzer feststellt, kann dieser eine E-Mail an die folgende Adresse senden: cabinet@vmdl.ai.In keinem Fall haftet die Kanzlei VMDL für Fehler oder für die Nichterreichbarkeit dieser Website.Die auf dieser Website bereitgestellten Daten dienen nur zu Informationszwecken. Sie können Änderungen unterliegen."
+      },
+      "III": {
+        "title": "III. Datenschutz",
+        "content": "In Übereinstimmung mit den Bestimmungen des Gesetzes vom 6. Januar 1978 über Informatik, Dateien und Freiheiten, geändert durch das Gesetz vom 6. August 2004, wurde die automatisierte Verarbeitung personenbezogener Daten, die von dieser Website ausgeht, bei der Nationalen Kommission für Informatik und Freiheiten (CNIL) unter der Nummer 2106644 gemeldet."
+      },
+      "IV": {
+        "title": "IV. Achtung des geistigen Eigentums",
+        "content": "Jedes Element dieser Website (Texte, Fotografien, Logos, Software usw.) ist ein geistiges Werk, das durch die Artikel L.111-1 ff. des Gesetzbuchs des geistigen Eigentums geschützt ist. Daher ist jede Vervielfältigung oder Darstellung, ganz oder teilweise, dieser Website, durch welches Verfahren und auf welchem Träger auch immer, ohne vorherige ausdrückliche Genehmigung ihres Autors unzulässig."
+      },
+      "V": {
+        "title": "V. Änderung des Impressums",
+        "content": "Die Kanzlei VMDL behält sich das Recht vor, diese rechtlichen Hinweise jederzeit und ohne vorherige Ankündigung zu ändern und zu aktualisieren. Benutzer werden daher gebeten, diese regelmäßig zu konsultieren."
+      }
+    }
+  },
+  "中文": {
+    "title": "法律声明",
+    "subtitles": {
+      "II": {
+        "title": "二. 责任",
+        "content": "本网站用户承认已阅读本法律声明，并承诺遵守。VMDL 律师事务所承诺尽最大努力确保用户随时访问网站并提供可靠信息。如果用户发现错误或异常，用户可以将电子邮件发送至以下地址：cabinet@vmdl.ai。在任何情况下，VMDL 律师事务所均不对发现的错误或本网站的无法访问负责。本网站上提供的数据仅供参考。数据可能会有变动。"
+      },
+      "III": {
+        "title": "三. 个人数据保护",
+        "content": "根据 1978 年 1 月 6 日关于信息技术、文件和自由的法律，2004 年 8 月 6 日修改的法律，从本网站发出的个人数据的自动处理已向国家信息技术和自由委员会（CNIL）报告，编号为 2106644。"
+      },
+      "IV": {
+        "title": "四. 尊重知识产权",
+        "content": "本网站的任何元素（文字、照片、标志、软件等）都是受法律知识产权法第 L.111-1 等条款的保护的智力作品。因此，未经作者的事先明确授权，任何以任何方式和任何媒介对本网站的全部或部分复制或表述均属非法。"
+      },
+      "V": {
+        "title": "五. 法律声明的修改",
+        "content": "VMDL 律师事务所保留随时修改和更新本法律声明的权利，恕不另行通知。因此，用户被邀请定期查阅。"
       }
     }
   }
