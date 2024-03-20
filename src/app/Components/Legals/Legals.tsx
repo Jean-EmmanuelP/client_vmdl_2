@@ -7,6 +7,11 @@ export default function Legals() {
   const { langueCourante } = useSection();
   const { data } = useData();
   const [legalsData, setLegalsData] = useState(legalsDataJson);
+  /*
+    go to page.tsx > legalsData must be a context
+    check a useEffect each time the langCode is updated and setLegalsData again
+    take legalsData from useSection and print the content there
+  */
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
