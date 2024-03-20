@@ -340,7 +340,7 @@ export default function Legals() {
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
                 <li>N° SIRET 83113986000017</li>
-                <li>D'ora in poi denominato &quot;lo studio VMDL&quot;</li>
+                <li>D&apos;ora in poi denominato &quot;lo studio VMDL&quot;</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -368,7 +368,7 @@ export default function Legals() {
               </ul>
             </p>
             <p className="flex flex-col py-2">
-              <span>I.IV. Responsabile dell'Hosting</span>
+              <span>I.IV. Responsabile dell&apos;Hosting</span>
               <ul>
                 <li>La società Vercel</li>
                 <li>Casella Postale 40190 - San Francisco - CA 94140 -</li>
@@ -524,12 +524,12 @@ export default function Legals() {
               <div className="flex flex-col py-2">
                 <span>Purpose of the Processing</span>
                 <p>
-                  Within the framework of the Site's operation, the processing
+                  Within the framework of the Site&apos;s operation, the processing
                   of personal data aims at customer management, personalized
                   solicitation, loyalty operations, the development of
                   statistics, the management of requests for access,
                   rectification, and opposition rights, and the management of
-                  people's opinions about the VMDL firm. More broadly, in the
+                  people&apos;s opinions about the VMDL firm. More broadly, in the
                   context of processing a file, whether it is a legal, judicial,
                   or arbitration case, the VMDL firm pays particular attention
                   to the integrity of your data for the protection of your
@@ -596,7 +596,7 @@ export default function Legals() {
                 <span>Requests</span>
                 <p>
                   For any request concerning the data protection policy of the
-                  Site's users, and to exercise your rights, you can contact the
+                  Site&apos;s users, and to exercise your rights, you can contact the
                   firm at the email address cabinet@vmdl.ai.
                 </p>
               </div>
@@ -842,7 +842,7 @@ export default function Legals() {
             <div className="p-2 text-[11px]">
               La Politica sulla Privacy dei Dati del sito https://www.vmdl.ai/ è
               redatta in conformità agli articoli 13 e 14 del Regolamento
-              Generale sulla Protezione dei Dati (2016/679) e all'articolo 32
+              Generale sulla Protezione dei Dati (2016/679) e all&apos;articolo 32
               della legge Informatica e Libertà del 6 gennaio 1978.
             </div>
             <div className="text-[11px] flex flex-col">
@@ -863,7 +863,7 @@ export default function Legals() {
               <div className="flex flex-col py-2">
                 <span>Finalità del Trattamento</span>
                 <p>
-                  Nel quadro dell'operatività del Sito, il trattamento dei dati
+                  Nel quadro dell&apos;operatività del Sito, il trattamento dei dati
                   personali ha lo scopo di gestire i clienti, sollecitazioni
                   personalizzate, operazioni di fidelizzazione, elaborazione di
                   statistiche, gestione delle richieste di accesso, rettifica e
@@ -871,7 +871,7 @@ export default function Legals() {
                   studio VMDL. Più in generale, nel contesto del trattamento di
                   un fascicolo, sia che si tratti di una questione legale,
                   giudiziaria o di arbitrato, lo studio VMDL presta particolare
-                  attenzione all'integrità dei tuoi dati al fine di proteggere
+                  attenzione all&apos;integrità dei tuoi dati al fine di proteggere
                   la tua privacy, conformemente ai suoi obblighi deontologici.
                 </p>
               </div>
@@ -883,10 +883,10 @@ export default function Legals() {
                   conformemente alla legge modificata del 6 gennaio 1978. Puoi
                   anche, per motivi legittimi, opporsi al trattamento dei tuoi
                   dati. Tutti questi diritti possono essere esercitati presso lo
-                  studio VMDL inviando un'email all'indirizzo seguente:
+                  studio VMDL inviando un&apos;email all&apos;indirizzo seguente:
                   cabinet@vmdl.ai. Nel caso in cui ritieni che i tuoi dati non
                   siano stati protetti, hai anche il diritto di presentare un
-                  reclamo presso un'autorità di controllo (CNIL).
+                  reclamo presso un&apos;autorità di controllo (CNIL).
                 </p>
               </div>
               <div className="flex flex-col py-2">
@@ -894,7 +894,7 @@ export default function Legals() {
                 <p>
                   Sulla base degli obblighi legali, i tuoi dati personali
                   possono essere divulgati in applicazione di una legge, di un
-                  regolamento o in virtù di una decisione di un'autorità
+                  regolamento o in virtù di una decisione di un&apos;autorità
                   regolamentare o giudiziaria competente. In generale, ci
                   impegniamo a rispettare tutte le regole legali che potrebbero
                   impedire, limitare o regolamentare la diffusione di
@@ -913,13 +913,13 @@ export default function Legals() {
               </div>
               <div className="flex flex-col py-2">
                 <span>
-                  Trasferimento dei Dati al di Fuori dell'Unione Europea
+                  Trasferimento dei Dati al di Fuori dell&apos;Unione Europea
                 </span>
                 <p>
                   Lo studio VMDL si impegna a rispettare la normativa
                   applicabile relativa ai trasferimenti di dati verso paesi
                   esteri che offrano un livello di protezione equivalente, e ad
-                  ottenere un'autorizzazione dalla CNIL per procedere a tale
+                  ottenere un&apos;autorizzazione dalla CNIL per procedere a tale
                   trasferimento nel caso in cui il paese destinatario non
                   disponga di tale livello di protezione.
                 </p>
@@ -928,7 +928,7 @@ export default function Legals() {
                 <span>Sicurezza dei Dati</span>
                 <p>
                   Lo studio VMDL adotta tutte le misure tecniche e organizzative
-                  appropriate mediante l'utilizzo di mezzi fisici e logistici
+                  appropriate mediante l&apos;utilizzo di mezzi fisici e logistici
                   per garantire un livello di sicurezza adeguato al rischio di
                   accessi accidentali, non autorizzati o illeciti, divulgazione,
                   alterazione, perdita o distruzione dei dati personali che ti
@@ -940,7 +940,7 @@ export default function Legals() {
                 <p>
                   Per qualsiasi richiesta riguardante la politica di protezione
                   dei dati degli utenti del Sito, e per esercitare i tuoi
-                  diritti, puoi contattare lo studio all'indirizzo email
+                  diritti, puoi contattare lo studio all&apos;indirizzo email
                   cabinet@vmdl.ai.
                 </p>
               </div>
