@@ -152,9 +152,8 @@ export default function Paragraph({
                   animate={{ y: "-40px", opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: 0.2, duration: 0.7 }}
-                  className={`text-xl w-1/2 text-left leading-5 sm:leading-8 mb-2 max-h-[50%] max-w-[70%] overflow-auto ${
-                    isMobile ? "-mt-[200px]" : "-mt-[50px]"
-                  }`}
+                  className={`text-xl w-1/2 text-left leading-5 sm:leading-8 mb-2 max-h-[50%] max-w-[70%] overflow-auto ${isMobile ? "-mt-[200px]" : "-mt-[50px]"
+                    }`}
                 >
                   {children[3]}
                 </motion.p>
@@ -185,14 +184,13 @@ export default function Paragraph({
                     delay: toggle ? 0 : 0.7,
                   }}
                   onClick={() => {
-                    homeSection ? handleScroll(5) : setToggle(!toggle);
+                    homeSection ? handleScroll(isMobile ? 5.3 : 5) : setToggle(!toggle);
                     setIsHovering(false);
                   }}
-                  className={`text-[#181a1b] p-4 ${
-                    !homeSection
+                  className={`text-[#181a1b] p-4 ${!homeSection
                       ? `relative w-[180px] sm:w-[280px] border-[0.5px] border-noir transition duration-150`
                       : `text-noir bg-blanc  shadow-2xl sm:h-[50px] sm:w-[300px]`
-                  } uppercase flex justify-center items-center leading-3 sm:h-[50px] sm:text-xs contact-us overflow-hidden`}
+                    } uppercase flex justify-center items-center leading-3 sm:h-[50px] sm:text-xs contact-us overflow-hidden`}
                 >
                   <motion.span
                     animate={{ x: isHovering ? "0" : "8px" }}

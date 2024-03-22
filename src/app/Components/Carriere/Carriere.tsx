@@ -1,7 +1,10 @@
 export default function Carriere() {
   return (
-    <div className="w-full h-full bg-blanc flex flex-col sm:flex-row items-center justify-center">
-      <p className="w-[70%] text-left">
+    <div className="relative w-full h-full bg-blanc flex flex-col sm:flex-row items-center justify-center">
+      <div className="absolute top-[20%] sm:top-[22%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+        Carriere
+      </div>
+      <p className="text-left text-[16px] px-10 sm:px-0 sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
         VMDL recherche en permanence des avocats et avocats-stagiaires de
         talent.
         <br />

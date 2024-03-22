@@ -95,6 +95,15 @@ export default function App() {
   >(null);
   const [mainHeight, setMainHeight] = useState("100%");
 
+  useEffect(() => {
+    const newHeaderHeight =
+      currentSection === 0 ? (!isMobile && pageIs === '/' ? "128px" : "90px") : "64px";
+    pageIs === "/" && setHeaderHeight(newHeaderHeight);
+  }, [currentSection, isMobile]);
+  const [pageIs, setPageIs] = useState<string>("/");
+  useEffect(() => {
+    setHeaderHeight("64px");
+  }, [pageIs]);
   {
     /* check si cest sur telephone */
   }
@@ -103,12 +112,10 @@ export default function App() {
       if (isMobile) {
         setHeaderHeight("90px");
       } else {
-        console.log(`rojgoerg`);
         setHeaderHeight("128px");
       }
     }
   }, [isMobile]);
-
   {
     /* met la taille du home en fonction de la taille du header */
   }
@@ -219,7 +226,7 @@ export default function App() {
         };
       }
     }
-  }, [currentSection, isScrolling]);
+  }, [currentSection, isScrolling, pageIs]);
 
   {
     /* prends les donnees depuis le github */
@@ -234,16 +241,6 @@ export default function App() {
     }
     fetchData();
   }, []);
-
-  useEffect(() => {
-    const newHeaderHeight =
-      currentSection === 0 ? (!isMobile && pageIs === '/' ? "128px" : "90px") : "64px";
-    pageIs === "/" && setHeaderHeight(newHeaderHeight);
-  }, [currentSection, isMobile]);
-  const [pageIs, setPageIs] = useState<string>("/");
-  useEffect(() => {
-    setHeaderHeight("64px");
-  }, [pageIs]);
 
   const updateMediaPaths = useCallback(() => {
     const isMobile = window.innerWidth <= 768;
