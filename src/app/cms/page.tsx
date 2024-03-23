@@ -1,123 +1,88 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import contentData from "./content.json";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
-type JsonDataType = typeof contentData; // check the json data
-type LanguageKeys = keyof JsonDataType; // check the language
-type SectionKeys = keyof JsonDataType[LanguageKeys]; // to check each sections of the languages
-type SubSectionKeys = string | null;
-type ElementKeys = string | null;
-type SubSubSectionKeys = string | null;
+type JsonValue = string | number | boolean | null | JsonData;
+type JsonData = { [key: string]: JsonValue } | JsonValue[];
 
-export default function CMS() {
-  const [language, setLanguage] = useState<LanguageKeys>("fr");
-  const [jsonData, setJsonData] = useState<JsonDataType>(contentData);
-  const [selectedSection, setSelectedSection] = useState<SectionKeys>("header");
-  const [selectedSubSection, setSelectedSubSection] =
-    useState<SubSectionKeys>(null);
-  const [newTitle, setNewTitle] = useState<string>("");
-  const [newContent, setNewContent] = useState<string>("");
-  const [selectedElement, setSelectedElement] = useState<ElementKeys>(null);
-  const [newValue, setNewValue] = useState<string>("");
-  const [selectedSubSubSection, setSelectedSubSubSection] =
-    useState<SubSubSectionKeys>(null);
+interface JsonEditorProps {
+  json: JsonData;
+  onChange: (updatedJson: JsonData) => void;
+}
 
-  useEffect(() => {
-    updateSubSections(selectedSection);
-  }, [selectedSection, language]);
+const JsonEditor: React.FC<JsonEditorProps> = ({ json, onChange }) => {
+  const handleValueChange = (path: string[], value: JsonValue) => {
+    const updateJson = (
+      currentJson: JsonValue,
+      pathIndex: number
+    ): JsonValue => {
+      if (pathIndex >= path.length) return value;
 
-  useEffect(() => {}, [selectedSubSubSection]);
+      const currentPath = path[pathIndex];
 
-  const updateSubSections = (section: SectionKeys) => {
-    const sectionData = jsonData[language][section];
-    const firstSubSectionKey =
-      typeof sectionData === "object" ? getFirstKey(sectionData) : null;
-    setSelectedSubSection(firstSubSectionKey);
-    updateElements(section, firstSubSectionKey);
-  };
-
-  const updateElements = (section: SectionKeys, subSection: SubSectionKeys) => {
-    const subSectionData = subSection
-      ? (jsonData[language][section] as any)[subSection]
-      : null;
-    if (subSectionData && typeof subSectionData === "object") {
-      const firstElementKey = getFirstKey(subSectionData);
-      setSelectedElement(firstElementKey);
-      setSelectedSubSubSection(firstElementKey);
-    } else {
-      setSelectedElement(null);
-      setSelectedSubSubSection(null);
-    }
-  };
-
-  const getFirstKey = <T extends object>(data: T) => {
-    const keys = Object.keys(data);
-    return keys.length > 0 ? keys[0] : null;
-  };
-
-  const getKey = <T extends object>(data: T, number: number) => {
-    const keys = Object.keys(data);
-    return keys.length > 0 ? keys[number] : null;
-  };
-
-  const handleSectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedSection(e.target.value as SectionKeys);
-  };
-
-  const handleSubSectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedSubSection(e.target.value);
-    updateElements(selectedSection, e.target.value);
-  };
-
-  const handleElementChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedElement(e.target.value);
-    setSelectedSubSubSection(e.target.value);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewValue(e.target.value);
-  };
-
-  const handleSubmit = async () => {
-    const updatedJsonData = { ...jsonData };
-
-    // Si une sous-sous-section est sélectionnée, mettez à jour son titre et son contenu
-    if (selectedElement && selectedSubSection && selectedSubSubSection) {
-      const subSectionData = (
-        updatedJsonData[language][selectedSection] as any
-      )[selectedSubSection][selectedElement];
-      // La vérification conditionnelle est placée ici
-      if (
-        subSectionData &&
-        selectedSubSubSection &&
-        subSectionData[selectedSubSubSection]
-      ) {
-        if (newTitle) subSectionData[selectedSubSubSection].title = newTitle;
-        if (newContent)
-          subSectionData[selectedSubSubSection].content = newContent;
+      if (typeof currentJson === "object" && currentJson !== null) {
+        if (Array.isArray(currentJson)) {
+          const index = parseInt(currentPath, 10);
+          const updatedArray = [...currentJson];
+          updatedArray[index] = updateJson(currentJson[index], pathIndex + 1);
+          return updatedArray;
+        } else {
+          const updatedObject = {
+            ...currentJson,
+            [currentPath]: updateJson(
+              currentJson[currentPath as keyof typeof currentJson],
+              pathIndex + 1
+            ),
+          };
+          return updatedObject;
+        }
+      } else {
+        throw new Error("Path is invalid");
       }
-    } else if (selectedElement && selectedSubSection) {
-      (
-        (updatedJsonData[language][selectedSection] as any)[
-          selectedSubSection
-        ] as any
-      )[selectedElement] = newValue;
-    } else if (selectedSubSection) {
-      (updatedJsonData[language][selectedSection] as any)[selectedSubSection] =
-        newValue;
+    };
+
+    onChange(updateJson(json, 0) as JsonData);
+  };
+
+  const renderEditor = (
+    currentJson: JsonValue,
+    basePath: string[] = []
+  ): React.ReactNode => {
+    if (typeof currentJson === "object" && currentJson !== null) {
+      return Object.entries(currentJson).map(([key, value]) => (
+        <div key={key} style={{ marginLeft: "20px" }}>
+          <strong>{key}:</strong> {renderEditor(value, basePath.concat(key))}
+        </div>
+      ));
+    } else {
+      return (
+        <input
+          type="text"
+          value={String(currentJson)}
+          onChange={(e) => handleValueChange(basePath, e.target.value)}
+        />
+      );
     }
+  };
 
-    setJsonData(updatedJsonData);
+  return <div>{renderEditor(json)}</div>;
+};
 
+const CMS: React.FC = () => {
+  const initialJson: JsonData = require("./content.json");
+
+  const [json, setJson] = useState<JsonData>(initialJson);
+  const [editJson, setEditJson] = useState<JsonData>(initialJson);
+  const handleSubmit = async () => {
+    console.log(editJson);
+    setJson(editJson);
     try {
       const response = await fetch("/api/save-content", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedJsonData),
+        body: JSON.stringify(editJson),
       });
 
       if (!response.ok) {
@@ -128,152 +93,14 @@ export default function CMS() {
     } catch (error) {
       console.error("Erreur lors de la sauvegarde des données", error);
     }
-    setNewTitle("");
-    setNewContent("");
   };
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(e.target.value as LanguageKeys);
-  };
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const useAuth = async () => {
-    const router = useRouter();
-
-    useEffect(() => {
-      const validateToken = async () => {
-        const token = sessionStorage.getItem("authToken");
-        if (!token) {
-          router.push("/admin");
-          return;
-        }
-
-        try {
-          const response = await fetch("/api/check-token", {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
-          if (!response.ok) {
-            throw new Error("Token validation failed");
-          }
-        } catch (error) {
-          sessionStorage.removeItem("authToken");
-          router.push("/");
-        }
-      };
-
-      validateToken();
-    }, [router]);
-  };
-  useAuth();
   return (
-    <div className="cursor-default bg-blanc bg-cover w-full h-full flex justify-center items-center">
-      <div className="backdrop-blur-xl bg-cyan-500/20 flex flex-col justify-center gap-10 p-10 w-fit h-fit rounded-md shadow-2xl">
-        <div className="p-2 font-bold underline">Content Management System</div>
-        <select
-          value={language}
-          className="p-2 rounded-md"
-          onChange={handleLanguageChange}
-        >
-          {Object.keys(jsonData).map((langKey) => (
-            <option key={langKey} value={langKey}>
-              {langKey.toUpperCase()}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={selectedSection}
-          className="p-2 rounded-md"
-          onChange={handleSectionChange}
-        >
-          {Object.keys(jsonData.fr).map((key) => (
-            <option key={key} className="p-1 border" value={key}>
-              {key}
-            </option>
-          ))}
-        </select>
-
-        {selectedSubSection &&
-          typeof jsonData.fr[selectedSection] === "object" && (
-            <select
-              className="p-2 rounded-md"
-              value={selectedSubSection || undefined}
-              onChange={handleSubSectionChange}
-            >
-              {Object.keys(jsonData.fr[selectedSection]).map((subKey) => (
-                <option key={subKey} className="p-1 border" value={subKey}>
-                  {subKey}
-                </option>
-              ))}
-            </select>
-          )}
-
-        {selectedElement &&
-          selectedSubSection &&
-          typeof (jsonData.fr[selectedSection] as any)[selectedSubSection] ===
-            "object" && (
-            <select
-              className="p-2 rounded-md bg-green-300"
-              value={selectedElement || undefined}
-              onChange={handleElementChange}
-            >
-              {Object.keys(
-                (jsonData.fr[selectedSection] as any)[selectedSubSection]
-              ).map((elementKey) => (
-                <option
-                  key={elementKey}
-                  className="p-1 border"
-                  value={elementKey}
-                >
-                  {elementKey}
-                </option>
-              ))}
-            </select>
-          )}
-        {selectedSubSubSection &&
-          typeof (jsonData.fr[selectedSection] as any)[selectedSubSection!][
-            selectedSubSubSection
-          ] === "object" && (
-            <select
-              className="p-2 rounded-md bg-green-300"
-              value={selectedElement || undefined}
-              onChange={handleElementChange} // changer le onChange
-            >
-              {Object.keys(
-                (jsonData.fr[selectedSection] as any)[selectedSubSection!][
-                  selectedSubSubSection
-                ]
-              ).map((elementKey) => (
-                <option
-                  key={elementKey}
-                  className="p-1 border"
-                  value={elementKey}
-                >
-                  {elementKey}
-                </option>
-              ))}
-            </select>
-          )}
-
-        <input
-          type="text"
-          className="rounded-md p-1"
-          value={newValue}
-          onChange={handleChange}
-        />
-        <button
-          onClick={handleSubmit}
-          disabled={!newValue}
-          className={`cursor-pointer transition duration-150 rounded-md p-2 shadow-md text-xs sm:text-base bg-black  ${
-            !newValue ? "text-gray-500" : "text-white hover:text-green-500 hover:scale-105"
-          } font-bold`}
-        >
-          Save
-        </button>
-      </div>
-    </div>
+    <>
+      <JsonEditor json={editJson} onChange={setEditJson} />
+      <button onClick={handleSubmit}>Submit Changes</button>
+    </>
   );
-}
+};
+
+export default CMS;
