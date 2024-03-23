@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 type JsonValue = string | number | boolean | null | JsonData;
@@ -137,6 +137,19 @@ const CMS: React.FC = () => {
     fetchData();
   }, []);
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollToPercentage = (percentage: number) => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const scrollPosition = (percentage / 1000) * container.scrollHeight;
+      container.scrollTop = scrollPosition;
+    }
+  };
+  const langues = ["fr", "en", "عربي", "de", "pt", "es", "it", "中文"];
+  /*
+    1. comprendre comment separer chaque langue
+    2. comprendre comment scroll vers la langue que l'on a choisit
+  */
   return (
     <>
       <div className="bg-blanc cursor-default flex flex-col items-center justify-center p-6 max-h-[100vh] overflow-hidden">
@@ -160,12 +173,38 @@ const CMS: React.FC = () => {
             </div>
           </div>
           <div className="border-b border-black/20 border-1 pt-4 sm:pt-8 mx-8 sm:mx-2"></div>
-          <div className="pt-6 pl-4">Choisir la langue a changer:</div>
-          <div className="pt-6 pl-4">
+          <div className="flex gap-2 pt-6 pl-4">
+            Scroll jusqu'a la langue que tu souhaites modifie le contenu:
+            <div className="flex gap-4">
+              {[0, 40, 50, 75, 100, 131.5, 150, 175].map(
+                (percentage, index) => (
+                  <div
+                    key={index}
+                    className="cursor-pointer group"
+                    onClick={() => scrollToPercentage(percentage)}
+                  >
+                    <span className="transition duration-50 group-hover:font-semibold">
+                      {langues[index]}
+                    </span>{" "}
+                    {index + 1 !== 8 && "|"}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <div
+            ref={scrollContainerRef}
+            className="pt-6 pl-4 overflow-y-auto w-full h-full scroll-smooth"
+          >
             <JsonEditor json={editJson} onChange={setEditJson} />
           </div>
         </div>
-        <button onClick={handleSubmit} className="mt-8 p-4 rounded-md border border-gray-500/20 shadow-2xl flex items-center justify-center bg-teal-300 transition duration-150 hover:scale-105 hover:underline cursor-pointer">Appliquer les modifications</button>
+        <button
+          onClick={handleSubmit}
+          className="mt-8 p-4 rounded-md border border-gray-500/20 shadow-2xl flex items-center justify-center bg-teal-300 transition duration-150 hover:scale-105 hover:underline cursor-pointer"
+        >
+          Appliquer les modifications
+        </button>
       </div>
     </>
   );
