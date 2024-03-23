@@ -160,6 +160,7 @@ const CMS: React.FC = () => {
             </div>
           </div>
           <div className="border-b border-black/20 border-1 pt-4 sm:pt-8 mx-8 sm:mx-2"></div>
+          <div className="pt-6 pl-4">Choisir la langue a changer:</div>
           <div className="pt-6 pl-4">
             <JsonEditor json={editJson} onChange={setEditJson} />
           </div>
