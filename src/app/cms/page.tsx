@@ -4,9 +4,9 @@ import React, { useState, useEffect } from "react";
 import contentData from "./content.json";
 import { useRouter } from "next/navigation";
 
-type JsonDataType = typeof contentData;
-type LanguageKeys = keyof JsonDataType;
-type SectionKeys = keyof JsonDataType[LanguageKeys];
+type JsonDataType = typeof contentData; // check the json data
+type LanguageKeys = keyof JsonDataType; // check the language
+type SectionKeys = keyof JsonDataType[LanguageKeys]; // to check each sections of the languages
 type SubSectionKeys = string | null;
 type ElementKeys = string | null;
 type SubSubSectionKeys = string | null;
@@ -23,7 +23,7 @@ export default function CMS() {
   const [newValue, setNewValue] = useState<string>("");
   const [selectedSubSubSection, setSelectedSubSubSection] =
     useState<SubSubSectionKeys>(null);
-  const [selectedProperty, setSelectedProperty] = useState<string | null>(null);
+
   useEffect(() => {
     updateSubSections(selectedSection);
   }, [selectedSection, language]);
@@ -44,7 +44,7 @@ export default function CMS() {
       : null;
     if (subSectionData && typeof subSectionData === "object") {
       const firstElementKey = getFirstKey(subSectionData);
-      setSelectedElement(firstElementKey); // je suis arrive ici au niveau de la comprehension !
+      setSelectedElement(firstElementKey);
       setSelectedSubSubSection(firstElementKey);
     } else {
       setSelectedElement(null);
@@ -266,7 +266,10 @@ export default function CMS() {
         />
         <button
           onClick={handleSubmit}
-          className="cursor-pointer transition duration-150 hover:scale-105 rounded-md p-2 shadow-md text-xs sm:text-base bg-black text-white font-bold hover:text-green-500"
+          disabled={!newValue}
+          className={`cursor-pointer transition duration-150 rounded-md p-2 shadow-md text-xs sm:text-base bg-black  ${
+            !newValue ? "text-gray-500" : "text-white hover:text-green-500 hover:scale-105"
+          } font-bold`}
         >
           Save
         </button>
