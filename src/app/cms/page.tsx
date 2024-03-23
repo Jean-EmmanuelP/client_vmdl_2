@@ -173,25 +173,29 @@ const CMS: React.FC = () => {
             </div>
           </div>
           <div className="border-b border-black/20 border-1 pt-4 sm:pt-8 mx-8 sm:mx-2"></div>
-          <div className="flex gap-2 pt-6 pl-4">
-            Scroll jusqu'a la langue que tu souhaites modifie le contenu:
-            <div className="flex gap-4">
+          <div className="flex items-center justify-center sm:justify-normal gap-2 pt-4 sm:pt-6 pl-4">
+            <p className="hidden sm:block font-medium">
+              Choisis la langue que tu souhaites modifier :
+            </p>
+            <div className="flex gap-1 sm:gap-4">
               {[0, 40, 50, 75, 100, 131.5, 150, 175].map(
-                (percentage, index) => (
-                  <div
-                    key={index}
-                    className="cursor-pointer group"
-                    onClick={() => scrollToPercentage(percentage)}
-                  >
-                    <span className="transition duration-50 group-hover:font-semibold">
+                (percentage, index, array) => (
+                  <React.Fragment key={index}>
+                    <div
+                      className="cursor-pointer transition duration-50 hover:font-semibold"
+                      onClick={() => scrollToPercentage(percentage)}
+                    >
                       {langues[index]}
-                    </span>{" "}
-                    {index + 1 !== 8 && "|"}
-                  </div>
+                    </div>
+                    {index + 1 !== array.length && (
+                      <div className="text-center">|</div>
+                    )}
+                  </React.Fragment>
                 )
               )}
             </div>
           </div>
+          <div className="border-b border-black/20 border-1 pt-4 sm:pt-6 mx-8 sm:mx-2"></div>
           <div
             ref={scrollContainerRef}
             className="pt-6 pl-4 overflow-y-auto w-full h-full scroll-smooth"
