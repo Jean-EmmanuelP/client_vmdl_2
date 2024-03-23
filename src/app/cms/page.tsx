@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type JsonValue = string | number | boolean | null | JsonData;
 type JsonData = { [key: string]: JsonValue } | JsonValue[];
@@ -70,8 +70,13 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ json, onChange }) => {
 
 const CMS: React.FC = () => {
   const initialJson: JsonData = require("./content.json");
-
   const [json, setJson] = useState<JsonData>(initialJson);
+  {
+    /*
+    1. take content from the back
+    2. have a better UI & UX
+   */
+  }
   const [editJson, setEditJson] = useState<JsonData>(initialJson);
   const handleSubmit = async () => {
     console.log(editJson);
@@ -95,10 +100,24 @@ const CMS: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("/api/take-content");
+      if (!response.ok) {
+        throw new Error(`Network response was not ok`);
+      }
+      const data = await response.json();
+      setEditJson(data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
+    <div className="bg-red-500 cursor-default">
       <JsonEditor json={editJson} onChange={setEditJson} />
       <button onClick={handleSubmit}>Submit Changes</button>
+    </div>
     </>
   );
 };

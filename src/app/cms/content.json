@@ -67,6 +67,10 @@
       "phoneNumber": "07 57 41 72 87",
       "fixNumber": "01 44 32 13 93",
       "address": "2 Rue de Poissy, 75005 Paris"
+    },
+    "carreer": {
+      "title": "Carrieres",
+      "content": "VMDL recherche en permanence des avocats et avocats-stagiaires de talent.Si vous souhaitez rejoindre notee cabinet et disposez d'excellentes references tout en etant au benefice dun parcours academique exemplaire, n'hesitez pas a nous faire parvenir votre dossier. Toutes les candidatures seront traitees de maniere confidentielle. Pour candidatez, envoyez un mail a l'addresse ci-dessous: cabinet@vmdl.ai"
     }
   },
   "en": {
@@ -137,6 +141,10 @@
       "phoneNumber": "07 57 41 72 87",
       "fixNumber": "01 44 32 13 93",
       "address": "2 Rue de Poissy, 75005 Paris"
+    },
+    "carreer": {
+      "title": "Careers",
+      "content": "VMDL is constantly seeking talented lawyers and trainee lawyers. If you wish to join our firm and have excellent references while benefiting from an exemplary academic background, do not hesitate to send us your application. All applications will be treated confidentially. To apply, send an email to the address below: cabinet@vmdl.ai"
     }
   },
   "عربي": {
@@ -207,6 +215,10 @@
       "phoneNumber": "07 57 41 72 87",
       "fixNumber": "01 44 32 13 93",
       "address": "2 شارع دو بوازي، 75005 باريس"
+    },
+    "carreer": {
+      "title": "وظائف",
+      "content": "VMDL تبحث باستمرار عن محامين ومحامين متدربين موهوبين. إذا كنت ترغب في الانضمام إلى مكتبنا وتمتلك مراجع ممتازة مع الاستفادة من خلفية أكاديمية مثالية، فلا تتردد في إرسال طلبك إلينا. سيتم معالجة جميع الطلبات بسرية تامة. للتقديم، أرسل بريدًا إلكترونيًا إلى العنوان التالي: cabinet@vmdl.ai"
     }
   },
   "de": {
@@ -263,13 +275,6 @@
       "title": "DER GRÜNDER",
       "content": "Vincent Machado Da Luz hat einen Weg in den Bereichen Strafrecht und Kriminologie, Wirtschaftsrecht und neue Technologien eingeschlagen. Er hat an den französischen Universitäten Paris 1 Panthéon-Sorbonne, Paris 2 Panthéon-Assas, Paris-Saclay, Reims Champagne-Ardenne und Pau et des Pays de l'Adour studiert. Er hat seinen akademischen Weg als Leistungssportler absolviert, was ihm ermöglichte, ein Jahr in den USA zu studieren. Anschließend wurde er von der Haute École des Avocats au Conseil de Versailles und mehreren renommierten Anwälten in Paris ausgebildet, bevor er im Jahr 2023 die Kanzlei \"VMDL - Anwaltskanzlei & Cover Group\" gründete."
     },
-    "footer": {
-      "title": "VMDL - Anwaltskanzlei & Cover Group",
-      "subtitle": "Anwaltskanzlei",
-      "phoneNumber": "07 57 41 72 87",
-      "fixNumber": "01 44 32 13 93",
-      "address": "2 Rue de Poissy, 75005 Paris"
-    },
     "contact": {
       "title": "Kontakt",
       "nom_prenom": "Name und Vorname",
@@ -277,6 +282,17 @@
       "Courriel": "E-Mail",
       "Message": "Nachricht",
       "Envoyer": "senden"
+    },
+    "footer": {
+      "title": "VMDL - Anwaltskanzlei & Cover Group",
+      "subtitle": "Anwaltskanzlei",
+      "phoneNumber": "07 57 41 72 87",
+      "fixNumber": "01 44 32 13 93",
+      "address": "2 Rue de Poissy, 75005 Paris"
+    },
+    "carreer": {
+      "title": "Karrieren",
+      "content": "VMDL sucht ständig talentierte Anwälte und Rechtsreferendare. Wenn Sie unserem Unternehmen beitreten möchten und über ausgezeichnete Referenzen sowie eine vorbildliche akademische Laufbahn verfügen, zögern Sie nicht, uns Ihre Bewerbung zu senden. Alle Bewerbungen werden vertraulich behandelt. Um sich zu bewerben, senden Sie eine E-Mail an die unten stehende Adresse: cabinet@vmdl.ai"
     }
   },
   "pt": {
@@ -347,6 +363,10 @@
       "phoneNumber": "07 57 41 72 87",
       "fixNumber": "01 44 32 13 93",
       "address": "2 Rue de Poissy, 75005 Paris"
+    },
+    "carreer": {
+      "title": "Carreiras",
+      "content": "A VMDL está constantemente à procura de advogados talentosos e estagiários de advocacia. Se deseja juntar-se ao nosso escritório e tem excelentes referências, beneficiando de um percurso académico exemplar, não hesite em enviar-nos a sua candidatura. Todas as candidaturas serão tratadas de forma confidencial. Para se candidatar, envie um e-mail para o endereço abaixo: cabinet@vmdl.ai"
     }
   },
   "es": {
@@ -417,6 +437,10 @@
       "phoneNumber": "07 57 41 72 87",
       "fixNumber": "01 44 32 13 93",
       "address": "2 Rue de Poissy, 75005 París"
+    },
+    "carreer": {
+      "title": "Carreras",
+      "content": "VMDL está constantemente en busca de abogados y abogados en prácticas talentosos. Si desea unirse a nuestra firma y tiene excelentes referencias además de contar con un historial académico ejemplar, no dude en enviarnos su solicitud. Todas las solicitudes serán tratadas de manera confidencial. Para postularse, envíe un correo electrónico a la siguiente dirección: cabinet@vmdl.ai"
     }
   },
   "it": {
@@ -487,6 +511,10 @@
       "phoneNumber": "07 57 41 72 87",
       "fixNumber": "01 44 32 13 93",
       "address": "2 Rue de Poissy, 75005 Parigi"
+    },
+    "carreer": {
+      "title": "Carriere",
+      "content": "VMDL è costantemente alla ricerca di avvocati e avvocati stagisti talentuosi. Se desideri unirti al nostro studio legale e hai eccellenti referenze, beneficiando di un percorso accademico esemplare, non esitare a inviarci la tua candidatura. Tutte le candidature verranno trattate in modo confidenziale. Per candidarti, invia un'e-mail all'indirizzo sottostante: cabinet@vmdl.ai"
     }
   },
   "中文": {
@@ -557,6 +585,10 @@
       "phoneNumber": "07 57 41 72 87",
       "fixNumber": "01 44 32 13 93",
       "address": "巴黎第五区普瓦西街2号"
+    },
+    "carreer": {
+      "title": "职业",
+      "content": "VMDL不断寻找有才华的律师和实习律师。如果您希望加入我们的律所，并拥有优秀的推荐，并且具有出色的学术背景，请随时将您的申请发送给我们。所有申请将得到保密处理。要申请，请发送电子邮件至以下地址：cabinet@vmdl.ai"
     }
   }
 }
