@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type JsonValue = string | number | boolean | null | JsonData;
 type JsonData = { [key: string]: JsonValue } | JsonValue[];
@@ -99,7 +100,31 @@ const CMS: React.FC = () => {
       console.error("Erreur lors de la sauvegarde des données", error);
     }
   };
+  const validateToken = async () => {
+    const token = sessionStorage.getItem("authToken");
+    const router = useRouter();
+    if (!token) {
+      router.push("/admin");
+      return;
+    }
 
+    try {
+      const response = await fetch("/api/check-token", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Token validation failed");
+      }
+    } catch (error) {
+      sessionStorage.removeItem("authToken");
+      router.push("/");
+    }
+  };
+  validateToken();
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/take-content");
@@ -139,7 +164,7 @@ const CMS: React.FC = () => {
             <JsonEditor json={editJson} onChange={setEditJson} />
           </div>
         </div>
-        <button onClick={handleSubmit}>Submit Changes</button>
+        <button onClick={handleSubmit} className="mt-8 p-4 rounded-md border border-gray-500/20 shadow-2xl flex items-center justify-center bg-teal-300 transition duration-150 hover:scale-105 hover:underline cursor-pointer">Appliquer les modifications</button>
       </div>
     </>
   );
