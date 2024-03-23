@@ -35,7 +35,7 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500">
+    <div className="cursor-default w-screen h-screen flex justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500">
       <div className="bg-white p-2 w-1/4 h-1/4 rounded-md shadow-2xl gap-10 flex flex-col justify-center items-center">
         <h1 className="text-2xl">Page d&apos;Authentification</h1>
         {error && (

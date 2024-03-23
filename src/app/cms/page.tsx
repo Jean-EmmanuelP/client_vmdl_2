@@ -143,7 +143,7 @@ export default function CMS() {
       const validateToken = async () => {
         const token = sessionStorage.getItem("authToken");
         if (!token) {
-          router.push("/");
+          router.push("/admin");
           return;
         }
 
