@@ -59,6 +59,7 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ json, onChange }) => {
         <input
           type="text"
           value={String(currentJson)}
+          className="w-full"
           onChange={(e) => handleValueChange(basePath, e.target.value)}
         />
       );
@@ -73,7 +74,6 @@ const CMS: React.FC = () => {
   const [json, setJson] = useState<JsonData>(initialJson);
   {
     /*
-    1. take content from the back
     2. have a better UI & UX
    */
   }
@@ -114,10 +114,33 @@ const CMS: React.FC = () => {
 
   return (
     <>
-    <div className="bg-red-500 cursor-default">
-      <JsonEditor json={editJson} onChange={setEditJson} />
-      <button onClick={handleSubmit}>Submit Changes</button>
-    </div>
+      <div className="bg-blanc cursor-default flex flex-col items-center justify-center p-6 max-h-[100vh] overflow-hidden">
+        <div className="relative flex flex-col border-1 border shadow-md w-full overflow-y-auto bg-black/10 p-4">
+          <div className="w-full text-center font-bold">
+            <h1>Gestion du contenu du site VMDL</h1>
+            <div className="group flex absolute top-0 left-0 sm:top-1 sm:left-1 translate-x-1/2 translate-y-1/2 bg-blanc border-1 border border-gray-500/20 shadow-2xl transition duration-75 hover:scale-105 font-light items-center justify-center p-3 sm:p-4 text-sm sm:text-base rounded-full w-2 h-2 sm:w-4 sm:h-4">
+              i
+              <div className="w-[300px] absolute left-10 top-4 hidden group-hover:block bg-blanc border border-grey-500/20 p-2 text-sm">
+                Pour modifier le contenu du site, veuillez éditer les champs
+                ci-dessous et appuyer sur le boutton{" "}
+                <span className="font-medium">
+                  "Appliquer les modifications"{" "}
+                </span>{" "}
+                . Une fois les modifications appliquées, elles seront{" "}
+                <span className="underline">
+                  visibles immediatement sur le site
+                </span>
+                .
+              </div>
+            </div>
+          </div>
+          <div className="border-b border-black/20 border-1 pt-4 sm:pt-8 mx-8 sm:mx-2"></div>
+          <div className="pt-6 pl-4">
+            <JsonEditor json={editJson} onChange={setEditJson} />
+          </div>
+        </div>
+        <button onClick={handleSubmit}>Submit Changes</button>
+      </div>
     </>
   );
 };
