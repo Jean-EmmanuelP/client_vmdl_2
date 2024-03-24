@@ -50,11 +50,30 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ json, onChange }) => {
     basePath: string[] = []
   ): React.ReactNode => {
     if (typeof currentJson === "object" && currentJson !== null) {
-      return Object.entries(currentJson).map(([key, value]) => (
-        <div key={key} style={{ marginLeft: "20px" }}>
-          <strong>{key}:</strong> {renderEditor(value, basePath.concat(key))}
-        </div>
-      ));
+      return Object.entries(currentJson).map(([key, value], index) => {
+        const isFirstLevelButNotFirstItem =
+          basePath.length === 0 && index !== 0;
+        const style = isFirstLevelButNotFirstItem
+          ? {
+              borderTop: "2px solid black",
+              marginTop: "10px",
+              paddingTop: "20px",
+            }
+          : { marginLeft: "20px", paddingBottom: "10px" };
+
+        return (
+          <div
+            key={key}
+            style={{
+              ...style,
+              ...(isFirstLevelButNotFirstItem ? {} : { marginLeft: "20px" }),
+            }}
+            className="m-2"
+          >
+            <strong>{key}:</strong> {renderEditor(value, basePath.concat(key))}
+          </div>
+        );
+      });
     } else {
       return (
         <input
@@ -73,11 +92,6 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ json, onChange }) => {
 const CMS: React.FC = () => {
   const initialJson: JsonData = require("./content.json");
   const [json, setJson] = useState<JsonData>(initialJson);
-  {
-    /*
-    2. have a better UI & UX
-   */
-  }
   const [editJson, setEditJson] = useState<JsonData>(initialJson);
   const handleSubmit = async () => {
     console.log(editJson);
