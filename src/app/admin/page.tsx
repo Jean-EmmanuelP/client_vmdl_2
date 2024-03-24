@@ -51,7 +51,7 @@ const AuthPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            className="hover:scale-110 text-xl shadow-md border border-gray-500/20 p-4 rounded-full transition duration-150"
+            className="cursor-pointer px-4 py-2 border flex itesm-center justify-center gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 hover:shadow transition duration-150"
             type="submit"
           >
             Connexion

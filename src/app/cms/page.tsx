@@ -118,6 +118,7 @@ const CMS: React.FC = () => {
   const [json, setJson] = useState<JsonData>(initialJson);
   const [editJson, setEditJson] = useState<JsonData>(initialJson);
   const [goBack, setGoBack] = useState(false);
+  const [hasValidatedToken, setHasValidatedToken] = useState(false);
   const handleSubmit = async () => {
     console.log(editJson);
     setJson(editJson);
@@ -162,13 +163,11 @@ const CMS: React.FC = () => {
       sessionStorage.removeItem("authToken");
       router.push("/");
     }
+    setHasValidatedToken(true);
   };
   validateToken();
-  const goHome = () =>  {
-    useRouter().push("/");
-  }
   if (goBack) {
-    goHome();
+    useRouter().push("/");
   }
   useEffect(() => {
     async function fetchData() {
@@ -188,6 +187,11 @@ const CMS: React.FC = () => {
     3. styliser les input avec du padding
     4. avoir la possibilite de fermer lobjet
   */
+  if (!hasValidatedToken) {
+    return (
+      <div className="relative cursor-default flex flex-col items-center justify-center p-6 h-full overflow-hidden bg-gradient-to-b from-black to-gray-900" />
+    );
+  }
   return (
     <>
       <div className="relative cursor-default flex flex-col items-center justify-center p-6 h-full overflow-hidden bg-gradient-to-b from-black to-gray-900">
@@ -225,10 +229,12 @@ const CMS: React.FC = () => {
           </div>
         </div>
         <button
+          className="mt-4 sm:mt-8 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
           onClick={handleSubmit}
-          className="mt-8 p-4 rounded-md border border-gray-500/20 shadow-2xl flex items-center justify-center bg-teal-300 transition duration-150 hover:scale-105 hover:underline cursor-pointer"
         >
-          Appliquer les modifications
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+            Appliquer les modifications
+          </span>
         </button>
       </div>
     </>
