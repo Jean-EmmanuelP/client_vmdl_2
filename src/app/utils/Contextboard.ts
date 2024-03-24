@@ -20,6 +20,7 @@ interface MediaPaths {
 }
 
 interface currentSectionProps {
+  handleScrollSections: (e: React.RefObject<HTMLDivElement>) => void;
   homeRef: React.RefObject<HTMLDivElement>;
   cabinetRef: React.RefObject<HTMLDivElement>;
   expertiseRef: React.RefObject<HTMLDivElement>;
@@ -55,6 +56,7 @@ interface currentSectionProps {
 }
 
 const defaultValues: currentSectionProps = {
+  handleScrollSections: () => {},
   homeRef: React.createRef<HTMLDivElement>(),
   cabinetRef: React.createRef<HTMLDivElement>(),
   expertiseRef: React.createRef<HTMLDivElement>(),

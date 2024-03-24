@@ -57,7 +57,7 @@ const customStyles: StylesConfig = {
 };
 
 export default function Header({ height }: HeaderProps) {
-  const { setCurrentSection ,setPageIs, cabinetRef, expertiseRef, fondateurRef, homeRef, visionRef } = useSection();
+  const { setCurrentSection ,setPageIs, cabinetRef, expertiseRef, fondateurRef, homeRef, visionRef, handleScrollSections } = useSection();
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, setLangueCourante, isMobile } = useSection();
   const [selectedOption, setSelectedOption] = useState<
@@ -239,23 +239,6 @@ export default function Header({ height }: HeaderProps) {
   const { section_1, section_2, section_3, section_4 } = data[langCode].header;
   const carreer_title = data[langCode].carreer.title;
 
-  const handleScroll = (ref: React.RefObject<HTMLDivElement>) => {
-    if(ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (ref.current === homeRef.current) {
-      setCurrentSection(0);
-    } else if (ref.current === cabinetRef.current) {
-      setCurrentSection(1);
-    } else if (ref.current === expertiseRef.current) {
-      setCurrentSection(2);
-    } else if (ref.current === visionRef.current) {
-      setCurrentSection(3);
-    } else if (ref.current === fondateurRef.current) {  
-      setCurrentSection(4);
-    }
-  };
-
   const sectionButtonsVariants = {
     initial: {
       opacity: 0,
@@ -363,7 +346,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       setPageIs("/");
                       setTimeout(() => {
-                        handleScroll(cabinetRef);
+                        handleScrollSections(cabinetRef);
                       }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
@@ -376,7 +359,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       setPageIs("/");
                       setTimeout(() => {
-                        handleScroll(expertiseRef);
+                        handleScrollSections(expertiseRef);
                       }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
@@ -389,7 +372,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       setPageIs("/");
                       setTimeout(() => {
-                        handleScroll(visionRef);
+                        handleScrollSections(visionRef);
                       }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
@@ -402,7 +385,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       setPageIs("/");
                       setTimeout(() => {
-                        handleScroll(fondateurRef);
+                        handleScrollSections(fondateurRef);
                       }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
@@ -414,7 +397,7 @@ export default function Header({ height }: HeaderProps) {
                     onClick={() => {
                       toggleMenu();
                       setPageIs("carriere");
-                      handleScroll(homeRef);
+                      handleScrollSections(homeRef);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
@@ -425,7 +408,7 @@ export default function Header({ height }: HeaderProps) {
               </div>
               <button
                 onClick={() => {
-                  handleScroll(homeRef);
+                  handleScrollSections(homeRef);
                   setPageIs("/");
                 }}
                 data-clickable="true"
@@ -444,13 +427,6 @@ export default function Header({ height }: HeaderProps) {
                   value={selectedOption}
                   onChange={handleLanguageChange}
                 />
-                {/* {langueCourante && (
-                  <img
-                    src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${langueCourante}.svg`}
-                    alt="Country Flag"
-                    className="w-6 h-8"
-                  />
-                )} */}
               </div>
             </div>
           ) : (
@@ -466,7 +442,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(cabinetRef);
+                      handleScrollSections(cabinetRef);
                     }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
@@ -475,7 +451,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(expertiseRef);
+                      handleScrollSections(expertiseRef);
                     }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
@@ -484,7 +460,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(visionRef);
+                      handleScrollSections(visionRef);
                     }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
@@ -493,7 +469,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(fondateurRef);
+                      handleScrollSections(fondateurRef);
                     }}
                     className="hover:scale-105"
                   >
@@ -518,7 +494,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(homeRef);
+                      handleScrollSections(homeRef);
                       setSubExpertise(null);
                     }}
                     className="hover:scale-105"

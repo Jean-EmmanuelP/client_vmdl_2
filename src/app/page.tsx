@@ -290,6 +290,23 @@ export default function App() {
   const visionRef = useRef(null);
   const fondateurRef = useRef(null);
   const contactRef = useRef(null);
+  const handleScrollSections = (ref: React.RefObject<HTMLDivElement>) => {
+    if(ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (ref.current === homeRef.current) {
+      setCurrentSection(0);
+    } else if (ref.current === cabinetRef.current) {
+      setCurrentSection(1);
+    } else if (ref.current === expertiseRef.current) {
+      setCurrentSection(2);
+    } else if (ref.current === visionRef.current) {
+      setCurrentSection(3);
+    } else if (ref.current === fondateurRef.current) {  
+      setCurrentSection(4);
+    }
+  };
+
   return (
     <DataProvider>
       {isHere && (
@@ -303,6 +320,7 @@ export default function App() {
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
         <currentSectionContext.Provider
           value={{
+            handleScrollSections,
             homeRef,
             cabinetRef,
             expertiseRef,
@@ -349,7 +367,7 @@ export default function App() {
                   <div ref={cabinetRef} className="w-full h-full">
                     <Cabinet />
                   </div>
-                  <div ref={expertiseRef} className="w-full h-full">
+                  <div ref={expertiseRef} className="w-full h-[300vh] sm:h-full">
                     <Expertise />
                   </div>
                   <div ref={visionRef} className="w-full h-full">
