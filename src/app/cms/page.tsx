@@ -149,6 +149,8 @@ const CMS: React.FC = () => {
   /*
     1. comprendre comment separer chaque langue
     2. comprendre comment scroll vers la langue que l'on a choisit
+    3. styliser les input avec du padding
+    4. avoir la possibilite de fermer lobjet
   */
   return (
     <>
