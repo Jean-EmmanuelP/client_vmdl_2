@@ -179,12 +179,12 @@ const CMS: React.FC = () => {
   */
   return (
     <>
-      <div className="bg-blanc cursor-default flex flex-col items-center justify-center p-6 max-h-[100vh] overflow-hidden">
-        <div className="relative flex flex-col border-1 border shadow-md w-full overflow-y-auto bg-black/10 p-4">
-          <div className="w-full text-center font-bold">
-            <h1>Gestion du contenu du site VMDL</h1>
-            <div className="group flex absolute top-0 left-0 sm:top-1 sm:left-1 translate-x-1/2 translate-y-1/2 bg-blanc border-1 border border-gray-500/20 shadow-2xl transition duration-75 hover:scale-105 font-light items-center justify-center p-3 sm:p-4 text-sm sm:text-base rounded-full w-2 h-2 sm:w-4 sm:h-4">
-              i
+      <div className="cursor-default flex flex-col items-center justify-center p-6 h-full overflow-hidden bg-gradient-to-b from-black to-gray-900">
+        <div className="relative flex flex-col border-1 border border-[#333] shadow-md w-full sm:w-[80%] overflow-y-auto bg-blanc p-4 rounded-xl">
+          <div className="sm:mt-1 w-full text-center font-bold">
+            <h1 className="text-sm sm:text-base">Gestion du contenu du site VMDL</h1>
+            <div className="group flex absolute top-0 left-0 sm:top-1 group sm:left-1 translate-x-1/2 translate-y-1/2 bg-blanc border-1 border border-[#333]/40 shadow-2xl transition duration-75 hover:scale-105 font-light items-center justify-center p-3 sm:p-4 text-sm sm:text-base rounded-full w-2 h-2 sm:w-4 sm:h-4">
+              <p className="sm:group-hover:rotate-[10deg] sm:group-hover:font-medium transition duration-700">i</p>
               <div className="w-[300px] absolute left-10 top-4 hidden group-hover:block bg-blanc border border-grey-500/20 p-2 text-sm">
                 Pour modifier le contenu du site, veuillez éditer les champs
                 ci-dessous et appuyer sur le boutton{" "}
