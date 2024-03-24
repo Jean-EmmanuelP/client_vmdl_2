@@ -12,6 +12,22 @@ interface JsonEditorProps {
 }
 
 const JsonEditor: React.FC<JsonEditorProps> = ({ json, onChange }) => {
+  const [openObjects, setOpenObjects] = useState<Record<string, boolean>>({});
+  useEffect(() => {
+    setOpenObjects(prev => {
+      const newKeys = Object.keys(json).reduce<Record<string, boolean>>((keys, key) => {
+        if (!prev.hasOwnProperty(key)) {
+          keys[key] = false;
+        }
+        return keys;
+      }, {});
+      return { ...prev, ...newKeys };
+    });
+  }, [json]);
+
+  const toggleOpen = (key: string) => {
+    setOpenObjects((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
   const handleValueChange = (path: string[], value: JsonValue) => {
     const updateJson = (
       currentJson: JsonValue,
@@ -59,18 +75,22 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ json, onChange }) => {
               marginTop: "10px",
               paddingTop: "20px",
             }
-          : { marginLeft: "20px", paddingBottom: "10px" };
-
+          : { paddingBottom: "10px" };
+        const isOpen = openObjects[key];
+        const marginLeft = `${basePath.length * 20}px`;
         return (
           <div
             key={key}
             style={{
               ...style,
-              ...(isFirstLevelButNotFirstItem ? {} : { marginLeft: "20px" }),
+              marginLeft
             }}
             className="m-2"
           >
-            <strong>{key}:</strong> {renderEditor(value, basePath.concat(key))}
+            <div onClick={() => toggleOpen(key)}>
+              {isOpen ? "▼" : "▶"} <strong>{key}</strong>
+            </div>
+            {isOpen && renderEditor(value, basePath.concat(key))}
           </div>
         );
       });
@@ -151,18 +171,9 @@ const CMS: React.FC = () => {
     fetchData();
   }, []);
 
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const scrollToPercentage = (percentage: number) => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      const scrollPosition = (percentage / 1000) * container.scrollHeight;
-      container.scrollTop = scrollPosition;
-    }
-  };
-  const langues = ["fr", "en", "عربي", "de", "pt", "es", "it", "中文"];
   /*
     1. comprendre comment separer chaque langue [done]
-    2. comprendre comment scroll vers la langue que l'on a choisit
+    2. comprendre comment scroll vers la langue que l'on a choisit [done]
     3. styliser les input avec du padding
     4. avoir la possibilite de fermer lobjet
   */
@@ -188,34 +199,7 @@ const CMS: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="border-b border-black/20 border-1 pt-4 sm:pt-8 mx-8 sm:mx-2"></div>
-          <div className="flex items-center justify-center sm:justify-normal gap-2 pt-4 sm:pt-6 pl-4">
-            <p className="hidden sm:block font-medium">
-              Choisis la langue que tu souhaites modifier :
-            </p>
-            <div className="flex gap-1 sm:gap-4">
-              {[0, 126, 251, 376, 500.8, 625.5, 750.5, 875.5].map(
-                (percentage, index, array) => (
-                  <React.Fragment key={index}>
-                    <div
-                      className="cursor-pointer transition duration-50 hover:font-semibold"
-                      onClick={() => scrollToPercentage(percentage)}
-                    >
-                      {langues[index]}
-                    </div>
-                    {index + 1 !== array.length && (
-                      <div className="text-center">|</div>
-                    )}
-                  </React.Fragment>
-                )
-              )}
-            </div>
-          </div>
-          <div className="border-b border-black/20 border-1 pt-4 sm:pt-6 mx-8 sm:mx-2"></div>
-          <div
-            ref={scrollContainerRef}
-            className="pt-6 pl-4 overflow-y-auto w-full h-full scroll-smooth"
-          >
+          <div className="pt-6 pl-4 overflow-y-auto w-full h-full scroll-smooth">
             <JsonEditor json={editJson} onChange={setEditJson} />
           </div>
         </div>
