@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
 
 /* cree un fichier avec tout les types */
 export type LangueCode =
@@ -20,6 +20,12 @@ interface MediaPaths {
 }
 
 interface currentSectionProps {
+  homeRef: React.RefObject<HTMLDivElement>;
+  cabinetRef: React.RefObject<HTMLDivElement>;
+  expertiseRef: React.RefObject<HTMLDivElement>;
+  visionRef: React.RefObject<HTMLDivElement>;
+  fondateurRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
   isHoveringExpertiseButton: "conseil" | "contentieux" | "affaires" | "none";
   setIsHoveringExpertiseButton: React.Dispatch<
     React.SetStateAction<"conseil" | "contentieux" | "affaires" | "none">
@@ -49,6 +55,12 @@ interface currentSectionProps {
 }
 
 const defaultValues: currentSectionProps = {
+  homeRef: React.createRef<HTMLDivElement>(),
+  cabinetRef: React.createRef<HTMLDivElement>(),
+  expertiseRef: React.createRef<HTMLDivElement>(),
+  visionRef: React.createRef<HTMLDivElement>(),
+  fondateurRef: React.createRef<HTMLDivElement>(),
+  contactRef: React.createRef<HTMLDivElement>(),
   pageIs: "/",
   setPageIs: () => {},
   isHoveringExpertiseButton: "none",

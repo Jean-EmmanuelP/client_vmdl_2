@@ -57,7 +57,7 @@ const customStyles: StylesConfig = {
 };
 
 export default function Header({ height }: HeaderProps) {
-  const { setCurrentSection, setPageIs } = useSection();
+  const { setCurrentSection ,setPageIs, cabinetRef, expertiseRef, fondateurRef, homeRef, visionRef } = useSection();
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, setLangueCourante, isMobile } = useSection();
   const [selectedOption, setSelectedOption] = useState<
@@ -239,17 +239,21 @@ export default function Header({ height }: HeaderProps) {
   const { section_1, section_2, section_3, section_4 } = data[langCode].header;
   const carreer_title = data[langCode].carreer.title;
 
-  const handleScroll = (value: number) => {
-    const mainDiv = document.getElementById("main");
-    if ((value === 3 || value === 4) && isMobile) {
-      value = value + .3
+  const handleScroll = (ref: React.RefObject<HTMLDivElement>) => {
+    if(ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
     }
-    if (mainDiv)
-      mainDiv.scrollTo({
-        top: mainDiv.clientHeight * value,
-        behavior: "smooth",
-      });
-    setCurrentSection(value);
+    if (ref.current === homeRef.current) {
+      setCurrentSection(0);
+    } else if (ref.current === cabinetRef.current) {
+      setCurrentSection(1);
+    } else if (ref.current === expertiseRef.current) {
+      setCurrentSection(2);
+    } else if (ref.current === visionRef.current) {
+      setCurrentSection(3);
+    } else if (ref.current === fondateurRef.current) {  
+      setCurrentSection(4);
+    }
   };
 
   const sectionButtonsVariants = {
@@ -359,7 +363,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       setPageIs("/");
                       setTimeout(() => {
-                        handleScroll(1);
+                        handleScroll(cabinetRef);
                       }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
@@ -372,7 +376,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       setPageIs("/");
                       setTimeout(() => {
-                        handleScroll(2);
+                        handleScroll(expertiseRef);
                       }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
@@ -385,7 +389,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       setPageIs("/");
                       setTimeout(() => {
-                        handleScroll(3);
+                        handleScroll(visionRef);
                       }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
@@ -398,7 +402,7 @@ export default function Header({ height }: HeaderProps) {
                       toggleMenu();
                       setPageIs("/");
                       setTimeout(() => {
-                        handleScroll(4);
+                        handleScroll(fondateurRef);
                       }, 200);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
@@ -410,7 +414,7 @@ export default function Header({ height }: HeaderProps) {
                     onClick={() => {
                       toggleMenu();
                       setPageIs("carriere");
-                      handleScroll(0);
+                      handleScroll(homeRef);
                     }}
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
@@ -421,7 +425,7 @@ export default function Header({ height }: HeaderProps) {
               </div>
               <button
                 onClick={() => {
-                  handleScroll(0);
+                  handleScroll(homeRef);
                   setPageIs("/");
                 }}
                 data-clickable="true"
@@ -462,7 +466,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(1);
+                      handleScroll(cabinetRef);
                     }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
@@ -471,7 +475,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(2);
+                      handleScroll(expertiseRef);
                     }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
@@ -480,7 +484,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(3);
+                      handleScroll(visionRef);
                     }}
                     className="hover:scale-105 mr-6 sm:mr-28"
                   >
@@ -489,7 +493,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(4);
+                      handleScroll(fondateurRef);
                     }}
                     className="hover:scale-105"
                   >
@@ -514,7 +518,7 @@ export default function Header({ height }: HeaderProps) {
                   <button
                     data-clickable="true"
                     onClick={() => {
-                      handleScroll(0);
+                      handleScroll(homeRef);
                       setSubExpertise(null);
                     }}
                     className="hover:scale-105"

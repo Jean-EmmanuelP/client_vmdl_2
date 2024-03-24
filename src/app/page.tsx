@@ -7,7 +7,7 @@
   les performances et comment savoir qui elles sont ?
   Aussi comment le contextboard, soit les proprietes partage entre tout mes composants peut affecter les performances de mon site ?
 */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   LangueCode,
   currentSectionContext,
@@ -97,7 +97,11 @@ export default function App() {
 
   useEffect(() => {
     const newHeaderHeight =
-      currentSection === 0 ? (!isMobile && pageIs === '/' ? "128px" : "90px") : "64px";
+      currentSection === 0
+        ? !isMobile && pageIs === "/"
+          ? "128px"
+          : "90px"
+        : "64px";
     pageIs === "/" && setHeaderHeight(newHeaderHeight);
   }, [currentSection, isMobile]);
   const [pageIs, setPageIs] = useState<string>("/");
@@ -280,6 +284,12 @@ export default function App() {
       setIsFirstLoad(false);
     }
   }, []);
+  const homeRef = useRef(null);
+  const cabinetRef = useRef(null);
+  const expertiseRef = useRef(null);
+  const visionRef = useRef(null);
+  const fondateurRef = useRef(null);
+  const contactRef = useRef(null);
   return (
     <DataProvider>
       {isHere && (
@@ -293,6 +303,12 @@ export default function App() {
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
         <currentSectionContext.Provider
           value={{
+            homeRef,
+            cabinetRef,
+            expertiseRef,
+            visionRef,
+            fondateurRef,
+            contactRef,
             isHoveringExpertiseButton,
             setIsHoveringExpertiseButton,
             isMobile,
@@ -327,12 +343,24 @@ export default function App() {
             >
               {pageIs === "/" && (
                 <>
-                  <Home />
-                  <Cabinet />
-                  <Expertise />
-                  <Vision />
-                  <Fondateur />
-                  <Contact />
+                  <div ref={homeRef} className="w-full h-full">
+                    <Home />
+                  </div>
+                  <div ref={cabinetRef} className="w-full h-full">
+                    <Cabinet />
+                  </div>
+                  <div ref={expertiseRef} className="w-full h-full">
+                    <Expertise />
+                  </div>
+                  <div ref={visionRef} className="w-full h-full">
+                    <Vision />
+                  </div>
+                  <div ref={fondateurRef} className="w-full h-full">
+                    <Fondateur />
+                  </div>
+                  <div ref={contactRef} className="w-full h-full">
+                    <Contact />
+                  </div>
                   <Footer />
                 </>
               )}
