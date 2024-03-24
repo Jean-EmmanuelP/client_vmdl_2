@@ -175,13 +175,12 @@ export default function Affaires() {
       className={`w-full h-full flex justify-center items-center text-blanc`}
     >
       <div
-        className={`flex w-full h-full sm:w-full sm:h-full ${
-          headerHeight === "64px"
-            ? "-mt-[64px]"
-            : headerHeight === "128px"
+        className={`flex w-full h-full sm:w-full sm:h-full ${headerHeight === "64px"
+          ? "-mt-[64px]"
+          : headerHeight === "128px"
             ? "-mt-[128px]"
             : "-mt-[90px]"
-        }`}
+          }`}
       >
         {videos &&
           videos.map((video, index) => {
