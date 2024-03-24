@@ -24,7 +24,7 @@ const BackgroundEiffel: React.FC = () => {
         ? convertToMp4Path(mediaPaths.paris)
         : mediaPaths.paris;
       const videoType = isIOS() ? "video/mp4" : "video/webm";
-      const posterPath = "/images/vmdl_cover.jpeg";
+      const posterPath = "/images/paris_2.JPG";
       const posterPathLaptop = "/images/paris.jpeg";
 
       const videoElement = document.createElement("video");
@@ -71,17 +71,28 @@ const BackgroundEiffel: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <motion.div
-        key="background"
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        variants={videoVariants}
-        transition={{ duration: 1 }}
-        className="fixed top-0 w-full h-full justify-center items-center"
-        style={{ zIndex: -1 }}
-        id="videoContainer"
-      ></motion.div>
+      {
+        true ? 
+        (
+          <div className="fixed inset-0 w-screen h-screen justify-center items-center z-[-1]">
+            <img src="/images/pariseiffel.jpeg" className="w-screen h-screen object-cover blur-md" alt="" />
+          </div>
+        )
+        :
+        (
+          <motion.div
+            key="background"
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={videoVariants}
+            transition={{ duration: 1 }}
+            className="fixed top-0 w-full h-full justify-center items-center"
+            style={{ zIndex: -1 }}
+            id="videoContainer"
+          ></motion.div>
+        )
+      }
     </AnimatePresence>
   );
 };
