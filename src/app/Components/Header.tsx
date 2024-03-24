@@ -237,6 +237,7 @@ export default function Header({ height }: HeaderProps) {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
 
   const { section_1, section_2, section_3, section_4 } = data[langCode].header;
+  const carreer_title = data[langCode].carreer.title;
 
   const handleScroll = (value: number) => {
     const mainDiv = document.getElementById("main");
@@ -414,7 +415,7 @@ export default function Header({ height }: HeaderProps) {
                     className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                   >
                     {/* TODO */}
-                    Carrieres
+                    {carreer_title}
                   </button>
                 </div>
               </div>
