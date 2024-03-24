@@ -117,6 +117,7 @@ const CMS: React.FC = () => {
   const initialJson: JsonData = require("./content.json");
   const [json, setJson] = useState<JsonData>(initialJson);
   const [editJson, setEditJson] = useState<JsonData>(initialJson);
+  const router = useRouter();
   const [goBack, setGoBack] = useState(false);
   const [hasValidatedToken, setHasValidatedToken] = useState(false);
   const handleSubmit = async () => {
@@ -142,7 +143,6 @@ const CMS: React.FC = () => {
   };
   const validateToken = async () => {
     const token = sessionStorage.getItem("authToken");
-    const router = useRouter();
     if (!token) {
       router.push("/admin");
       return;
@@ -165,10 +165,14 @@ const CMS: React.FC = () => {
     }
     setHasValidatedToken(true);
   };
-  validateToken();
-  if (goBack) {
-    useRouter().push("/");
-  }
+  useEffect(() => {
+    validateToken();
+  }, []);
+  useEffect(() => {
+    if (goBack) {
+      router.push("/");
+    }
+  }, [goBack]);
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/take-content");
@@ -214,7 +218,7 @@ const CMS: React.FC = () => {
                 Pour modifier le contenu du site, veuillez éditer les champs
                 ci-dessous et appuyer sur le boutton{" "}
                 <span className="font-medium">
-                  "Appliquer les modifications"{" "}
+                  &quot;Appliquer les modifications&quot;{" "}
                 </span>{" "}
                 . Une fois les modifications appliquées, elles seront{" "}
                 <span className="underline">
