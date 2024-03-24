@@ -71,28 +71,27 @@ const BackgroundEiffel: React.FC = () => {
 
   return (
     <AnimatePresence>
-      {
-        true ? 
-        (
-          <div className="fixed inset-0 w-screen h-screen justify-center items-center z-[-1]">
-            <img src="/images/pariseiffel.jpeg" className="w-screen h-screen object-cover blur-md" alt="" />
-          </div>
-        )
-        :
-        (
-          <motion.div
-            key="background"
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={videoVariants}
-            transition={{ duration: 1 }}
-            className="fixed top-0 w-full h-full justify-center items-center"
-            style={{ zIndex: -1 }}
-            id="videoContainer"
-          ></motion.div>
-        )
-      }
+      {isIOS() ? (
+        <div className="fixed inset-0 w-screen h-screen justify-center items-center z-[-1]">
+          <img
+            src="/images/pariseiffel.jpeg"
+            className="w-screen h-screen object-cover blur-md"
+            alt=""
+          />
+        </div>
+      ) : (
+        <motion.div
+          key="background"
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={videoVariants}
+          transition={{ duration: 1 }}
+          className="fixed top-0 w-full h-full justify-center items-center"
+          style={{ zIndex: -1 }}
+          id="videoContainer"
+        ></motion.div>
+      )}
     </AnimatePresence>
   );
 };
