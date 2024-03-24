@@ -161,7 +161,7 @@ const CMS: React.FC = () => {
   };
   const langues = ["fr", "en", "عربي", "de", "pt", "es", "it", "中文"];
   /*
-    1. comprendre comment separer chaque langue
+    1. comprendre comment separer chaque langue [done]
     2. comprendre comment scroll vers la langue que l'on a choisit
     3. styliser les input avec du padding
     4. avoir la possibilite de fermer lobjet
@@ -194,7 +194,7 @@ const CMS: React.FC = () => {
               Choisis la langue que tu souhaites modifier :
             </p>
             <div className="flex gap-1 sm:gap-4">
-              {[0, 40, 50, 75, 100, 131.5, 150, 175].map(
+              {[0, 126, 251, 376, 500.8, 625.5, 750.5, 875.5].map(
                 (percentage, index, array) => (
                   <React.Fragment key={index}>
                     <div
