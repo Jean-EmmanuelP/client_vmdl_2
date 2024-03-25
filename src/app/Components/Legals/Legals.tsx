@@ -55,8 +55,8 @@ export default function Legals() {
         return <div className="text-[11px] flex flex-col">
         <p className="flex flex-col py-2">
           <span>Accessible à l&apos;adresse URL suivante</span>
-          <a href="http://www.vmdl.ai.com">
-            : http://www.vmdl.ai.com (ci-après le « Site »).
+          <a href="http://www.vmdl.ai">
+            : http://www.vmdl.ai (ci-après le « Site »).
           </a>
         </p>
         <p className="flex flex-col py-2">
@@ -65,7 +65,7 @@ export default function Legals() {
             <li>Vincent Machado Da Luz - Avocats à la Cour</li>
             <li>27 boulevard Saint-Michel - 75005 PARIS</li>
             <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
-            <li>M.cabinet@vmdl.ai vmdl.ai.com</li>
+            <li>M.cabinet@vmdl.ai vmdl.ai</li>
             <li>N° SIRET 83113986000017</li>
             <li>Ci-après « le cabinet VMDL »</li>
           </ul>
@@ -108,8 +108,8 @@ export default function Legals() {
           <div className="text-[11px] flex flex-col">
             <p className="flex flex-col py-2">
               <span>Accessible at the following URL</span>
-              <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (hereinafter referred to as the
+              <a href="http://www.vmdl.ai">
+                : http://www.vmdl.ai (hereinafter referred to as the
                 &quot;Site&quot;).
               </a>
             </p>
@@ -119,7 +119,7 @@ export default function Legals() {
                 <li>Vincent Machado Da Luz - Lawyers at the Court</li>
                 <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
-                <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
+                <li>E. cabinet@vmdl.ai vmdl.ai</li>
                 <li>SIRET No. 83113986000017</li>
                 <li>Hereinafter referred to as &quot;VMDL firm&quot;</li>
               </ul>
@@ -163,8 +163,8 @@ export default function Legals() {
           <div className="text-[11px] flex flex-col">
             <p className="flex flex-col py-2">
               <span>Accesible en la siguiente URL</span>
-              <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (en adelante, el &quot;Sitio&quot;).
+              <a href="http://www.vmdl.ai">
+                : http://www.vmdl.ai (en adelante, el &quot;Sitio&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -173,7 +173,7 @@ export default function Legals() {
                 <li>Vincent Machado Da Luz - Abogados ante la Corte</li>
                 <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
-                <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
+                <li>E. cabinet@vmdl.ai vmdl.ai</li>
                 <li>Nº SIRET 83113986000017</li>
                 <li>En adelante &quot;el despacho VMDL&quot;</li>
               </ul>
@@ -217,8 +217,8 @@ export default function Legals() {
           <div className="text-[11px] flex flex-col">
             <p className="flex flex-col py-2">
               <span>متاح على العنوان التالي</span>
-              <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (يُشار إليه فيما بعد بـ &quot;الموقع&quot;).
+              <a href="http://www.vmdl.ai">
+                : http://www.vmdl.ai (يُشار إليه فيما بعد بـ &quot;الموقع&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -227,7 +227,7 @@ export default function Legals() {
                 <li>فنسنت ماتشادو دا لوز - محامون لدى المحكمة</li>
                 <li>27 بوليفار سان ميشيل - 75005 باريس</li>
                 <li>ت. +33 (0) 6 85 51 14 61 - ف. +33 (0)1 43 25 62 19 - </li>
-                <li>بريد إلكتروني: cabinet@vmdl.ai vmdl.ai.com</li>
+                <li>بريد إلكتروني: cabinet@vmdl.ai vmdl.ai</li>
                 <li>رقم سيريت 83113986000017</li>
                 <li>يُشار إليه فيما بعد بـ &quot;مكتب VMDL&quot;</li>
               </ul>
@@ -271,8 +271,8 @@ export default function Legals() {
           <div className="text-[11px] flex flex-col">
             <p className="flex flex-col py-2">
               <span>Acessível no seguinte URL</span>
-              <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (doravante referido como &quot;o Site&quot;).
+              <a href="http://www.vmdl.ai">
+                : http://www.vmdl.ai (doravante referido como &quot;o Site&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -281,7 +281,7 @@ export default function Legals() {
                 <li>Vincent Machado Da Luz - Advogados à Corte</li>
                 <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
-                <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
+                <li>E. cabinet@vmdl.ai vmdl.ai</li>
                 <li>Nº SIRET 83113986000017</li>
                 <li>Doravante denominado &quot;o escritório VMDL&quot;</li>
               </ul>
@@ -325,8 +325,8 @@ export default function Legals() {
           <div className="text-[11px] flex flex-col">
             <p className="flex flex-col py-2">
               <span>Accessibile al seguente URL</span>
-              <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (di seguito denominato &quot;il Sito&quot;).
+              <a href="http://www.vmdl.ai">
+                : http://www.vmdl.ai (di seguito denominato &quot;il Sito&quot;).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -335,7 +335,7 @@ export default function Legals() {
                 <li>Vincent Machado Da Luz - Avvocati presso la Corte</li>
                 <li>27 Boulevard Saint-Michel - 75005 PARIGI</li>
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
-                <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
+                <li>E. cabinet@vmdl.ai vmdl.ai</li>
                 <li>N° SIRET 83113986000017</li>
                 <li>D&apos;ora in poi denominato &quot;lo studio VMDL&quot;</li>
               </ul>
@@ -379,8 +379,8 @@ export default function Legals() {
           <div className="text-[11px] flex flex-col">
             <p className="flex flex-col py-2">
               <span>Zugänglich unter der folgenden URL</span>
-              <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (im Folgenden &quot;die Website&quot; genannt).
+              <a href="http://www.vmdl.ai">
+                : http://www.vmdl.ai (im Folgenden &quot;die Website&quot; genannt).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -389,7 +389,7 @@ export default function Legals() {
                 <li>Vincent Machado Da Luz - Rechtsanwälte beim Gericht</li>
                 <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
                 <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
-                <li>E. cabinet@vmdl.ai vmdl.ai.com</li>
+                <li>E. cabinet@vmdl.ai vmdl.ai</li>
                 <li>SIRET Nr. 83113986000017</li>
                 <li>Im Folgenden &quot;die Kanzlei VMDL&quot; genannt</li>
               </ul>
@@ -433,8 +433,8 @@ export default function Legals() {
           <div className="text-[11px] flex flex-col">
             <p className="flex flex-col py-2">
               <span>可通过以下网址访问</span>
-              <a href="http://www.vmdl.ai.com">
-                : http://www.vmdl.ai.com (以下简称“网站”).
+              <a href="http://www.vmdl.ai">
+                : http://www.vmdl.ai (以下简称“网站”).
               </a>
             </p>
             <p className="flex flex-col py-2">
@@ -445,7 +445,7 @@ export default function Legals() {
                 <li>
                   电话 +33 (0) 6 85 51 14 61 - 传真 +33 (0)1 43 25 62 19 -{" "}
                 </li>
-                <li>电邮 cabinet@vmdl.ai vmdl.ai.com</li>
+                <li>电邮 cabinet@vmdl.ai vmdl.ai</li>
                 <li>商业注册号 83113986000017</li>
                 <li>以下简称“VMDL律师事务所”</li>
               </ul>
