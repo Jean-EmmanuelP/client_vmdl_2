@@ -42,7 +42,7 @@ export default function Conseil() {
       }
     };
   }, []);
-  useEffect(() => { }, [subExpertise]);
+  useEffect(() => {}, [subExpertise]);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -96,43 +96,40 @@ export default function Conseil() {
       >
         <ReversedArrow />
       </div>
-      {isMobile ?
-        (
-          <>
+      {isMobile ? (
+        <>
+          <div className="absolute top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+            {title}
+          </div>
+          <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
+            {content}
+          </p>
+        </>
+      ) : (
+        <>
+          <div className="relative w-1/2 h-full">
+            <video className="w-full h-full" autoPlay loop muted>
+              <source src="/videos/kaka.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="relative sm:w-1/2 h-full flex flex-col justify-center items-center">
             <div className="absolute top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
               {title}
             </div>
             <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
               {content}
             </p>
-          </>
-        )
-        :
-        (
-          <>
-            <div className="relative w-1/2 h-full">
-              <video className="w-full h-full" autoPlay loop muted>
-                <source src="/videos/kaka.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div className="relative sm:w-1/2 h-full flex flex-col justify-center items-center">
-              <div className="absolute top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
-                {title}
-              </div>
-              <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
-                {content}
-              </p>
-            </div>
-          </>
-        )
-      }
+          </div>
+        </>
+      )}
 
       {isMobile && (
         <>
           <div
             onClick={() => setShowVideo(!showVideo)}
-            className={`absolute font-light text-sm py-2 px-4 rounded-md flex flex-col cursor-pointer transition-top ${showVideo ? "top-[83%]" : "top-[78%]"
-              }`}
+            className={`absolute font-light text-sm py-2 px-4 rounded-md flex flex-col cursor-pointer transition-top ${
+              showVideo ? "top-[83%]" : "top-[78%]"
+            }`}
           >
             <div className="transform rotate-90">
               <ReversedArrow />
@@ -144,8 +141,9 @@ export default function Conseil() {
 
           <div
             onClick={() => setShowVideo(false)}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${showVideo ? "opacity-100" : "opacity-0 hidden"
-              } z-50`}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              showVideo ? "opacity-100" : "opacity-0 hidden"
+            } z-50`}
           >
             <video className="w-full h-full" autoPlay ref={videoRef}>
               <source src="/videos/kaka.mp4" type="video/mp4" />
