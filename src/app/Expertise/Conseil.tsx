@@ -10,6 +10,7 @@ export default function Conseil() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showVideo, setShowVideo] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [videoPaused, setVideoPaused] = useState<boolean>(false);
   useEffect(() => {
     if (showVideo) {
       console.log(`video will be playing`);
@@ -107,8 +108,31 @@ export default function Conseil() {
         </>
       ) : (
         <>
-          <div className="relative w-1/2 h-full">
-            <video className="w-full h-full" autoPlay loop muted>
+          <div className="group relative w-1/2 overflow-hidden h-full">
+            <div
+              className={`${
+                !videoPaused ? "opacity-0" : "opacity-100"
+              } group-hover:scale-150 group-hover:text-red-500 transition duration-300 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blanc flex items-center justify-center rounded-full h-20 w-20 z-20`}
+            >
+              ▶
+            </div>
+            <video
+              className={`w-full h-full transition duration-75 ${
+                !videoPaused ? "" : "blur-md grayscale"
+              } group-hover:blur-0 group-hover:grayscale-0`}
+              autoPlay
+              loop
+              onClick={(e) => {
+                const videoElement = e.target as HTMLVideoElement;
+                if (videoElement.paused) {
+                  videoElement.play();
+                  setVideoPaused(false);
+                } else {
+                  videoElement.pause();
+                  setVideoPaused(true);
+                }
+              }}
+            >
               <source src="/videos/kaka.mp4" type="video/mp4" />
             </video>
           </div>
