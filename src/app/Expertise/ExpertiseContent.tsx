@@ -123,13 +123,14 @@ export default function ExpertiseContent() {
             >
               {/* title */}
               <div
-                className={`absolute top-[6%] sm:top-[12%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
+                className={`absolute top-[20%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
               >
                 {title}
               </div>
+              <div className="flex justify-center items-center gap-6 h-[80%] w-full">
               {/* first Box */}
               <div
-                className={`expertiseWrapper wrapper1 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden`}
+                className={`expertiseWrapper wrapper1 relative w-1/3 sm:h-[55%] overflow-hidden`}
                 onMouseEnter={() => {
                   setIsHoveringExpertiseButton("conseil");
                 }}
@@ -159,7 +160,7 @@ export default function ExpertiseContent() {
               </div>
               {/* second Box */}
               <div
-                className="expertiseWrapper wrapper2 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden"
+                className="expertiseWrapper wrapper2 relative w-1/3 sm:h-[55%] overflow-hidden"
                 onMouseEnter={() => {
                   setIsHoveringExpertiseButton("contentieux");
                 }}
@@ -189,7 +190,7 @@ export default function ExpertiseContent() {
               </div>
               {/* third Box */}
               <div
-                className="expertiseWrapper wrapper3 relative w-full sm:w-1/3 h-[80%] sm:h-[55%] overflow-hidden"
+                className="expertiseWrapper wrapper3 relative w-1/3 sm:h-[55%] overflow-hidden"
                 onMouseEnter={() => {
                   setIsHoveringExpertiseButton("affaires");
                 }}
@@ -216,6 +217,7 @@ export default function ExpertiseContent() {
                     <span className="pl-[20%] text-line">au jour le jour</span> */}
                   </div>
                 </div>
+              </div>
               </div>
               {/* <div className="absolute w-full px-[14%] bottom-[13%] mb-2">
               {memoizedTextCycle}
