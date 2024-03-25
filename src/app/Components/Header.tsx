@@ -25,7 +25,6 @@ const customStyles: StylesConfig = {
     boxShadow: "none",
     border: "1px",
     color: "white",
-    "&:hover": { backgroundColor: "#A9A9A9", color: "black" },
   }),
   option: (styles, { isFocused, isSelected }) => ({
     ...styles,
@@ -33,31 +32,40 @@ const customStyles: StylesConfig = {
     color: "black",
     backgroundColor: isFocused ? "lightgray" : isSelected ? "gray" : "#F9F9F9",
     padding: 20,
-    "&:hover": { color: "black" }
+    "&:hover": { color: "black" },
   }),
   menu: (styles) => ({
     ...styles,
     zIndex: 2145483645,
     borderColor: "black",
     borderRadius: "0",
-    "&:hover": { color: "black" }
+    "&:hover": { color: "black" },
   }),
   placeholder: (styles) => ({
     ...styles,
     zIndex: 2145483645,
     color: "black",
-    "&:hover": { color: "black" }
+    "&:hover": { color: "black" },
   }),
   singleValue: (styles) => ({
     ...styles,
     zIndex: 2145483645,
     color: "white",
-    "&:hover": { color: "black" }
+    "&:hover": { color: "black" },
   }),
 };
 
 export default function Header({ height }: HeaderProps) {
-  const { setCurrentSection ,setPageIs, cabinetRef, expertiseRef, fondateurRef, homeRef, visionRef, handleScrollSections } = useSection();
+  const {
+    setCurrentSection,
+    setPageIs,
+    cabinetRef,
+    expertiseRef,
+    fondateurRef,
+    homeRef,
+    visionRef,
+    handleScrollSections,
+  } = useSection();
   const { subExpertise, setSubExpertise } = useExpertise();
   const { langueCourante, setLangueCourante, isMobile } = useSection();
   const [selectedOption, setSelectedOption] = useState<
@@ -239,39 +247,6 @@ export default function Header({ height }: HeaderProps) {
   const { section_1, section_2, section_3, section_4 } = data[langCode].header;
   const carreer_title = data[langCode].carreer.title;
 
-  const sectionButtonsVariants = {
-    initial: {
-      opacity: 0,
-      x: -20,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5 },
-    },
-    exit: {
-      opacity: 0,
-      x: -20,
-      transition: { duration: 0.5 },
-    },
-  };
-
-  const backHomeButtonsVariants = {
-    initial: {
-      opacity: 0,
-      x: 20,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5 },
-    },
-    exit: {
-      opacity: 0,
-      x: 20,
-      transition: { duration: 0.5 },
-    },
-  };
   if (typeof window !== "undefined") {
     return (
       <motion.div
@@ -289,222 +264,144 @@ export default function Header({ height }: HeaderProps) {
             height === "128px" || height === "90px"
               ? "border-b border-slate-50"
               : ""
-          } h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
+          } relative h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
         >
-          {/* Montrer a Vincent Machado Da Luz et lui demander ce qu'il en pense */}
-          {true ? (
-            <div className="flex justify-between w-full">
-              <button
-                onClick={toggleMenu}
-                className="uppercase flex justify-center items-center gap-2 z-[1000000110]"
-                data-clickable={true}
-              >
-                <div className="w-4 h-4" data-clickable={true}>
-                  <Menu toggleMenu={menuOpen} />
-                </div>
-                <AnimatePresence mode="wait">
-                  {menuOpen ? (
-                    <motion.p
-                      key="close"
-                      className="text-[13px]"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      data-clickable={true}
-                      transition={{ duration: 0.2 }}
-                    >
-                      Close
-                    </motion.p>
-                  ) : (
-                    <motion.p
-                      key="menu"
-                      className="text-[13px]"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      data-clickable={true}
-                      transition={{ duration: 0.5 }}
-                    >
-                      Menu
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </button>
-              {menuOpen && !isMobile && (
-                <div className="overlay" onClick={toggleMenu}></div>
-              )}
-              <div
-                ref={wrapperRef}
-                className={`menu ${menuOpen ? "open" : ""} ${
-                  goingOut ? "close" : ""
-                }`}
-              >
-                <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[2px] -translate-y-1/2">
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      toggleMenu();
-                      setPageIs("/");
-                      setTimeout(() => {
-                        handleScrollSections(cabinetRef);
-                      }, 200);
-                    }}
-                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
-                  >
-                    {section_1}
-                  </button>
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      toggleMenu();
-                      setPageIs("/");
-                      setTimeout(() => {
-                        handleScrollSections(expertiseRef);
-                      }, 200);
-                    }}
-                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
-                  >
-                    {section_2}
-                  </button>
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      toggleMenu();
-                      setPageIs("/");
-                      setTimeout(() => {
-                        handleScrollSections(visionRef);
-                      }, 200);
-                    }}
-                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
-                  >
-                    {section_3}
-                  </button>
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      toggleMenu();
-                      setPageIs("/");
-                      setTimeout(() => {
-                        handleScrollSections(fondateurRef);
-                      }, 200);
-                    }}
-                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
-                  >
-                    {section_4}
-                  </button>
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      toggleMenu();
-                      setPageIs("carriere");
-                      handleScrollSections(homeRef);
-                    }}
-                    className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
-                  >
-                    {/* TODO */}
-                    {carreer_title}
-                  </button>
-                </div>
+          <div className="absolute right-0 -bottom-12 sm:-bottom-14 flex justify-center items-center transparent sm:bg-blanc/10 hover:bg-gray-950 text-xs sm:text-sm">
+            <Select
+              data-clickable={true}
+              styles={customStyles}
+              components={animatedComponents}
+              options={options as any}
+              filterOption={filterOption}
+              value={selectedOption}
+              onChange={handleLanguageChange}
+            />
+          </div>
+          <div className="flex justify-between w-full">
+            <button
+              onClick={toggleMenu}
+              className="uppercase flex justify-center items-center gap-2 z-[1000000110]"
+              data-clickable={true}
+            >
+              <div className="w-4 h-4" data-clickable={true}>
+                <Menu toggleMenu={menuOpen} />
               </div>
-              <button
-                onClick={() => {
-                  handleScrollSections(homeRef);
-                  setPageIs("/");
-                }}
-                data-clickable="true"
-              >
-                <p className="tracking-wider text-[20px] sm:text-[30px] z-[21020]">
-                  VMDL
-                </p>
-              </button>
-              <div className="flex justify-center items-center p-2">
-                <Select
-                  data-clickable={true}
-                  styles={customStyles}
-                  components={animatedComponents}
-                  options={options as any}
-                  filterOption={filterOption}
-                  value={selectedOption}
-                  onChange={handleLanguageChange}
-                />
+              <AnimatePresence mode="wait">
+                {menuOpen ? (
+                  <motion.p
+                    key="close"
+                    className="text-[13px]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    data-clickable={true}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Close
+                  </motion.p>
+                ) : (
+                  <motion.p
+                    key="menu"
+                    className="text-[13px]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    data-clickable={true}
+                    transition={{ duration: 0.5 }}
+                  >
+                    Menu
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </button>
+            {menuOpen && !isMobile && (
+              <div className="overlay" onClick={toggleMenu}></div>
+            )}
+            <div
+              ref={wrapperRef}
+              className={`menu ${menuOpen ? "open" : ""} ${
+                goingOut ? "close" : ""
+              }`}
+            >
+              <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[2px] -translate-y-1/2">
+                <button
+                  data-clickable="true"
+                  onClick={() => {
+                    toggleMenu();
+                    setPageIs("/");
+                    setTimeout(() => {
+                      handleScrollSections(cabinetRef);
+                    }, 200);
+                  }}
+                  className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                >
+                  {section_1}
+                </button>
+                <button
+                  data-clickable="true"
+                  onClick={() => {
+                    toggleMenu();
+                    setPageIs("/");
+                    setTimeout(() => {
+                      handleScrollSections(expertiseRef);
+                    }, 200);
+                  }}
+                  className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                >
+                  {section_2}
+                </button>
+                <button
+                  data-clickable="true"
+                  onClick={() => {
+                    toggleMenu();
+                    setPageIs("/");
+                    setTimeout(() => {
+                      handleScrollSections(visionRef);
+                    }, 200);
+                  }}
+                  className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                >
+                  {section_3}
+                </button>
+                <button
+                  data-clickable="true"
+                  onClick={() => {
+                    toggleMenu();
+                    setPageIs("/");
+                    setTimeout(() => {
+                      handleScrollSections(fondateurRef);
+                    }, 200);
+                  }}
+                  className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                >
+                  {section_4}
+                </button>
+                <button
+                  data-clickable="true"
+                  onClick={() => {
+                    toggleMenu();
+                    setPageIs("carriere");
+                    handleScrollSections(homeRef);
+                  }}
+                  className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                >
+                  {/* TODO */}
+                  {carreer_title}
+                </button>
               </div>
             </div>
-          ) : (
-            <AnimatePresence mode="wait">
-              {!subExpertise ? (
-                <motion.div
-                  key="sectionButtons"
-                  variants={sectionButtonsVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                >
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      handleScrollSections(cabinetRef);
-                    }}
-                    className="hover:scale-105 mr-6 sm:mr-28"
-                  >
-                    {section_1}
-                  </button>
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      handleScrollSections(expertiseRef);
-                    }}
-                    className="hover:scale-105 mr-6 sm:mr-28"
-                  >
-                    {section_2}
-                  </button>
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      handleScrollSections(visionRef);
-                    }}
-                    className="hover:scale-105 mr-6 sm:mr-28"
-                  >
-                    {section_3}
-                  </button>
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      handleScrollSections(fondateurRef);
-                    }}
-                    className="hover:scale-105"
-                  >
-                    {section_4}
-                  </button>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="backHomeButtons"
-                  variants={backHomeButtonsVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                >
-                  <button
-                    data-clickable="true"
-                    onClick={() => setSubExpertise(null)}
-                    className="hover:scale-105 mr-6 sm:mr-28"
-                  >
-                    <Back />
-                  </button>
-                  <button
-                    data-clickable="true"
-                    onClick={() => {
-                      handleScrollSections(homeRef);
-                      setSubExpertise(null);
-                    }}
-                    className="hover:scale-105"
-                  >
-                    <Home />
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          )}
+            <button
+              onClick={() => {
+                handleScrollSections(homeRef);
+                setPageIs("/");
+              }}
+              data-clickable="true"
+            >
+              <p className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 tracking-wider text-[20px] sm:text-[30px] z-[21020]">
+                VMDL
+              </p>
+            </button>
+          </div>
         </div>
       </motion.div>
     );
