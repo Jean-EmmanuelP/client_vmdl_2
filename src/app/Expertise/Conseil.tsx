@@ -1,8 +1,7 @@
-import { AnimatePresence } from "framer-motion";
-import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
-import { useData } from "../utils/DataContext";
 import { useEffect, useRef, useState } from "react";
 import ReversedArrow from "../assets/svg/reverseArrow";
+import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
+import { useData } from "../utils/DataContext";
 
 export default function Conseil() {
   const { subExpertise, setSubExpertise } = useExpertise();
@@ -111,7 +110,7 @@ export default function Conseil() {
         :
         (
           <>
-            <div className="relative w-1/2 h-full object-contain">
+            <div className="relative w-1/2 h-full">
               <video className="w-full h-full" autoPlay loop muted>
                 <source src="/videos/kaka.mp4" type="video/mp4" />
               </video>
