@@ -24,24 +24,13 @@ export default function Paragraph({
   classText,
   homeSection,
 }: ParagraphProps) {
-  const { currentSection, setCurrentSection, setHeaderHeight, isMobile } =
+  const { currentSection, setCurrentSection, setHeaderHeight, isMobile, contactRef, handleScrollSections } =
     useSection();
   const [isVisible, setIsVisible] = useState(false);
   const paragraphRef = useRef<HTMLDivElement | null>(null);
   const [toggle, setToggle] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const { setSubExpertise } = useExpertise();
-
-  const handleScroll = (value: number) => {
-    const mainDiv = document.getElementById("main");
-
-    if (mainDiv)
-      mainDiv.scrollTo({
-        top: mainDiv.clientHeight * value,
-        behavior: "smooth",
-      });
-    setCurrentSection(value);
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -184,7 +173,7 @@ export default function Paragraph({
                     delay: toggle ? 0 : 0.7,
                   }}
                   onClick={() => {
-                    homeSection ? handleScroll(isMobile ? 5.3 : 5) : setToggle(!toggle);
+                    homeSection ? handleScrollSections(contactRef) : setToggle(!toggle);
                     setIsHovering(false);
                   }}
                   className={`text-[#181a1b] p-4 ${!homeSection
