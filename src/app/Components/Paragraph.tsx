@@ -148,8 +148,8 @@ export default function Paragraph({
 
               {toggle && (
                 <motion.p
-                  initial={{ y: "0px", opacity: 0 }}
-                  animate={{ y: "-40px", opacity: 1 }}
+                  initial={{ y: '0px', opacity: 0 }}
+                  animate={{ y: isMobile ? '2px' : '-40px', opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: 0.2, duration: 0.7 }}
                   className={`text-xl w-1/2 text-left leading-5 sm:leading-8 mb-2 max-h-[50%] max-w-[70%] overflow-auto ${isMobile ? "-mt-[200px]" : "-mt-[50px]"
@@ -188,7 +188,7 @@ export default function Paragraph({
                     setIsHovering(false);
                   }}
                   className={`text-[#181a1b] p-4 ${!homeSection
-                      ? `relative w-[180px] sm:w-[280px] border-[0.5px] border-noir transition duration-150`
+                      ? `relative w-[180px] sm:w-[280px] border-[0.5px] border-noir/10 shadow-sm transition duration-150`
                       : `text-noir bg-blanc  shadow-2xl sm:h-[50px] sm:w-[300px]`
                     } uppercase flex justify-center items-center leading-3 sm:h-[50px] sm:text-xs contact-us overflow-hidden`}
                 >
