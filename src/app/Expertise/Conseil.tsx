@@ -8,6 +8,7 @@ export default function Conseil() {
   const { langueCourante, isMobile } = useSection();
   const { data } = useData();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoLaptopKaka = useRef<HTMLVideoElement>(null);
   const [showVideo, setShowVideo] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoPaused, setVideoPaused] = useState<boolean>(false);
@@ -108,7 +109,18 @@ export default function Conseil() {
         </>
       ) : (
         <>
-          <div className="group relative w-1/2 overflow-hidden h-full">
+          <div
+            className="group relative w-1/2 overflow-hidden h-full"
+            onClick={() => {
+              if (!videoPaused) {
+                videoLaptopKaka.current?.pause();
+                setVideoPaused(true);
+              } else {
+                videoLaptopKaka.current?.play();
+                setVideoPaused(false);
+              }
+            }}
+          >
             <div
               className={`${
                 !videoPaused ? "opacity-0" : "opacity-100"
@@ -122,16 +134,7 @@ export default function Conseil() {
               } group-hover:blur-0 group-hover:grayscale-0`}
               autoPlay
               loop
-              onClick={(e) => {
-                const videoElement = e.target as HTMLVideoElement;
-                if (videoElement.paused) {
-                  videoElement.play();
-                  setVideoPaused(false);
-                } else {
-                  videoElement.pause();
-                  setVideoPaused(true);
-                }
-              }}
+              ref={videoLaptopKaka}
             >
               <source src="/videos/kaka.mp4" type="video/mp4" />
             </video>
