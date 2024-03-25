@@ -65,6 +65,7 @@
       "Envoyer": "Envoyer"
     },
     "footer": {
+      "legals": "Mentions Légales",
       "title": "VMDL - Law Firm & Cover Group",
       "subtitle": "Cabinet d'avocat",
       "phoneNumber": "07 57 41 72 87",
@@ -142,6 +143,7 @@
       "Envoyer": "Send"
     },
     "footer": {
+      "legals": "Legal Notice",
       "title": "VMDL - Law Firm & Cover Group",
       "subtitle": "Law Firm",
       "phoneNumber": "07 57 41 72 87",
@@ -219,6 +221,7 @@
       "Envoyer": "إرسال"
     },
     "footer": {
+      "legals":  "إشعار قانوني",
       "title": "VMDL - مكتب المحاماة ومجموعة Cover",
       "subtitle": "مكتب المحاماة",
       "phoneNumber": "07 57 41 72 87",
@@ -296,6 +299,7 @@
       "Envoyer": "senden"
     },
     "footer": {
+      "legals": "Impressum",
       "title": "VMDL - Anwaltskanzlei & Cover Group",
       "subtitle": "Anwaltskanzlei",
       "phoneNumber": "07 57 41 72 87",
@@ -373,6 +377,7 @@
       "Envoyer": "enviar"
     },
     "footer": {
+      "legals": "Notas Legais",
       "title": "VMDL - Escritório de Advocacia e Grupo de Cobertura",
       "subtitle": "Escritório de Advocacia",
       "phoneNumber": "07 57 41 72 87",
@@ -450,6 +455,7 @@
       "Envoyer": "enviar"
     },
     "footer": {
+      "legals": "Aviso Legal",
       "title": "VMDL - Despacho de Abogados y Grupo de Cobertura",
       "subtitle": "Despacho de Abogados",
       "phoneNumber": "07 57 41 72 87",
@@ -527,6 +533,7 @@
       "Envoyer": "inviare"
     },
     "footer": {
+      "legals": "Note Legali",
       "title": "VMDL - Studio Legale e Gruppo di Copertura",
       "subtitle": "Studio Legale",
       "phoneNumber": "07 57 41 72 87",
@@ -604,6 +611,7 @@
       "Envoyer": "发送"
     },
     "footer": {
+      "legals":  "法律声明",
       "title": "VMDL - 律师事务所与综合集团",
       "subtitle": "律师事务所",
       "phoneNumber": "07 57 41 72 87",

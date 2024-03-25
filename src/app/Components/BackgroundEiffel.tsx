@@ -25,7 +25,7 @@ const BackgroundEiffel: React.FC = () => {
         : mediaPaths.paris;
       const videoType = isIOS() ? "video/mp4" : "video/webm";
       const posterPath = "/images/paris_2.JPG";
-      const posterPathLaptop = "/images/paris.jpeg";
+      const posterPathLaptop = "/images/paris_2.jpeg";
 
       const videoElement = document.createElement("video");
       videoElement.className = "video-js";

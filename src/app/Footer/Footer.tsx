@@ -60,13 +60,13 @@ export default function Footer() {
     >
       <div
         id="footer-title"
-        className="w-4/5 flex justify-center items-center mt-20"
+        className="bg-red-500 w-4/5 flex justify-center items-center mt-20"
       >
         <div
           onClick={() => {
             handleScroll(0);
           }}
-          className="group flex flex-col gap-1 sm:gap-2 mt-2"
+          className="group flex flex-col gap-1 sm:gap-2 bg-green-500"
         >
           <p className="md:text-2xl group-hover:text-gray-400 transition duration-150 text-[19px] sm:text-[32px] sm:title font-semibold">
             {title}
@@ -78,9 +78,9 @@ export default function Footer() {
       </div>
       <div
         id="footer-content"
-        className="w-full gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
+        className="w-4/5 bg-gray-500/10 gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
       >
-        <div className="w-4/5 text-left text-blanc h-fit">
+        <div className="w-full text-left flex text-blanc">
           <button
             onClick={() => {
               handleScroll(0);
@@ -90,10 +90,10 @@ export default function Footer() {
             Mentions legales
           </button>
         </div>
-        <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-4/5 flex justify-between items-center pb-2 sm:pb-0 sm:items-start sm:pt-3">
+        <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-between items-center px-4 py-2">
           <div
             id="footer-contact"
-            className="justify-center items-center gap-1 sm:gap-6 flex flex-col sm:flex-row py-1"
+            className="justify-center items-center gap-1 sm:gap-6 flex flex-col sm:flex-row bg-blue-500/10"
           >
             <a
               href="https://www.google.com/maps/search/?api=1&query=2%20Rue%20de%20Poissy%2C%2075005%20Paris"
