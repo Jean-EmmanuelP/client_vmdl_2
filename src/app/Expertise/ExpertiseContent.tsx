@@ -101,7 +101,7 @@ export default function ExpertiseContent() {
   const { title: box_3_title, title_description: title_3_description } = box_3;
   if (!isMobile) {
     return (
-      <div className={`relative w-full h-[300vh] sm:h-full bg-blanc`}>
+      <div className={`relative w-full sm:h-full bg-blanc`}>
         {/* <div
           className={`rideau ${showRideau ? "rideau-animation" : ""}`}
           style={{

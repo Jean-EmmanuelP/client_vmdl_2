@@ -377,7 +377,7 @@ export default function App() {
                   <div ref={cabinetRef} className="w-full h-full">
                     <Cabinet />
                   </div>
-                  <div ref={expertiseRef} className="w-full h-[300vh] sm:h-full">
+                  <div ref={expertiseRef} className="w-full h-[130vh] sm:h-full">
                     <Expertise />
                   </div>
                   <div ref={visionRef} className="w-full h-full">
