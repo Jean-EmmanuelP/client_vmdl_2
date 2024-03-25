@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { CSSTransition } from "react-transition-group";
+import TextCycle from "../Components/TextCycle";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
+import Affaires from "./Affaires";
 import Conseil from "./Conseil";
 import Contentieux from "./Contentieux";
-import Affaires from "./Affaires";
-import TextCycle from "../Components/TextCycle";
-import { CSSTransition } from "react-transition-group";
 
 export default function ExpertiseContent() {
   const { subExpertise, setSubExpertise } = useExpertise();
@@ -35,7 +35,7 @@ export default function ExpertiseContent() {
     //     setSubExpertise(activeContent);
     //   }, 1000);
     // } else {
-      setSubExpertise(activeContent);
+    setSubExpertise(activeContent);
     // }
   }
   const memoizedTextCycle = useMemo(() => {
@@ -96,9 +96,9 @@ export default function ExpertiseContent() {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
 
   const { title, box_1, box_2, box_3 } = data[langCode].section_3;
-  const { title: box_1_title } = box_1;
-  const { title: box_2_title } = box_2;
-  const { title: box_3_title } = box_3;
+  const { title: box_1_title, title_description: title_1_description } = box_1;
+  const { title: box_2_title, title_description: title_2_description } = box_2;
+  const { title: box_3_title, title_description: title_3_description } = box_3;
   if (!isMobile) {
     return (
       <div className={`relative w-full h-[300vh] sm:h-full bg-blanc`}>
@@ -146,11 +146,14 @@ export default function ExpertiseContent() {
                   </h1>
                   <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
                     <span className="pl-[20%] text-line">
+                    {title_1_description}
+                    </span>
+                    {/* <span className="pl-[20%] text-line">
                       VMDL, un cabinet d&apos;avocats
                     </span>
                     <span className="pl-[20%] text-line">en lien avec le football</span>
                     <span className="pl-[20%] text-line">dans differentes regions du monde</span>
-                    <span className="pl-[20%] text-line">proche de ses partenaires</span>
+                    <span className="pl-[20%] text-line">proche de ses partenaires</span> */}
                   </div>
                 </div>
               </div>
@@ -172,12 +175,15 @@ export default function ExpertiseContent() {
                     {box_2_title}
                   </h1>
                   <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                    <span className="pl-[20%] text-line">
+                  <span className="pl-[20%] text-line">
+                      {title_2_description}
+                    </span>
+                    {/* <span className="pl-[20%] text-line">
                       VMDL vous conseille
                     </span>
                     <span className="pl-[20%] text-line">au jour le jour</span>
                     <span className="pl-[20%] text-line">au jour le jour</span>
-                    <span className="pl-[20%] text-line">au jour le jour</span>
+                    <span className="pl-[20%] text-line">au jour le jour</span> */}
                   </div>
                 </div>
               </div>
@@ -199,12 +205,15 @@ export default function ExpertiseContent() {
                     {box_3_title}
                   </h1>
                   <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                    <span className="pl-[20%] text-line">
+                  <span className="pl-[20%] text-line">
+                      {title_3_description}
+                    </span>
+                    {/* <span className="pl-[20%] text-line">
                       VMDL vous conseille
                     </span>
                     <span className="pl-[20%] text-line">au jour le jour</span>
                     <span className="pl-[20%] text-line">au jour le jour</span>
-                    <span className="pl-[20%] text-line">au jour le jour</span>
+                    <span className="pl-[20%] text-line">au jour le jour</span> */}
                   </div>
                 </div>
               </div>
@@ -243,8 +252,8 @@ export default function ExpertiseContent() {
                       number === 1
                         ? "conseil"
                         : number === 2
-                        ? "contentieux"
-                        : "affaires";
+                          ? "contentieux"
+                          : "affaires";
                     handleClick(targetContent);
                   }}
                 >
@@ -252,8 +261,8 @@ export default function ExpertiseContent() {
                     {number === 1
                       ? box_1_title
                       : number === 2
-                      ? box_2_title
-                      : box_3_title}
+                        ? box_2_title
+                        : box_3_title}
                   </h1>
                 </div>
               ))}

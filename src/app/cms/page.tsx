@@ -173,17 +173,17 @@ const CMS: React.FC = () => {
       router.push("/");
     }
   }, [goBack]);
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await fetch("/api/take-content");
-  //     if (!response.ok) {
-  //       throw new Error(`Network response was not ok`);
-  //     }
-  //     const data = await response.json();
-  //     setEditJson(data);
-  //   }
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("/api/take-content");
+      if (!response.ok) {
+        throw new Error(`Network response was not ok`);
+      }
+      const data = await response.json();
+      setEditJson(data);
+    }
+    fetchData();
+  }, []);
 
   /*
     1. comprendre comment separer chaque langue [done]
