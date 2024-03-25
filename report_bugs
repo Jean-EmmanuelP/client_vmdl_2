@@ -3,16 +3,13 @@ todo:
 - faire le logo
 - interdire le zoom sur telephone sur le site quand il clique sur le select
 - mentions legales, bien la mettre sur mobile
-- video kaka: enlever le noir sur les cotes, utiliser des outils pour 
-resize:
-
-https://editor.flixier.com/projects/create?name=New%20Project&width=1920&height=1080&fx_source=search&lang=en&fx_campaign=resize-mp4&fx_medium=tools
-
-https://new.express.adobe.com/tools/resize-video
-
 - verifier que le mail fonctionne
 - mettre en ligne
 - ecran de precharge mettre le nouveau logo
 - partie affaires : comprendre pourquoi le texte ne saffiche pas pour rio et comment les videos chargent, peut etre trouver un moyen de les preload et que ce soit fluide
 - vmdl: changer la photo darriere plan mis a la place de paris
-- ajouter le title description dans toute les langues
+---
+- expertise revoir les images que lon met, voir comment les 3 images chargent entre elles
+- commoniser le code
+- trouver un logo
+- pour les videos, les encadres voir ce que crowdin fait dans le css
