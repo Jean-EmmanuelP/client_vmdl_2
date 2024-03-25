@@ -7,19 +7,19 @@
   les performances et comment savoir qui elles sont ?
   Aussi comment le contextboard, soit les proprietes partage entre tout mes composants peut affecter les performances de mon site ?
 */
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
+import Cabinet from "./Cabinet/Cabinet";
+import Carriere from "./Components/Carriere/Carriere";
+import Legals from "./Components/Legals/Legals";
+import Home from "./Home/Home";
 import {
   LangueCode,
   currentSectionContext,
   expertiseContext,
 } from "./utils/Contextboard";
 import { DataProvider } from "./utils/DataContext";
-import dynamic from "next/dynamic";
-import Home from "./Home/Home";
-import Cabinet from "./Cabinet/Cabinet";
 import { NavigatorWithConnection } from "./utils/interface";
-import Carriere from "./Components/Carriere/Carriere";
-import Legals from "./Components/Legals/Legals";
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
 const Expertise = dynamic(() => import("./Expertise/Expertise"), {
   ssr: false,
@@ -290,22 +290,31 @@ export default function App() {
   const visionRef = useRef(null);
   const fondateurRef = useRef(null);
   const contactRef = useRef(null);
+  const mainRef = useRef(null);
   const handleScrollSections = (ref: React.RefObject<HTMLDivElement>) => {
-    if(ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (ref.current === homeRef.current) {
-      setCurrentSection(0);
-    } else if (ref.current === cabinetRef.current) {
-      setCurrentSection(1);
-    } else if (ref.current === expertiseRef.current) {
-      setCurrentSection(2);
-    } else if (ref.current === visionRef.current) {
-      setCurrentSection(3);
-    } else if (ref.current === fondateurRef.current) {  
-      setCurrentSection(4);
+    const mainContainer = document.getElementById('main');
+    if (mainContainer && ref.current) {
+      const offsetTop = ref.current.offsetTop - mainContainer.offsetTop;
+  
+      mainContainer.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth',
+      });
+  
+      if (ref.current === homeRef.current) {
+        setCurrentSection(0);
+      } else if (ref.current === cabinetRef.current) {
+        setCurrentSection(1);
+      } else if (ref.current === expertiseRef.current) {
+        setCurrentSection(2);
+      } else if (ref.current === visionRef.current) {
+        setCurrentSection(3);
+      } else if (ref.current === fondateurRef.current) {  
+        setCurrentSection(4);
+      }
     }
   };
+  
 
   return (
     <DataProvider>
@@ -356,6 +365,7 @@ export default function App() {
             <Header height={headerHeight} />
             <div
               id="main"
+              ref={mainRef}
               style={{ height: mainHeight }}
               className="w-full z-1 overflow-y-auto overflow-x-hidden"
             >
