@@ -3,7 +3,6 @@ todo:
 - faire le logo
 - interdire le zoom sur telephone sur le site quand il clique sur le select
 - mentions legales, bien la mettre sur mobile
-- sur mobile: comprendre pourquoi quand tu vas sur le bas alors 
 - video kaka: enlever le noir sur les cotes, utiliser des outils pour 
 resize:
 
@@ -16,3 +15,4 @@ https://new.express.adobe.com/tools/resize-video
 - ecran de precharge mettre le nouveau logo
 - partie affaires : comprendre pourquoi le texte ne saffiche pas pour rio et comment les videos chargent, peut etre trouver un moyen de les preload et que ce soit fluide
 - vmdl: changer la photo darriere plan mis a la place de paris
+- ajouter le title description dans toute les langues
