@@ -31,7 +31,7 @@ export default function Footer() {
   // langCode doubled
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
-  const { title, subtitle, phoneNumber, fixNumber, address } =
+  const { title, subtitle, phoneNumber, fixNumber, address, legals } =
     data[langCode].footer;
   const handleScroll = (value: number) => {
     const mainDiv = document.getElementById("main");
@@ -50,7 +50,7 @@ export default function Footer() {
   return (
     <div
       id="Footer"
-      className="relative w-full h-[45%] gap-4 sm:h-[44%] flex flex-col items-center z-10 bg-noir text-blanc"
+      className="relative w-full h-[60%] gap-2 sm:gap-4 sm:h-[44%] flex flex-col items-center justify-center z-10 bg-noir text-blanc"
       onMouseEnter={() => {
         setBgIsBlackFooter(true);
       }}
@@ -58,15 +58,12 @@ export default function Footer() {
         setBgIsBlackFooter(false);
       }}
     >
-      <div
-        id="footer-title"
-        className="bg-red-500 w-4/5 flex justify-center items-center mt-20"
-      >
+      <div id="footer-title" className="w-4/5 flex justify-center items-center">
         <div
           onClick={() => {
             handleScroll(0);
           }}
-          className="group flex flex-col gap-1 sm:gap-2 bg-green-500"
+          className="group flex flex-col gap-1 sm:gap-2"
         >
           <p className="md:text-2xl group-hover:text-gray-400 transition duration-150 text-[19px] sm:text-[32px] sm:title font-semibold">
             {title}
@@ -78,22 +75,22 @@ export default function Footer() {
       </div>
       <div
         id="footer-content"
-        className="w-4/5 bg-gray-500/10 gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
+        className="w-4/5 h-[40%] gap-2 sm:gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
       >
-        <div className="w-full text-left flex text-blanc">
+        <div className="hidden sm:flex px-4 w-full text-left text-blanc">
           <button
             onClick={() => {
               handleScroll(0);
-              setPageIs("legals"); 
+              setPageIs("legals");
             }}
           >
-            Mentions legales
+            {legals}
           </button>
         </div>
-        <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-between items-center px-4 py-2">
+        <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-center sm:justify-between items-center px-4 py-4 sm:py-10">
           <div
             id="footer-contact"
-            className="justify-center items-center gap-1 sm:gap-6 flex flex-col sm:flex-row bg-blue-500/10"
+            className="justify-center items-center gap-1 sm:gap-6 flex flex-col sm:flex-row"
           >
             <a
               href="https://www.google.com/maps/search/?api=1&query=2%20Rue%20de%20Poissy%2C%2075005%20Paris"
@@ -146,7 +143,7 @@ export default function Footer() {
               <a href="mailto:cabinet@vmdl.ai">cabinet@vmdl.ai</a>
             </p>
           </div>
-          <div id="footer-social">
+          <div id="footer-social" className="hidden sm:block">
             <div className="flex justify-center items-center gap-2 md:gap-10 py-1">
               <a
                 href="https://www.instagram.com/"
@@ -182,6 +179,72 @@ export default function Footer() {
                 />
               </a>
             </div>
+          </div>
+        </div>
+        <div className="flex w-full px-4 justify-between gap-4 sm:hidden">
+          <div className="">
+            <button
+              onClick={() => {
+                handleScroll(0);
+                setPageIs("legals");
+              }}
+            >
+              {legals}
+            </button>
+          </div>
+          <div className="flex gap-4">
+            <a
+              href="https://www.linkedin.com/in/vincent-machado-da-luz-550a942a2/overlay/about-this-profile/"
+              target="_blank"
+              className="transition duration-150"
+            >
+              <svg
+                width="18"
+                height="18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#a)">
+                  <path
+                    d="M15.546 0H2.455A2.455 2.455 0 0 0 0 2.455v13.09A2.455 2.455 0 0 0 2.455 18h13.09A2.455 2.455 0 0 0 18 15.546V2.455A2.455 2.455 0 0 0 15.546 0Zm-9.41 14.245a.38.38 0 0 1-.38.38H4.14a.38.38 0 0 1-.38-.38v-6.78a.38.38 0 0 1 .38-.38h1.617a.38.38 0 0 1 .38.38v6.78ZM4.948 6.443a1.534 1.534 0 1 1 0-3.068 1.534 1.534 0 0 1 0 3.068Zm9.64 7.828a.348.348 0 0 1-.35.35H12.5a.35.35 0 0 1-.35-.35v-3.175c0-.475.14-2.079-1.24-2.079-1.07 0-1.287 1.098-1.33 1.59v3.668a.35.35 0 0 1-.345.35h-1.68a.35.35 0 0 1-.348-.35V7.436a.349.349 0 0 1 .349-.35h1.68a.35.35 0 0 1 .349.35v.591c.397-.596.985-1.054 2.24-1.054 2.78 0 2.761 2.596 2.761 4.021l.002 3.277Z"
+                    fill="currentColor"
+                  ></path>
+                </g>
+                <defs>
+                  <clipPath id="a">
+                    <path fill="currentColor" d="M0 0h18v18H0z"></path>
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+            <a
+              href="https://www.twitter.com/"
+              target="_blank"
+              className="transition duration-150"
+            >
+              <svg
+                width="17"
+                height="18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#a)">
+                  <path
+                    d="M10.117 7.694 16.446.499h-1.5L9.451 6.746 5.062.499H0l6.637 9.447L0 17.49h1.5l5.803-6.597 4.635 6.597H17l-6.883-9.796Zm-2.054 2.335-.672-.94-5.35-7.486h2.303l4.318 6.04.672.941 5.613 7.852h-2.304l-4.58-6.407Z"
+                    fill="currentColor"
+                  ></path>
+                </g>
+                <defs>
+                  <clipPath id="a">
+                    <path
+                      fill="currentColor"
+                      transform="translate(0 .5)"
+                      d="M0 0h17v17H0z"
+                    ></path>
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
