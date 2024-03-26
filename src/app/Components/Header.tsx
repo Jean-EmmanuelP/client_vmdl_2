@@ -277,53 +277,125 @@ export default function Header({ height }: HeaderProps) {
               onChange={handleLanguageChange}
             />
           </div>
+
           <div className="flex justify-between w-full">
-            <button
-              onClick={toggleMenu}
-              className="uppercase flex justify-center items-center gap-2 z-[1000000110]"
-              data-clickable={true}
-            >
-              <div className="w-4 h-4" data-clickable={true}>
-                <Menu toggleMenu={menuOpen} />
-              </div>
-              <AnimatePresence mode="wait">
-                {menuOpen ? (
-                  <motion.p
-                    key="close"
-                    className="text-[13px]"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    data-clickable={true}
-                    transition={{ duration: 0.2 }}
-                  >
-                    Close
-                  </motion.p>
-                ) : (
-                  <motion.p
-                    key="menu"
-                    className="text-[13px]"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    data-clickable={true}
-                    transition={{ duration: 0.5 }}
-                  >
-                    Menu
-                  </motion.p>
+            {isMobile ? (
+              <>
+                <button
+                  onClick={toggleMenu}
+                  className="uppercase flex justify-center items-center gap-2 z-[1000000110]"
+                  data-clickable={true}
+                >
+                  <div className="w-4 h-4" data-clickable={true}>
+                    <Menu toggleMenu={menuOpen} />
+                  </div>
+                  <AnimatePresence mode="wait">
+                    {menuOpen ? (
+                      <motion.p
+                        key="close"
+                        className="text-[13px]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        data-clickable={true}
+                        transition={{ duration: 0.2 }}
+                      >
+                        Close
+                      </motion.p>
+                    ) : (
+                      <motion.p
+                        key="menu"
+                        className="text-[13px]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        data-clickable={true}
+                        transition={{ duration: 0.5 }}
+                      >
+                        Menu
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </button>
+                {menuOpen && !isMobile && (
+                  <div className="overlay" onClick={toggleMenu}></div>
                 )}
-              </AnimatePresence>
-            </button>
-            {menuOpen && !isMobile && (
-              <div className="overlay" onClick={toggleMenu}></div>
-            )}
-            <div
-              ref={wrapperRef}
-              className={`menu ${menuOpen ? "open" : ""} ${
-                goingOut ? "close" : ""
-              }`}
-            >
-              <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[2px] -translate-y-1/2">
+                <div
+                  ref={wrapperRef}
+                  className={`menu ${menuOpen ? "open" : ""} ${
+                    goingOut ? "close" : ""
+                  }`}
+                >
+                  <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[2px] -translate-y-1/2">
+                    <button
+                      data-clickable="true"
+                      onClick={() => {
+                        toggleMenu();
+                        setPageIs("/");
+                        setTimeout(() => {
+                          handleScrollSections(cabinetRef);
+                        }, 200);
+                      }}
+                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                    >
+                      {section_1}
+                    </button>
+                    <button
+                      data-clickable="true"
+                      onClick={() => {
+                        toggleMenu();
+                        setPageIs("/");
+                        setTimeout(() => {
+                          handleScrollSections(expertiseRef);
+                        }, 200);
+                      }}
+                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                    >
+                      {section_2}
+                    </button>
+                    <button
+                      data-clickable="true"
+                      onClick={() => {
+                        toggleMenu();
+                        setPageIs("/");
+                        setTimeout(() => {
+                          handleScrollSections(visionRef);
+                        }, 200);
+                      }}
+                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                    >
+                      {section_3}
+                    </button>
+                    <button
+                      data-clickable="true"
+                      onClick={() => {
+                        toggleMenu();
+                        setPageIs("/");
+                        setTimeout(() => {
+                          handleScrollSections(fondateurRef);
+                        }, 200);
+                      }}
+                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                    >
+                      {section_4}
+                    </button>
+                    <button
+                      data-clickable="true"
+                      onClick={() => {
+                        toggleMenu();
+                        setPageIs("carriere");
+                        handleScrollSections(homeRef);
+                      }}
+                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                    >
+                      {/* TODO */}
+                      {carreer_title}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
                 <button
                   data-clickable="true"
                   onClick={() => {
@@ -388,8 +460,8 @@ export default function Header({ height }: HeaderProps) {
                   {/* TODO */}
                   {carreer_title}
                 </button>
-              </div>
-            </div>
+              </>
+            )}
             <button
               onClick={() => {
                 handleScrollSections(homeRef);
@@ -397,9 +469,7 @@ export default function Header({ height }: HeaderProps) {
               }}
               data-clickable="true"
             >
-              <p className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 tracking-wider text-[20px] sm:text-[30px] z-[21020]">
-                VMDL
-              </p>
+              <p>VMDL</p>
             </button>
           </div>
         </div>

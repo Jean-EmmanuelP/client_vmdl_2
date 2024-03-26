@@ -51,21 +51,18 @@ export default function ExpertiseContent() {
   useEffect(() => {
     subExpertise === null && setIsVisible(true);
   }, [subExpertise]);
-  const expertiseRef = useRef(null);
-  const [isIntersecting, setIsIntersecting] = useState(false);
+  const expertiseRef = useRef<HTMLDivElement>(null);
+  
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setIsIntersecting(entry.isIntersecting);
+          setIsVisible(entry.isIntersecting);
         });
       },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.5,
-      }
+      { root: null, rootMargin: "0px", threshold: 0.5 }
     );
 
     if (expertiseRef.current) {
