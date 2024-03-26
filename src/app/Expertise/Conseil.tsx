@@ -87,17 +87,8 @@ export default function Conseil() {
   */
   return (
     <div
-      className={`relative w-full h-full gap-[4vw] px-[15vw] justify-center items-center flex flex-col sm:flex-row z-10 text-black`}
+      className={`relative w-full h-full gap-[4vw] sm:gap-0 px-[15vw] sm:px-0 justify-center items-center sm:justify-start sm:items-start flex flex-col sm:flex-row z-10 text-black`}
     >
-      <div
-        className="absolute top-[10%] bg-blanc sm:top-[0%] left-[10%] sm:left-[0%] w-[50px] h-[50px] sm:w-[5%] sm:h-[8%] flex items-center justify-center pr-2"
-        data-clickable={true}
-        onClick={() => {
-          setSubExpertise(null);
-        }}
-      >
-        <ReversedArrow />
-      </div>
       {isMobile ? (
         <>
           <div className="absolute top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
@@ -109,8 +100,26 @@ export default function Conseil() {
         </>
       ) : (
         <>
+          <div className="w-[25%] h-full flex items-center justify-center">
+            <div
+              data-clickable={true}
+              onClick={() => {
+                setSubExpertise(null);
+              }}
+            >
+              <ReversedArrow />
+            </div>
+          </div>
+          <div className="relative sm:w-[45%] mx-2 h-full flex flex-col justify-center items-center">
+              <div className="absolute top-[30%] sm:top-[20%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+                {title}
+              </div>
+              <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
+                {content}
+              </p>
+          </div>
           <div
-            className="group relative w-1/2 overflow-hidden h-full"
+            className="group relative w-[30%] overflow-hidden h-full"
             onClick={() => {
               if (!videoPaused) {
                 videoLaptopKaka.current?.pause();
@@ -138,14 +147,6 @@ export default function Conseil() {
             >
               <source src="/videos/kaka.mp4" type="video/mp4" />
             </video>
-          </div>
-          <div className="relative sm:w-1/2 h-full flex flex-col justify-center items-center">
-            <div className="absolute top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
-              {title}
-            </div>
-            <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
-              {content}
-            </p>
           </div>
         </>
       )}

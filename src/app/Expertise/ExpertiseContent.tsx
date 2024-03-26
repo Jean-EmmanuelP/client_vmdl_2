@@ -127,7 +127,7 @@ export default function ExpertiseContent() {
               >
                 {title}
               </div>
-              <div className="flex justify-center items-center gap-6 h-[80%] w-full">
+              <div className="flex justify-center items-center gap-14 h-[80%] w-full">
               {/* first Box */}
               <div
                 className={`expertiseWrapper wrapper1 relative w-1/3 sm:h-[55%] overflow-hidden`}

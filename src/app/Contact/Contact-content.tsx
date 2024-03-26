@@ -68,7 +68,7 @@ export default function ContactContent() {
         variants={containerVariants}
         className="w-full h-full flex justify-center items-center"
       >
-        <div className="flex flex-col w-[45%] -mt-[85px] sm:mt-0">
+        <div className="flex flex-col w-[45%] -mt-[85px] sm:-mt-18">
           <motion.h1
             variants={itemVariants}
             className="uppercase text-center py-4 text-[23px] tracking-wide sm:text-[40px] sm:title font-light"
