@@ -8,7 +8,7 @@ const CustomCursor: React.FC = () => {
     x: 0,
     y: 0,
   });
-  const { menuOpen, bgIsBlackFondateur, bgIsBlackFooter, isHoveringExpertiseButton } =
+  const { menuOpen, bgIsBlackFondateur, bgIsBlackFooter, isHoveringExpertiseButton, currentSection } =
     useSection();
   const [visible, setVisible] = useState<boolean>(false);
   const [clickable, setClickable] = useState<boolean>(false);
@@ -89,9 +89,9 @@ const CustomCursor: React.FC = () => {
     checkIfClickable();
   }, [position]);
   const MappingBgColor = {
-    conseil: "#ADD8E6",
-    contentieux: "#9EC8DB",
-    affaires: "#BFE0E9",
+    conseil: "black",
+    contentieux: "black",
+    affaires: "black",
     none: "transparent",
   };
   const cursorStyle: React.CSSProperties = {

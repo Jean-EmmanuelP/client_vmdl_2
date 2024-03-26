@@ -19,6 +19,33 @@ export default function ExpertiseContent() {
   const [isVisible, setIsVisible] = useState(true);
   const [showRideau, setShowRideau] = useState(false);
 
+  function ComposantTexte({ texte, nbMotsParSegment }: any) {
+    function creerSegmentsDeTexte(texte: string, nbMotsParSegment: number) {
+      const mots = texte.split(" ");
+      let segments = [];
+
+      for (let i = 0; i < mots.length; i += nbMotsParSegment) {
+        let segmentDeMots = mots.slice(i, i + nbMotsParSegment).join(" ");
+        segments.push(segmentDeMots);
+      }
+
+      return segments;
+    }
+
+    // Appeler la fonction et stocker le résultat
+    const segmentsDeTexte = creerSegmentsDeTexte(texte, nbMotsParSegment);
+
+    return (
+      <div>
+        {segmentsDeTexte.map((segment, index) => (
+          <span key={index} className="pl-[20%] text-sm text-line">
+            {segment}
+          </span>
+        ))}
+      </div>
+    );
+  }
+
   function handleClick(
     activeContent: "conseil" | "contentieux" | "affaires" | null
   ) {
@@ -29,7 +56,7 @@ export default function ExpertiseContent() {
     //   setShowRideau(false);
     //   setIsVisible(false);
     // }, 2300);
-    setIsVisible(false)
+    setIsVisible(false);
     // if (!isMobile) {
     //   setTimeout(() => {
     //     setSubExpertise(activeContent);
@@ -52,8 +79,6 @@ export default function ExpertiseContent() {
     subExpertise === null && setIsVisible(true);
   }, [subExpertise]);
   const expertiseRef = useRef<HTMLDivElement>(null);
-  
-
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -125,96 +150,93 @@ export default function ExpertiseContent() {
                 {title}
               </div>
               <div className="flex justify-center items-center gap-14 h-[80%] w-full">
-              {/* first Box */}
-              <div
-                className={`expertiseWrapper wrapper1 relative w-1/3 sm:h-[55%] overflow-hidden`}
-                onMouseEnter={() => {
-                  setIsHoveringExpertiseButton("conseil");
-                }}
-                onMouseLeave={() => {
-                  setIsHoveringExpertiseButton("none");
-                }}
-                onClick={() => {
-                  handleClick("conseil");
-                }}
-              >
-                <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-                  <h1 className="top-[10%] left-[20%] absolute uppercase">
-                    {box_1_title}
-                  </h1>
-                  <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                    <span className="pl-[20%] text-line">
-                    {title_1_description}
-                    </span>
-                    {/* <span className="pl-[20%] text-line">
-                      VMDL, un cabinet d&apos;avocats
-                    </span>
-                    <span className="pl-[20%] text-line">en lien avec le football</span>
-                    <span className="pl-[20%] text-line">dans differentes regions du monde</span>
-                    <span className="pl-[20%] text-line">proche de ses partenaires</span> */}
+                {/* first Box */}
+                <div
+                  className={`expertiseWrapper wrapper1 relative w-1/3 sm:h-[55%] overflow-hidden`}
+                  onMouseEnter={() => {
+                    setIsHoveringExpertiseButton("conseil");
+                  }}
+                  onMouseLeave={() => {
+                    setIsHoveringExpertiseButton("none");
+                  }}
+                  onClick={() => {
+                    handleClick("conseil");
+                  }}
+                >
+                  <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+                    <h1 className="top-[10%] left-[20%] absolute uppercase">
+                      {box_1_title}
+                    </h1>
+                    <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+                      <ComposantTexte
+                        texte={title_1_description}
+                        nbMotsParSegment={5}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* second Box */}
-              <div
-                className="expertiseWrapper wrapper2 relative w-1/3 sm:h-[55%] overflow-hidden"
-                onMouseEnter={() => {
-                  setIsHoveringExpertiseButton("contentieux");
-                }}
-                onMouseLeave={() => {
-                  setIsHoveringExpertiseButton("none");
-                }}
-                onClick={() => {
-                  handleClick("contentieux");
-                }}
-              >
-                <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-                  <h1 className="top-[10%] left-[20%] absolute uppercase">
-                    {box_2_title}
-                  </h1>
-                  <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                  <span className="pl-[20%] text-line">
-                      {title_2_description}
-                    </span>
-                    {/* <span className="pl-[20%] text-line">
+                {/* second Box */}
+                <div
+                  className="expertiseWrapper wrapper2 relative w-1/3 sm:h-[55%] overflow-hidden"
+                  onMouseEnter={() => {
+                    setIsHoveringExpertiseButton("contentieux");
+                  }}
+                  onMouseLeave={() => {
+                    setIsHoveringExpertiseButton("none");
+                  }}
+                  onClick={() => {
+                    handleClick("contentieux");
+                  }}
+                >
+                  <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+                    <h1 className="top-[10%] left-[20%] absolute uppercase">
+                      {box_2_title}
+                    </h1>
+                    <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+                      <ComposantTexte
+                        texte={title_2_description}
+                        nbMotsParSegment={5}
+                      />
+                      {/* <span className="pl-[20%] text-line">
                       VMDL vous conseille
                     </span>
                     <span className="pl-[20%] text-line">au jour le jour</span>
                     <span className="pl-[20%] text-line">au jour le jour</span>
                     <span className="pl-[20%] text-line">au jour le jour</span> */}
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* third Box */}
-              <div
-                className="expertiseWrapper wrapper3 relative w-1/3 sm:h-[55%] overflow-hidden"
-                onMouseEnter={() => {
-                  setIsHoveringExpertiseButton("affaires");
-                }}
-                onMouseLeave={() => {
-                  setIsHoveringExpertiseButton("none");
-                }}
-                onClick={() => {
-                  handleClick("affaires");
-                }}
-              >
-                <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-                  <h1 className="top-[10%] left-[20%] absolute uppercase">
-                    {box_3_title}
-                  </h1>
-                  <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                  <span className="pl-[20%] text-line">
-                      {title_3_description}
-                    </span>
-                    {/* <span className="pl-[20%] text-line">
+                {/* third Box */}
+                <div
+                  className="expertiseWrapper wrapper3 relative w-1/3 sm:h-[55%] overflow-hidden"
+                  onMouseEnter={() => {
+                    setIsHoveringExpertiseButton("affaires");
+                  }}
+                  onMouseLeave={() => {
+                    setIsHoveringExpertiseButton("none");
+                  }}
+                  onClick={() => {
+                    handleClick("affaires");
+                  }}
+                >
+                  <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
+                    <h1 className="top-[10%] left-[20%] absolute uppercase">
+                      {box_3_title}
+                    </h1>
+                    <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
+                      <ComposantTexte
+                        texte={title_3_description}
+                        nbMotsParSegment={5}
+                      />
+                      {/* <span className="pl-[20%] text-line">
                       VMDL vous conseille
                     </span>
                     <span className="pl-[20%] text-line">au jour le jour</span>
                     <span className="pl-[20%] text-line">au jour le jour</span>
                     <span className="pl-[20%] text-line">au jour le jour</span> */}
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
               {/* <div className="absolute w-full px-[14%] bottom-[13%] mb-2">
               {memoizedTextCycle}
@@ -251,8 +273,8 @@ export default function ExpertiseContent() {
                       number === 1
                         ? "conseil"
                         : number === 2
-                          ? "contentieux"
-                          : "affaires";
+                        ? "contentieux"
+                        : "affaires";
                     handleClick(targetContent);
                   }}
                 >
@@ -260,8 +282,8 @@ export default function ExpertiseContent() {
                     {number === 1
                       ? box_1_title
                       : number === 2
-                        ? box_2_title
-                        : box_3_title}
+                      ? box_2_title
+                      : box_3_title}
                   </h1>
                 </div>
               ))}
