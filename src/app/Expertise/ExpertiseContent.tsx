@@ -38,7 +38,7 @@ export default function ExpertiseContent() {
     return (
       <div>
         {segmentsDeTexte.map((segment, index) => (
-          <span key={index} className="pl-[20%] text-sm text-line">
+          <span key={index} className="pl-[20%] text-line">
             {segment}
           </span>
         ))}
