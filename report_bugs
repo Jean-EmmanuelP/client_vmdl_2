@@ -1,15 +1,14 @@
 todo:
-- probleme de changement d'image & videos sur la partie expertise > affaires sur les versions mobile et ordinateur
-- faire le logo
-- interdire le zoom sur telephone sur le site quand il clique sur le select
-- mentions legales, bien la mettre sur mobile
-- verifier que le mail fonctionne
-- mettre en ligne
-- ecran de precharge mettre le nouveau logo
-- partie affaires : comprendre pourquoi le texte ne saffiche pas pour rio et comment les videos chargent, peut etre trouver un moyen de les preload et que ce soit fluide
-- vmdl: changer la photo darriere plan mis a la place de paris
+- probleme de changement d'image & videos sur la partie expertise > affaires sur les versions mobile et ordinateur [todo]
+- faire le logo [todo]
+- mentions legales, bien la mettre sur mobile [todo]
+- verifier que le mail fonctionne [todo]
+- mettre en ligne [todo] #LAST
+- ecran de precharge mettre le nouveau logo [todo]
+- partie affaires : comprendre pourquoi le texte ne saffiche pas pour rio et comment les videos chargent, peut etre trouver un moyen de les preload et que ce soit fluide [todo]
+- vmdl: changer la photo darriere plan mis a la place de paris [todo]
 ---
-- expertise revoir les images que lon met, voir comment les 3 images chargent entre elles
-- commoniser le code
-- trouver un logo
-- pour les videos, les encadres voir ce que crowdin fait dans le css
+- expertise revoir les images que lon met, voir comment les 3 images chargent entre elles [todo]
+- commoniser le code [todo]
+- trouver un logo [todo]
+- pour les videos, les encadres voir ce que crowdin fait dans le css [todo]
