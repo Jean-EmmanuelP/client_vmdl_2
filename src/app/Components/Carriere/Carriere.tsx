@@ -43,7 +43,7 @@ export default function Carriere() {
   const formattedContent = formatContent(content);
   return (
     <div className="relative w-full h-full bg-blanc flex flex-col sm:flex-row items-center justify-center">
-      <div className="absolute top-[20%] sm:top-[22%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+      <div className="absolute top-[10%] sm:top-[22%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
         {title}
       </div>
       <p

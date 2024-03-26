@@ -96,29 +96,22 @@ export default function Header({ height }: HeaderProps) {
     const appLang = isLangueCode(browserLang) ? browserLang : "EN";
     console.log(`this is the appLangue`, appLang);
     console.log(`this is the langueCourante`, langueCourante);
-    console.log(`options available:`, options); // Ajoutez cette ligne pour inspecter les options disponibles
-    const matchingOption = options.find((option) => option.value);
-    !matchingOption
-      ? setSelectedOption(options[1])
-      : setSelectedOption(matchingOption);
-    console.log(`this is the selectedOption`, matchingOption);
     setLangueCourante(appLang);
   }, []);
   const animatedComponents = makeAnimated();
 
   // langue code ici utilise deux fois
   type LangueCode = "FR" | "EN" | "IT" | "ES" | "عربي" | "PT" | "DE" | "中文";
-  //  pareil ici cest un const on sen fou de le mettre ici
-  const LANGUAGE_NAMES = {
-    FR: { native: "Français", en: "French", fr: "Français" },
-    EN: { native: "English", en: "English", fr: "Anglais" },
-    IT: { native: "Italiano", en: "Italian", fr: "Italien" },
-    ES: { native: "Español", en: "Spanish", fr: "Espagnol" },
-    عربي: { native: "العربية", en: "Arabic", fr: "Arabe" },
-    PT: { native: "Português", en: "Portuguese", fr: "Portugais" },
-    DE: { native: "Deutsch", en: "German", fr: "Allemand" },
-    中文: { native: "中文", en: "Chinese", fr: "Chinois" },
-  };
+  const languesOptions = [
+    { value: "FR", label: "Français" },
+    { value: "EN", label: "English" },
+    { value: "IT", label: "Italiano" },
+    { value: "ES", label: "Español" },
+    { value: "عربي", label: "عربي" },
+    { value: "PT", label: "Português" },
+    { value: "DE", label: "Deutsch" },
+    { value: "中文", label: "中文" },
+  ];
   //  pareil ici cest un const on sen fou de le mettre ici
   const LANGUAGE_TO_COUNTRY_CODES: Record<LangueCode, string[]> = {
     FR: ["FR"],
@@ -130,23 +123,7 @@ export default function Header({ height }: HeaderProps) {
     DE: ["DE"],
     中文: ["CN"],
   };
-  const options = Object.entries(LANGUAGE_TO_COUNTRY_CODES).flatMap(
-    ([langue, countries]) =>
-      countries.map((country) => {
-        const languageDetails =
-          LANGUAGE_NAMES[langue as keyof typeof LANGUAGE_NAMES];
 
-        return {
-          value: country,
-          label: <>{country}</>,
-          searchTerms: [
-            languageDetails?.native,
-            languageDetails?.en,
-            languageDetails?.fr,
-          ],
-        };
-      })
-  );
   // interface ici faire un fichier pour les interfaces
   interface Option {
     value: string;
@@ -178,15 +155,10 @@ export default function Header({ height }: HeaderProps) {
     CN: "中文",
   };
 
-  const handleLanguageChange = (newValue: any) => {
-    if (newValue) {
-      const langue = COUNTRY_TO_DEFAULT_LANGUAGE[newValue.value];
-      setLangueCourante(langue as LangueCode);
-      const matchingOption = options.find(
-        (option) => option.value === newValue.value
-      );
-      setSelectedOption(matchingOption);
-    }
+  const handleLanguageChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setLangueCourante(event.target.value as LangueCode);
   };
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -272,16 +244,18 @@ export default function Header({ height }: HeaderProps) {
               : ""
           } relative h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
         >
-          <div className="absolute right-0 -bottom-12 sm:-bottom-14 flex justify-center items-center transparent sm:bg-blanc/10 hover:bg-gray-950 text-xs sm:text-sm">
-            <Select
-              data-clickable={true}
-              styles={customStyles}
-              components={animatedComponents}
-              options={options as any}
-              filterOption={filterOption}
-              value={selectedOption}
+          <div className="absolute right-0 -bottom-12 sm:-bottom-14 flex justify-center items-center transparent text-xs sm:text-sm">
+            <select
+              className="bg-blanc border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              value={langueCourante}
               onChange={handleLanguageChange}
-            />
+            >
+              {languesOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="flex justify-start sm:justify-around w-full">
@@ -493,7 +467,7 @@ export default function Header({ height }: HeaderProps) {
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
-                      pageIs === 'carriere'
+                      pageIs === "carriere"
                         ? "-translate-x-0"
                         : "group-hover:-translate-x-0 -translate-x-[100%]"
                     }`}
