@@ -341,12 +341,12 @@ video {
 }
 
 .menu {
-  transition: transform 0.5s ease, background-color 0.5s ease;
+  transition: transform 0.4s ease, background-color 0.4s ease;
   position: fixed;
   left: 0;
   top: 0;
   height: 100%;
-  width: 100vw;
+  width: 50vw;
   transform: translateX(-100%);
   backdrop-filter: blur(10px);
   z-index: 10000000;
@@ -367,15 +367,15 @@ video {
 
 .text-transition {
   position: relative;
-  height: 20px; /* Assurez-vous que la hauteur est suffisante pour contenir une ligne de texte */
-  overflow: hidden; /* Empêche l'affichage de tout débordement pendant la transition */
+  height: 20px;
+  overflow: hidden;
 }
 
 .text-transition p {
   position: absolute;
   width: 100%;
   transition: opacity 0.5s ease-in-out;
-  margin: 0; /* Supprimez les marges par défaut des paragraphes */
+  margin: 0;
 }
 
 .text-transition p.fade-out {
@@ -394,12 +394,12 @@ video {
 
 .menu.open {
   transform: translateX(0);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.63);
 }
 
 @keyframes slideInFromLeft {
   from {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
     opacity: 0;
   }
   to {
@@ -417,24 +417,24 @@ video {
 
 .menu.open button:nth-child(1) {
   animation-name: slideInFromLeft;
-  animation-delay: 0.75s;
+  animation-delay: 0.50s;
 }
 .menu.open button:nth-child(2) {
   animation-name: slideInFromLeft;
-  animation-delay: 0.6s;
+  animation-delay: 0.40s;
 }
 .menu.open button:nth-child(3) {
   animation-name: slideInFromLeft;
-  animation-delay: 0.45s;
+  animation-delay: 0.30s;
 }
 .menu.open button:nth-child(4) {
   animation-name: slideInFromLeft;
-  animation-delay: 0.3s;
+  animation-delay: 0.20s;
 }
 
 .menu.open button:nth-child(5) {
   animation-name: slideInFromLeft;
-  animation-delay: 0.15s;
+  animation-delay: 0.10s;
 }
 
 @keyframes slideOutToLeft {
@@ -444,7 +444,7 @@ video {
     visibility: visible;
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
     opacity: 0;
     visibility: hidden;
   }
@@ -458,23 +458,23 @@ video {
 
 .menu.close button:nth-child(1) {
   animation-name: slideOutToLeft;
-  animation-delay: 0.15s;
+  animation-delay: 0.10s;
 }
 .menu.close button:nth-child(2) {
   animation-name: slideOutToLeft;
-  animation-delay: 0.3s;
+  animation-delay: 0.20s;
 }
 .menu.close button:nth-child(3) {
   animation-name: slideOutToLeft;
-  animation-delay: 0.45s;
+  animation-delay: 0.30s;
 }
 .menu.close button:nth-child(4) {
   animation-name: slideOutToLeft;
-  animation-delay: 0.6s;
+  animation-delay: 0.40s;
 }
 .menu.close button:nth-child(5) {
   animation-name: slideOutToLeft;
-  animation-delay: 0.75s;
+  animation-delay: 0.50s;
 }
 
 @keyframes goUpTextDescription {

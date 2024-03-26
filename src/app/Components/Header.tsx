@@ -229,7 +229,7 @@ export default function Header({ height }: HeaderProps) {
 
   useEffect(() => {
     console.log(`this is the current section`, currentSection);
-  }, [currentSection])
+  }, [currentSection]);
 
   if (!data) {
     return;
@@ -284,7 +284,7 @@ export default function Header({ height }: HeaderProps) {
             />
           </div>
 
-          <div className="flex justify-around w-full">
+          <div className="flex justify-start sm:justify-around w-full">
             {isMobile ? (
               <>
                 <button
@@ -342,7 +342,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(cabinetRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_1}
                     </button>
@@ -355,7 +355,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(expertiseRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_2}
                     </button>
@@ -368,7 +368,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(visionRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_3}
                     </button>
@@ -381,7 +381,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(fondateurRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_4}
                     </button>
@@ -392,7 +392,7 @@ export default function Header({ height }: HeaderProps) {
                         setPageIs("carriere");
                         handleScrollSections(homeRef);
                       }}
-                      className="hover:scale-105 pr-16 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {/* TODO */}
                       {carreer_title}
@@ -413,7 +413,13 @@ export default function Header({ height }: HeaderProps) {
                   }}
                   className="group uppercase transition duration-150 flex items-center justify-center overflow-hidden hover:text-blanc font-medium relative"
                 >
-                  <div className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 -translate-x-[100%] group-hover:opacity-100 transition duration-150 group-hover:-translate-x-0 ${currentSection === 1 && '-translate-x-0' }`}></div>
+                  <div
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
+                      currentSection === 1
+                        ? "-translate-x-0"
+                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                    }`}
+                  ></div>
                   {section_1}
                 </button>
                 <button
@@ -427,7 +433,13 @@ export default function Header({ height }: HeaderProps) {
                   }}
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
-                  <div className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 -translate-x-[100%] transition duration-150 group-hover:-translate-x-0 ${currentSection === 2 && '-translate-x-0' }`}></div>
+                  <div
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
+                      currentSection === 2
+                        ? "-translate-x-0"
+                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                    }`}
+                  ></div>
                   {section_2}
                 </button>
                 <button
@@ -441,7 +453,13 @@ export default function Header({ height }: HeaderProps) {
                   }}
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
-                  <div className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 -translate-x-[100%] transition duration-150 group-hover:-translate-x-0 ${currentSection === 3 && '-translate-x-0' }`}></div>
+                  <div
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
+                      currentSection === 3
+                        ? "-translate-x-0"
+                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                    }`}
+                  ></div>
                   {section_3}
                 </button>
                 <button
@@ -455,7 +473,13 @@ export default function Header({ height }: HeaderProps) {
                   }}
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
-                  <div className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 -translate-x-[100%] transition duration-150 group-hover:-translate-x-0 ${currentSection === 4 && '-translate-x-0' }`}></div>
+                  <div
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
+                      currentSection === 4
+                        ? "-translate-x-0"
+                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                    }`}
+                  ></div>
                   {section_4}
                 </button>
                 <button
@@ -467,7 +491,13 @@ export default function Header({ height }: HeaderProps) {
                   }}
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
-                  <div className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 -translate-x-[100%] transition duration-150 group-hover:-translate-x-0 ${pageIs === 'carriere' && '-translate-x-0' }`}></div>
+                  <div
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
+                      pageIs === 'carriere'
+                        ? "-translate-x-0"
+                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                    }`}
+                  ></div>
                   {carreer_title}
                 </button>
               </>
