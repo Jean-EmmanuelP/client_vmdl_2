@@ -492,7 +492,7 @@ export default function Legals() {
     switch (langCode) {
       case "en":
         return (
-          <div className="bg-cyan-200/60 p-2 shadow-md">
+          <div className="bg-white/40 p-2 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 VI. Data Privacy Policy
@@ -602,7 +602,7 @@ export default function Legals() {
         );
       case "fr":
         return (
-          <div className=" bg-cyan-200/60 p-2 shadow-md">
+          <div className=" bg-white/40 p-2 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 VI. {privacyPolicy[langueCourante]}
@@ -716,7 +716,7 @@ export default function Legals() {
         );
       case "es":
         return (
-          <div className="bg-cyan-200/60 p-2 shadow-md">
+          <div className="bg-white/40 p-2 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 VI. Política de Privacidad de Datos
@@ -830,7 +830,7 @@ export default function Legals() {
         );
       case "it":
         return (
-          <div className="bg-cyan-200/60 p-2 shadow-md">
+          <div className="bg-white/40 p-2 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 VI. Politica sulla Privacy dei Dati
@@ -946,7 +946,7 @@ export default function Legals() {
         );
       case "عربي":
         return (
-          <div className="bg-cyan-200/60 p-2 shadow-md">
+          <div className="bg-white/40 p-2 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 VI. سياسة خصوصية البيانات
@@ -1044,7 +1044,7 @@ export default function Legals() {
         );
       case "pt":
         return (
-          <div className="bg-cyan-200/60 p-2 shadow-md">
+          <div className="bg-white/40 p-2 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 VI. Política de Privacidade de Dados
@@ -1156,7 +1156,7 @@ export default function Legals() {
         );
       case "de":
         return (
-          <div className="bg-cyan-200/60 p-2 shadow-md">
+          <div className="bg-white/40 p-2 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 VI. Datenschutzrichtlinie
@@ -1271,7 +1271,7 @@ export default function Legals() {
         );
       case "中文":
         return (
-          <div className="bg-cyan-200/60 p-2 shadow-md">
+          <div className="bg-white/40 p-2 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 VI. 数据隐私政策
@@ -1352,9 +1352,9 @@ export default function Legals() {
       <div className="w-full h-fit flex items-center justify-start pl-[10%] bg-blanc">
         <h1 className="py-4 font-semibold">{title}</h1>
       </div>
-      <div className="overflow-hidden bg-[url('/images/white.jpeg')] bg-cover px-[10%] py-4 h-full flex gap-2">
-        <div className="w-1/3 h-full space-y-2">
-          <div className=" bg-cyan-200/60 p-6 flex flex-col shadow-md">
+      <div className="overflow-hidden bg-[url('/images/white.jpeg')] bg-cover px-[10%] py-4 h-full flex flex-col sm:flex-row gap-2">
+        <div className="w-full sm:w-1/3 h-full space-y-2">
+          <div className=" bg-white/40 p-6 flex flex-col shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 I. {titleWebsite[langueCourante]}
@@ -1362,7 +1362,7 @@ export default function Legals() {
             </div>
             <WebsiteContent />
           </div>
-          <div className=" bg-rose-200/60 p-6 shadow-md">
+          <div className=" bg-white/40 p-6 shadow-md">
             <div>
               <h1 className="sm:text-base text-[13px] border-1 border-b border-black pb-1 mt-3 font-semibold">
                 {sectionII.title}
@@ -1371,8 +1371,8 @@ export default function Legals() {
             <div className="text-[11px] pt-2">{sectionII.content}</div>
           </div>
         </div>
-        <div className="w-1/3 h-full space-y-2">
-          <div className=" bg-cyan-200/60 p-6 flex flex-col shadow-md">
+        <div className="w-full sm:w-1/3 h-full space-y-2">
+          <div className=" bg-white/40 p-6 flex flex-col shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 {sectionIII.title}
@@ -1380,7 +1380,7 @@ export default function Legals() {
             </div>
             <div className="text-[11px] pt-2">{sectionIII.content}</div>
           </div>
-          <div className=" bg-rose-200/60 p-6 shadow-md">
+          <div className=" bg-white/40 p-6 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 {sectionIV.title}
@@ -1389,8 +1389,8 @@ export default function Legals() {
             <div className="text-[11px] pt-2">{sectionIV.content}</div>
           </div>
         </div>
-        <div className="w-1/3 h-full space-y-2">
-          <div className=" bg-cyan-200/60 p-6 shadow-md">
+        <div className="w-full sm:w-1/3 h-full space-y-2">
+          <div className=" bg-white/40 p-6 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
                 {sectionV.title}
