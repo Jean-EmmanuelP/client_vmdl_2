@@ -8,8 +8,14 @@ const CustomCursor: React.FC = () => {
     x: 0,
     y: 0,
   });
-  const { menuOpen, pageIs, bgIsBlackFondateur, bgIsBlackFooter, isHoveringExpertiseButton, currentSection } =
-    useSection();
+  const {
+    menuOpen,
+    pageIs,
+    bgIsBlackFondateur,
+    bgIsBlackFooter,
+    isHoveringExpertiseButton,
+    currentSection,
+  } = useSection();
   const [visible, setVisible] = useState<boolean>(false);
   const [clickable, setClickable] = useState<boolean>(false);
   const [windowWidth, setWindowWidth] = useState<number>(
@@ -95,19 +101,27 @@ const CustomCursor: React.FC = () => {
     none: "transparent",
   };
   const cursorStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     position: "fixed",
     width: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
     height: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
-    border: `2px solid ${pageIs !== "carriere" ?
-      bgIsBlackFondateur || bgIsBlackFooter
+    border: `2px solid ${
+      pageIs === "legals"
+        ? bgIsBlackFooter
+          ? "#FFFFFF"
+          : "#1D1D1B"
+        : pageIs !== "carriere"
+        ? bgIsBlackFondateur || bgIsBlackFooter
+          ? "#FFFFFF"
+          : isHoveringExpertiseButton !== "none"
+          ? `${MappingBgColor[isHoveringExpertiseButton]}`
+          : "#1D1D1B"
+        : bgIsBlackFooter
         ? "#FFFFFF"
-        : isHoveringExpertiseButton !== "none"
-        ? `${MappingBgColor[isHoveringExpertiseButton]}`
         : "#1D1D1B"
-    : bgIsBlackFooter ? "#FFFFFF" : "#1D1D1B"}`,
+    }`,
     borderRadius: "50%",
     transform: `translate(-50%, -50%) ${clickable ? "scale(1.5)" : "scale(1)"}`,
     pointerEvents: "none",
@@ -129,7 +143,7 @@ const CustomCursor: React.FC = () => {
     return ReactDOM.createPortal(
       <div style={cursorStyle}>
         {/* trouver comment bien mettre la croix au milieu */}
-          <Plus />
+        <Plus />
       </div>,
       document.getElementById("cursor-root") as HTMLElement
     );

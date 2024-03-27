@@ -5,10 +5,10 @@ import { useData } from "../utils/DataContext";
 import ReversedArrow from "../assets/svg/reverseArrow";
 
 export default function Contentieux() {
-  const { subExpertise, setSubExpertise } = useExpertise();
+  const { setSubExpertise } = useExpertise();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [textOpacity, setTextOpacity] = useState(0);
-  const { langueCourante, mediaPaths, isMobile, headerHeight } = useSection();
+  const { langueCourante, mediaPaths, headerHeight } = useSection();
   const { data } = useData();
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,7 +74,6 @@ export default function Contentieux() {
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { content } = data[langCode].section_3.box_2;
-  // la fonction formatContent est utilise deux fois donc autant avoir un fichier qui stock ses fonctions
   const formatContent = (content: string): string => {
     return (
       content
@@ -84,11 +83,11 @@ export default function Contentieux() {
     );
   };
   const formattedContent = formatContent(content);
-  // la fonction convertToMp4Path est utilise deux fois donc autant avoir un fichier qui stock ses fonctions
   function convertToMp4Path(webmPath: string) {
     return webmPath.replace(".webm", ".mp4");
   }
   const isIOS = (): boolean => /iPad|iPhone|iPod/.test(navigator.userAgent);
+  // comprendre pourquoi je peux pas scroll quand je suis ici
   return (
     <div className={`w-full h-full flex justify-center items-center text-noir`}>
       <motion.div

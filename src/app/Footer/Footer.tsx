@@ -61,6 +61,7 @@ export default function Footer() {
       <div id="footer-title" className="w-4/5 flex justify-center items-center">
         <div
           onClick={() => {
+            setBgIsBlackFooter(false);
             handleScroll(0);
           }}
           className="group flex flex-col gap-1 sm:gap-2"
@@ -80,6 +81,7 @@ export default function Footer() {
         <div className="hidden sm:flex px-4 w-full text-left text-blanc">
           <button
             onClick={() => {
+              setBgIsBlackFooter(false);
               handleScroll(0);
               setPageIs("legals");
             }}
@@ -185,6 +187,7 @@ export default function Footer() {
           <div className="">
             <button
               onClick={() => {
+                setBgIsBlackFooter(false);
                 handleScroll(0);
                 setPageIs("legals");
               }}

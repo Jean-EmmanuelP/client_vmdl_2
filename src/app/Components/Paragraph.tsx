@@ -102,6 +102,8 @@ export default function Paragraph({
     classText
   );
 
+  // avoir le meme comportement que contact pour child[0, 1, 2] sachant que le 3e se fait quand on toggle le button
+  // donc il faudrait quand meme avoir le comportement de sortie de variants sur child[0 1 2] conclusion change
   if (typeof window !== "undefined")
     return (
       <motion.div
