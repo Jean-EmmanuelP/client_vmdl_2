@@ -27,7 +27,7 @@ export default function Cabinet() {
         id="Cabinet"
         className="relative w-full h-full flex justify-center items-center gap-4  bg-blanc"
       >
-        <Paragraph textColor="#030303">
+        <Paragraph>
           <span className="uppercase text-[30px] sm:text-[40px] sm:title font-light">
             {title}
           </span>
