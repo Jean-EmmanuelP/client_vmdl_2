@@ -1,7 +1,5 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useExpertise, useSection } from "../utils/Contextboard";
-import { twMerge } from "tailwind-merge";
 import Arrow from "../assets/svg/Arrow";
 import ReversedArrow from "../assets/svg/reverseArrow";
 
@@ -63,28 +61,19 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
     return <p className="text-3xl font-bold">Error missing: children</p>;
   }
 
-  const containerVariants = {
-    hidden: {},
-    visible: {},
-  };
-  const itemVariants = {
-    hidden: {},
-    visible: {},
-  };
-
   if (typeof window !== "undefined") {
     return (
       <div
         ref={paragraphRef}
         className={`${
           (currentSection === 4 || currentSection === 0) && "text-blanc"
-        } transition duration-500 w-full h-full flex flex-col gap-2 sm:gap-4 justify-center items-center relative`}
+        } transition duration-500 w-fit h-fit flex flex-col gap-2 sm:gap-4 justify-center items-center relative`}
       >
         <button
           onClick={() => setToggle(!toggle)}
           className={`absolute left-[10%] opacity-0 transition duration-200 translate-y-10 ${
             toggle &&
-            "transition duration-700 delay-200 opacity-100 sm:translate-y-0"
+            "transition duration-700 delay-150 opacity-100 sm:translate-y-0"
           }`}
         >
           <ReversedArrow />
@@ -92,32 +81,24 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
         <button
           className={`
           text-[40px] ${homeSection && "font-medium text-3xl"}
-          ${toggle ? `bg-red-500 -translate-y-10 transition duration-200` : `bg-green-500 translate-y-0 transition duration-200 ${isHere ? `${toggle && 'opacity-0'} translate-y-0` : "opacity-0 translate-y-12"} transition duration-700 ease-in-out`}          
+          ${toggle ? `opacity-0 -translate-y-3 transition duration-700` : `translate-y-0 transition duration-200 ${isHere ? `${toggle && 'opacity-0'} translate-y-0` : "opacity-0 translate-y-12"} transition duration-700 ease-in-out`}          
           `}
         >
           {children[0]}
         </button>
         <p
           className={`${homeSection && "uppercase text-[26px] font-light"}
-            ${toggle ? 'bg-red-500 -translate-y-10 transition duration-200 delay-75': `bg-green-500 ${isHere ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"} transition duration-700 delay-150 ease-in-out`}
+            ${toggle ? 'opacity-0 -translate-y-3 transition duration-700 delay-[30ms]': `${isHere ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"} transition duration-700 delay-150 ease-in-out`}
             w-[70%] leading-5 sm:leading-8 text-center
           `}
         >
           {children[1]}
         </p>
-        {toggle && (
-          <motion.p
-            initial={{ y: "0px", opacity: 0 }}
-            animate={{ y: isMobile ? "2px" : "-40px", opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl bg-green-500 text-left leading-5 sm:leading-8 max-h-[50%] max-w-[70%] overflow-auto ${
-              isMobile ? "-mt-[200px]" : "-mt-[50px]"
-            }`}
+          <div
+            className={`${toggle ? 'opacity-100': 'opacity-0 translate-y-20 duration-200'} transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
           >
             {children[3]}
-          </motion.p>
-        )}
+          </div>
         {children.length > 2 && !toggle && (
           <button
             data-clickable="true"
