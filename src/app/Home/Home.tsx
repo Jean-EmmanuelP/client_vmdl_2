@@ -30,15 +30,10 @@ export default function Home() {
     >
       <Paragraph
         homeSection={true}
-        textColor="#FFFFFF"
-        bgColor="#00000000"
-        className="gap-2.5 w-[70%] sm:w-[50%] h-[30%] text-center z-10 mt-[60px]"
-        classTitle="sm:text-[40px] font-medium text-3xl"
-        classText="uppercase text-[26px] font-light"
       >
-        <span className="">{title}</span>
+        <span>{title}</span>
         <span>{subtitle}</span>
-        <span className="text-[12px] sm:text-base">{contact_button}</span>
+        <span>{contact_button}</span>
       </Paragraph>
     </section>
   );
