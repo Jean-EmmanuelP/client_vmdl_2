@@ -43,11 +43,11 @@ export default function Carriere() {
   const formattedContent = formatContent(content);
   return (
     <div className="relative w-full h-full bg-blanc flex flex-col sm:flex-row items-center justify-center">
-      <div className="absolute top-[15%] sm:top-[22%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+      <div className="absolute top-[15%] sm:top-[18%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
         {title}
       </div>
       <p
-        className="text-left text-[16px] px-10 sm:px-0 sm:text-[24px] items-center sm:-mt-[80px] max-w-[790px] font-light"
+        className="text-left text-[16px] px-10 sm:px-0 sm:text-[24px] items-center max-w-[790px] font-light"
         dangerouslySetInnerHTML={createMarkup(formattedContent)}
       ></p>
     </div>
