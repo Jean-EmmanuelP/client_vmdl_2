@@ -60,14 +60,12 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
   if (!children || !Array.isArray(children) || !children[0] || !children[1]) {
     return <p className="text-3xl font-bold">Error missing: children</p>;
   }
-
+  
   if (typeof window !== "undefined") {
     return (
       <div
         ref={paragraphRef}
-        className={`${
-          (currentSection === 4 || currentSection === 0) && "text-blanc"
-        } transition duration-500 w-fit h-fit flex flex-col gap-2 sm:gap-4 justify-center items-center relative`}
+        className={`transition duration-500 w-fit h-fit flex flex-col gap-2 sm:gap-4 justify-center items-center relative`}
       >
         <button
           onClick={() => setToggle(!toggle)}
@@ -81,24 +79,42 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
         <button
           className={`
           text-[40px] ${homeSection && "font-medium text-3xl"}
-          ${toggle ? `opacity-0 -translate-y-3 transition duration-700` : `translate-y-0 transition duration-200 ${isHere ? `${toggle && 'opacity-0'} translate-y-0` : "opacity-0 translate-y-12"} transition duration-700 ease-in-out`}          
+          ${
+            toggle
+              ? `opacity-0 -translate-y-3 transition duration-700`
+              : `translate-y-0 transition duration-200 ${
+                  isHere
+                    ? `${toggle && "opacity-0"} translate-y-0`
+                    : "opacity-0 translate-y-12"
+                } transition duration-700 ease-in-out`
+          }          
           `}
         >
           {children[0]}
         </button>
         <p
           className={`${homeSection && "uppercase text-[26px] font-light"}
-            ${toggle ? 'opacity-0 -translate-y-3 transition duration-700 delay-[30ms]': `${isHere ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"} transition duration-700 delay-150 ease-in-out`}
+            ${
+              toggle
+                ? "opacity-0 -translate-y-3 transition duration-700 delay-[30ms]"
+                : `${
+                    isHere
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-12"
+                  } transition duration-700 delay-150 ease-in-out`
+            }
             w-[70%] leading-5 sm:leading-8 text-center
           `}
         >
           {children[1]}
         </p>
-          <div
-            className={`${toggle ? 'opacity-100': 'opacity-0 translate-y-20 duration-200'} transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
-          >
-            {children[3]}
-          </div>
+        <div
+          className={`${
+            toggle ? "opacity-100" : "opacity-0 translate-y-20 duration-200"
+          } transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
+        >
+          {children[3]}
+        </div>
         {children.length > 2 && !toggle && (
           <button
             data-clickable="true"

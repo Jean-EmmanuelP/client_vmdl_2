@@ -19,6 +19,27 @@ export default function ExpertiseContent() {
   const [isVisible, setIsVisible] = useState(true);
   const [showRideau, setShowRideau] = useState(false);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      { root: null, rootMargin: "0px", threshold: 0.5 }
+    );
+
+    if (expertiseRef.current) {
+      observer.observe(expertiseRef.current);
+    }
+
+    return () => {
+      if (expertiseRef.current) {
+        observer.unobserve(expertiseRef.current);
+      }
+    };
+  }, []);
+
   function ComposantTexte({ texte, nbMotsParSegment }: any) {
     function creerSegmentsDeTexte(texte: string, nbMotsParSegment: number) {
       const mots = texte.split(" ");
@@ -123,21 +144,7 @@ export default function ExpertiseContent() {
   const { title: box_3_title, title_description: title_3_description } = box_3;
   if (!isMobile) {
     return (
-      <div className={`relative w-full sm:h-full bg-blanc`}>
-        {/* <div
-          className={`rideau ${showRideau ? "rideau-animation" : ""}`}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            opacity: 0,
-            zIndex: -10,
-            width: "100%",
-            height: "100%",
-            transform: "translateY(-100%)",
-            backgroundColor: "#030303",
-          }}
-        ></div> */}
+      <div ref={expertiseRef} className={`relative w-full sm:h-full bg-blanc`}>
         {subExpertise === null && (
           <>
             <div
@@ -145,11 +152,21 @@ export default function ExpertiseContent() {
             >
               {/* title */}
               <div
-                className={`absolute top-[20%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
+                className={`${
+                  isVisible
+                    ? "opacity-100 translate-y-0 transition duration-700"
+                    : "opacity-0 translate-y-20 transition duration-700"
+                } absolute top-[16%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
               >
                 {title}
               </div>
-              <div className="flex justify-center items-center gap-14 h-[80%] w-full">
+              <div
+                className={`${
+                  isVisible
+                    ? "opacity-100 translate-y-0 transition duration-700 delay-200"
+                    : "opacity-0 translate-y-20 transition duration-700 delay-200"
+                } flex justify-center items-center gap-14 h-[80%] w-full`}
+              >
                 {/* first Box */}
                 <div
                   className={`expertiseWrapper wrapper1 relative w-1/3 sm:h-[55%] overflow-hidden`}

@@ -31,8 +31,8 @@ export default function Home() {
       <Paragraph
         homeSection={true}
       >
-        <span>{title}</span>
-        <span>{subtitle}</span>
+        <span className="text-blanc">{title}</span>
+        <span className="text-blanc">{subtitle}</span>
         <span>{contact_button}</span>
       </Paragraph>
     </section>

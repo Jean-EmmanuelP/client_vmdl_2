@@ -1,5 +1,4 @@
 import FormContact from "../Components/Form";
-import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
@@ -49,37 +48,33 @@ export default function ContactContent() {
   const langCode = langCodeMap[langueCourante] || langCodeMap["FR"];
   const { title } = data[langCode]?.contact || {};
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.5 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
   if (typeof window !== "undefined") {
     return (
-      <motion.div
+      <div
         ref={contactRef}
-        initial="hidden"
-        animate={isVisible ? "visible" : "hidden"}
-        variants={containerVariants}
         className="w-full h-full flex justify-center items-center"
       >
         <div className="flex flex-col w-[45%] -mt-[85px] sm:-mt-18">
-          <motion.h1
-            variants={itemVariants}
-            className="uppercase text-center py-4 text-[23px] tracking-wide sm:text-[40px] sm:title font-light"
+          <h1
+            className={`${
+              !isVisible
+                ? "opacity-0 translate-y-12 transition duration-700 ease-in-out"
+                : "opacity-100 translate-y-0 transition duration-700 ease-in-out"
+            } uppercase text-center py-4 text-[23px] tracking-wide sm:text-[40px] sm:title font-light`}
           >
             {title}
-          </motion.h1>
-          <motion.div variants={itemVariants}>
+          </h1>
+          <div
+            className={`${
+              !isVisible
+                ? "opacity-0 translate-y-12 transition duration-700 delay-100 ease-in-out"
+                : "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
+            }`}
+          >
             <FormContact />
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     );
   }
 }
