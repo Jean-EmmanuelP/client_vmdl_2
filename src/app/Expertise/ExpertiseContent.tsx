@@ -40,41 +40,6 @@ export default function ExpertiseContent() {
     };
   }, []);
 
-  function TextLine({ texte, nbMotsParSegment }: any) {
-    function creerSegmentsDeTexte(texte: string, nbMotsParSegment: number) {
-      const mots = texte.split(" ");
-      let segments = [];
-
-      for (let i = 0; i < mots.length; i += nbMotsParSegment) {
-        let segmentDeMots = mots.slice(i, i + nbMotsParSegment).join(" ");
-        segments.push(segmentDeMots);
-      }
-
-      return segments;
-    }
-
-    // Appeler la fonction et stocker le résultat
-    const segmentsDeTexte = creerSegmentsDeTexte(texte, nbMotsParSegment);
-    const delayDependingOnIndex = [
-      100,
-      200,
-      300,
-      500,
-      700,
-      1000,
-    ]
-
-    return (
-      <div className={`pl-[20%] flex flex-col font-bold`}>
-        {segmentsDeTexte.map((segment, index) => (
-          <span key={index} className={`opacity-0 translate-y-36 group-hover:opacity-100 group-hover:translate-y-0 group-hover:delay-${delayDependingOnIndex[index]} delay-${delayDependingOnIndex[index]} transition duration-200`}>
-            {segment}
-          </span>
-        ))}
-      </div>
-    );
-  }
-
   function handleClick(
     activeContent: "conseil" | "contentieux" | "affaires" | null
   ) {
@@ -153,7 +118,7 @@ export default function ExpertiseContent() {
                 className={`${isVisible
                   ? "opacity-100 translate-y-0 transition duration-700"
                   : "opacity-0 translate-y-20 transition duration-700"
-                  } absolute top-[16%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
+                  } absolute top-[8%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
               >
                 {title}
               </div>
@@ -167,7 +132,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
                     }
-                    bg-[url('/images/cpy.jpeg')] bg-cover bg-center relative w-1/3 sm:h-[55%] overflow-hidden`}
+                    relative w-[24%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("conseil");
                   }}
@@ -178,16 +143,17 @@ export default function ExpertiseContent() {
                     handleClick("conseil");
                   }}
                 >
+                  <Image
+                    src="/images/cpy.jpeg"
+                    layout="fill"
+                    objectFit="cover"
+                    alt="Picture of the author"
+                    className="group-hover:scale-110 transition duration-300"
+                  />
                   <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-                    <h1 className="top-[10%] left-[20%] absolute uppercase">
+                    <h1 className="top-[10%] text-[20px] left-[12%] absolute uppercase">
                       {box_1_title}
                     </h1>
-                    <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                      <TextLine
-                        texte={title_1_description}
-                        nbMotsParSegment={5}
-                      />
-                    </div>
                   </div>
                 </div>
                 {/* second Box */}
@@ -197,7 +163,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-300 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-300 ease-in-out"
                     }
-                  bg-green-500  bg-[url('/images/vosges.jpeg')] bg-cover bg-center relative w-1/3 sm:h-[55%] overflow-hidden`}
+                  relative w-[24%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("contentieux");
                   }}
@@ -208,22 +174,17 @@ export default function ExpertiseContent() {
                     handleClick("contentieux");
                   }}
                 >
+                  <Image
+                    src="/images/vosges.jpeg"
+                    layout="fill"
+                    objectFit="cover"
+                    alt="Picture of the author"
+                    className="group-hover:scale-110 transition duration-300"
+                  />
                   <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-                    <h1 className="top-[10%] left-[20%] absolute uppercase">
+                    <h1 className="top-[10%] text-[20px] left-[12%] absolute uppercase">
                       {box_2_title}
                     </h1>
-                    <div className="text-wrapper absolute bottom-[20%] w-full -translate-y-1/2">
-                      <TextLine
-                        texte={title_2_description}
-                        nbMotsParSegment={5}
-                      />
-                      {/* <span className="pl-[20%] text-line">
-                      VMDL vous conseille
-                    </span>
-                    <span className="pl-[20%] text-line">au jour le jour</span>
-                    <span className="pl-[20%] text-line">au jour le jour</span>
-                    <span className="pl-[20%] text-line">au jour le jour</span> */}
-                    </div>
                   </div>
                 </div>
                 {/* third Box */}
@@ -233,7 +194,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-500 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-500 ease-in-out"
                     }
-                  relative w-1/3 sm:h-[55%] overflow-hidden group`}
+                  relative w-[24%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("affaires");
                   }}
@@ -252,15 +213,9 @@ export default function ExpertiseContent() {
                     className="group-hover:scale-110 transition duration-300"
                   />
                   <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
-                    <h1 className="top-[10%] left-[20%] absolute uppercase">
+                    <h1 className="top-[10%] text-[20px] left-[12%] absolute uppercase">
                       {box_3_title}
                     </h1>
-                    <div className="absolute bottom-[5%] w-full -translate-y-1/2">
-                      <TextLine
-                        texte={title_3_description}
-                        nbMotsParSegment={5}
-                      />
-                    </div>
                   </div>
                 </div>
               </div>

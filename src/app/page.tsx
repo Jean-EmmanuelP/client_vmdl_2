@@ -290,17 +290,18 @@ export default function App() {
   const visionRef = useRef(null);
   const fondateurRef = useRef(null);
   const contactRef = useRef(null);
+  const carriereRef = useRef(null);
   const mainRef = useRef(null);
   const handleScrollSections = (ref: React.RefObject<HTMLDivElement>) => {
     const mainContainer = document.getElementById('main');
     if (mainContainer && ref.current) {
       const offsetTop = ref.current.offsetTop - mainContainer.offsetTop;
-  
+
       mainContainer.scrollTo({
         top: offsetTop,
         behavior: 'smooth',
       });
-  
+
       if (ref.current === homeRef.current) {
         setCurrentSection(0);
       } else if (ref.current === cabinetRef.current) {
@@ -309,20 +310,23 @@ export default function App() {
         setCurrentSection(2);
       } else if (ref.current === visionRef.current) {
         setCurrentSection(3);
-      } else if (ref.current === fondateurRef.current) {  
+      } else if (ref.current === fondateurRef.current) {
         setCurrentSection(4);
+      } else if (ref.current === carriereRef.current) {
+        setCurrentSection(5);
       }
     }
   };
-  
+
 
   return (
     <DataProvider>
       {isHere && (
         <div className="loading-screen z-[2147483647]">
-          <div className="content-animation">
+          <div className="lds-dual-ring"></div>
+          {/* <div className="content-animation">
             <img src="/images/vmdl.png" alt="" />
-          </div>
+          </div> */}
         </div>
       )}
 
@@ -335,6 +339,7 @@ export default function App() {
             expertiseRef,
             visionRef,
             fondateurRef,
+            carriereRef,
             contactRef,
             isHoveringExpertiseButton,
             setIsHoveringExpertiseButton,
@@ -386,15 +391,12 @@ export default function App() {
                   <div ref={fondateurRef} className="w-full h-full">
                     <Fondateur />
                   </div>
+                  <div ref={carriereRef} className="w-full h-full">
+                    <Carriere />
+                  </div>
                   <div ref={contactRef} className="w-full h-full">
                     <Contact />
                   </div>
-                  <Footer />
-                </>
-              )}
-              {pageIs === "carriere" && (
-                <>
-                  <Carriere />
                   <Footer />
                 </>
               )}

@@ -39,6 +39,7 @@ export default function Footer() {
       "DE",
       "中文",
     ];
+
     return langues.map((langue, index) => {
       return (
         <button

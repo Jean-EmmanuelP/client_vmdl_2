@@ -95,7 +95,7 @@ const CustomCursor: React.FC = () => {
     checkIfClickable();
   }, [position]);
   const MappingBgColor = {
-    conseil: "black",
+    conseil: "white",
     contentieux: "black",
     affaires: "black",
     none: "transparent",
@@ -143,7 +143,6 @@ const CustomCursor: React.FC = () => {
     return ReactDOM.createPortal(
       <div style={cursorStyle}>
         {/* trouver comment bien mettre la croix au milieu */}
-        <Plus />
       </div>,
       document.getElementById("cursor-root") as HTMLElement
     );

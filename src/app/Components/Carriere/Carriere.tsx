@@ -6,7 +6,7 @@ import { LangueCode, useSection } from "@/app/utils/Contextboard";
 
 export default function Carriere() {
   const { loadData, data } = useData();
-  const { langueCourante } = useSection();
+  const { langueCourante, carriereRef } = useSection();
   useEffect(() => {
     loadData();
   }, []);
@@ -42,8 +42,8 @@ export default function Carriere() {
   }
   const formattedContent = formatContent(content);
   return (
-    <div className="relative w-full h-full bg-blanc flex flex-col sm:flex-row items-center justify-center">
-      <div className="absolute top-[15%] sm:top-[18%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+    <div className="relative w-full h-full bg-blanc flex flex-col sm:flex-row items-center justify-center" ref={carriereRef}>
+      <div className="absolute top-[15%] sm:top-[18%] text-[30px] sm:text-[40px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
         {title}
       </div>
       <p

@@ -3,7 +3,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import _ from "lodash";
 import { useEffect, useRef, useState } from "react";
-import makeAnimated from "react-select/animated";
 import Menu from "../assets/svg/Menu";
 import { useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
@@ -22,6 +21,7 @@ export default function Header({ height }: HeaderProps) {
     expertiseRef,
     fondateurRef,
     homeRef,
+    carriereRef,
     visionRef,
     handleScrollSections,
   } = useSection();
@@ -365,13 +365,12 @@ export default function Header({ height }: HeaderProps) {
                   data-clickable="true"
                   onClick={() => {
                     toggleMenu();
-                    setPageIs("carriere");
-                    handleScrollSections(homeRef);
+                    handleScrollSections(carriereRef);
                   }}
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
                   <div
-                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${pageIs === "carriere"
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 5
                         ? "-translate-x-0"
                         : "group-hover:-translate-x-0 -translate-x-[100%]"
                       }`}
