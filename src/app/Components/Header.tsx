@@ -1,16 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import _ from "lodash";
 import { useEffect, useRef, useState } from "react";
+import { StylesConfig } from "react-select";
+import makeAnimated from "react-select/animated";
+import Menu from "../assets/svg/Menu";
 import { useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
-import makeAnimated from "react-select/animated";
-import Select from "react-select";
-import { StylesConfig } from "react-select";
-import _ from "lodash";
-import Back from "../assets/svg/Back";
-import Home from "../assets/svg/Home";
-import Menu from "../assets/svg/Menu";
 
 interface HeaderProps {
   height: "64px" | "128px" | "90px";
@@ -306,7 +303,7 @@ export default function Header({ height }: HeaderProps) {
                     goingOut ? "close" : ""
                   }`}
                 >
-                  <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[2px] -translate-y-1/2">
+                  <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[40px] -translate-y-1/2">
                     <button
                       data-clickable="true"
                       onClick={() => {

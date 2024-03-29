@@ -346,7 +346,7 @@ video {
   left: 0;
   top: 0;
   height: 100%;
-  width: 50vw;
+  width: 100vw;
   transform: translateX(-100%);
   backdrop-filter: blur(10px);
   z-index: 10000000;
@@ -535,13 +535,6 @@ $images: (
 
 .expertiseWrapper:hover::after {
   opacity: 1;
-}
-
-.text-wrapper {
-  position: absolute;
-  bottom: 5%;
-  width: 100%;
-  z-index: 10000;
 }
 
 .expertiseWrapper:hover .text-line {
