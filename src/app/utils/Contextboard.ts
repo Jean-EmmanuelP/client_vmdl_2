@@ -56,7 +56,7 @@ interface currentSectionProps {
 }
 
 const defaultValues: currentSectionProps = {
-  handleScrollSections: () => {},
+  handleScrollSections: () => { },
   homeRef: React.createRef<HTMLDivElement>(),
   cabinetRef: React.createRef<HTMLDivElement>(),
   expertiseRef: React.createRef<HTMLDivElement>(),
@@ -64,25 +64,25 @@ const defaultValues: currentSectionProps = {
   fondateurRef: React.createRef<HTMLDivElement>(),
   contactRef: React.createRef<HTMLDivElement>(),
   pageIs: "/",
-  setPageIs: () => {},
+  setPageIs: () => { },
   isHoveringExpertiseButton: "none",
-  setIsHoveringExpertiseButton: () => {},
+  setIsHoveringExpertiseButton: () => { },
   isMobile: false,
   currentSection: 0,
   menuOpen: false,
-  setMenuOpen: () => {},
-  toggleMenu: () => {},
+  setMenuOpen: () => { },
+  toggleMenu: () => { },
   goingOut: false,
-  setIsGoingOut: () => {},
+  setIsGoingOut: () => { },
   bgIsBlackFondateur: false,
   bgIsBlackFooter: false,
-  setBgIsBlackFooter: () => {},
-  setBgIsBlackFondateur: () => {},
-  setCurrentSection: () => {},
+  setBgIsBlackFooter: () => { },
+  setBgIsBlackFondateur: () => { },
+  setCurrentSection: () => { },
   headerHeight: "64px",
-  setHeaderHeight: () => {},
+  setHeaderHeight: () => { },
   langueCourante: "FR",
-  setLangueCourante: () => {},
+  setLangueCourante: () => { },
   mediaPaths: {
     paris: `/videos/laptop/paris/paris_low.webm`,
     dubai: `/videos/laptop/dubai/dubai_low.webm`,
@@ -90,7 +90,7 @@ const defaultValues: currentSectionProps = {
     rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
     vosges: `/videos/laptop/vosges/vosges_low.webm`,
   },
-  updateMediaPaths: () => {},
+  updateMediaPaths: () => { },
 };
 
 export const currentSectionContext = createContext<

@@ -9,6 +9,7 @@ export default function Footer() {
     setPageIs,
     pageIs,
     isMobile,
+    setLangueCourante
   } = useSection();
   const { data } = useData();
   const { langueCourante } = useSection();
@@ -27,6 +28,38 @@ export default function Footer() {
     DE: "de",
     中文: "中文",
   };
+  const renderLangs = () => {
+    const langues: LangueCode[] = [
+      "FR",
+      "EN",
+      "IT",
+      "ES",
+      "عربي",
+      "PT",
+      "DE",
+      "中文",
+    ];
+    return langues.map((langue, index) => {
+      return (
+        <button
+          key={index}
+          onClick={() => {
+            setLangueCourante(langue);
+          }}
+          className={`text-blanc group overflow-hidden px-2 py-1 rounded-lg`}
+        >
+          <div
+            data-clickable={true}
+            className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${langueCourante === langue
+              ? "-translate-x-0"
+              : "group-hover:-translate-x-0 -translate-x-[100%]"
+              }`}
+          ></div>
+          {langue}
+        </button>
+      );
+    });
+  }
   // langCode doubled
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
@@ -77,7 +110,7 @@ export default function Footer() {
         id="footer-content"
         className="w-full sm:w-4/5 h-[40%] gap-2 sm:gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
       >
-        <div className="hidden sm:flex px-4 w-full text-left text-blanc">
+        <div className="bg-red-500 hidden sm:flex px-4 w-full text-left text-blanc">
           <button
             onClick={() => {
               setBgIsBlackFooter(false);
@@ -88,7 +121,7 @@ export default function Footer() {
             {legals}
           </button>
         </div>
-        <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-center sm:justify-between items-center px-4 py-4 sm:py-10">
+        <div className="bg-green-500 border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-center sm:justify-between items-center px-4 py-4 sm:py-10">
           <div
             id="footer-contact"
             className="justify-center items-center gap-1 sm:gap-6 flex flex-col sm:flex-row"
@@ -181,6 +214,9 @@ export default function Footer() {
               </a>
             </div>
           </div>
+        </div>
+        <div className="bg-yellow-500/10 w-full h-full">
+          {renderLangs()}
         </div>
         <div className="flex w-full px-4 justify-between gap-4 sm:hidden">
           <div className="">
