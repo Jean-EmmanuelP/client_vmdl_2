@@ -367,7 +367,7 @@ export default function App() {
               id="main"
               ref={mainRef}
               style={{ height: mainHeight }}
-              className="w-full z-1 overflow-y-auto overflow-x-hidden"
+              className="w-full h-fit z-1 overflow-y-auto overflow-x-hidden"
             >
               {pageIs === "/" && (
                 <>

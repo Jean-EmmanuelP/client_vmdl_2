@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
@@ -50,7 +49,7 @@ export default function Footer() {
   return (
     <div
       id="Footer"
-      className="relative w-full h-[60%] gap-2 sm:gap-4 sm:h-[44%] flex flex-col items-center justify-center z-10 bg-noir text-blanc"
+      className="relative w-full h-fit py-20 px-10 gap-2 sm:gap-4 sm:h-[44%] flex flex-col items-center justify-center z-10 bg-noir text-blanc"
       onMouseEnter={() => {
         setBgIsBlackFooter(true);
       }}
@@ -58,7 +57,7 @@ export default function Footer() {
         setBgIsBlackFooter(false);
       }}
     >
-      <div id="footer-title" className="w-4/5 flex justify-center items-center">
+      <div id="footer-title" className="w-full text-center sm:w-4/5 flex justify-center items-center">
         <div
           onClick={() => {
             setBgIsBlackFooter(false);
@@ -76,7 +75,7 @@ export default function Footer() {
       </div>
       <div
         id="footer-content"
-        className="w-4/5 h-[40%] gap-2 sm:gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
+        className="w-full sm:w-4/5 h-[40%] gap-2 sm:gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
       >
         <div className="hidden sm:flex px-4 w-full text-left text-blanc">
           <button
