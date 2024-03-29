@@ -65,7 +65,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
     return (
       <div
         ref={paragraphRef}
-        className={`transition duration-500 w-fit h-fit flex flex-col gap-2 sm:gap-4 justify-center items-center relative`}
+        className={`transition duration-500 w-fit h-fit flex flex-col gap-2 sm:gap-2 justify-center items-center relative`}
       >
         <button
           onClick={() => setToggle(!toggle)}
@@ -77,7 +77,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
         </button>
         <button
           className={`
-          text-[40px] ${homeSection && "max-w-[74%] sm:font-medium text-[16px] sm:text-3xl"}
+          text-[40px] ${homeSection && "max-w-[74%] sm:max-w-fit sm:font-medium text-[16px] sm:text4xl"}
           ${toggle
               ? `opacity-0 -translate-y-3 transition duration-700`
               : `translate-y-0 transition duration-200 ${isHere
