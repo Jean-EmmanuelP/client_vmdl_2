@@ -152,10 +152,10 @@ export default function Header({ height }: HeaderProps) {
               : ""
             } relative h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
         >
-          <div className="absolute right-0 w-[30%] h-full flex items-center justify-center transparent text-xs sm:text-sm">
+          <div className="absolute right-0 w-[17%] sm:w-[6%] sm:-right-[9%] h-full flex items-center justify-center transparent text-xs sm:text-sm">
             <div className="flex items-center justify-center w-full h-full">
               <select
-                className="border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                className="text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                 value={langueCourante}
                 onChange={handleLanguageChange}
               >
