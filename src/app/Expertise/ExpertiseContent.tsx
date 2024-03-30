@@ -18,6 +18,7 @@ export default function ExpertiseContent() {
   const { data } = useData();
   const [isVisible, setIsVisible] = useState(true);
   const [showRideau, setShowRideau] = useState(false);
+  const pathImages = ['/images/_ (2).jpeg', '/images/vosges.jpeg', '/images/paris_tribunal.jpeg'];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -239,7 +240,12 @@ export default function ExpertiseContent() {
         {subExpertise === null && (
           <>
             {/* Titre */}
-            <div className="absolute top-[10%] text-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 font-light">
+            <div className={`
+            ${isVisible
+                ? "opacity-100 translate-y-0 transition duration-700 ease-in-out"
+                : "opacity-0 translate-y-20 transition duration-700 ease-in-out"
+              }
+            absolute top-[10%] text-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 font-light`}>
               {title}
             </div>
 
@@ -248,21 +254,33 @@ export default function ExpertiseContent() {
               {[1, 2, 3].map((number) => (
                 <div
                   key={number}
-                  className={`w-full h-1/3 bg-blue-500 expertiseWrapper wrapper${number} relative cursor-pointer`} // Ajout de cursor-pointer pour indiquer la cliquabilité
+                  className={`
+                  ${isVisible
+                      ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
+                      : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
+                    }
+                  w-full h-1/3 bg-blue-500 relative cursor-pointer`}
                   onClick={() => {
                     const targetContent =
-                      number === 1
+                      number === 0
                         ? "conseil"
-                        : number === 2
+                        : number === 1
                           ? "contentieux"
                           : "affaires";
                     handleClick(targetContent);
                   }}
                 >
+                  <Image
+                    src={`${pathImages[--number]}`}
+                    layout="fill"
+                    objectFit="cover"
+                    alt="Picture of the author"
+                    className="group-hover:scale-110 transition duration-300"
+                  />
                   <h1 className="top-[10%] text-blanc left-[20%] absolute uppercase font-semibold">
-                    {number === 1
+                    {number === 0
                       ? box_1_title
-                      : number === 2
+                      : number === 1
                         ? box_2_title
                         : box_3_title}
                   </h1>

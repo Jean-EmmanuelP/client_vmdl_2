@@ -35,19 +35,19 @@ export default function Affaires() {
     {
       src: `${mediaPaths.qatar}`,
       isActive: false,
-      image: "/images/qatar.jpeg",
+      image: "/images/qatar_phone.png",
       textAppearTime: 4,
     },
     {
       src: `${mediaPaths.newyork}`,
       isActive: false,
-      image: "/images/newyork.jpeg",
+      image: "/images/ny_phone.png",
       textAppearTime: 10,
     },
     {
       src: `${mediaPaths.rio}`,
       isActive: true,
-      image: "/images/rio.jpeg",
+      image: "/images/rio_phone.png",
       textAppearTime: 8,
     },
   ]);
@@ -217,7 +217,7 @@ export default function Affaires() {
                       <img
                         src={video.image}
                         alt={title}
-                        className="absolute w-full h-full object-cover"
+                        className="absolute w-full h-full object-contain"
                       />
                       <div className="absolute p-4 top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white sm:text-xl tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm">
                         <p>{title}</p>

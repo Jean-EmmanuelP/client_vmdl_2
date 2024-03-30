@@ -1,5 +1,5 @@
 import { ReverseArrowProps } from "@/app/utils/interface";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ReversedArrow = ({
   reversed = false,
@@ -37,7 +37,7 @@ const ReversedArrow = ({
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 50 50"
-      enable-background="new 0 0 50 50"
+      enableBackground="new 0 0 50 50"
     >
       <path
         fill={`${isGrey ? "#606060" : "#231F20"}`}
