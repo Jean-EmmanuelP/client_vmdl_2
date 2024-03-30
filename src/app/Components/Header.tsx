@@ -25,11 +25,15 @@ export default function Header({ height }: HeaderProps) {
     visionRef,
     handleScrollSections,
   } = useSection();
-  const { langueCourante, setLangueCourante, isMobile } = useSection();
+  const { menuOpen, goingOut, toggleMenu, langueCourante, setLangueCourante, isMobile } = useSection();
   const { loadData, data } = useData();
-  const { menuOpen, goingOut, toggleMenu } = useSection();
+  const { setSubExpertise } = useExpertise();
   const [lastScrollY, setLastScrollY] = useState(window.scrollY);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const selectRef = useRef<HTMLDivElement>(null);
+  const optionRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   // check si ca c'est pas une logique commune et utiliser dans d'autres composants
   useEffect(() => {
     const supportedLangs: LangueCode[] = [
@@ -64,6 +68,14 @@ export default function Header({ height }: HeaderProps) {
     { value: "中文", label: "中文" },
   ];
 
+  const handleOptionClick = (value: string) => {
+    const event: React.ChangeEvent<HTMLSelectElement> = {
+      target: { value }
+    } as React.ChangeEvent<HTMLSelectElement>;
+
+    handleLanguageChange(event);
+  };
+
   const handleLanguageChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -78,13 +90,19 @@ export default function Header({ height }: HeaderProps) {
       ) {
         toggleMenu();
       }
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)
+        && optionRef.current && !optionRef.current.contains(event.target as Node)
+        && isOpen
+      ) {
+        setIsOpen(false);
+      }
     }
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [menuOpen, toggleMenu]);
+  }, [menuOpen, toggleMenu, isOpen]);
   const detectScroll = () => {
     const currentScrollY = window.scrollY;
 
@@ -111,7 +129,7 @@ export default function Header({ height }: HeaderProps) {
   useEffect(() => {
     console.log(`this is the current section`, currentSection);
   }, [currentSection]);
-
+  const delayOnIndex = [200, 400, 600, 800, 1000, 1200, 300000, 300000]
   if (!data) {
     return;
   }
@@ -148,23 +166,28 @@ export default function Header({ height }: HeaderProps) {
       >
         <div
           className={`${height === "128px" || height === "90px"
-              ? "border-b border-slate-50"
-              : ""
+            ? "border-b border-slate-50"
+            : ""
             } relative h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
         >
           <div className="absolute right-0 w-[17%] sm:w-[6%] sm:-right-[9%] h-full flex items-center justify-center transparent text-xs sm:text-sm">
-            <div className="flex items-center justify-center w-full h-full">
-              <select
-                className="text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                value={langueCourante}
-                onChange={handleLanguageChange}
-              >
+            <div className={`flex flex-col text-center items-center justify-center w-fit h-fit overflow-hidden`}
+              onClick={() => {
+                setIsOpen(!isOpen)
+              }}>
+              <div ref={selectRef} className={`bg-blanc text-noir shadow-xl h-7 w-7 sm:h-10 sm:w-10 flex items-center justify-center`}>{langueCourante}</div>
+              <div ref={optionRef} className={`absolute top-[60%] z-[12121221] mt-3 ${isOpen ? 'block' : 'opacity-0 pointer-events-none'} `}>
                 {languesOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
+                  <div
+                    key={option.value}
+                    className={`${option.value === langueCourante && 'hidden'} mt-3 bg-blanc text-noir shadow-xl h-7 w-7 sm:h-10 sm:w-10 flex items-center justify-center transition duration-300 group-hover:translate-y-0 ${isOpen ? 'opacity-100 translate-y-0' : 'group-hover:opacity-100 opacity-0 -translate-y-2 delay-0'}`}
+                    data-value={option.value}
+                    onClick={() => handleOptionClick(option.value)}
+                  >
                     {option.label}
-                  </option>
+                  </div>
                 ))}
-              </select>
+              </div>
             </div>
           </div>
 
@@ -234,6 +257,7 @@ export default function Header({ height }: HeaderProps) {
                       onClick={() => {
                         toggleMenu();
                         setPageIs("/");
+                        setSubExpertise(null)
                         setTimeout(() => {
                           handleScrollSections(expertiseRef);
                         }, 200);
@@ -272,8 +296,10 @@ export default function Header({ height }: HeaderProps) {
                       data-clickable="true"
                       onClick={() => {
                         toggleMenu();
-                        setPageIs("carriere");
-                        handleScrollSections(homeRef);
+                        setPageIs("/");
+                        setTimeout(() => {
+                          handleScrollSections(carriereRef);
+                        }, 200);
                       }}
                       className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
@@ -298,8 +324,8 @@ export default function Header({ height }: HeaderProps) {
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 1
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
                       }`}
                   ></div>
                   {section_1}
@@ -309,6 +335,7 @@ export default function Header({ height }: HeaderProps) {
                   onClick={() => {
                     toggleMenu();
                     setPageIs("/");
+                    setSubExpertise(null)
                     setTimeout(() => {
                       handleScrollSections(expertiseRef);
                     }, 200);
@@ -317,8 +344,8 @@ export default function Header({ height }: HeaderProps) {
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 2
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
                       }`}
                   ></div>
                   {section_2}
@@ -336,8 +363,8 @@ export default function Header({ height }: HeaderProps) {
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 3
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
                       }`}
                   ></div>
                   {section_3}
@@ -355,8 +382,8 @@ export default function Header({ height }: HeaderProps) {
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 4
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
                       }`}
                   ></div>
                   {section_4}
@@ -365,14 +392,17 @@ export default function Header({ height }: HeaderProps) {
                   data-clickable="true"
                   onClick={() => {
                     toggleMenu();
-                    handleScrollSections(carriereRef);
+                    setPageIs("/");
+                    setTimeout(() => {
+                      handleScrollSections(carriereRef);
+                    }, 200);
                   }}
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 5
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
                       }`}
                   ></div>
                   {carreer_title}

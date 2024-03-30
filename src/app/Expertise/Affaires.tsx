@@ -271,16 +271,7 @@ export default function Affaires() {
               );
             }
           })}
-        <div
-          className="absolute top-[10%] bg-blanc sm:top-[0%] left-[10%] sm:left-[0%] w-[50px] h-[50px] sm:w-[5%] sm:h-[8%] flex items-center justify-center pr-2"
-          data-clickable={true}
-          onClick={() => {
-            setSubExpertise(null);
-          }}
-        >
-          <ReversedArrow />
-        </div>
       </div>
-    </div>
+    </div >
   );
 }

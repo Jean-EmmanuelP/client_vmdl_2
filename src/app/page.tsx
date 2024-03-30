@@ -190,7 +190,7 @@ export default function App() {
 
         if (mainDiv) {
           if (direction === "down") {
-            if (currentSection < 6) {
+            if (currentSection < 7) {
               mainDiv.scrollTo({
                 top: mainDiv.clientHeight * (currentSection + 1),
                 behavior: "smooth",
@@ -324,9 +324,6 @@ export default function App() {
       {isHere && (
         <div className="loading-screen z-[2147483647]">
           <div className="lds-dual-ring"></div>
-          {/* <div className="content-animation">
-            <img src="/images/vmdl.png" alt="" />
-          </div> */}
         </div>
       )}
 
@@ -372,7 +369,7 @@ export default function App() {
               id="main"
               ref={mainRef}
               style={{ height: mainHeight }}
-              className="w-full h-fit z-1 overflow-y-auto overflow-x-hidden"
+              className="w-full h-full z-1 overflow-y-auto overflow-x-hidden"
             >
               {pageIs === "/" && (
                 <>
@@ -397,7 +394,9 @@ export default function App() {
                   <div ref={contactRef} className="w-full h-full">
                     <Contact />
                   </div>
-                  <Footer />
+                  <div className="h-1/2 w-full">
+                    <Footer />
+                  </div>
                 </>
               )}
               {pageIs === "legals" && (

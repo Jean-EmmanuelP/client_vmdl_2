@@ -103,13 +103,12 @@ export default function Contentieux() {
       <video
         ref={videoRef}
         playsInline
-        className={`w-full h-full sm:w-full sm:h-full object-cover ${
-          headerHeight === "64px"
-            ? "-mt-[64px]"
-            : headerHeight === "128px"
+        className={`w-full h-full sm:w-full sm:h-full object-cover ${headerHeight === "64px"
+          ? "-mt-[64px]"
+          : headerHeight === "128px"
             ? "-mt-[128px]"
             : "-mt-[90px]"
-        }`}
+          }`}
         {...(isIOS() && { poster: `/images/vosges.jpeg` })}
       >
         <source src={`${mediaPaths.vosges}`} type="video/webm" />
@@ -118,15 +117,6 @@ export default function Contentieux() {
           type="video/mp4"
         />
       </video>
-      <div
-        className="absolute top-[10%] bg-blanc sm:top-[0%] left-[10%] sm:left-[0%] w-[50px] h-[50px] sm:w-[5%] sm:h-[8%] flex items-center justify-center pr-2"
-        data-clickable={true}
-        onClick={() => {
-          setSubExpertise(null);
-        }}
-      >
-        <ReversedArrow />
-      </div>
     </div>
   );
 }

@@ -83,7 +83,7 @@ export default function Footer() {
   return (
     <div
       id="Footer"
-      className="relative w-full h-fit py-20 px-10 gap-2 sm:gap-4 sm:h-[44%] flex flex-col items-center justify-center z-10 bg-noir text-blanc"
+      className="relative w-full h-full py-2 sm:py-20 px-10 gap-2 sm:gap-4 flex flex-col items-center justify-center z-10 bg-noir text-blanc"
       onMouseEnter={() => {
         setBgIsBlackFooter(true);
       }}
@@ -122,7 +122,7 @@ export default function Footer() {
             {legals}
           </button>
         </div>
-        <div className="bg-green-500 border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-center sm:justify-between items-center px-4 py-4 sm:py-10">
+        <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-center sm:justify-between items-center p-4 pt-5 sm:py-10">
           <div
             id="footer-contact"
             className="justify-center items-center gap-1 sm:gap-6 flex flex-col sm:flex-row"
@@ -216,10 +216,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="bg-yellow-500/10 w-full h-full">
-          {renderLangs()}
-        </div>
-        <div className="flex w-full px-4 justify-between gap-4 sm:hidden">
+        <div className="flex w-full px-4 mt-4 justify-between gap-4 sm:hidden">
           <div className="">
             <button
               onClick={() => {

@@ -144,7 +144,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/cpy.jpeg"
+                    src="/images/_ (2).jpeg"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
