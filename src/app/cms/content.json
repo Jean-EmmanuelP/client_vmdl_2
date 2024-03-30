@@ -36,9 +36,9 @@
           "title": "Qatar",
           "content": "Ceci cest la description du Qatar"
         },
-        "dubai": {
-          "title": "Dubai",
-          "content": "Ceci cest la description de Dubai"
+        "newyork": {
+          "title": "newyork",
+          "content": "Ceci cest la description de newyork"
         },
         "rio": {
           "title": "Rio",
@@ -114,9 +114,9 @@
           "title": "Qatar",
           "content": "This is the description of Qatar"
         },
-        "dubai": {
-          "title": "Dubai",
-          "content": "This is the description of Dubai"
+        "newyork": {
+          "title": "newyork",
+          "content": "This is the description of newyork"
         },
         "rio": {
           "title": "Rio",
@@ -192,7 +192,7 @@
           "title": "قطر",
           "content": "هذه هي وصف قطر"
         },
-        "dubai": {
+        "newyork": {
           "title": "دبي",
           "content": "هذه هي وصف دبي"
         },
@@ -270,9 +270,9 @@
           "title": "Katar",
           "content": "Dies ist die Beschreibung von Katar"
         },
-        "dubai": {
-          "title": "Dubai",
-          "content": "Dies ist die Beschreibung von Dubai"
+        "newyork": {
+          "title": "newyork",
+          "content": "Dies ist die Beschreibung von newyork"
         },
         "rio": {
           "title": "Rio",
@@ -348,9 +348,9 @@
           "title": "Qatar",
           "content": "Esta é a descrição do Qatar"
         },
-        "dubai": {
-          "title": "Dubai",
-          "content": "Esta é a descrição do Dubai"
+        "newyork": {
+          "title": "newyork",
+          "content": "Esta é a descrição do newyork"
         },
         "rio": {
           "title": "Rio",
@@ -426,9 +426,9 @@
           "title": "Qatar",
           "content": "Questa è la descrizione del Qatar"
         },
-        "dubai": {
-          "title": "Dubai",
-          "content": "Questa è la descrizione di Dubai"
+        "newyork": {
+          "title": "newyork",
+          "content": "Questa è la descrizione di newyork"
         },
         "rio": {
           "title": "Rio",
@@ -504,9 +504,9 @@
           "title": "Qatar",
           "content": "Questa è la descrizione del Qatar"
         },
-        "dubai": {
-          "title": "Dubai",
-          "content": "Questa è la descrizione di Dubai"
+        "newyork": {
+          "title": "newyork",
+          "content": "Questa è la descrizione di newyork"
         },
         "rio": {
           "title": "Rio",
@@ -582,7 +582,7 @@
           "title": "卡塔尔",
           "content": "这是卡塔尔的描述"
         },
-        "dubai": {
+        "newyork": {
           "title": "迪拜",
           "content": "这是迪拜的描述"
         },

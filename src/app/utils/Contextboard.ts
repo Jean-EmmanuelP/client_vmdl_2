@@ -17,6 +17,7 @@ interface MediaPaths {
   qatar: string;
   rio: string;
   vosges: string;
+  newyork: string;
 }
 
 interface currentSectionProps {
@@ -90,6 +91,7 @@ const defaultValues: currentSectionProps = {
     dubai: `/videos/laptop/dubai/dubai_low.webm`,
     qatar: `/videos/laptop/qatar/qatar_low.webm`,
     rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
+    newyork: `/videos/laptop/rio/new-york_low.webm`,
     vosges: `/videos/laptop/vosges/vosges_low.webm`,
   },
   updateMediaPaths: () => { },

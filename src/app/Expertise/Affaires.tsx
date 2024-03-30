@@ -39,9 +39,9 @@ export default function Affaires() {
       textAppearTime: 4,
     },
     {
-      src: `${mediaPaths.dubai}`,
+      src: `${mediaPaths.newyork}`,
       isActive: false,
-      image: "/images/dubai.jpeg",
+      image: "/images/newyork.jpeg",
       textAppearTime: 10,
     },
     {
@@ -135,7 +135,7 @@ export default function Affaires() {
   };
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
-  const { qatar, rio, dubai } = data[langCode].section_3.box_3;
+  const { qatar, rio, newyork } = data[langCode].section_3.box_3;
 
   const handleSelection = (direction: number) => {
     if (!autoScroll) {
@@ -190,11 +190,11 @@ export default function Affaires() {
               content = qatar.content;
               console.log(qatar.title, qatar.content);
             } else if (
-              video.src.includes("dubai") ||
-              video.image.includes("dubai")
+              video.src.includes("newyork") ||
+              video.image.includes("newyork")
             ) {
-              title = dubai.title;
-              content = dubai.content;
+              title = newyork.title;
+              content = newyork.content;
             } else if (
               video.src.includes("rio") ||
               video.image.includes("rio")

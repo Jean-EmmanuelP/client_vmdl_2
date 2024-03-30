@@ -71,6 +71,7 @@ export default function App() {
     dubai: `/videos/laptop/dubai/dubai_low.webm`,
     qatar: `/videos/laptop/qatar/qatar_low.webm`,
     rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
+    newyork: `/videos/laptop/rio/new-york_low.webm`,
     vosges: `/videos/laptop/vosges/vosges_low.webm`,
   });
   const toggleMenu = () => {
@@ -266,6 +267,7 @@ export default function App() {
       paris: `${videoBasePath}paris/paris_${qualitySuffix}.webm`,
       dubai: `${videoBasePath}dubai/dubai_${qualitySuffix}.webm`,
       qatar: `${videoBasePath}qatar/qatar_${qualitySuffix}.webm`,
+      newyork: `${videoBasePath}newyork/new-york_${qualitySuffix}.webm`,
       rio: `${videoBasePath}rio/rio_de_janeiro_${qualitySuffix}.webm`,
       vosges: `${videoBasePath}vosges/vosges_${qualitySuffix}.webm`,
     });
