@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
@@ -83,7 +84,7 @@ export default function Footer() {
   return (
     <div
       id="Footer"
-      className="relative w-full h-full py-2 sm:py-20 px-10 gap-2 sm:gap-4 flex flex-col items-center justify-center z-10 bg-noir text-blanc"
+      className="relative w-full h-full py-2 sm:py-7 px-10 gap-2 sm:gap-4 flex flex-col items-center justify-center z-10 bg-noir text-blanc"
       onMouseEnter={() => {
         setBgIsBlackFooter(true);
       }}
@@ -111,7 +112,7 @@ export default function Footer() {
         id="footer-content"
         className="w-full sm:w-4/5 h-[40%] gap-2 sm:gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
       >
-        <div className="bg-red-500 hidden sm:flex px-4 w-full text-left text-blanc">
+        <div className="hidden sm:flex px-4 w-full text-left text-blanc">
           <button
             onClick={() => {
               setBgIsBlackFooter(false);
