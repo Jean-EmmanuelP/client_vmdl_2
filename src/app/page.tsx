@@ -316,6 +316,8 @@ export default function App() {
         setCurrentSection(4);
       } else if (ref.current === carriereRef.current) {
         setCurrentSection(5);
+      } else if (ref.current === contactRef.current) {
+        setCurrentSection(6);
       }
     }
   };
@@ -404,7 +406,9 @@ export default function App() {
               {pageIs === "legals" && (
                 <>
                   <Legals />
-                  <Footer />
+                  <div className="h-1/2 w-full">
+                    <Footer />
+                  </div>
                 </>
               )}
             </div>
