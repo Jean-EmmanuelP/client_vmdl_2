@@ -10,6 +10,7 @@ export default function Contentieux() {
   const [textOpacity, setTextOpacity] = useState(0);
   const { langueCourante, mediaPaths, headerHeight } = useSection();
   const { data } = useData();
+  const [playBackError, setPlaybackError] = useState<boolean>(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -87,7 +88,7 @@ export default function Contentieux() {
     return webmPath.replace(".webm", ".mp4");
   }
   const isIOS = (): boolean => /iPad|iPhone|iPod/.test(navigator.userAgent);
-  // comprendre pourquoi je peux pas scroll quand je suis ici
+
   return (
     <div className={`w-full h-full flex justify-center items-center text-noir`}>
       <motion.div
@@ -109,7 +110,8 @@ export default function Contentieux() {
             ? "-mt-[128px]"
             : "-mt-[90px]"
           }`}
-        {...(isIOS() && { poster: `/images/vosges.jpeg` })}
+        onError={() => setPlaybackError(true)}
+        {...(isIOS() && playBackError && { poster: `/images/vosges_phone.png` })}
       >
         <source src={`${mediaPaths.vosges}`} type="video/webm" />
         <source
