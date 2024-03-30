@@ -25,11 +25,8 @@ interface Video {
 export default function Affaires() {
   const { subExpertise, setSubExpertise } = useExpertise();
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
+  const [playBackError, setPlaybackError] = useState<boolean>(false);
   const { mediaPaths, headerHeight } = useSection();
-  const [isIOS, setIsIOS] = useState<boolean>(false);
-  useEffect(() => {
-    setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent));
-  }, []);
 
   const [videos, setVideos] = useState<Video[]>([
     {
@@ -212,7 +209,7 @@ export default function Affaires() {
                   variants={videoVariants}
                   transition={{ duration: 1 }}
                 >
-                  {isIOS ? (
+                  {playBackError ? (
                     <>
                       <img
                         src={video.image}
@@ -235,6 +232,7 @@ export default function Affaires() {
                       playsInline
                       muted
                       preload="metadata"
+                      onError={() => setPlaybackError(true)}
                     >
                       <source src={`${video.src}`} type="video/webm" />
                       <source

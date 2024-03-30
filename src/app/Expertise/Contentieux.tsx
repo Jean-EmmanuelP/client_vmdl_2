@@ -2,7 +2,7 @@ import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
-import ReversedArrow from "../assets/svg/reverseArrow";
+import Image from "next/image";
 
 export default function Contentieux() {
   const { setSubExpertise } = useExpertise();
@@ -87,7 +87,6 @@ export default function Contentieux() {
   function convertToMp4Path(webmPath: string) {
     return webmPath.replace(".webm", ".mp4");
   }
-  const isIOS = (): boolean => /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   return (
     <div className={`w-full h-full flex justify-center items-center text-noir`}>
@@ -95,6 +94,7 @@ export default function Contentieux() {
         initial={{ opacity: 0 }}
         animate={{ opacity: textOpacity }}
         transition={{ delay: 12, duration: 0.3 }}
+        className={`${playBackError && 'delay-0 duration-0'}`}
       >
         <div
           className={`p-2 z-50 sm:p-10 absolute sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm`}
@@ -111,7 +111,6 @@ export default function Contentieux() {
             : "-mt-[90px]"
           }`}
         onError={() => setPlaybackError(true)}
-        {...(isIOS() && playBackError && { poster: `/images/vosges_phone.png` })}
       >
         <source src={`${mediaPaths.vosges}`} type="video/webm" />
         <source
@@ -119,6 +118,12 @@ export default function Contentieux() {
           type="video/mp4"
         />
       </video>
+      <Image
+        className="object-left-top -full h-full"
+        src="/images/vosges_phone.png"
+        alt="vosges_phone"
+        layout="fill"
+      />
     </div>
   );
 }

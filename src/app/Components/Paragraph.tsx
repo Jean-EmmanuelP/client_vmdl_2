@@ -77,7 +77,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
         </button>
         <button
           className={`
-          text-[40px] ${homeSection && "max-w-[74%] sm:max-w-fit sm:font-medium text-[16px] sm:text4xl"}
+          sm:text-[40px] ${homeSection && "max-w-[78%] sm:max-w-fit sm:font-medium text-[26px]"}
           ${toggle
               ? `opacity-0 -translate-y-3 transition duration-700`
               : `translate-y-0 transition duration-200 ${isHere
@@ -90,7 +90,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
           {children[0]}
         </button>
         <p
-          className={`${homeSection && "uppercase text-[26px] font-light"}
+          className={`${homeSection && "uppercase text-[22px] font-light"}
             ${toggle
               ? "opacity-0 -translate-y-3 transition duration-700 delay-[30ms]"
               : `${isHere
