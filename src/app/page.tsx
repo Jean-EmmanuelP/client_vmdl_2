@@ -90,6 +90,7 @@ export default function App() {
   const [headerHeight, setHeaderHeight] = useState<"64px" | "128px" | "90px">(
     "128px"
   );
+  const [onVideos, setOnVideos] = useState<boolean>(false);
   const [langueCourante, setLangueCourante] = useState<LangueCode>("FR");
   const [subExpertise, setSubExpertise] = useState<
     "conseil" | "contentieux" | "affaires" | null
@@ -334,6 +335,8 @@ export default function App() {
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
         <currentSectionContext.Provider
           value={{
+            onVideos,
+            setOnVideos,
             handleScrollSections,
             homeRef,
             cabinetRef,

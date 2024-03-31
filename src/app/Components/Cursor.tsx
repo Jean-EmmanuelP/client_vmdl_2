@@ -8,7 +8,7 @@ const CustomCursor: React.FC = () => {
     y: 0,
   });
   const {
-    menuOpen,
+    onVideos,
     pageIs,
     bgIsBlackFondateur,
     bgIsBlackFooter,
@@ -106,18 +106,18 @@ const CustomCursor: React.FC = () => {
     width: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
     height: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
     border: `2px solid ${pageIs === "legals"
-        ? bgIsBlackFooter
+      ? bgIsBlackFooter
+        ? "#FFFFFF"
+        : "#1D1D1B"
+      : pageIs !== "carriere"
+        ? bgIsBlackFondateur || bgIsBlackFooter
+          ? "#FFFFFF"
+          : isHoveringExpertiseButton !== "none"
+            ? `${MappingBgColor[isHoveringExpertiseButton]}`
+            : "#1D1D1B"
+        : bgIsBlackFooter
           ? "#FFFFFF"
           : "#1D1D1B"
-        : pageIs !== "carriere"
-          ? bgIsBlackFondateur || bgIsBlackFooter
-            ? "#FFFFFF"
-            : isHoveringExpertiseButton !== "none"
-              ? `${MappingBgColor[isHoveringExpertiseButton]}`
-              : "#1D1D1B"
-          : bgIsBlackFooter
-            ? "#FFFFFF"
-            : "#1D1D1B"
       }`,
     borderRadius: "50%",
     transform: `translate(-50%, -50%) ${clickable ? "scale(1.5)" : "scale(1)"}`,
@@ -133,7 +133,7 @@ const CustomCursor: React.FC = () => {
         : 0,
     transition:
       "opacity 0.2s, transform 0.2s, width 0.3s ease-in-out, height 0.3s ease-in-out, background .7s ease-in-out, border .7s ease-in-out",
-    backgroundColor: `${MappingBgColor[isHoveringExpertiseButton]}`,
+    backgroundColor: `${onVideos ? `#FAFAFA` : `${MappingBgColor[isHoveringExpertiseButton]}`}`,
   };
 
   if (isHoveringExpertiseButton !== "none") {

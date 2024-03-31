@@ -34,6 +34,8 @@ interface currentSectionProps {
     React.SetStateAction<"conseil" | "contentieux" | "affaires" | "none">
   >;
   isMobile: boolean;
+  onVideos: boolean;
+  setOnVideos: React.Dispatch<React.SetStateAction<boolean>>
   currentSection: number;
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -71,6 +73,8 @@ const defaultValues: currentSectionProps = {
   isHoveringExpertiseButton: "none",
   setIsHoveringExpertiseButton: () => { },
   isMobile: false,
+  onVideos: false,
+  setOnVideos: () => { },
   currentSection: 0,
   menuOpen: false,
   setMenuOpen: () => { },

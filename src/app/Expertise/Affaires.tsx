@@ -14,7 +14,6 @@ interface Video {
 }
 
 export default function Affaires() {
-  const [autoScroll, setAutoScroll] = useState<boolean>(false);
   const [playBackError, setPlaybackError] = useState<boolean>(false);
   const { mediaPaths, headerHeight } = useSection();
 
@@ -23,23 +22,23 @@ export default function Affaires() {
       src: `${mediaPaths.qatar}`,
       isActive: false,
       image: "/images/qatar_phone.png",
-      textAppearTime: 4,
+      textAppearTime: 5,
     },
     {
       src: `${mediaPaths.newyork}`,
       isActive: false,
       image: "/images/ny_phone.png",
-      textAppearTime: 10,
+      textAppearTime: 5,
     },
     {
       src: `${mediaPaths.rio}`,
       isActive: true,
       image: "/images/rio_phone.png",
-      textAppearTime: 8,
+      textAppearTime: 5,
     },
   ]);
   const { data } = useData();
-  const { langueCourante, isMobile } = useSection();
+  const { langueCourante, setOnVideos } = useSection();
   const videoRefs = useRef<HTMLVideoElement[]>([]);
   const [opacities, setOpacities] = useState(Array(3).fill(0));
   const opacitiesRef = useRef(opacities);
@@ -48,14 +47,15 @@ export default function Affaires() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
           const video = entry.target as HTMLVideoElement;
-
+          setOnVideos(true);
           const updateOpacity = async () => {
             const currentTime = video.currentTime;
-            const videoData = videos[index];
+            const videoIndex = parseInt(video.dataset.videoIndex as string);
+            const videoData = videos[videoIndex];
             const newOpacities = [...opacitiesRef.current];
-            newOpacities[index] =
+            newOpacities[videoIndex] =
               currentTime > videoData.textAppearTime ? 1 : 0;
             setOpacities(newOpacities);
           };
@@ -84,28 +84,10 @@ export default function Affaires() {
     return () => {
       videoRefs.current.forEach((video) => {
         if (video) observer.unobserve(video);
+        setOnVideos(false);
       });
     };
   }, [videos]);
-
-  useEffect(() => {
-    videos.forEach((video, index) => {
-      if (!video.isActive && videoRefs.current[index]) {
-        const videoElement = videoRefs.current[index];
-        videoElement.currentTime = 0;
-        videoElement.pause();
-      }
-    });
-  }, [videos]);
-
-  useEffect(() => {
-    if (autoScroll) {
-      const timer = setTimeout(() => {
-        setAutoScroll(false);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [autoScroll]);
 
   if (!data) {
     return;
@@ -125,29 +107,25 @@ export default function Affaires() {
   const { qatar, rio, newyork } = data[langCode].section_3.box_3;
 
   const handleSelection = (direction: number) => {
-    if (!autoScroll) {
-      setAutoScroll(true);
-      const currentIndex = videos.findIndex((video) => video.isActive);
-      let nextIndex = currentIndex + direction;
+    const currentIndex = videos.findIndex((video) => video.isActive);
+    let nextIndex = currentIndex + direction;
 
-      if (nextIndex < 0) {
-        nextIndex = videos.length - 1;
-      } else if (nextIndex >= videos.length) {
-        nextIndex = 0;
-      }
-
-      const newVideos = videos.map((video, index) => {
-        const isActive = index === nextIndex;
-        if (!isActive && videoRefs.current[index]) {
-          videoRefs.current[index].currentTime = 0;
-          videoRefs.current[index].pause();
-        }
-        return { ...video, isActive };
-      });
-
-      setVideos(newVideos);
-      setTimeout(() => setAutoScroll(false), 500);
+    if (nextIndex < 0) {
+      nextIndex = videos.length - 1;
+    } else if (nextIndex >= videos.length) {
+      nextIndex = 0;
     }
+
+    const newVideos = videos.map((video, index) => {
+      const isActive = index === nextIndex;
+      if (!isActive && videoRefs.current[index]) {
+        videoRefs.current[index].currentTime = 0;
+        videoRefs.current[index].pause();
+      }
+      return { ...video, isActive };
+    });
+
+    setVideos(newVideos);
   };
 
   function convertToMp4Path(webmPath: string) {
@@ -194,6 +172,7 @@ export default function Affaires() {
                       ref={(el) => {
                         if (el) {
                           videoRefs.current[index] = el;
+                          el.dataset.videoIndex = String(index);
                         }
                       }}
                       playsInline
@@ -210,8 +189,7 @@ export default function Affaires() {
                   )}
 
                   <div
-                    style={{ opacity: opacities[index] }}
-                    className={`transition duration-150 text-white text-[18px] tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
+                    className={`${opacities[index] ? 'opacity-100' : 'opacity-0'} transition duration-200 delay-[${video.textAppearTime}000ms] ease-in-out transition duration-150 text-white text-[18px] tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
                   >
                     <p>{title}</p>
                     <p>{content}</p>
