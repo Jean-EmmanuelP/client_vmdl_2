@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useEffect, useState } from "react";
-import { CSSTransition } from "react-transition-group";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 import Affaires from "./Affaires";
@@ -13,7 +12,6 @@ export default function ExpertiseContent() {
     langueCourante,
     isMobile,
     setIsHoveringExpertiseButton,
-    headerHeight,
     expertiseRef
   } = useSection();
   const { data } = useData();
@@ -72,6 +70,9 @@ export default function ExpertiseContent() {
       }
     };
   }, []);
+  useEffect(() => {
+    console.log('this is the subExpertise:', subExpertise);
+  }, [subExpertise])
   if (!data) {
     return null;
   }
@@ -90,9 +91,9 @@ export default function ExpertiseContent() {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
 
   const { title, box_1, box_2, box_3 } = data[langCode].section_3;
-  const { title: box_1_title, title_description: title_1_description } = box_1;
-  const { title: box_2_title, title_description: title_2_description } = box_2;
-  const { title: box_3_title, title_description: title_3_description } = box_3;
+  const { title: box_1_title } = box_1;
+  const { title: box_2_title } = box_2;
+  const { title: box_3_title } = box_3;
   if (!isMobile) {
     return (
       <div ref={expertiseRef} className={`relative w-full sm:h-full bg-blanc`}>
@@ -207,18 +208,20 @@ export default function ExpertiseContent() {
                   </div>
                 </div>
               </div>
-              {/* <div className="absolute w-full px-[14%] bottom-[13%] mb-2">
-              {memoizedTextCycle}
-              <div className="border-b border-noir"></div>
-            </div> */}
             </div>
             <div id="cursor-root"></div>
           </>
         )}
         {/* Contenu actif */}
-        {subExpertise === "conseil" && <Conseil />}
-        {subExpertise === "contentieux" && <Contentieux />}
-        {subExpertise === "affaires" && <Affaires />}
+        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'conseil' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
+          <Conseil />
+        </div>
+        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'contentieux' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
+          <Contentieux />
+        </div>
+        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'affaires' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
+          <Affaires />
+        </div>
       </div>
     );
   } else {
@@ -278,33 +281,16 @@ export default function ExpertiseContent() {
             </div>
           </>
         )}
-        {/* Affichage conditionnel des composants */}
-        <CSSTransition
-          in={subExpertise === "conseil"}
-          timeout={500}
-          classNames="fade"
-          unmountOnExit
-        >
+        {/* Contenu actif */}
+        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'conseil' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
           <Conseil />
-        </CSSTransition>
-
-        <CSSTransition
-          in={subExpertise === "contentieux"}
-          timeout={500}
-          classNames="fade"
-          unmountOnExit
-        >
+        </div>
+        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'contentieux' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
           <Contentieux />
-        </CSSTransition>
-
-        <CSSTransition
-          in={subExpertise === "affaires"}
-          timeout={500}
-          classNames="fade"
-          unmountOnExit
-        >
+        </div>
+        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'affaires' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
           <Affaires />
-        </CSSTransition>
+        </div>
       </div>
     );
   }
