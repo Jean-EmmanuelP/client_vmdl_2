@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Contentieux() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [textHere, setTextHere] = useState<boolean>(false);
-  const { langueCourante, mediaPaths, headerHeight } = useSection();
+  const { langueCourante, mediaPaths, headerHeight, isMobile } = useSection();
   const { data } = useData();
   const [playBackError, setPlaybackError] = useState<boolean>(false);
 
@@ -101,8 +101,8 @@ export default function Contentieux() {
         playBackError ?
           (
             <Image
-              className="object-left-top -full h-full"
-              src="/images/vosges_phone.png"
+              className={`object-cover -full h-full`}
+              src={`${isMobile ? '/images/expertise/mobile/contentieux/vosges.jpeg' : '/images/expertise/laptop/contentieux/vosges.png'}`}
               alt="vosges_phone"
               layout="fill"
             />

@@ -8,7 +8,7 @@ const BackgroundEiffel: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const videoSource = "/videos/laptop/paris/paris_high.webm";
-  const posterPath = "/images/pariseiffel.jpeg";
+  const posterPath = "/images/home/pariseiffel.jpeg";
 
   useEffect(() => {
     if (videoRef.current) {

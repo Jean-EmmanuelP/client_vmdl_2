@@ -1,17 +1,12 @@
 import { LangueCode, useSection } from "@/app/utils/Contextboard";
 import { useData } from "@/app/utils/DataContext";
 import legalsDataJson from "../../utils/legals-translated.json";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Legals() {
   const { langueCourante } = useSection();
   const { data } = useData();
-  const [legalsData, setLegalsData] = useState(legalsDataJson);
-  /*
-    go to page.tsx > legalsData must be a context
-    check a useEffect each time the langCode is updated and setLegalsData again
-    take legalsData from useSection and print the content there
-  */
+
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -53,56 +48,56 @@ export default function Legals() {
     switch (langCode) {
       case "fr":
         return <div className="text-[11px] flex flex-col">
-        <p className="flex flex-col py-2">
-          <span>Accessible à l&apos;adresse URL suivante</span>
-          <a href="http://www.vmdl.ai">
-            : http://www.vmdl.ai (ci-après le « Site »).
-          </a>
-        </p>
-        <p className="flex flex-col py-2">
-          <span>I.I. Éditeur :</span>
-          <ul>
-            <li>Vincent Machado Da Luz - Avocat à la Cour</li>
-            <li>2 Rue de Poissy - 75005 PARIS</li>
-            <li>T. +33 (0) 7 57 41 72 87 - F. +33 (0) 1 44 32 13 93 - </li>
-            <li>M.cabinet@vmdl.ai vmdl.ai</li>
-            <li>N° SIRET 89073041900029</li>
-            <li>Ci-après « le cabinet VMDL »</li>
-          </ul>
-        </p>
-        <p className="flex flex-col py-2">
-          <span>I.II. Directeur de la publication</span>
-          <ul>
-            <li>Vincent Machado Da Luz</li>
-            <li>2 Rue de Poissy - 75005 PARIS</li>
-            <li>T. +33 (0) 7 57 41 72 87</li>
-            <li>M. cabinet@vmdl.ai</li>
-          </ul>
-        </p>
-        <p className="flex flex-col py-2">
-          <span>
-            I.III. Concepteur et réalisateur du site <br />
-            Jean-Emmanuel Perramant graphisme
-          </span>
-          <ul>
-            <li>96 Bd Bessières Paris</li>
-            <li>T. +33 (0)6 95 51 14 61</li>
-            <li>M. jperrama@gmail.com</li>
-            <li>
-              <a href="jperrama.com">jperrama.com</a>
-            </li>
-            <li>N° SIRET 89073041900029</li>
-          </ul>
-        </p>
-        <p className="flex flex-col py-2">
-          <span>I.IV. Responsable de l&apos;hébergement</span>
-          <ul>
-            <li>La société Vercel</li>
-            <li>boîte postale 40190 - San Francisco - CA 94140 -</li>
-            <li>États-Unis vercel.com</li>
-          </ul>
-        </p>
-      </div>
+          <p className="flex flex-col py-2">
+            <span>Accessible à l&apos;adresse URL suivante</span>
+            <a href="http://www.vmdl.ai">
+              : http://www.vmdl.ai (ci-après le « Site »).
+            </a>
+          </p>
+          <p className="flex flex-col py-2">
+            <span>I.I. Éditeur :</span>
+            <ul>
+              <li>Vincent Machado Da Luz - Avocat à la Cour</li>
+              <li>2 Rue de Poissy - 75005 PARIS</li>
+              <li>T. +33 (0) 7 57 41 72 87 - F. +33 (0) 1 44 32 13 93 - </li>
+              <li>M.cabinet@vmdl.ai vmdl.ai</li>
+              <li>N° SIRET 89073041900029</li>
+              <li>Ci-après « le cabinet VMDL »</li>
+            </ul>
+          </p>
+          <p className="flex flex-col py-2">
+            <span>I.II. Directeur de la publication</span>
+            <ul>
+              <li>Vincent Machado Da Luz</li>
+              <li>2 Rue de Poissy - 75005 PARIS</li>
+              <li>T. +33 (0) 7 57 41 72 87</li>
+              <li>M. cabinet@vmdl.ai</li>
+            </ul>
+          </p>
+          <p className="flex flex-col py-2">
+            <span>
+              I.III. Concepteur et réalisateur du site <br />
+              Jean-Emmanuel Perramant graphisme
+            </span>
+            <ul>
+              <li>96 Bd Bessières Paris</li>
+              <li>T. +33 (0)6 95 51 14 61</li>
+              <li>M. jperrama@gmail.com</li>
+              <li>
+                <a href="jperrama.com">jperrama.com</a>
+              </li>
+              <li>N° SIRET 89073041900029</li>
+            </ul>
+          </p>
+          <p className="flex flex-col py-2">
+            <span>I.IV. Responsable de l&apos;hébergement</span>
+            <ul>
+              <li>La société Vercel</li>
+              <li>boîte postale 40190 - San Francisco - CA 94140 -</li>
+              <li>États-Unis vercel.com</li>
+            </ul>
+          </p>
+        </div>
       case "en":
         return (
           <div className="text-[11px] flex flex-col">
@@ -502,7 +497,7 @@ export default function Legals() {
               The Data Privacy Policy of the website https://www.vmdl.ai/ is
               established in accordance with Articles 13 and 14 of the General
               Data Protection Regulation (2016/679) and Article 32 of the Data
-              Protection Act of January 6, 1978.​
+              Protection Act of January 6, 1978.
             </div>
             <div className="text-[11px] flex flex-col">
               <div className="flex flex-col py-2">
@@ -613,7 +608,7 @@ export default function Legals() {
               https://www.vmdl.ai/ est prise en application des articles 13 et
               14 du Règlement européen Général sur la Protection des Données
               (2016/679) et de l&apos;article 32 de la loi Informatique et
-              Libertés du 6 janvier 1978.​
+              Libertés du 6 janvier 1978.
             </div>
             <div className="text-[11px] flex flex-col">
               <div className="flex flex-col py-2">
@@ -1352,7 +1347,7 @@ export default function Legals() {
       <div className="w-full h-fit flex items-center justify-start pl-[10%] bg-blanc">
         <h1 className="py-4 font-semibold">{title}</h1>
       </div>
-      <div className="overflow-hidden bg-[url('/images/white.jpeg')] bg-cover px-[10%] py-4 h-full flex flex-col sm:flex-row gap-2">
+      <div className="overflow-hidden bg-[url('/images/legals/white.jpeg')] bg-cover px-[10%] py-4 h-full flex flex-col sm:flex-row gap-2">
         <div className="w-full sm:w-1/3 h-full space-y-2">
           <div className=" bg-white/40 p-6 flex flex-col shadow-md">
             <div>
