@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
@@ -18,7 +18,7 @@ export default function ExpertiseContent() {
   } = useSection();
   const { data } = useData();
   const [isVisible, setIsVisible] = useState(true);
-  const pathImages = ['/images/_ (2).jpeg', '/images/vosges.jpeg', '/images/paris_tribunal.jpeg'];
+  const pathImages = ['/images/trio_football.jpeg', '/images/vosges_expertise.jpeg', '/images/paris_tribunal.jpeg'];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -132,7 +132,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/_ (2).jpeg"
+                    src="/images/trio_football.jpeg"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
@@ -163,7 +163,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/vosges.jpeg"
+                    src="/images/vosges_expertise.jpeg"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
