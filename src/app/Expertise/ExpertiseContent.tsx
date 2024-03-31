@@ -14,10 +14,10 @@ export default function ExpertiseContent() {
     isMobile,
     setIsHoveringExpertiseButton,
     headerHeight,
+    expertiseRef
   } = useSection();
   const { data } = useData();
   const [isVisible, setIsVisible] = useState(true);
-  const [showRideau, setShowRideau] = useState(false);
   const pathImages = ['/images/_ (2).jpeg', '/images/vosges.jpeg', '/images/paris_tribunal.jpeg'];
 
   useEffect(() => {
@@ -45,25 +45,12 @@ export default function ExpertiseContent() {
     activeContent: "conseil" | "contentieux" | "affaires" | null
   ) {
     setIsHoveringExpertiseButton("none");
-    // setShowRideau(true);
-
-    // setTimeout(() => {
-    //   setShowRideau(false);
-    //   setIsVisible(false);
-    // }, 2300);
     setIsVisible(false);
-    // if (!isMobile) {
-    //   setTimeout(() => {
-    //     setSubExpertise(activeContent);
-    //   }, 1000);
-    // } else {
     setSubExpertise(activeContent);
-    // }
   }
   useEffect(() => {
     subExpertise === null && setIsVisible(true);
   }, [subExpertise]);
-  const expertiseRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

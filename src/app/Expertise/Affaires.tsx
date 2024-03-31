@@ -5,6 +5,7 @@ import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
 import ReversedArrow from "../assets/svg/reverseArrow";
+import Image from "next/image";
 
 interface Video {
   src: string;
@@ -13,17 +14,7 @@ interface Video {
   textAppearTime: number;
 }
 
-/* 
-  enlever l'autoplay, contre productif, quand la personne regarde elle lit, ca disparait et ca repart
-  - a 12 ca sarrete sur rio, la personne doit lire le texte
-  - a 12 ca sarrete sur rio, la personne doit lire le texte
-  - rajoute le cadre avec le texte
-  - pour que la video redemarre au debut il faut que il change de page et revienne dessus
-  - le boutton n'est pas ouf | c'est pas si evident que il faut cliquer, va pas avoir le reflexe de cliquer la et la
-  peut etre quelque chose plus epure, plus simple et plus intuitif
-  */
 export default function Affaires() {
-  const { subExpertise, setSubExpertise } = useExpertise();
   const [autoScroll, setAutoScroll] = useState<boolean>(false);
   const [playBackError, setPlaybackError] = useState<boolean>(false);
   const { mediaPaths, headerHeight } = useSection();
@@ -87,12 +78,12 @@ export default function Affaires() {
       },
       { threshold: 0.5 }
     );
-    videoRefs.current.forEach((video, index) => {
+    videoRefs.current.forEach((video) => {
       if (video) observer.observe(video);
     });
 
     return () => {
-      videoRefs.current.forEach((video, index) => {
+      videoRefs.current.forEach((video) => {
         if (video) observer.unobserve(video);
       });
     };
@@ -211,10 +202,11 @@ export default function Affaires() {
                 >
                   {playBackError ? (
                     <>
-                      <img
+                      <Image
                         src={video.image}
                         alt={title}
-                        className="absolute w-full h-full object-contain"
+                        className="absolute w-full h-full object-cover"
+                        layout="fill"
                       />
                       <div className="absolute p-4 top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white sm:text-xl tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm">
                         <p>{title}</p>
@@ -223,7 +215,7 @@ export default function Affaires() {
                     </>
                   ) : (
                     <video
-                      className="flex justify-center items-center object-cover h-full w-full"
+                      className="flex justify-center items-center object-cover object-bottom h-full w-full"
                       ref={(el) => {
                         if (el) {
                           videoRefs.current[index] = el;
