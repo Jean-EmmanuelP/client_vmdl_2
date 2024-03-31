@@ -195,14 +195,14 @@ export default function Affaires() {
                     <p>{content}</p>
                   </div>
                   <div
-                    className="absolute flex transition duration-100 hover:scale-105 justify-center items-center left-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
+                    className="absolute flex transition duration-100 justify-center items-center left-2 top-[40%] hover:bg-white/80 group bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
                     data-clickable={"true"}
                     onClick={() => handleSelection(-1)}
                   >
                     <ReversedArrow lilArrow={true} isGrey={true} />
                   </div>
                   <div
-                    className="absolute flex justify-center transition duration-100 hover:scale-105 items-center right-2 top-[40%] bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
+                    className="absolute flex justify-center transition duration-100 items-center right-2 top-[40%] hover:bg-white/80 group bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
                     data-clickable={"true"}
                     onClick={() => handleSelection(1)}
                   >
