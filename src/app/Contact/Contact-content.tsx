@@ -52,7 +52,7 @@ export default function ContactContent() {
     return (
       <div
         ref={contactRef}
-        className="w-full h-full flex justify-center items-center"
+        className="w-full h-full flex justify-center items-center bg-[#FAFAFA]"
       >
         <div className="flex flex-col w-[45%] -mt-[85px] sm:-mt-18">
           <h1

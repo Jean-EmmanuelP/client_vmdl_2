@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useSection } from "../utils/Contextboard";
-import Plus from "../assets/svg/Plus";
 
 const CustomCursor: React.FC = () => {
   const [position, setPosition] = useState<{ x: number; y: number }>({
@@ -14,7 +13,6 @@ const CustomCursor: React.FC = () => {
     bgIsBlackFondateur,
     bgIsBlackFooter,
     isHoveringExpertiseButton,
-    currentSection,
   } = useSection();
   const [visible, setVisible] = useState<boolean>(false);
   const [clickable, setClickable] = useState<boolean>(false);
@@ -107,21 +105,20 @@ const CustomCursor: React.FC = () => {
     position: "fixed",
     width: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
     height: `${isHoveringExpertiseButton !== "none" ? "80px" : "18px"}`,
-    border: `2px solid ${
-      pageIs === "legals"
+    border: `2px solid ${pageIs === "legals"
         ? bgIsBlackFooter
           ? "#FFFFFF"
           : "#1D1D1B"
         : pageIs !== "carriere"
-        ? bgIsBlackFondateur || bgIsBlackFooter
-          ? "#FFFFFF"
-          : isHoveringExpertiseButton !== "none"
-          ? `${MappingBgColor[isHoveringExpertiseButton]}`
-          : "#1D1D1B"
-        : bgIsBlackFooter
-        ? "#FFFFFF"
-        : "#1D1D1B"
-    }`,
+          ? bgIsBlackFondateur || bgIsBlackFooter
+            ? "#FFFFFF"
+            : isHoveringExpertiseButton !== "none"
+              ? `${MappingBgColor[isHoveringExpertiseButton]}`
+              : "#1D1D1B"
+          : bgIsBlackFooter
+            ? "#FFFFFF"
+            : "#1D1D1B"
+      }`,
     borderRadius: "50%",
     transform: `translate(-50%, -50%) ${clickable ? "scale(1.5)" : "scale(1)"}`,
     pointerEvents: "none",

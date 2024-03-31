@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
+import { LangueCode, useSection } from "../utils/Contextboard";
 import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
 import ReversedArrow from "../assets/svg/reverseArrow";
@@ -154,10 +153,7 @@ export default function Affaires() {
   function convertToMp4Path(webmPath: string) {
     return webmPath.replace(".webm", ".mp4");
   }
-  const videoVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
+
   return (
     <div
       className={`w-full h-full flex justify-center items-center text-blanc`}
@@ -172,33 +168,12 @@ export default function Affaires() {
       >
         {videos &&
           videos.map((video, index) => {
-            let title, content;
-            if (video.src.includes("qatar") || video.image.includes("qatar")) {
-              title = qatar.title;
-              content = qatar.content;
-              console.log(qatar.title, qatar.content);
-            } else if (
-              video.src.includes("newyork") ||
-              video.image.includes("newyork")
-            ) {
-              title = newyork.title;
-              content = newyork.content;
-            } else if (
-              video.src.includes("rio") ||
-              video.image.includes("rio")
-            ) {
-              title = rio.title;
-              content = rio.content;
-            }
+            const { title, content } = video.src.includes("qatar") || video.image.includes("qatar") ? qatar : video.src.includes("newyork") || video.image.includes("newyork") ? newyork : rio;
             if (video.isActive) {
               return (
-                <motion.div
+                <div
                   key={video.src}
-                  className="relative w-full h-full text-4xl"
-                  initial="hidden"
-                  animate={video.isActive ? "visible" : "hidden"}
-                  variants={videoVariants}
-                  transition={{ duration: 1 }}
+                  className={`relative w-full h-full text-4xl ${video.isActive ? 'opacity-100' : 'opacity-0'} transition duration-100 ease-in-out`}
                 >
                   {playBackError ? (
                     <>
@@ -257,7 +232,7 @@ export default function Affaires() {
                       <ReversedArrow lilArrow={true} isGrey={true} />
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             }
           })}

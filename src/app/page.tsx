@@ -267,7 +267,7 @@ export default function App() {
       paris: `${videoBasePath}paris/paris_${qualitySuffix}.webm`,
       dubai: `${videoBasePath}dubai/dubai_${qualitySuffix}.webm`,
       qatar: `${videoBasePath}qatar/qatar_${qualitySuffix}.webm`,
-      newyork: `${videoBasePath}newyork/new-york_${qualitySuffix}.webm`,
+      newyork: `${videoBasePath}newyork/new-york_${qualitySuffix}.mp4`,
       rio: `${videoBasePath}rio/rio_de_janeiro_${qualitySuffix}.webm`,
       vosges: `${videoBasePath}vosges/vosges_${qualitySuffix}.webm`,
     });
