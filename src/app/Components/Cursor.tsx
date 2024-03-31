@@ -141,13 +141,13 @@ const CustomCursor: React.FC = () => {
 
   if (isHoveringExpertiseButton !== "none") {
     return ReactDOM.createPortal(
-      <div style={cursorStyle}>
+      <div style={cursorStyle} className="z-[2147483647]">
         {/* trouver comment bien mettre la croix au milieu */}
       </div>,
       document.getElementById("cursor-root") as HTMLElement
     );
   } else {
-    return <div className="circle" style={cursorStyle}></div>;
+    return <div className="circle z-[2147483647]" style={cursorStyle}></div>;
   }
 };
 
