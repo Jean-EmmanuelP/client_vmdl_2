@@ -149,7 +149,7 @@ export default function ExpertiseContent() {
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
-                    className="group-hover:scale-110 transition duration-300"
+                    className="group-hover:scale-110 transition duration-300 blur-sm"
                   />
                   <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
                     <h1 className="top-[10%] text-[20px] left-[12%] absolute uppercase">
@@ -275,7 +275,9 @@ export default function ExpertiseContent() {
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
-                    className="group-hover:scale-110 transition duration-300"
+                    className={`
+                    ${number === 0 && 'blur-sm'}
+                    group-hover:scale-110 transition duration-300`}
                   />
                   <h1 className="top-[10%] text-blanc left-[20%] absolute uppercase font-semibold">
                     {number === 0

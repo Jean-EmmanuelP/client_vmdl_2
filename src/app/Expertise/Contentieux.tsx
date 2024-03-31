@@ -1,26 +1,24 @@
-import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
-import { motion } from "framer-motion";
+import { LangueCode, useSection } from "../utils/Contextboard";
 import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
 import Image from "next/image";
 
 export default function Contentieux() {
-  const { setSubExpertise } = useExpertise();
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [textOpacity, setTextOpacity] = useState(0);
+  const [textHere, setTextHere] = useState<boolean>(false);
   const { langueCourante, mediaPaths, headerHeight } = useSection();
   const { data } = useData();
   const [playBackError, setPlaybackError] = useState<boolean>(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
         if (entry.isIntersecting) {
           videoRef.current?.play();
-          setTextOpacity(1);
         } else {
           videoRef.current?.pause();
-          setTextOpacity(0);
+          setTextHere(false);
         }
       },
       { threshold: 0.5 }
@@ -42,7 +40,7 @@ export default function Contentieux() {
 
     const handleTimeUpdate = () => {
       if (videoElement && videoElement.currentTime >= 12) {
-        setTextOpacity(1);
+        setTextHere(true);
         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
       }
     };
@@ -57,6 +55,7 @@ export default function Contentieux() {
       }
     };
   }, [videoRef]);
+
   if (!data) {
     return null;
   }
@@ -90,40 +89,45 @@ export default function Contentieux() {
 
   return (
     <div className={`w-full h-full flex justify-center items-center text-noir`}>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: textOpacity }}
-        transition={{ delay: 12, duration: 0.3 }}
-        className={`${playBackError && 'delay-0 duration-0'}`}
+      <div
+        className={`${textHere && !playBackError ? 'opacity-100' : 'opacity-0'} ${playBackError && 'opacity-100'} transition duration-300 ease-in-out`}
       >
         <div
           className={`p-2 z-50 sm:p-10 absolute sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm`}
           dangerouslySetInnerHTML={{ __html: formattedContent }}
         ></div>
-      </motion.div>
-      <video
-        ref={videoRef}
-        playsInline
-        className={`w-full h-full sm:w-full sm:h-full object-cover ${headerHeight === "64px"
-          ? "-mt-[64px]"
-          : headerHeight === "128px"
-            ? "-mt-[128px]"
-            : "-mt-[90px]"
-          }`}
-        onError={() => setPlaybackError(true)}
-      >
-        <source src={`${mediaPaths.vosges}`} type="video/webm" />
-        <source
-          src={`${convertToMp4Path(mediaPaths.vosges)}`}
-          type="video/mp4"
-        />
-      </video>
-      <Image
-        className="object-left-top -full h-full"
-        src="/images/vosges_phone.png"
-        alt="vosges_phone"
-        layout="fill"
-      />
+      </div>
+      {
+        playBackError ?
+          (
+            <Image
+              className="object-left-top -full h-full"
+              src="/images/vosges_phone.png"
+              alt="vosges_phone"
+              layout="fill"
+            />
+          )
+          :
+          (
+            <video
+              ref={videoRef}
+              playsInline
+              className={`w-full h-full sm:w-full sm:h-full object-cover ${headerHeight === "64px"
+                ? "-mt-[64px]"
+                : headerHeight === "128px"
+                  ? "-mt-[128px]"
+                  : "-mt-[90px]"
+                }`}
+              onError={() => setPlaybackError(true)}
+            >
+              <source src={`${mediaPaths.vosges}`} type="video/webm" />
+              <source
+                src={`${convertToMp4Path(mediaPaths.vosges)}`}
+                type="video/mp4"
+              />
+            </video>
+          )
+      }
     </div>
   );
 }

@@ -146,8 +146,8 @@ export default function Conseil() {
             className={`absolute font-light text-sm py-2 px-4 rounded-md flex flex-col cursor-pointer transition-top ${showVideo ? "top-[83%]" : "top-[78%]"
               }`}
           >
-            <p className={`-mt-6 transition-opacity duration-700 ease-in-out`}>
-              {!showVideo ? "See highlight" : "Hide hightlight"}
+            <p className={`-mt-6 p-2 rounded-md shadow-md bg-gray-700 text-blanc font-semibold transition-opacity duration-700 ease-in-out`}>
+              {!showVideo ? "Play video" : "Hide"}
             </p>
           </div>
 

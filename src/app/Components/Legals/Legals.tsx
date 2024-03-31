@@ -62,20 +62,20 @@ export default function Legals() {
         <p className="flex flex-col py-2">
           <span>I.I. Éditeur :</span>
           <ul>
-            <li>Vincent Machado Da Luz - Avocats à la Cour</li>
-            <li>27 boulevard Saint-Michel - 75005 PARIS</li>
-            <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
+            <li>Vincent Machado Da Luz - Avocat à la Cour</li>
+            <li>2 Rue de Poissy - 75005 PARIS</li>
+            <li>T. +33 (0) 7 57 41 72 87 - F. +33 (0) 1 44 32 13 93 - </li>
             <li>M.cabinet@vmdl.ai vmdl.ai</li>
-            <li>N° SIRET 83113986000017</li>
+            <li>N° SIRET 89073041900029</li>
             <li>Ci-après « le cabinet VMDL »</li>
           </ul>
         </p>
         <p className="flex flex-col py-2">
           <span>I.II. Directeur de la publication</span>
           <ul>
-            <li>Jean-Emmanuel Perramant</li>
-            <li>96 Bd Bessières - 75017 PARIS</li>
-            <li>T. +33 (0) 6 85 51 14 61</li>
+            <li>Vincent Machado Da Luz</li>
+            <li>2 Rue de Poissy - 75005 PARIS</li>
+            <li>T. +33 (0) 7 57 41 72 87</li>
             <li>M. cabinet@vmdl.ai</li>
           </ul>
         </p>
@@ -91,7 +91,7 @@ export default function Legals() {
             <li>
               <a href="jperrama.com">jperrama.com</a>
             </li>
-            <li>N° SIRET 83113986000017</li>
+            <li>N° SIRET 89073041900029</li>
           </ul>
         </p>
         <p className="flex flex-col py-2">
@@ -117,10 +117,10 @@ export default function Legals() {
               <span>I.I. Publisher:</span>
               <ul>
                 <li>Vincent Machado Da Luz - Lawyers at the Court</li>
-                <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
-                <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
+                <li>2 Rue de Poissy - 750</li>
+                <li>T. +33 (0) 7 57 41 72 87 - F. +33 (0) 1 44 32 13 93 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai</li>
-                <li>SIRET No. 83113986000017</li>
+                <li>SIRET No. 89073041900029</li>
                 <li>Hereinafter referred to as &quot;VMDL firm&quot;</li>
               </ul>
             </p>
@@ -145,7 +145,7 @@ export default function Legals() {
                 <li>
                   <a href="jperrama.com">jperrama.com</a>
                 </li>
-                <li>SIRET No. 83113986000017</li>
+                <li>SIRET No. 89073041900029</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -171,10 +171,10 @@ export default function Legals() {
               <span>I.I. Editor:</span>
               <ul>
                 <li>Vincent Machado Da Luz - Abogados ante la Corte</li>
-                <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
-                <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
+                <li>2 Rue de Poissy - 750</li>
+                <li>T. +33 (0) 7 57 41 72 87 - F. +33 (0) 1 44 32 13 93 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai</li>
-                <li>Nº SIRET 83113986000017</li>
+                <li>Nº SIRET 89073041900029</li>
                 <li>En adelante &quot;el despacho VMDL&quot;</li>
               </ul>
             </p>
@@ -199,7 +199,7 @@ export default function Legals() {
                 <li>
                   <a href="jperrama.com">jperrama.com</a>
                 </li>
-                <li>Nº SIRET 83113986000017</li>
+                <li>Nº SIRET 89073041900029</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -228,7 +228,7 @@ export default function Legals() {
                 <li>27 بوليفار سان ميشيل - 75005 باريس</li>
                 <li>ت. +33 (0) 6 85 51 14 61 - ف. +33 (0)1 43 25 62 19 - </li>
                 <li>بريد إلكتروني: cabinet@vmdl.ai vmdl.ai</li>
-                <li>رقم سيريت 83113986000017</li>
+                <li>رقم سيريت 89073041900029</li>
                 <li>يُشار إليه فيما بعد بـ &quot;مكتب VMDL&quot;</li>
               </ul>
             </p>
@@ -253,7 +253,7 @@ export default function Legals() {
                 <li>
                   <a href="jperrama.com">jperrama.com</a>
                 </li>
-                <li>رقم سيريت 83113986000017</li>
+                <li>رقم سيريت 89073041900029</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -279,10 +279,10 @@ export default function Legals() {
               <span>I.I. Editor:</span>
               <ul>
                 <li>Vincent Machado Da Luz - Advogados à Corte</li>
-                <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
-                <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
+                <li>2 Rue de Poissy - 750</li>
+                <li>T. +33 (0) 7 57 41 72 87 - F. +33 (0) 1 44 32 13 93 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai</li>
-                <li>Nº SIRET 83113986000017</li>
+                <li>Nº SIRET 89073041900029</li>
                 <li>Doravante denominado &quot;o escritório VMDL&quot;</li>
               </ul>
             </p>
@@ -307,7 +307,7 @@ export default function Legals() {
                 <li>
                   <a href="jperrama.com">jperrama.com</a>
                 </li>
-                <li>Nº SIRET 83113986000017</li>
+                <li>Nº SIRET 89073041900029</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -334,9 +334,9 @@ export default function Legals() {
               <ul>
                 <li>Vincent Machado Da Luz - Avvocati presso la Corte</li>
                 <li>27 Boulevard Saint-Michel - 75005 PARIGI</li>
-                <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
+                <li>T. +33 (0) 7 57 41 72 87 - F. +33 (0) 1 44 32 13 93 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai</li>
-                <li>N° SIRET 83113986000017</li>
+                <li>N° SIRET 89073041900029</li>
                 <li>D&apos;ora in poi denominato &quot;lo studio VMDL&quot;</li>
               </ul>
             </p>
@@ -361,7 +361,7 @@ export default function Legals() {
                 <li>
                   <a href="jperrama.com">jperrama.com</a>
                 </li>
-                <li>N° SIRET 83113986000017</li>
+                <li>N° SIRET 89073041900029</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -387,10 +387,10 @@ export default function Legals() {
               <span>I.I. Herausgeber:</span>
               <ul>
                 <li>Vincent Machado Da Luz - Rechtsanwälte beim Gericht</li>
-                <li>27 Boulevard Saint-Michel - 75005 PARIS</li>
-                <li>T. +33 (0) 6 85 51 14 61 - F. +33 (0)1 43 25 62 19 - </li>
+                <li>2 Rue de Poissy - 750</li>
+                <li>T. +33 (0) 7 57 41 72 87 - F. +33 (0) 1 44 32 13 93 - </li>
                 <li>E. cabinet@vmdl.ai vmdl.ai</li>
-                <li>SIRET Nr. 83113986000017</li>
+                <li>SIRET Nr. 89073041900029</li>
                 <li>Im Folgenden &quot;die Kanzlei VMDL&quot; genannt</li>
               </ul>
             </p>
@@ -415,7 +415,7 @@ export default function Legals() {
                 <li>
                   <a href="jperrama.com">jperrama.com</a>
                 </li>
-                <li>SIRET Nr. 83113986000017</li>
+                <li>SIRET Nr. 89073041900029</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
@@ -446,7 +446,7 @@ export default function Legals() {
                   电话 +33 (0) 6 85 51 14 61 - 传真 +33 (0)1 43 25 62 19 -{" "}
                 </li>
                 <li>电邮 cabinet@vmdl.ai vmdl.ai</li>
-                <li>商业注册号 83113986000017</li>
+                <li>商业注册号 89073041900029</li>
                 <li>以下简称“VMDL律师事务所”</li>
               </ul>
             </p>
@@ -471,7 +471,7 @@ export default function Legals() {
                 <li>
                   <a href="jperrama.com">jperrama.com</a>
                 </li>
-                <li>商业注册号 83113986000017</li>
+                <li>商业注册号 89073041900029</li>
               </ul>
             </p>
             <p className="flex flex-col py-2">
