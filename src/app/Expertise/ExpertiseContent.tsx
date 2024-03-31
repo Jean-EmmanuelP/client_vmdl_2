@@ -18,7 +18,7 @@ export default function ExpertiseContent() {
   } = useSection();
   const { data } = useData();
   const [isVisible, setIsVisible] = useState(true);
-  const pathImages = ['/images/trio_football.jpeg', '/images/vosges_expertise.jpeg', '/images/paris_tribunal.jpeg'];
+  const pathImages = ['/images/expertise/trio_football.jpeg', '/images/expertise/vosges_expertise.jpeg', '/images/expertise/paris_tribunal.jpeg'];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -132,7 +132,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/trio_football.jpeg"
+                    src="/images/expertise/trio_football.jpeg"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
@@ -163,7 +163,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/vosges_expertise.jpeg"
+                    src="/images/expertise/vosges_expertise.jpeg"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
@@ -194,7 +194,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/paris_tribunal.jpeg"
+                    src="/images/expertise/paris_tribunal.jpeg"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
