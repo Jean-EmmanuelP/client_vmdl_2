@@ -21,19 +21,19 @@ export default function Affaires() {
     {
       src: `${mediaPaths.qatar}`,
       isActive: false,
-      image: "/images/mobile/affaires/qatar.png",
+      image: "/images/expertise/mobile/affaires/qatar.webp",
       textAppearTime: 5,
     },
     {
       src: `${mediaPaths.newyork}`,
       isActive: false,
-      image: "/images/mobile/affaires/newyork.png",
+      image: "/images/expertise/mobile/affaires/newyork.webp",
       textAppearTime: 5,
     },
     {
       src: `${mediaPaths.rio}`,
       isActive: true,
-      image: "/images/mobile/affaires/riodejaneiro.png",
+      image: "/images/expertise/mobile/affaires/riodejaneiro.webp",
       textAppearTime: 5,
     },
   ]);

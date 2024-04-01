@@ -55,6 +55,17 @@ export default function ExpertiseContent() {
     setIsHoveringExpertiseButton("none");
     setIsVisible(false);
     setSubExpertise(activeContent);
+    if (isMobile) {
+      const mainContainer = document.getElementById('main');
+      if (mainContainer && expertiseRef.current) {
+        const offsetTop = expertiseRef.current.offsetTop + (expertiseRef.current.offsetHeight / 10) - mainContainer.offsetTop;
+
+        mainContainer.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth',
+        });
+      }
+    }
   }
   useEffect(() => {
     if (subExpertise === null && currentSection === 2) setIsVisible(true)

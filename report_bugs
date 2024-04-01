@@ -1,14 +1,12 @@
 todo:
 - commoniser le code notamment les langues
 - voir pour les useEffect les observer quel est la meilleur maniere de gerer cela
-- gerer les transitions quand tu passes de expertise a des sous expertises
 site:
 ------------------------
-- video contentieux ne semble pas demarrer, comprendre pourquoi
-- video rio de janeiro ne demarre pas automatiquement, le chargement des videos est lent regler ce probleme
 ------------------------
 mobile:
 ------------------------
+- recentrer la page sur le contenu
 ------------------------
 SEO: centre sur le qatar, le bresil, le football, 
 ------------------------
