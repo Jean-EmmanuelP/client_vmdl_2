@@ -1,13 +1,14 @@
 "use client";
 
+import { LangueCode, useSection } from "@/app/utils/Contextboard";
 import { useEffect, useState } from "react";
 import { useData } from "../../utils/DataContext";
-import { LangueCode, useSection } from "@/app/utils/Contextboard";
 
 export default function Carriere() {
   const { loadData, data } = useData();
-  const { langueCourante, carriereRef } = useSection();
+  const { langueCourante, carriereRef, isMobile } = useSection();
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [hasBeenViewed, setHasBeenViewed] = useState<boolean>(false);
   useEffect(() => {
     loadData();
   }, []);
@@ -15,7 +16,15 @@ export default function Carriere() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setIsVisible(entry.isIntersecting);
+          const isIntersecting = entry.isIntersecting;
+          if (isMobile) {
+            if (!hasBeenViewed && isIntersecting) {
+              setIsVisible(isIntersecting);
+              setHasBeenViewed(true);
+            }
+          } else {
+            setIsVisible(isIntersecting);
+          }
         });
       },
       { root: null, rootMargin: "0px", threshold: 0.5 }

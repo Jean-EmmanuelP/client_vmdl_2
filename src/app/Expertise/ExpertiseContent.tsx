@@ -12,17 +12,27 @@ export default function ExpertiseContent() {
     langueCourante,
     isMobile,
     setIsHoveringExpertiseButton,
-    expertiseRef
+    expertiseRef,
+    currentSection
   } = useSection();
   const { data } = useData();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasBeenViewed, setHasBeenViewed] = useState(false);
   const pathImages = ['/images/expertise/trio_football.jpeg', '/images/expertise/vosges_expertise.jpeg', '/images/expertise/paris_tribunal.jpeg'];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setIsVisible(entry.isIntersecting);
+          const isIntersecting = entry.isIntersecting;
+          if (isMobile) {
+            if (!hasBeenViewed && isIntersecting) {
+              setIsVisible(isIntersecting);
+              setHasBeenViewed(true);
+            }
+          } else {
+            setIsVisible(isIntersecting);
+          }
         });
       },
       { root: null, rootMargin: "0px", threshold: 0.5 }
@@ -47,11 +57,10 @@ export default function ExpertiseContent() {
     setSubExpertise(activeContent);
   }
   useEffect(() => {
-    subExpertise === null && setIsVisible(true);
+    if (subExpertise === null && currentSection === 2) setIsVisible(true)
   }, [subExpertise]);
 
   useEffect(() => {
-    console.log('this is the subExpertise:', subExpertise);
   }, [subExpertise])
   if (!data) {
     return null;

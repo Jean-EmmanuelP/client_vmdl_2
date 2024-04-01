@@ -10,23 +10,32 @@ interface ParagraphProps {
 
 export default function Paragraph({ children, homeSection }: ParagraphProps) {
   const {
-    currentSection,
     setHeaderHeight,
-    isMobile,
     contactRef,
     handleScrollSections,
+    currentSection,
+    isMobile
   } = useSection();
   const paragraphRef = useRef<HTMLDivElement | null>(null);
   const [toggle, setToggle] = useState<boolean>(false);
   const { setSubExpertise } = useExpertise();
   const [isHere, setIsHere] = useState<boolean>(false);
+  const [hasBeenViewed, setHasBeenViewed] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const isIntersecting = entry.isIntersecting;
-          setIsHere(isIntersecting);
+          if (isMobile) {
+            if (!hasBeenViewed && isIntersecting) {
+              setIsHere(true);
+              setHasBeenViewed(true);
+            }
+          } else {
+            setIsHere(isIntersecting);
+          }
+
           if (isIntersecting) {
             setSubExpertise(null);
             if (!homeSection) {

@@ -10,7 +10,6 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Cabinet from "./Cabinet/Cabinet";
-import Carriere from "./Components/Carriere/Carriere";
 import Legals from "./Components/Legals/Legals";
 import Home from "./Home/Home";
 import {
@@ -25,6 +24,9 @@ const Expertise = dynamic(() => import("./Expertise/Expertise"), {
   ssr: false,
 });
 const Fondateur = dynamic(() => import("./Fondateur/Fondateur"), {
+  ssr: false,
+});
+const Carriere = dynamic(() => import("./Components/Carriere/Carriere"), {
   ssr: false,
 });
 const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
@@ -183,43 +185,40 @@ export default function App() {
   useEffect(() => {
     if (pageIs === "/") {
       const handleScroll = (direction: string) => {
-        {
-          /* si il scroll alors on fait aucune action, pour eviter deux scroll a la fois */
-        }
-        if (isScrolling) return;
+        if (isScrolling) return; // Empêche l'action si un scroll est déjà en cours
 
         const mainDiv = document.getElementById("main");
 
         if (mainDiv) {
-          if (direction === "down") {
-            if (currentSection < 7) {
-              mainDiv.scrollTo({
-                top: mainDiv.clientHeight * (currentSection + 1),
-                behavior: "smooth",
-              });
-              setHeaderHeight("64px");
-              setCurrentSection(currentSection + 1);
-            }
-          } else if (direction === "up") {
-            if (currentSection > 0) {
-              mainDiv.scrollTo({
-                top: mainDiv.clientHeight * (currentSection - 1),
-                behavior: "smooth",
-              });
-              if (currentSection === 1 && pageIs === "/") {
-                setHeaderHeight(!isMobile ? "128px" : "90px");
-              }
-              setCurrentSection(currentSection - 1);
-            }
+          let newSection = currentSection; // Initialise avec la section actuelle
+          if (direction === "down" && currentSection < 7) {
+            newSection = currentSection + 1;
+          } else if (direction === "up" && currentSection > 0) {
+            newSection = currentSection - 1;
           }
-          setSubExpertise(null);
+
+          // Scroll vers la nouvelle section
+          mainDiv.scrollTo({
+            top: mainDiv.clientHeight * newSection,
+            behavior: "smooth",
+          });
+
+          // Ajuste la hauteur de l'en-tête en fonction de la section
+          if (newSection === 1 && pageIs === "/") {
+            setHeaderHeight(!isMobile ? "128px" : "90px");
+          } else {
+            setHeaderHeight("64px");
+          }
+
+          // Met à jour la section actuelle et indique qu'un scroll est en cours
+          setCurrentSection(newSection);
           setIsScrolling(true);
         }
       };
 
       const handleWheel = (e: WheelEvent) => {
-        e.preventDefault();
-        handleScroll(e.deltaY > 0 ? "down" : "up");
+        e.preventDefault(); // Empêche le comportement de scroll par défaut
+        handleScroll(e.deltaY > 0 ? "down" : "up"); // Détermine la direction du scroll
       };
 
       const main = document.getElementById("main");
@@ -232,7 +231,8 @@ export default function App() {
         };
       }
     }
-  }, [currentSection, isScrolling, pageIs]);
+  }, [currentSection, isScrolling, pageIs, isMobile]);
+
 
   {
     /* prends les donnees depuis le github */
