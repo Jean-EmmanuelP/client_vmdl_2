@@ -4,12 +4,12 @@ todo:
 - gerer les transitions quand tu passes de expertise a des sous expertises
 site:
 ------------------------
+- video contentieux ne semble pas demarrer, comprendre pourquoi
+- video rio de janeiro ne demarre pas automatiquement, le chargement des videos est lent regler ce probleme
 ------------------------
 mobile:
 ------------------------
-- quand on voit lobserver pour la premiere fois alors on voit toujours
 ------------------------
 SEO: centre sur le qatar, le bresil, le football, 
 ------------------------
 bug : 
-  - probleme sur la video newYork on ne voit pas le curseur

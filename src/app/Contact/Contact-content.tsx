@@ -66,16 +66,16 @@ export default function ContactContent() {
         <div className="flex flex-col w-[45%] -mt-[85px] sm:-mt-18">
           <h1
             className={`${!isVisible
-                ? "opacity-0 translate-y-12 transition duration-700 ease-in-out"
-                : "opacity-100 translate-y-0 transition duration-700 ease-in-out"
+              ? "opacity-0 translate-y-12 transition duration-700 ease-in-out"
+              : "opacity-100 translate-y-0 transition duration-700 ease-in-out"
               } uppercase text-center py-4 text-[23px] tracking-wide sm:text-[40px] sm:title font-light`}
           >
             {title}
           </h1>
           <div
             className={`${!isVisible
-                ? "opacity-0 translate-y-12 transition duration-700 delay-100 ease-in-out"
-                : "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
+              ? "opacity-0 translate-y-12 transition duration-700 delay-100 ease-in-out"
+              : "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
               }`}
           >
             <FormContact />

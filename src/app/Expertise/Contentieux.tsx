@@ -12,29 +12,12 @@ export default function Contentieux() {
   const [playBackError, setPlaybackError] = useState<boolean>(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          videoRef.current?.play();
-        } else {
-          videoRef.current?.pause();
-          setTextHere(false);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    if (subExpertise === 'contentieux') {
+      videoRef.current && videoRef.current.play();
+    } else {
+      videoRef.current && videoRef.current.pause();
     }
-
-    return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
-      }
-    };
-  }, []);
+  }, [subExpertise]);
 
   useEffect(() => {
     const videoElement = videoRef.current;
