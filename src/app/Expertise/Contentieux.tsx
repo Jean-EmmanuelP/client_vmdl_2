@@ -85,7 +85,8 @@ export default function Contentieux() {
   };
   const formattedContent = formatContent(content);
   function convertToMp4Path(webmPath: string) {
-    return webmPath.replace(".webm", ".mp4");
+    const webmToMp4 = webmPath.replace(".webm", ".mp4");
+    return webmToMp4;
   }
   if (subExpertise === 'contentieux') {
     return (
@@ -121,11 +122,11 @@ export default function Contentieux() {
                   }`}
                 onError={() => setPlaybackError(true)}
               >
-                <source src={`${mediaPaths.vosges}`} type="video/webm" />
                 <source
                   src={`${convertToMp4Path(mediaPaths.vosges)}`}
                   type="video/mp4"
                 />
+                <source src={`${mediaPaths.vosges}`} type="video/webm" />
               </video>
             )
         }

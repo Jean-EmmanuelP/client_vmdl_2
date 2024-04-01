@@ -159,7 +159,7 @@ export default function Conseil() {
              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${showVideo ? "opacity-100" : "opacity-0 hidden"
                } z-50`}
            >
-             <video className="w-full h-full" autoPlay ref={videoRef}>
+             <video className="w-full h-full" ref={videoRef}>
                <source src="/videos/kaka.mp4" type="video/mp4" />
              </video>
            </div>
