@@ -51,26 +51,6 @@ export default function ExpertiseContent() {
   }, [subExpertise]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible(entry.isIntersecting);
-        });
-      },
-      { root: null, rootMargin: "0px", threshold: 0.5 }
-    );
-
-    if (expertiseRef.current) {
-      observer.observe(expertiseRef.current);
-    }
-
-    return () => {
-      if (expertiseRef.current) {
-        observer.unobserve(expertiseRef.current);
-      }
-    };
-  }, []);
-  useEffect(() => {
     console.log('this is the subExpertise:', subExpertise);
   }, [subExpertise])
   if (!data) {
@@ -213,13 +193,13 @@ export default function ExpertiseContent() {
           </>
         )}
         {/* Contenu actif */}
-        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'conseil' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
+        <div className={`transition duration-[1500ms] ease-in-out ${subExpertise === 'conseil' ? 'opacity-100 w-full h-full' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
           <Conseil />
         </div>
-        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'contentieux' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
+        <div className={`transition duration-[1500ms] ease-in-out ${subExpertise === 'contentieux' ? 'opacity-100 w-full h-full' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
           <Contentieux />
         </div>
-        <div className={`w-full h-full transition duration-[1500ms] ease-in-out ${subExpertise === 'affaires' ? 'opacity-100' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
+        <div className={`transition duration-[1500ms] ease-in-out ${subExpertise === 'affaires' ? 'opacity-100 w-full h-full' : 'opacity-0 duration-0 delay-0 -z-10'}`}>
           <Affaires />
         </div>
       </div>

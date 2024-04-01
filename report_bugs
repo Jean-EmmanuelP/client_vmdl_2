@@ -7,8 +7,7 @@ site:
 ------------------------
 mobile:
 ------------------------
-- apres un premier setIsVisible a true ne plus remettre a false si cest telephone
-- 
+- quand on voit lobserver pour la premiere fois alors on voit toujours
 ------------------------
 SEO: centre sur le qatar, le bresil, le football, 
 ------------------------
