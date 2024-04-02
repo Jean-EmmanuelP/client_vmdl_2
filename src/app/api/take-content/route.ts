@@ -19,6 +19,7 @@ export async function GET(req: NextRequest) {
     
     const lastCommitSha = commits.data[0].sha;
 
+    
     // Étape 2: Utiliser le SHA du dernier commit pour récupérer le contenu
     const response = await octokit.repos.getContent({
       owner: process.env.GITHUB_USERNAME as string,
