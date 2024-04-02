@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Image from 'next/image';
+import Image from "next/image";
 
 const BackgroundEiffel: React.FC = () => {
   const [playBackError, setPlaybackError] = useState<boolean>(false);
@@ -22,7 +22,10 @@ const BackgroundEiffel: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-[-1]" id="videoContainer">
+    <div
+      className="fixed top-0 left-0 w-full h-full z-[-1] bg-cover bg-[url('/images/background.png')]"
+      id="videoContainer"
+    >
       {playBackError ? (
         <Image
           src={posterPath}
