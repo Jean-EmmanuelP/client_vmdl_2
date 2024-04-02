@@ -7,11 +7,7 @@ export const DataProvider = ({ children }) => {
 
   const loadData = async () => {
     try {
-      const response = await fetch("/api/take-content");
-      if (!response.ok) {
-        throw new Error(`Network response was not ok`);
-      }
-      const data = await response.json();
+      const data = require("../../app/cms/content.json");
       setData(data);
     } catch (error) {
       console.error("Failed to fetch data: ", error);

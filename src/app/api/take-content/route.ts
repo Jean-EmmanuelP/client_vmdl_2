@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     // Étape 1: Récupérer le dernier commit sur la branche 'master'
     const commits = await octokit.repos.listCommits({
       owner: process.env.GITHUB_USERNAME as string,
-      repo: process.env.GITHUB_REPO as string,
+      repo: process.env.GITHUB_CMS_REPO as string,
       sha: 'master', // ou la branche de votre choix
       per_page: 1, // Nous voulons juste le dernier commit
     });
@@ -22,8 +22,8 @@ export async function GET(req: NextRequest) {
     // Étape 2: Utiliser le SHA du dernier commit pour récupérer le contenu
     const response = await octokit.repos.getContent({
       owner: process.env.GITHUB_USERNAME as string,
-      repo: process.env.GITHUB_REPO as string,
-      path: process.env.GITHUB_CONTENT_PATH as string,
+      repo: process.env.GITHUB_CMS_REPO as string,
+      path: process.env.GITHUB_CONTENT_CMS_PATH as string,
       ref: lastCommitSha, // Utiliser le SHA du dernier commit comme référence
     });
 

@@ -205,22 +205,9 @@ export default function App() {
     }
   }, [currentSection, isScrolling, pageIs, isMobile]);
 
-
-  {
-    /* prends les donnees depuis le github */
-    /* 
-      ici, ce qui pourrait etre interessant de se poser comme question c'est si le contenu nest pas recupere dans la reponse
-      alors on prends le contenu qui est dans le json actuel, aussi quand on arrive a fetch le contenu du github ca met automatiquement 
-      a jour le contenu qui se trouve dans le fichier.
-    */
-  }
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("/api/take-content");
-      if (!response.ok) {
-        throw new Error(`Network response was not ok`);
-      }
-      const data = await response.json();
+      const data = require("./../app/cms/content.json");
     }
     fetchData();
   }, []);
@@ -253,17 +240,6 @@ export default function App() {
   const [isHoveringExpertiseButton, setIsHoveringExpertiseButton] = useState<
     "conseil" | "contentieux" | "affaires" | "none"
   >("none");
-  const [isHere, setIsHere] = useState(true);
-  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
-  useEffect(() => {
-    updateMediaPaths();
-    if (isFirstLoad) {
-      setTimeout(() => {
-        setIsHere(false);
-      }, 4000);
-      setIsFirstLoad(false);
-    }
-  }, []);
   const homeRef = useRef(null);
   const cabinetRef = useRef(null);
   const expertiseRef = useRef(null);
@@ -303,12 +279,6 @@ export default function App() {
 
   return (
     <DataProvider>
-      {isHere && (
-        <div className="loading-screen z-[2147483647]">
-          <div className="lds-dual-ring"></div>
-        </div>
-      )}
-
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
         <currentSectionContext.Provider
           value={{
