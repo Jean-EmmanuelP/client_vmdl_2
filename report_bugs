@@ -18,3 +18,5 @@ il faudrait donc un contenu de secours. Le contenu devrait etre mis a jour des q
 
 par rapport au paragraph component, cela pourrait etre interessant que je puisse le personnaliser de sorte a pouvoir mettre le contenu
 comme je le souhaite et ensuite, en fait rendre le composant paragraph plus globale puis le personnaliser a l'occasion
+
+- arreter de prendre les donnees depuis le github au premier call mais plutot prendre directement du fichier
