@@ -9,6 +9,10 @@ export default function Fondateur() {
   const fondateurRef = useRef<HTMLDivElement>(null);
   const { setBgIsBlackFondateur } = useSection();
 
+  {/* 
+    se poser la question de si ce useEffect est reellement utilse sachant que cest la section currentSection === 4 
+    donc il suffirait de se poser la question de si c'est bien la section 4 et c'est tout
+  */}
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

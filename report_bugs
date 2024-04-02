@@ -10,3 +10,11 @@ mobile:
 SEO: centre sur le qatar, le bresil, le football, 
 ------------------------
 bug : 
+
+amelioration:
+- le contenu recupere en faisant un call dans le github peut saverer de pas fonctionner
+il faudrait donc un contenu de secours. Le contenu devrait etre mis a jour des que on arrive a faire un fetchcontent
+- 
+
+par rapport au paragraph component, cela pourrait etre interessant que je puisse le personnaliser de sorte a pouvoir mettre le contenu
+comme je le souhaite et ensuite, en fait rendre le composant paragraph plus globale puis le personnaliser a l'occasion

@@ -1,12 +1,5 @@
 "use client";
-/*
-  La question qui se pose c'est comment ameliorer le code ?
-  Faut il faire moins de useEffect ? faut-il reduire la taille de son code, le nombre de loop utilise ?
-  La question qui se pose c'est est-ce que le code qui se repete affecte les performances,
-  est-ce que les librairies utilises et trop lourdes impactent
-  les performances et comment savoir qui elles sont ?
-  Aussi comment le contextboard, soit les proprietes partage entre tout mes composants peut affecter les performances de mon site ?
-*/
+
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Cabinet from "./Cabinet/Cabinet";
@@ -19,6 +12,8 @@ import {
 } from "./utils/Contextboard";
 import { DataProvider } from "./utils/DataContext";
 import { NavigatorWithConnection } from "./utils/interface";
+
+{/* Importing the component from client */ }
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
 const Expertise = dynamic(() => import("./Expertise/Expertise"), {
   ssr: false,
@@ -40,6 +35,8 @@ const CustomCursor = dynamic(() => import("./Components/Cursor"), {
   ssr: false,
 });
 
+{/* This is here we put the functions */ }
+{/* used to know if it is a mobile */ }
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -60,6 +57,8 @@ function useMobileDetect() {
 
   return isMobile;
 }
+
+
 
 export default function App() {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -112,9 +111,7 @@ export default function App() {
   useEffect(() => {
     setHeaderHeight("64px");
   }, [pageIs]);
-  {
-    /* check si cest sur telephone */
-  }
+
   useEffect(() => {
     if (pageIs === "/") {
       if (isMobile) {
@@ -124,46 +121,25 @@ export default function App() {
       }
     }
   }, [isMobile]);
-  {
-    /* met la taille du home en fonction de la taille du header */
-  }
   useEffect(() => {
     const availableHeight = `calc(100% - ${headerHeight}px)`;
     setMainHeight(availableHeight);
   }, [headerHeight]);
-
-  {
-    /* gere les touches clavier pour que aucun comportement soit execute si touche */
-  }
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (typeof window !== "undefined") {
-        if (
-          [
-            "Tab",
-            "PageUp",
-            "PageDown",
-            "Arrow",
-            "ArrowLeft",
-            "ArrowUp",
-            "ArrowDown",
-          ].includes(event.code)
-        ) {
-          event.preventDefault();
-        }
+      const keysToPrevent = ["Tab", "PageUp", "PageDown", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"];
+      if (keysToPrevent.includes(event.code)) {
+        event.preventDefault();
       }
     };
+
     window.addEventListener("keydown", handleKeyDown);
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
-  {
-    /* call a chaque scroll, pour tel quand toucher soit vers le haut ou le bas alors comportement === scrolling */
-  }
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
 
@@ -178,10 +154,6 @@ export default function App() {
     };
   }, [isScrolling]);
 
-  {
-    /* gere la dynamique de scrolling soit le fait que si tu scrolles vers le haut ou le bas, ca se deplacera jusqua ou,
-      sur telephone je peux ajoute le comportement ici */
-  }
   useEffect(() => {
     if (pageIs === "/") {
       const handleScroll = (direction: string) => {
@@ -236,6 +208,11 @@ export default function App() {
 
   {
     /* prends les donnees depuis le github */
+    /* 
+      ici, ce qui pourrait etre interessant de se poser comme question c'est si le contenu nest pas recupere dans la reponse
+      alors on prends le contenu qui est dans le json actuel, aussi quand on arrive a fetch le contenu du github ca met automatiquement 
+      a jour le contenu qui se trouve dans le fichier.
+    */
   }
   useEffect(() => {
     async function fetchData() {

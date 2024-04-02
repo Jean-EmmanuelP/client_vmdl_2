@@ -1,6 +1,6 @@
-import FormContact from "../Components/Form";
 import { useEffect, useRef, useState } from "react";
-import { LangueCode, useSection } from "../utils/Contextboard";
+import FormContact from "../Components/Form";
+import { useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
 export default function ContactContent() {
@@ -10,6 +10,7 @@ export default function ContactContent() {
   const [hasBeenViewed, setHasBeenViewed] = useState<boolean>(false);
   const contactRef = useRef<HTMLDivElement>(null);
 
+  {/* meme chose ici, possibilite de le mettre dans paragraph */}
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

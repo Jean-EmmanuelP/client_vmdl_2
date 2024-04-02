@@ -12,6 +12,7 @@ export default function Carriere() {
   useEffect(() => {
     loadData();
   }, []);
+  {/* possibilite de mettre cela dans le paragraph et juste de l'utiliser */}
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -59,7 +60,6 @@ export default function Carriere() {
   function formatContent(content: string) {
     let formatted = content.split('. ').join('.<br><br>');
 
-    // Utiliser une regex pour trouver les deux-points suivis de n'importe quel texte jusqu'à la prochaine balise <br><br> ou la fin de la chaîne
     formatted = formatted.replace(/: (.*?)(<br><br>|$)/g, (match, p1, p2) => {
       return `: <br><br><a href="mailto:cabinet@vmdl.ai" class="underline transition duration-70">${p1.trim()}</a>${p2}`;
     });
