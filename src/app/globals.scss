@@ -117,21 +117,6 @@ body {
   animation: fadeInGrow 2s ease-out forwards;
 }
 
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: black;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: slideUp 0.7s ease-in forwards;
-  animation-delay: 3s;
-}
-
 @keyframes slideUp {
   from {
     height: 100%;

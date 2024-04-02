@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Cabinet from "./Cabinet/Cabinet";
 import Legals from "./Components/Legals/Legals";
 import Home from "./Home/Home";
+import BackgroundEiffel from "./Components/BackgroundEiffel";
 import {
   LangueCode,
   currentSectionContext,
@@ -27,15 +28,13 @@ const Carriere = dynamic(() => import("./Components/Carriere/Carriere"), {
 const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
 const Vision = dynamic(() => import("./Vision/Vision"), { ssr: false });
 const Header = dynamic(() => import("./Components/Header"), { ssr: false });
-const BackgroundEiffel = dynamic(
-  () => import("./Components/BackgroundEiffel"),
-  { ssr: false }
-);
+// const BackgroundEiffel = dynamic(
+//   () => import("./Components/BackgroundEiffel"),
+//   { ssr: false }}
 const CustomCursor = dynamic(() => import("./Components/Cursor"), {
   ssr: false,
 });
 
-{/* This is here we put the functions */ }
 {/* used to know if it is a mobile */ }
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);
@@ -204,13 +203,6 @@ export default function App() {
       }
     }
   }, [currentSection, isScrolling, pageIs, isMobile]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = require("./../app/cms/content.json");
-    }
-    fetchData();
-  }, []);
 
   const updateMediaPaths = useCallback(() => {
     const isMobile = window.innerWidth <= 768;
