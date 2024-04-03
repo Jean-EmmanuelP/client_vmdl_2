@@ -91,12 +91,12 @@ const defaultValues: currentSectionProps = {
   langueCourante: "FR",
   setLangueCourante: () => { },
   mediaPaths: {
-    paris: `/videos/laptop/paris/paris_low.webm`,
-    dubai: `/videos/laptop/dubai/dubai_low.webm`,
-    qatar: `/videos/laptop/qatar/qatar_low.webm`,
-    rio: `/videos/laptop/rio/rio_de_janeiro_low.webm`,
-    newyork: `/videos/laptop/rio/new-york_low.webm`,
-    vosges: `/videos/laptop/vosges/vosges_low.webm`,
+    paris: `/videos/laptop/paris/paris_high.webm`,
+    dubai: `/videos/laptop/dubai/dubai_high.webm`,
+    qatar: `/videos/laptop/qatar/qatar_high.webm`,
+    rio: `/videos/laptop/rio/rio_de_janeiro_high.webm`,
+    newyork: `/videos/laptop/newyork/new-york_high.webm`,
+    vosges: `/videos/laptop/vosges/vosges_high.webm`,
   },
   updateMediaPaths: () => { },
 };

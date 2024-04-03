@@ -15,7 +15,7 @@ interface Video {
 
 export default function Affaires() {
   const [playBackError, setPlaybackError] = useState<boolean>(false);
-  const { mediaPaths, headerHeight } = useSection();
+  const { mediaPaths, headerHeight, isMobile } = useSection();
 
   const [videos, setVideos] = useState<Video[]>([
     {
@@ -155,7 +155,8 @@ export default function Affaires() {
                     key={video.src}
                     className={`relative w-full h-full text-4xl ${video.isActive ? 'opacity-100' : 'opacity-0'} transition duration-100 ease-in-out`}
                   >
-                    {playBackError ? (
+                    {/* mettre egalement une video dans les deux format soit sur mobile / laptop */}
+                    {playBackError && isMobile ? (
                       <>
                         <Image
                           src={video.image}

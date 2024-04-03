@@ -1,50 +1,27 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import React, { useRef } from "react";
+import { useSection } from "../utils/Contextboard";
 
 const BackgroundEiffel: React.FC = () => {
-  const [playBackError, setPlaybackError] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const videoSource = "/videos/laptop/paris/paris_high.webm";
-  const posterPath = "/images/home/pariseiffel.jpeg";
-
-  useEffect(() => {
-    if (videoRef.current) {
-      const promise = videoRef.current.play();
-      if (promise !== undefined) {
-        promise.catch(() => {
-          setPlaybackError(true);
-        });
-      }
-    }
-  }, []);
+  const { isMobile } = useSection();
+  const videoSource = isMobile ? `\videos\mobile\paris\paris_high_mobile.mp4` : "/videos/laptop/paris/paris_high.webm";
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full z-[-1] bg-cover bg-[url('/images/background.png')]"
+      className={`fixed top-0 left-0 w-full h-full z-[-1] bg-cover ${isMobile ? `bg-[url('/images/background.png')]` : `bg-[url('/images/background.png')]`}`}
       id="videoContainer"
     >
-      {playBackError ? (
-        <Image
-          src={posterPath}
-          className="w-full h-full object-cover blur-sm"
-          alt="Eiffel Tower"
-          layout="fill"
-        />
-      ) : (
-        <video
-          ref={videoRef}
-          src={videoSource}
-          playsInline
-          autoPlay
-          loop
-          muted
-          className="absolute w-full h-full object-cover object-center"
-          onError={() => setPlaybackError(true)}
-        />
-      )}
+      <video
+        ref={videoRef}
+        src={videoSource}
+        playsInline
+        autoPlay
+        loop
+        muted
+        className="absolute w-full h-full object-cover object-center"
+      />
     </div>
   );
 };
