@@ -43,7 +43,6 @@ export default function Contentieux() {
   if (!data) {
     return null;
   }
-  // creer un fichier global pour le langCodeMap
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -54,7 +53,6 @@ export default function Contentieux() {
     DE: "de",
     中文: "中文",
   };
-  // creer un fichier global pour le langCode
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { content } = data[langCode].section_3.box_2;
@@ -74,7 +72,6 @@ export default function Contentieux() {
   if (subExpertise === "contentieux") {
     return (
       <div
-        // bg-[url('/img/hero-pattern.svg')]
         className={`w-full bg-cover ${
           isMobile
             ? "bg-[url('/images/expertise/mobile/contentieux/vosges.jpeg')]"

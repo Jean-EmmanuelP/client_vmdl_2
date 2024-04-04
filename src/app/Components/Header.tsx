@@ -13,10 +13,8 @@ interface HeaderProps {
 
 export default function Header({ height }: HeaderProps) {
   const {
-    setCurrentSection,
     currentSection,
     setPageIs,
-    pageIs,
     cabinetRef,
     expertiseRef,
     fondateurRef,
@@ -136,10 +134,6 @@ export default function Header({ height }: HeaderProps) {
     loadData();
   }, []);
 
-  useEffect(() => {
-    console.log(`this is the current section`, currentSection);
-  }, [currentSection]);
-  const delayOnIndex = [200, 400, 600, 800, 1000, 1200, 300000, 300000];
   if (!data) {
     return;
   }
