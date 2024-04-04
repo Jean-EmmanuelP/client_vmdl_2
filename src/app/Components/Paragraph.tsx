@@ -22,6 +22,25 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
   const [isHere, setIsHere] = useState<boolean>(false);
   const [hasBeenViewed, setHasBeenViewed] = useState(false);
 
+  // const createSpanElementsWithDelay = (inputText: string) => {
+  //   const trimmedString = inputText.trim();
+  //   const words = trimmedString.split(/\s+/);
+
+  //   return (
+  //     <>
+  //       {words.map((word, index) => (
+  //         <span
+  //           key={index}
+  //           className={`${currentSection === 4 && 'text-blanc'} inline-block span-reveal animation-delay-${index * 50}ms`}
+  //         >
+  //           {word}&nbsp;
+  //         </span>
+  //       ))}
+  //     </>
+  //   );
+  //   return null;
+  // };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -111,6 +130,9 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
           `}
         >
           {children[1]}
+          {/* {
+            homeSection ?  children[1] : createSpanElementsWithDelay(children[1].props.children)
+          } */}
         </p>
         <div
           className={`${toggle ? "opacity-100" : "opacity-0 translate-y-20 duration-200"
