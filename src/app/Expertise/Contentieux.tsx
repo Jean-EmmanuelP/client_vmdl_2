@@ -1,7 +1,6 @@
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
-import Image from "next/image";
 
 export default function Contentieux() {
   const videoRef = useRef<HTMLVideoElement | null>(null);

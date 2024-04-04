@@ -18,7 +18,6 @@ export default function Header({ height }: HeaderProps) {
     cabinetRef,
     expertiseRef,
     fondateurRef,
-    homeRef,
     carriereRef,
     visionRef,
     handleScrollSections,
@@ -31,6 +30,7 @@ export default function Header({ height }: HeaderProps) {
     setLangueCourante,
     isMobile,
   } = useSection();
+  const headerRef = useRef<HTMLDivElement | null>(null);
   const { loadData, data } = useData();
   const { setSubExpertise } = useExpertise();
   const [lastScrollY, setLastScrollY] = useState(window.scrollY);
@@ -38,6 +38,7 @@ export default function Header({ height }: HeaderProps) {
   const selectRef = useRef<HTMLDivElement>(null);
   const optionRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   // check si ca c'est pas une logique commune et utiliser dans d'autres composants
   useEffect(() => {
@@ -134,6 +135,11 @@ export default function Header({ height }: HeaderProps) {
     loadData();
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+     setIsVisible(true);
+    }, 500)
+  }, [])
   if (!data) {
     return;
   }
@@ -165,16 +171,16 @@ export default function Header({ height }: HeaderProps) {
           backgroundColor:
             height === "128px" || height === "90px" ? "#03030300" : "#0303034B",
         }}
+        ref={headerRef}
         transition={{ duration: 0.6 }}
         className="w-full z-10 text-blanc flex justify-center items-center text-sm md:text-lg gap-28"
       >
         <div
-          className={`${
-            height === "128px" || height === "90px"
-              ? "border-b border-slate-50"
-              : ""
-          } relative h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
+          className={`relative h-full flex justify-center items-center w-[80%] gap-10 md:gap-28`}
         >
+          <div className={`absolute bottom-0 w-[90%] h-2 overflow-hidden`}>
+            <div className={`${!isVisible ? '-translate-x-[100%]' : 'translate-x-0'} absolute w-full transition duration-1000 ${height === '128px' || height === '90px' ? 'h-[1px]' : 'h-0'} w-full bottom-0 bg-blanc`}></div>
+          </div>
           <div className="absolute right-0 w-[17%] sm:w-[6%] sm:-right-[9%] h-full flex items-center justify-center transparent text-xs sm:text-sm">
             <div
               className={`bg-blanc flex flex-col text-center items-center justify-center w-fit h-fit overflow-hidden`}
@@ -190,20 +196,17 @@ export default function Header({ height }: HeaderProps) {
               </div>
               <div
                 ref={optionRef}
-                className={`absolute top-[60%] z-[12121221] mt-3 ${
-                  isOpen ? "block" : "opacity-0 pointer-events-none"
-                } `}
+                className={`absolute top-[60%] z-[12121221] mt-3 ${isOpen ? "block" : "opacity-0 pointer-events-none"
+                  } `}
               >
                 {languesOptions.map((option) => (
                   <div
                     key={option.value}
-                    className={`${
-                      option.value === langueCourante && "hidden"
-                    } mt-3 bg-blanc text-noir shadow-xl h-7 w-7 sm:h-10 sm:w-10 flex items-center justify-center transition duration-300 group-hover:translate-y-0 ${
-                      isOpen
+                    className={`${option.value === langueCourante && "hidden"
+                      } mt-3 bg-blanc text-noir shadow-xl h-7 w-7 sm:h-10 sm:w-10 flex items-center justify-center transition duration-300 group-hover:translate-y-0 ${isOpen
                         ? "opacity-100 translate-y-0"
                         : "group-hover:opacity-100 opacity-0 -translate-y-2 delay-0"
-                    }`}
+                      }`}
                     data-value={option.value}
                     onClick={() => handleOptionClick(option.value)}
                   >
@@ -258,9 +261,8 @@ export default function Header({ height }: HeaderProps) {
                 )}
                 <div
                   ref={wrapperRef}
-                  className={`menu ${menuOpen ? "open" : ""} ${
-                    goingOut ? "close" : ""
-                  }`}
+                  className={`menu ${menuOpen ? "open" : ""} ${goingOut ? "close" : ""
+                    }`}
                 >
                   <div className="flex items-end justify-around flex-col w-full h-1/2 absolute top-1/2 right-[40px] -translate-y-1/2">
                     <button
@@ -347,11 +349,10 @@ export default function Header({ height }: HeaderProps) {
                   className="group uppercase transition duration-150 flex items-center justify-center overflow-hidden hover:text-blanc font-medium relative"
                 >
                   <div
-                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
-                      currentSection === 1
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
-                    }`}
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 1
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      }`}
                   ></div>
                   {section_1}
                 </button>
@@ -368,11 +369,10 @@ export default function Header({ height }: HeaderProps) {
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
                   <div
-                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
-                      currentSection === 2
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
-                    }`}
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 2
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      }`}
                   ></div>
                   {section_2}
                 </button>
@@ -388,11 +388,10 @@ export default function Header({ height }: HeaderProps) {
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
                   <div
-                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
-                      currentSection === 3
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
-                    }`}
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 3
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      }`}
                   ></div>
                   {section_3}
                 </button>
@@ -408,11 +407,10 @@ export default function Header({ height }: HeaderProps) {
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
                   <div
-                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
-                      currentSection === 4
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
-                    }`}
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 4
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      }`}
                   ></div>
                   {section_4}
                 </button>
@@ -428,11 +426,10 @@ export default function Header({ height }: HeaderProps) {
                   className="group overflow-hidden uppercase transition duration-150 flex items-center justify-center hover:text-blanc font-medium relative"
                 >
                   <div
-                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
-                      currentSection === 5
-                        ? "-translate-x-0"
-                        : "group-hover:-translate-x-0 -translate-x-[100%]"
-                    }`}
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 5
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      }`}
                   ></div>
                   {carreer_title}
                 </button>
