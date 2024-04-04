@@ -18,7 +18,7 @@ export default function ExpertiseContent() {
   const { data } = useData();
   const [isVisible, setIsVisible] = useState(false);
   const [hasBeenViewed, setHasBeenViewed] = useState(false);
-  const pathImages = ['/images/expertise/trio_football.jpeg', '/images/expertise/vosges_expertise.jpeg', '/images/expertise/paris_tribunal.jpeg'];
+  const pathImages = ['/images/expertise/trio_football.jpg', '/images/expertise/vosges_expertise.jpeg', '/images/expertise/paris_tribunal.jpeg'];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -133,11 +133,11 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/expertise/trio_football.jpeg"
+                    src="/images/expertise/trio_football.jpg"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
-                    className="group-hover:scale-110 transition duration-300 blur-sm"
+                    className="group-hover:scale-110 transition duration-300"
                   />
                   <div className="absolute inset-0 w-full h-full text-blanc z-[2001]">
                     <h1 className="top-[10%] text-[20px] left-[12%] absolute uppercase">
@@ -266,7 +266,6 @@ export default function ExpertiseContent() {
                     objectFit="cover"
                     alt="Picture of the author"
                     className={`
-                    ${number === 0 && 'blur-sm'}
                     group-hover:scale-110 transition duration-300`}
                   />
                   <h1 className="top-[10%] text-blanc left-[20%] absolute uppercase font-semibold">
