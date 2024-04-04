@@ -24,11 +24,12 @@ const BackgroundEiffel: React.FC = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full z-[-1] bg-cover ${isMobile ? `bg-[url('/images/background.png')]` : `bg-[url('/images/background.png')]`}`}
-      id="videoContainer"
+      className={`fixed top-0 left-0 w-full h-full z-[-1] bg-cover ${!isMobile ? `bg-[url('/images/background.png')]` : `bg-[url('/images/home/pariseiffel.jpeg')] blur-sm`}`}
     >
       {
-        (!isMobile && !isPaused) &&
+        (isMobile && isPaused) ?
+          (<></>)
+            :
           (
             <video
               ref={videoRef}
