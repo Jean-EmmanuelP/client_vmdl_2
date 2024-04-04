@@ -185,12 +185,6 @@ const CMS: React.FC = () => {
     fetchData();
   }, []);
 
-  /*
-    1. comprendre comment separer chaque langue [done]
-    2. comprendre comment scroll vers la langue que l'on a choisit [done]
-    3. styliser les input avec du padding
-    4. avoir la possibilite de fermer lobjet
-  */
   if (!hasValidatedToken) {
     return (
       <div className="relative cursor-default flex flex-col items-center justify-center p-6 h-full overflow-hidden bg-gradient-to-b from-black to-gray-900" />
