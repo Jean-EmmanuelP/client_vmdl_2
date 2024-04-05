@@ -75,8 +75,8 @@ export default function Contentieux() {
     return (
       <div
         className={`w-full bg-cover ${isMobile
-            ? "bg-[url('/images/expertise/mobile/contentieux/vosges.jpeg')]"
-            : "bg-[url('/images/expertise/laptop/contentieux/vosges.png')]"
+            ? "bg-[url('/images/expertise/mobile/contentieux/vosges.webp')]"
+            : "bg-[url('/images/expertise/laptop/contentieux/vosges.webp')]"
           } h-full flex justify-center items-center text-noir ${subExpertise !== "contentieux" && "hidden"
           }`}
       >

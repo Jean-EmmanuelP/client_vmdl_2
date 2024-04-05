@@ -24,7 +24,7 @@ const BackgroundEiffel: React.FC = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full z-[-1] bg-cover ${!isMobile ? `bg-[url('/images/background.png')]` : `bg-[url('/images/home/pariseiffel.jpeg')] ${isPaused && 'blur-sm'}`}`}
+      className={`fixed top-0 left-0 w-full h-full z-[-1] bg-cover ${!isMobile ? `bg-[url('/images/background.webp')]` : `bg-[url('/images/home/pariseiffel.webp')] ${isPaused && 'blur-sm'}`}`}
     >
       {
         (isMobile && isPaused) ?
