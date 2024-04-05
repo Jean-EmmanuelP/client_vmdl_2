@@ -3,96 +3,35 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Larsseit";
-  src: url("../../public/font/larsseit/Larsseit-ExtraBold.woff2")
-    format("woff2");
-  font-weight: 800; // ExtraBold est généralement 800, mais vous pouvez ajuster selon votre police spécifique
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Larsseit";
-  src: url("../../public/font/larsseit/Larsseit-Light.woff2") format("woff2");
-  font-weight: 300; // Light est généralement 300
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Larsseit";
-  src: url("../../public/font/larsseit/Larsseit-Medium.woff2") format("woff2");
-  font-weight: 500; // Medium est généralement 500
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Larsseit";
-  src: url("../../public/font/larsseit/Larsseit.woff2") format("woff2");
-  font-weight: 400; // Regular est généralement 400
-  font-style: normal;
-}
-
-@font-face {
   font-family: "Riviera";
-  src: url("../../public/font/rivieraNight/RivieraNights-Bold.woff")
-    format("truetype");
+  src: url("../../public/font/rivieraNight/RivieraNights-Bold.woff") format("truetype");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Riviera";
-  src: url("../../public/font/rivieraNight/RivieraNights-Light.woff")
-    format("truetype");
+  src: url("../../public/font/rivieraNight/RivieraNights-Light.woff") format("truetype");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Riviera";
-  src: url("../../public/font/rivieraNight/RivieraNights-Medium.woff")
-    format("truetype");
+  src: url("../../public/font/rivieraNight/RivieraNights-Medium.woff") format("truetype");
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Riviera";
-  src: url("../../public/font/rivieraNight/RivieraNights-Regular.woff")
-    format("truetype");
+  src: url("../../public/font/rivieraNight/RivieraNights-Regular.woff") format("truetype");
   font-weight: 400;
   font-style: normal;
-}
-
-@font-face {
-  font-family: "Futura";
-  src: url("../../public/font/futura/FuturaLTPro-Bold2698190374575161979.92f5.f0b877bda89bd0a9ef6dc6430979813.woff2")
-    format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Futura";
-  src: url("../../public/font/futura/FuturaLTPro-Light.bad942be600a1b909942cb.dd75b7ebd4d8b78ba940560c9a5568f.woff2")
-    format("truetype");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Futura";
-  src: url("../../public/font/futura/FuturaLTPro-Medium.6d46014eba66a33b0027f.35a2e0c77d11392949303dc39682d46.woff2")
-    format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Futura";
-  src: url("../../public/font/futura/FuturaLTPro-MediumOblique.7d7a1f6fb85780.85bd32cebcc4b42594cc704d96c8192.woff2")
-    format("truetype");
-  font-weight: 400;
-  font-style: normal;
+  font-display: swap;
 }
 
 #root,
@@ -100,6 +39,7 @@ html,
 body {
   height: 100%;
   cursor: none;
+  font-family: 'Riviera', Arial, sans-serif;
 }
 
 @keyframes fadeInGrow {
@@ -107,6 +47,7 @@ body {
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -157,11 +98,9 @@ button {
 }
 
 .gradient-header {
-  background: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.8435749299719888) 100%
-  );
+  background: radial-gradient(circle,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.8435749299719888) 100%);
 }
 
 /*#Home {
@@ -308,10 +247,10 @@ video {
   margin-right: 40px;
 }
 
-#radio1:checked ~ .navigation-auto .auto-btn1,
-#radio2:checked ~ .navigation-auto .auto-btn2,
-#radio3:checked ~ .navigation-auto .auto-btn3,
-#radio4:checked ~ .navigation-auto .auto-btn4 {
+#radio1:checked~.navigation-auto .auto-btn1,
+#radio2:checked~.navigation-auto .auto-btn2,
+#radio3:checked~.navigation-auto .auto-btn3,
+#radio4:checked~.navigation-auto .auto-btn4 {
   background: #40d3dc;
 }
 
@@ -330,6 +269,7 @@ video {
   width: 80px;
   height: 80px;
 }
+
 .lds-dual-ring:after {
   content: " ";
   display: block;
@@ -341,10 +281,12 @@ video {
   border-color: #fff transparent #fff transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -397,6 +339,7 @@ video {
     width: 30vw;
   }
 }
+
 .menu {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -412,6 +355,7 @@ video {
     transform: translateX(-50%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -429,14 +373,17 @@ video {
   animation-name: slideInFromLeft;
   animation-delay: 0.50s;
 }
+
 .menu.open button:nth-child(2) {
   animation-name: slideInFromLeft;
   animation-delay: 0.40s;
 }
+
 .menu.open button:nth-child(3) {
   animation-name: slideInFromLeft;
   animation-delay: 0.30s;
 }
+
 .menu.open button:nth-child(4) {
   animation-name: slideInFromLeft;
   animation-delay: 0.20s;
@@ -453,6 +400,7 @@ video {
     opacity: 1;
     visibility: visible;
   }
+
   to {
     transform: translateX(-50%);
     opacity: 0;
@@ -470,18 +418,22 @@ video {
   animation-name: slideOutToLeft;
   animation-delay: 0.10s;
 }
+
 .menu.close button:nth-child(2) {
   animation-name: slideOutToLeft;
   animation-delay: 0.20s;
 }
+
 .menu.close button:nth-child(3) {
   animation-name: slideOutToLeft;
   animation-delay: 0.30s;
 }
+
 .menu.close button:nth-child(4) {
   animation-name: slideOutToLeft;
   animation-delay: 0.40s;
 }
+
 .menu.close button:nth-child(5) {
   animation-name: slideOutToLeft;
   animation-delay: 0.50s;
@@ -492,6 +444,7 @@ video {
     transform: translateY(10px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0px);
     opacity: 1;
@@ -517,6 +470,7 @@ video {
     opacity: 1;
     transform: translateX(0);
   }
+
   to {
     opacity: 0;
     transform: translateX(-2px);
@@ -529,12 +483,15 @@ video {
     z-index: 2147483647;
     transform: translateY(-100%);
   }
+
   30% {
     transform: translateY(0);
   }
+
   52% {
     transform: translateY(0);
   }
+
   100% {
     opacity: 1;
     z-index: 2147483647;
