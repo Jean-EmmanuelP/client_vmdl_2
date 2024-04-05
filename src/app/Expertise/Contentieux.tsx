@@ -75,8 +75,8 @@ export default function Contentieux() {
     return (
       <div
         className={`w-full bg-cover ${isMobile
-            ? "bg-[url('/images/expertise/mobile/contentieux/vosges.webp')]"
-            : "bg-[url('/images/expertise/laptop/contentieux/vosges.webp')]"
+          ? "bg-[url('/images/expertise/mobile/contentieux/vosges.webp')]"
+          : "bg-[url('/images/expertise/laptop/contentieux/vosges.webp')]"
           } h-full flex justify-center items-center text-noir ${subExpertise !== "contentieux" && "hidden"
           }`}
       >
@@ -88,10 +88,10 @@ export default function Contentieux() {
           ref={videoContentieuxRef}
           playsInline
           className={`w-full h-full sm:w-full sm:h-full object-cover ${headerHeight === "64px"
-              ? "-mt-[64px]"
-              : headerHeight === "128px"
-                ? "-mt-[128px]"
-                : "-mt-[90px]"
+            ? "-mt-[64px]"
+            : headerHeight === "128px"
+              ? "-mt-[128px]"
+              : "-mt-[90px]"
             }`}
           onError={() => setPlaybackError(true)}
         >

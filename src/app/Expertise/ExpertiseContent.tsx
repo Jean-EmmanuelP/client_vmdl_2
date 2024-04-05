@@ -18,7 +18,8 @@ export default function ExpertiseContent() {
   const { data } = useData();
   const [isVisible, setIsVisible] = useState(false);
   const [hasBeenViewed, setHasBeenViewed] = useState(false);
-  const pathImages = ['/images/expertise/trio_football.webp', '/images/expertise/vosges_expertise.webp', '/images/expertise/paris_tribunal.webp'];
+  const laptopOrMobile = isMobile ? "mobile" : "laptop";
+  const pathImages = [`/images/expertise/${laptopOrMobile}/trio_football.webp`, `/images/expertise/${laptopOrMobile}/vosges_expertise.webp`, `/images/expertise/${laptopOrMobile}/paris_tribunal.webp`];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
