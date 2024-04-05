@@ -1,9 +1,9 @@
-import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useEffect, useRef, useState } from "react";
+import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
 export default function Contentieux() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoContentieuxRef = useRef<HTMLVideoElement | null>(null);
   const [textHere, setTextHere] = useState<boolean>(false);
   const { langueCourante, mediaPaths, headerHeight, isMobile } = useSection();
   const { subExpertise } = useExpertise();
@@ -12,17 +12,17 @@ export default function Contentieux() {
 
   useEffect(() => {
     if (subExpertise === "contentieux") {
-      videoRef.current && videoRef.current.play();
+      videoContentieuxRef.current && videoContentieuxRef.current.play();
     } else {
-      videoRef.current && videoRef.current.pause();
+      videoContentieuxRef.current && videoContentieuxRef.current.pause();
     }
   }, [subExpertise]);
 
   useEffect(() => {
-    const videoElement = videoRef.current;
+    const videoElement = videoContentieuxRef.current;
 
     const handleTimeUpdate = () => {
-      if (videoElement && videoElement.currentTime >= 12) {
+      if (videoElement && videoElement.currentTime >= 10) {
         setTextHere(true);
         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
       }
@@ -37,8 +37,11 @@ export default function Contentieux() {
         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
       }
     };
-  }, [videoRef]);
+  }, [videoContentieuxRef]);
 
+  useEffect(() => {
+    console.log(`this is the current value of playBackError: ${playBackError}`);
+  }, [playBackError])
   if (!data) {
     return null;
   }
@@ -71,36 +74,25 @@ export default function Contentieux() {
   if (subExpertise === "contentieux") {
     return (
       <div
-        className={`w-full bg-cover ${
-          isMobile
+        className={`w-full bg-cover ${isMobile
             ? "bg-[url('/images/expertise/mobile/contentieux/vosges.jpeg')]"
             : "bg-[url('/images/expertise/laptop/contentieux/vosges.png')]"
-        } h-full flex justify-center items-center text-noir ${
-          subExpertise !== "contentieux" && "hidden"
-        }`}
+          } h-full flex justify-center items-center text-noir ${subExpertise !== "contentieux" && "hidden"
+          }`}
       >
         <div
-          className={`${
-            textHere && !playBackError ? "opacity-100" : "opacity-0"
-          } ${
-            playBackError && "opacity-100"
-          } transition duration-300 ease-in-out`}
-        >
-          <div
-            className={`p-2 z-50 sm:p-10 absolute sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm`}
-            dangerouslySetInnerHTML={{ __html: formattedContent }}
-          ></div>
-        </div>
+          className={`absolute p-2 z-50 sm:p-10 sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm`}
+          dangerouslySetInnerHTML={{ __html: formattedContent }}
+        ></div>
         <video
-          ref={videoRef}
+          ref={videoContentieuxRef}
           playsInline
-          className={`w-full h-full sm:w-full sm:h-full object-cover ${
-            headerHeight === "64px"
+          className={`w-full h-full sm:w-full sm:h-full object-cover ${headerHeight === "64px"
               ? "-mt-[64px]"
               : headerHeight === "128px"
-              ? "-mt-[128px]"
-              : "-mt-[90px]"
-          }`}
+                ? "-mt-[128px]"
+                : "-mt-[90px]"
+            }`}
           onError={() => setPlaybackError(true)}
         >
           <source
