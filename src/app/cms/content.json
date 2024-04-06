@@ -2,48 +2,48 @@
   "fr": {
     "header": {
       "section_1": "Le cabinet",
-      "section_2": "Expertise",
+      "section_2": "Expertises",
       "section_3": "Vision",
-      "section_4": "Le Fondateur",
-      "section_5": "Nos honoraires"
+      "section_4": "Le fondateur",
+      "section_5": "Honoraires"
     },
     "section_1": {
-      "title": "VMDL - Law Firm & Cover Group",
+      "title": "VMDL - Law firm & Cover group",
       "subtitle": "Cabinet d'avocat",
       "contact_button": "NOUS CONTACTER"
     },
     "section_2": {
       "title": "LE CABINET",
-      "content": "VMDL - Law firm & Cover group, fondé par Maître Vincent Machado Da Luz, est un cabinet d'avocats parisien et international, offrant une expertise juridique d'exception dans le contentieux, le conseil aux footballeurs et l'immobilier, combinant tradition et innovation pour un accompagnement sur-mesure et éthique de ses clients.",
+      "content": "VMDL - Law firm & Cover group, fondé par Maître Vincent Machado Da Luz est un cabinet d'avocat parisien et international offrant une expertise juridique d'exception dans le conseil à l’égard des footballeurs, le contentieux judiciaire et les affaires immobilières et extraterritoriales.",
       "button": "EN SAVOIR PLUS",
-      "content_after_clicking_button": "Fondé par Maître Vincent Machado Da Luz, avocat au Barreau de Paris, \"VMDL - Law firm & Cover group\" est un cabinet d'avocat parisien et international organisé pour fournir une expertise juridique et stratégique d'exception en matière de contentieux, de conseil aux footballeurs et d'affaires immobilières. La Défense pour raison d'être, dans la pure tradition des avocats pénalistes du Marais, le cabinet conseille et défends les intérêts de ses clients avec exigence et agilité. \"Compagnon des chutes et des ascensions\" selon les mots de l'avocat Marc Bonnant, la mission du cabinet est d'offrir à ses clients des services sur-mesure afin de les aider à atteindre leurs objectifs de croissance, tout en les soutenant dans les moments difficiles. Fort d'une culture collaborative et innovante, VMDL - Law firm & Cover group s'appuie sur l'intelligence artificielle et sur tous les partenaires susceptibles d'apporter de la valeur ajoutée à ses clients. Parallèlement, le cabinet est sensible aux enjeux sociaux et environnementaux, développant ainsi des pratiques éthiques et responsables."
+      "content_after_clicking_button": "Fondé par Vincent Machado Da Luz, avocat au barreau de Paris VMDL - Law firm & Cover group est un cabinet d'avocat parisien et international organisé pour fournir une expertise juridique et stratégique d'exception en matière de conseil à l'égard des footballeurs, de contentieux et d'affaires immobilières et extraterritoriales. La Défense des intérêts d’autrui pour raison d’être, le cabinet assure le traitement des dossiers de ses clients avec les valeurs qui sont les siennes : écoute, disponibilité, rigueur, agilité et réactivité.   \"Compagnon des chutes et des ascensions\", la mission du cabinet est d’offrir à ses clients des services personnalisés afin de les aider à atteindre leurs objectifs tout en les soutenant dans les moments difficiles.   Fort d'une culture collaborative et innovante, VMDL - Law firm & Cover group intègre à son fonctionnement tous les partenariats et outils digitaux susceptibles d'apporter de la valeur ajoutée à ses clients.  Parallèlement, le cabinet est sensible aux enjeux sociaux et environnementaux, développant ainsi des pratiques éthiques et responsables.  "
     },
     "section_3": {
       "title": "EXPERTISES",
       "box_1": {
         "title": "Conseil",
         "title_description": "VMDL, un cabinet d'avocat en lien avec le football dans differentes regions du monde proche de ses partenaires.",
-        "content": "VMDL – LAW FIRM & Cover GROUP conseille, défend et protège les intérêts sportifs, commerciaux et patrimoniaux des footballeurs professionnels du plus haut niveau. La politique du cabinet est d’aider ses clients à atteindre leur plein potentiel, en créant des conditions de travail qui favorisent leur performance et leur épanouissement personnel."
+        "content": "VMDL – LAW FIRM & Cover GROUP conseille, défend et protège les intérêts sportifs, commerciaux et patrimoniaux des footballeurs professionnels du plus haut niveau. La politique du cabinet est d’aider ses clients à atteindre leur plein potentiel, en créant des conditions de vie favorisant la performance et leur épanouissement personnel."
       },
       "box_2": {
         "title": "Contentieux",
-        "title_description": "VMDL, un cabinet d'avocat en lien avec le football dans differentes regions du monde proche de ses partenaires.",
-        "content": "Les footballeurs évoluent dans un microcosme complexe et ultra-médiatique. Ils sont devenus les cibles d’abus et de dérives nuisibles. Le cabinet assure donc la gestion anticipée des risques pénaux auxquels ils peuvent être confrontés. En cas de nécessité, il assure leur défense réputationnelle et pénale. Soucieux de la garantie des droits fondamentaux et de la défense des libertés publiques, le cabinet assure en plus de la défense des athlètes, celle de tout justiciable - auteur présumé ou victime - en prise avec l’Autorité judiciaire."
+        "title_description": "",
+        "content": "Les footballeurs sont des personnalités publiques évoluant dans un microcosme complexe et ultra-médiatique. Ils peuvent être confrontés à l’Autorité judiciaire en tant que victimes ou auteurs présumés d’infractions pénales. Le cabinet assure donc la gestion anticipée des risques pénaux auxquels ils peuvent être confrontés. Ainsi, le cas échéant, il les conseille, les accompagne, les prépare et les défend lors de toutes les phases du contentieux pénal en droit pénal général, droit pénal des affaires, droit de l’exécution des peines et en matière d’atteinte à la réputation et à la vie privée (droit pénal de la presse).  Fondamentalement attaché à la garantie des droits fondamentaux et à la défense des libertés publiques, le cabinet assure en plus de la défense des athlètes, celle de tout justiciable dans les matières suivantes : droit pénal, droits des étrangers, droit du travail, droit commercial et droit de la famille. "
       },
       "box_3": {
-        "title": "Affaires Immobilieres",
-        "title_description": "VMDL, un cabinet d'avocat en lien avec le football dans differentes regions du monde proche de ses partenaires.",
+        "title": "Affaires immobilieres et relations internationales",
+        "title_description": "",
         "qatar": {
-          "title": "Qatar",
-          "content": "Ceci cest la description du Qatar"
+          "title": "Qatar & Moyen-Orient",
+          "content": "Fort de ses relations avec le Moyen-Orient, le cabinet accompagne les projets sportifs, immobiliers et entrepreneuriaux de ses clients dans cette région. Dans ce cadre, il assure le conseil de ses clients dans la gestion de leurs affaires personnelles, d'un point de vue tant juridique que judiciaire. "
         },
         "newyork": {
-          "title": "newyork",
-          "content": "Ceci cest la description de newyork"
+          "title": "Etats-Unis",
+          "content": "Fort de ses relations avec les Etats-Unis, le cabinet accompagne les projets sportifs, immobiliers et entrepreneuriaux de ses clients dans cette région. Dans ce cadre, il assure le conseil de ses clients dans la gestion de leurs affaires personnelles, d'un point de vue tant juridique que judiciaire. "
         },
         "rio": {
-          "title": "Rio",
-          "content": "Ceci cest la description de Rio"
+          "title": "Amérique latine & Brésil ",
+          "content": "Fort de ses relations avec l'Amérique latine, le cabinet accompagne les projets sportifs, immobiliers et entrepreneuriaux de ses clients dans cette région. Dans ce cadre, il assure le conseil de ses clients dans la gestion de leurs affaires personnelles, d'un point de vue tant juridique que judiciaire. "
         }
       }
     },
@@ -51,15 +51,15 @@
       "title": "VISION",
       "content": "L'avocat, pilier historique de la justice et défenseur des libertés, est un partenaire stratégique indispensable dans notre société moderne et complexe.",
       "button": "EN SAVOIR PLUS",
-      "content_after_clicking_button": "Profession séculaire, la profession d'avocat doit son prestige et son influence à d'illustres avocats ; lesquels ont marqué toutes les périodes de l'histoire par la force de leurs compétences, de leur talent et de leur courage. Selon Lucien Karpik : « l'avocat est entre le public, l'État et le marché ». C'est dire son omniprésence dans le corps social. L'avocat est garant des droits et défenseur des libertés. Il contrôle l'application des normes, participe à l'évolution des lois, contribue à l'œuvre de justice et au développement de l'économie. Partant, il assiste les particuliers et les entreprises, assurant de surcroît leur intermédiation avec les institutions publiques, nationales et internationales. L'avocat a la réputation d'être coûteux et le magistrat d'être inaccessible. L'un supportant d'énormes charges, l'autre une pharamineuse charge de travail. Le dernier constat est structurel mais il vous importe peu ; gardez à l'esprit que tous deux sont au service du justiciable. Autrement dit, à votre service. S'agissant de l'avocat il vous conseille et vous défend ; en cela il contribue à votre évolution sociale, à votre évolution professionnelle et à votre bien-être. Démosthène en était déjà conscient il y a des millénaires lorsqu'il déclarait que « la question n'est pas de savoir combien vous coûte votre défense mais combien il vous en coûtera de ne pas être défendu ». Décider de se faire assister par un avocat, c'est faire le choix de lui confier la prise en charge de votre problème. C'est encore se donner à soi-même le bénéfice de l'anticipation, mère de tous les succès. Enfin et fondamentalement, c'est se doter d'un conseil, d'un partenaire et d'un stratège. Il est là, professionnel de haut niveau, dédié corps et âme – dans un épuisement de tous les jours – à la défense de vos intérêts. Cela est d'une rareté. Et le rare est précieux. Toute citoyenne et tout citoyen quel qu'il soit, partout dans le monde, devrait avoir son propre avocat. Plus encore en cette Ère, siècle de toutes les crises, des complexités sociales et juridiques, des inquiétudes climatiques et des bouleversements démographiques. Notre génération désire le mouvement – alors de notre côté – sur conseil de Maître Kami Haeri, nous concentrons d'ores et déjà nos efforts sur la conduite de votre changement."
+      "content_after_clicking_button": "Profession séculaire, la profession d’avocat doit son prestige et son influence à d’illustres avocats ; lesquels ont marqué toutes les périodes de l’histoire par la force de leurs compétences, de leur talent et de leur courage. Selon Lucien Karpik : « l’avocat est entre le public, l’État et le marché ». C’est dire son omniprésence dans le corps social. L’avocat est garant des droits et défenseur des libertés. Il contrôle l’application des normes, participe à l’évolution des lois, contribue à l’œuvre de justice et au développement de l’économie. Partant, il assiste les particuliers et les entreprises, assurant de surcroît leur intermédiation avec les institutions publiques, nationales et internationales.  L’avocat a la réputation d’être coûteux et le magistrat d’être inaccessible. L’un supportant d’énormes charges, l’autre une pharamineuse charge de travail. Le dernier constat est structurel mais il vous importe peu ; gardez à l’esprit que tous deux sont au service du justiciable. Autrement dit, à votre service.   S’agissant de l’avocat il vous conseille et vous défend ; en cela il contribue à votre évolution sociale, à votre évolution professionnelle et à votre bien-être. Démosthène en était déjà conscient il y a des millénaires lorsqu’il déclarait que « la question n’est pas de savoir combien vous coûte votre défense mais combien il vous en coûtera de ne pas être défendu ».   Décider de se faire assister par un avocat, c’est faire le choix de lui confier la prise en charge de votre problème. C’est encore se donner à soi-même le bénéfice de l’anticipation, mère de tous les succès. Enfin et fondamentalement, c’est se doter d’un conseil, d’un partenaire et d’un stratège.  Il est là, consacré tout entier à la défense de vos intérêts. Cela est d’une rareté. Et le rare est précieux.  Toute citoyenne et tout citoyen quel qu’il soit, partout dans le monde, devrait avoir son propre avocat. Plus encore en cette Ère, siècle de toutes les crises, des complexités sociales et juridiques, des inquiétudes climatiques et des bouleversements démographiques.  Notre génération désire le mouvement – alors nous autres avocats – sur conseil de Maître Kami Haeri, nous concentrons d’ores et déjà nos efforts sur la conduite de votre changement. "
     },
     "section_5": {
       "title": "LE FONDATEUR",
-      "content": "Vincent Machado Da Luz a suivi un parcours en droit pénal et criminologie, en droit des affaires et en nouvelles technologies. Il est diplômé des Universités françaises Paris 1 Panthéon-Sorbonne, Paris 2 Panthéon-Assas, Paris-Saclay, Reims Champagne-Ardenne et Pau et des Pays de l’Adour. Il a effectué son cursus académique en tant que sportif de haut niveau, statut lui ayant permis d’étudier un an aux Etats-Unis. Formé ensuite par la Haute École des Avocats au Conseil de Versailles ainsi que par plusieurs avocats reconnus et estimés de la place parisienne, il créé le cabinet “VMDL – Law firm & Cover group” en 2023."
+      "content": "Vincent Machado Da Luz a suivi un parcours académique en droit pénal, criminologie et psychologie, en droit des affaires et en nouvelles technologies.   Il est diplômé des Universités françaises Paris 1 Panthéon-Sorbonne, Paris Panthéon-Assas, Paris-Saclay, Reims Champagne-Ardenne et Pau et des Pays de l’Adour.   Il a effectué son cursus universitaire en tant que sportif de haut niveau, statut lui ayant permis d’étudier aux Etats-Unis.   Formé ensuite par la Haute École des Avocats au Conseil de Versailles ainsi que par plusieurs avocats expérimentés de la place parisienne, il créé le cabinet VMDL – Law firm & Cover group  en 2023."
     },
     "section_6": {
-      "title": "NOS HONORAIRES",
-      "content": "Ceci sont nos honoraires"
+      "title": " HONORAIRES",
+      "content": "Le premier rendez-vous est gratuit. Il s'agit de déterminer la procédure adaptée à votre cas, son coût et sa durée prévisible. Ce rendez-vous vous permet ainsi de choisir en toute connaissance de cause si vous souhaitez ou non avoir recours à nos services et si le cabinet vous convient. Il existe différents moyens de déterminer le coût du recours au cabinet : L’honoraire basé sur le taux horaire, il s’agit de rémunérer l’avocat en fonction du nombre d’heures passé sur votre dossier. C’est le mode de facturation le plus fréquent. Les honoraires basés sur un forfait : ils sont fixés dès le début et leur montant est définitif. Il permet une relation de confiance entre le cabinet et le client. Un honoraire forfaitaire permet de ne pas craindre un dépassement et assure des prestations de qualités non liées au temps passé. Les honoraires peuvent être réglés en plusieurs fois. Une convention d'honoraires ainsi qu'un échéancier sont alors mis en place. Les montants forfaitaires varient en fonction des spécificités du dossier. L’honoraire de résultat : le droit français interdit purement et simplement les conventions prévoyant que l’avocat ne soit rémunéré qu’en fonction du résultat. Les honoraires de résultat ne sont donc que des honoraires complémentaires.  Cette rémunération complémentaire représente un pourcentage des sommes obtenues ou de l’économie réalisée par le client à l’issue d’une décision de justice. Il est généralement fixé à 10% HT.  "
     },
     "contact": {
       "title": "Contact",
@@ -70,8 +70,8 @@
       "Envoyer": "Envoyer"
     },
     "footer": {
-      "legals": "Mentions Légales",
-      "title": "VMDL - Law Firm & Cover Group",
+      "legals": "Mentions légales",
+      "title": "VMDL - Law firm & Cover group",
       "subtitle": "Cabinet d'avocat",
       "phoneNumber": "07 57 41 72 87",
       "fixNumber": "01 44 32 13 93",
@@ -79,7 +79,7 @@
     },
     "carreer": {
       "title": "Carrieres",
-      "content": "VMDL recherche en permanence des avocats et avocats-stagiaires de talent.Si vous souhaitez rejoindre notee cabinet et disposez d'excellentes references tout en etant au benefice dun parcours academique exemplaire, n'hesitez pas a nous faire parvenir votre dossier. Toutes les candidatures seront traitees de maniere confidentielle. Pour candidatez, envoyez un mail a l'addresse ci-dessous: cabinet@vmdl.ai"
+      "content": "Le cabinet VMDL - Law firm & Cover Group recherche en permanence des stagiaires de talent. Si vous disposez d'excellentes références et souhaitez rejoindre le cabinet envoyez votre CV et lettre de motivation. Toutes les candidatures seront traitées de manière confidentielle. Pour candidatez, envoyez un mail a l'addresse ci-dessous: cabinet@vmdl.ai"
     }
   },
   "en": {
