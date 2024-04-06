@@ -75,10 +75,10 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ json, onChange }) => {
           basePath.length === 0 && index !== 0;
         const style = isFirstLevelButNotFirstItem
           ? {
-              borderTop: "2px solid black",
-              marginTop: "10px",
-              paddingTop: "20px",
-            }
+            borderTop: "2px solid black",
+            marginTop: "10px",
+            paddingTop: "20px",
+          }
           : { paddingBottom: "10px" };
         const isOpen = openObjects[key];
         const marginLeft = `${basePath.length * 20}px`;
