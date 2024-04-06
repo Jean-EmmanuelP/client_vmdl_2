@@ -163,7 +163,7 @@ export default function App() {
 
         if (mainDiv) {
           let newSection = currentSection; // Initialise avec la section actuelle
-          if (direction === "down" && currentSection < 7) {
+          if (direction === "down" && currentSection < 8) {
             newSection = currentSection + 1;
           } else if (direction === "up" && currentSection > 0) {
             newSection = currentSection - 1;
@@ -266,9 +266,10 @@ export default function App() {
         setCurrentSection(5);
       } else if (ref.current === honoraireRef.current) {
         setCurrentSection(6);
-      } else if (ref.current === contactRef.current) {
-        setCurrentSection(7);
       }
+      // } else if (ref.current === contactRef.current) {
+      //   setCurrentSection(7);
+      // }
     }
   };
 

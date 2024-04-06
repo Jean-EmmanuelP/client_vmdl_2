@@ -12,7 +12,6 @@ export default function Carriere() {
   useEffect(() => {
     loadData();
   }, []);
-  {/* possibilite de mettre cela dans le paragraph et juste de l'utiliser */}
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
