@@ -19,6 +19,7 @@ export default function Header({ height }: HeaderProps) {
     expertiseRef,
     fondateurRef,
     carriereRef,
+    honoraireRef,
     visionRef,
     handleScrollSections,
   } = useSection();
@@ -162,7 +163,7 @@ export default function Header({ height }: HeaderProps) {
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
 
-  const { section_1, section_2, section_3, section_4 } = data[langCode].header;
+  const { section_1, section_2, section_3, section_4, section_5 } = data[langCode].header;
   const carreer_title = data[langCode].carreer.title;
 
   if (typeof window !== "undefined") {
@@ -184,7 +185,7 @@ export default function Header({ height }: HeaderProps) {
           <div className={`absolute bottom-0 w-[95%] sm:w-[90%] h-2 overflow-hidden`}>
             <div className={`${!isVisible ? '-translate-x-[100%]' : 'translate-x-0'} absolute w-full transition duration-1000 ${height === '128px' || height === '90px' ? 'h-[1px]' : 'h-0'} w-full bottom-0 bg-blanc`}></div>
           </div>
-          <div className={`${!isVisible ? 'opacity-0 sm:translate-y-7 translate-y-3' : 'opacity-100 translate-y-0'} transition duration-700 delay-1000 absolute right-0 w-[17%] sm:w-[6%] sm:-right-[9%] h-full flex items-center justify-center transparent text-xs sm:text-sm`}>
+          <div className={`${!isVisible ? 'opacity-0 sm:translate-y-7 translate-y-3' : 'opacity-100 translate-y-0'} z-[30] transition duration-700 delay-1000 absolute right-0 w-[17%] sm:w-[6%] sm:-right-[9%] h-full flex items-center justify-center transparent text-xs sm:text-sm`}>
             <div
               className={`bg-blanc flex flex-col text-center items-center justify-center w-fit h-fit overflow-hidden`}
               onClick={() => {
@@ -335,6 +336,19 @@ export default function Header({ height }: HeaderProps) {
                       {/* TODO */}
                       {carreer_title}
                     </button>
+                    <button
+                      data-clickable="true"
+                      onClick={() => {
+                        toggleMenu();
+                        setPageIs("/");
+                        setTimeout(() => {
+                          handleScrollSections(honoraireRef);
+                        }, 200);
+                      }}
+                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                    >
+                      {section_5}
+                    </button>
                   </div>
                 </div>
               </>
@@ -435,6 +449,25 @@ export default function Header({ height }: HeaderProps) {
                       }`}
                   ></div>
                   {carreer_title}
+                </button>
+                <button
+                  data-clickable="true"
+                  onClick={() => {
+                    toggleMenu();
+                    setPageIs("/");
+                    setTimeout(() => {
+                      handleScrollSections(honoraireRef);
+                    }, 200);
+                  }}
+                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden uppercase transition duration-700 delay-300 flex items-center justify-center hover:text-blanc font-medium relative`}
+                >
+                  <div
+                    className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 6
+                      ? "-translate-x-0"
+                      : "group-hover:-translate-x-0 -translate-x-[100%]"
+                      }`}
+                  ></div>
+                  {section_5}
                 </button>
               </>
             )}

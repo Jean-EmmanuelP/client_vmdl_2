@@ -28,6 +28,7 @@ interface currentSectionProps {
   visionRef: React.RefObject<HTMLDivElement>;
   fondateurRef: React.RefObject<HTMLDivElement>;
   carriereRef: React.RefObject<HTMLDivElement>;
+  honoraireRef: React.RefObject<HTMLDivElement>;
   contactRef: React.RefObject<HTMLDivElement>;
   isHoveringExpertiseButton: "conseil" | "contentieux" | "affaires" | "none";
   setIsHoveringExpertiseButton: React.Dispatch<
@@ -67,6 +68,7 @@ const defaultValues: currentSectionProps = {
   visionRef: React.createRef<HTMLDivElement>(),
   fondateurRef: React.createRef<HTMLDivElement>(),
   carriereRef: React.createRef<HTMLDivElement>(),
+  honoraireRef: React.createRef<HTMLDivElement>(),
   contactRef: React.createRef<HTMLDivElement>(),
   pageIs: "/",
   setPageIs: () => { },

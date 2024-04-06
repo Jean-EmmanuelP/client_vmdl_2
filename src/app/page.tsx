@@ -13,6 +13,7 @@ import {
 } from "./utils/Contextboard";
 import { DataProvider } from "./utils/DataContext";
 import { NavigatorWithConnection } from "./utils/interface";
+import Honoraires from "./Components/Honoraires/Honoraires";
 
 {/* Importing the component from client */ }
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
@@ -239,6 +240,7 @@ export default function App() {
   const fondateurRef = useRef(null);
   const contactRef = useRef(null);
   const carriereRef = useRef(null);
+  const honoraireRef = useRef(null);
   const mainRef = useRef(null);
   const handleScrollSections = (ref: React.RefObject<HTMLDivElement>) => {
     const mainContainer = document.getElementById('main');
@@ -262,8 +264,10 @@ export default function App() {
         setCurrentSection(4);
       } else if (ref.current === carriereRef.current) {
         setCurrentSection(5);
-      } else if (ref.current === contactRef.current) {
+      } else if (ref.current === honoraireRef.current) {
         setCurrentSection(6);
+      } else if (ref.current === contactRef.current) {
+        setCurrentSection(7);
       }
     }
   };
@@ -283,6 +287,7 @@ export default function App() {
             visionRef,
             fondateurRef,
             carriereRef,
+            honoraireRef,
             contactRef,
             isHoveringExpertiseButton,
             setIsHoveringExpertiseButton,
@@ -336,6 +341,9 @@ export default function App() {
                   </div>
                   <div ref={carriereRef} className="w-full h-full">
                     <Carriere />
+                  </div>
+                  <div ref={honoraireRef} className="w-full h-full">
+                    <Honoraires />
                   </div>
                   <div ref={contactRef} className="w-full h-full">
                     <Contact />
