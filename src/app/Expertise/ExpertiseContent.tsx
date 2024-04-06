@@ -134,7 +134,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/expertise/trio_football.webp"
+                    src={`/images/expertise/laptop/trio_football.webp`}
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
@@ -165,7 +165,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/expertise/vosges_expertise.webp"
+                    src="/images/expertise/laptop/vosges_expertise.webp"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
@@ -196,7 +196,7 @@ export default function ExpertiseContent() {
                   }}
                 >
                   <Image
-                    src="/images/expertise/paris_tribunal.webp"
+                    src="/images/expertise/laptop/paris_tribunal.webp"
                     layout="fill"
                     objectFit="cover"
                     alt="Picture of the author"
