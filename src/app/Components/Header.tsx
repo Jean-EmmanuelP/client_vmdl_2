@@ -41,7 +41,6 @@ export default function Header({ height }: HeaderProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  // check si ca c'est pas une logique commune et utiliser dans d'autres composants
   useEffect(() => {
     const supportedLangs: LangueCode[] = [
       "FR",
@@ -226,7 +225,7 @@ export default function Header({ height }: HeaderProps) {
               <>
                 <button
                   onClick={toggleMenu}
-                  className="uppercase flex justify-center items-center gap-2 z-[1000000110]"
+                  className=" flex justify-center items-center gap-2 z-[1000000110]"
                   data-clickable={true}
                 >
                   <div className="w-4 h-4" data-clickable={true}>
@@ -278,7 +277,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(cabinetRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7  transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_1}
                     </button>
@@ -292,7 +291,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(expertiseRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7  transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_2}
                     </button>
@@ -305,7 +304,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(visionRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7  transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_3}
                     </button>
@@ -318,7 +317,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(fondateurRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7  transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_4}
                     </button>
@@ -331,7 +330,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(carriereRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7  transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {/* TODO */}
                       {carreer_title}
@@ -345,7 +344,7 @@ export default function Header({ height }: HeaderProps) {
                           handleScrollSections(honoraireRef);
                         }, 200);
                       }}
-                      className="hover:scale-105 pr-7 uppercase transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
+                      className="hover:scale-105 pr-7  transition duration-150 text-gray-300/70 font-bold hover:text-blanc"
                     >
                       {section_5}
                     </button>
@@ -363,7 +362,7 @@ export default function Header({ height }: HeaderProps) {
                       handleScrollSections(cabinetRef);
                     }, 200);
                   }}
-                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group uppercase transition duration-700 flex items-center justify-center overflow-hidden hover:text-blanc font-medium relative`}
+                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group  transition duration-700 flex items-center justify-center overflow-hidden hover:text-blanc font-medium relative`}
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 1
@@ -383,7 +382,7 @@ export default function Header({ height }: HeaderProps) {
                       handleScrollSections(expertiseRef);
                     }, 200);
                   }}
-                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden uppercase transition duration-700 delay-75 flex items-center justify-center hover:text-blanc font-medium relative`}
+                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden  transition duration-700 delay-75 flex items-center justify-center hover:text-blanc font-medium relative`}
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 2
@@ -402,7 +401,7 @@ export default function Header({ height }: HeaderProps) {
                       handleScrollSections(visionRef);
                     }, 200);
                   }}
-                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} delay-150 group overflow-hidden uppercase transition duration-700 flex items-center justify-center hover:text-blanc font-medium relative`}
+                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} delay-150 group overflow-hidden  transition duration-700 flex items-center justify-center hover:text-blanc font-medium relative`}
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 3
@@ -421,7 +420,7 @@ export default function Header({ height }: HeaderProps) {
                       handleScrollSections(fondateurRef);
                     }, 200);
                   }}
-                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden uppercase transition duration-700 delay-200 flex items-center justify-center hover:text-blanc font-medium relative`}
+                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden  transition duration-700 delay-200 flex items-center justify-center hover:text-blanc font-medium relative`}
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 4
@@ -440,7 +439,7 @@ export default function Header({ height }: HeaderProps) {
                       handleScrollSections(carriereRef);
                     }, 200);
                   }}
-                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden uppercase transition duration-700 delay-300 flex items-center justify-center hover:text-blanc font-medium relative`}
+                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden  transition duration-700 delay-300 flex items-center justify-center hover:text-blanc font-medium relative`}
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 5
@@ -459,7 +458,7 @@ export default function Header({ height }: HeaderProps) {
                       handleScrollSections(honoraireRef);
                     }, 200);
                   }}
-                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden uppercase transition duration-700 delay-300 flex items-center justify-center hover:text-blanc font-medium relative`}
+                  className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden  transition duration-700 delay-300 flex items-center justify-center hover:text-blanc font-medium relative`}
                 >
                   <div
                     className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 6
