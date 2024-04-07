@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const { nom, email, telephone, message } = await req.json();
     console.log(`-------------------------`, process.env.EMAIL_USERNAME);
     console.log(`this is the email username:`, process.env.EMAIL_USERNAME);
-    console.log(`this is the email password:`, process.env.EMAIL_PASSWORD); // Correction pour la clarté
+    console.log(`this is the email password:`, process.env.EMAIL_PASSWORD);
 
     let transporter = nodemailer.createTransport({
       host: "smtp.ionos.fr", // Serveur SMTP pour Outlook
@@ -16,9 +16,9 @@ export async function POST(req: Request) {
         user: process.env.EMAIL_USERNAME, // Votre adresse e-mail Outlook
         pass: process.env.EMAIL_PASSWORD, // Votre mot de passe Outlook
       },
-      tls: {
-      },
+      tls: {},
     });
+    console.log(`this is the transporter`, transporter);
 
     let mailOptions = {
       from: process.env.EMAIL_USERNAME,
@@ -29,6 +29,7 @@ export async function POST(req: Request) {
     };
 
     await transporter.sendMail(mailOptions);
+    console.log(`this is the transporter`, transporter);
 
     return NextResponse.json({ message: "E-mail envoyé avec succès." });
   } catch (error) {
