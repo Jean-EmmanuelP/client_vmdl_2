@@ -101,19 +101,19 @@ export default function ExpertiseContent() {
         {subExpertise === null && (
           <>
             <div
-              className={`relative w-full px-[10%] h-full gap-[4vw] flex justify-center items-center`}
+              className={`relative w-full h-full gap-[4vw] flex justify-center items-center`}
             >
               {/* title */}
               <div
                 className={`${isVisible
                   ? "opacity-100 translate-y-0 transition duration-700"
                   : "opacity-0 translate-y-20 transition duration-700"
-                  } absolute top-[8%] text-[30px] sm:text-[40px] left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light`}
+                  } absolute top-[8%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] uppercase text-[30px] sm:text-[40px] font-light`}
               >
                 {title}
               </div>
               <div
-                className={`flex justify-center items-center gap-14 h-[80%] w-full`}
+                className={`flex justify-between items-center w-[70%] h-[80%]`}
               >
                 {/* first Box */}
                 <div
@@ -122,7 +122,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
                     }
-                    relative w-[24%] sm:h-[80%] overflow-hidden group`}
+                    relative w-[30%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("conseil");
                   }}
@@ -153,7 +153,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-300 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-300 ease-in-out"
                     }
-                  relative w-[24%] sm:h-[80%] overflow-hidden group`}
+                  relative w-[30%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("contentieux");
                   }}
@@ -184,7 +184,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-500 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-500 ease-in-out"
                     }
-                  relative w-[24%] sm:h-[80%] overflow-hidden group`}
+                  relative w-[30%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("affaires");
                   }}
@@ -236,7 +236,7 @@ export default function ExpertiseContent() {
                 ? "opacity-100 translate-y-0 transition duration-700 ease-in-out"
                 : "opacity-0 translate-y-20 transition duration-700 ease-in-out"
               }
-            absolute top-[10%] text-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 font-light`}>
+            absolute top-[10%] left-1/2 -translate-x-1/2 -translate-y-1/2  uppercase text-[30px] sm:text-[40px] font-light w-[80%]`}>
               {title}
             </div>
 
