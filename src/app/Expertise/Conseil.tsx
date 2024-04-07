@@ -70,10 +70,10 @@ export default function Conseil() {
       >
         {isMobile ? (
           <>
-            <div className="absolute top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+            <div className="absolute w-[70%] top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
               {title}
             </div>
-            <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
+            <p className="text-justify text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
               {content}
             </p>
           </>
@@ -108,10 +108,10 @@ export default function Conseil() {
               </video>
             </div>
             <div className="relative sm:w-fit mx-2 h-full flex flex-col justify-center items-center">
-              <div className="absolute top-[30%] sm:top-[20%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+              <div className="absolute text-justify w-full top-[30%] sm:top-[20%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
                 {title}
               </div>
-              <p className="text-left text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
+              <p className="text-justify text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
                 {content}
               </p>
             </div>

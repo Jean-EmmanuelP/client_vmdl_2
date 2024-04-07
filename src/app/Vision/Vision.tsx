@@ -22,7 +22,6 @@ export default function Vision() {
   const { title, content, button, content_after_clicking_button } = data[langCode].section_4
   return (
     <section
-      id="Vision"
       className="w-full h-full flex justify-center relative items-center gap-4 bg-blanc"
     >
       <Paragraph>

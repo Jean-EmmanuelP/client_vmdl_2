@@ -192,10 +192,10 @@ export default function Affaires() {
                     )}
 
                     <div
-                      className={`${opacities[index] ? 'opacity-100' : 'opacity-0'} transition duration-200 delay-[${video.textAppearTime}000ms] ease-in-out transition duration-150 text-white text-[18px] tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
+                      className={`${opacities[index] ? 'opacity-100' : 'opacity-0'} delay-[${video.textAppearTime}000ms] ease-in-out transition duration-150 text-white text-[18px] tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
                     >
-                      <p>{title}</p>
-                      <p>{content}</p>
+                      <p className="text-justify w-full">{title}</p>
+                      <p className="w-full text-justify">{content}</p>
                     </div>
                     <div
                       className="absolute flex transition duration-100 justify-center items-center left-2 top-[40%] hover:bg-white/80 group bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
