@@ -30,30 +30,30 @@ export default function Honoraires() {
   return (
     <section className="relative w-full h-full flex justify-center items-center gap-4  bg-blanc">
       <div className="w-full justify-center items-center flex -mt-[64px] overflow-y-scroll sm:overflow-hidden max-h-[80%]">
-      <Paragraph>
-        <div
-          className={`
+        <Paragraph>
+          <div
+            className={`
        text-[30px] sm:text-[40px] uppercase sm:title font-light`}
-        >
-          {title}
-        </div>
-        <p
-          className={`
+          >
+            {title}
+          </div>
+          <p
+            className={`
         text-[16px] sm:px-0 sm:text-[24px] font-light`}
-        >
-          {contentParts.map((part, index) => (
-            <React.Fragment key={index}>
-              {part}
-              {index !== contentParts.length - 1 && (
-                <>
-                  <br />
-                  <br />
-                </>
-              )}
-            </React.Fragment>
-          ))}
-        </p>
-      </Paragraph>
+          >
+            {contentParts.map((part, index) => (
+              <React.Fragment key={index}>
+                {part}
+                {index !== contentParts.length - 1 && (
+                  <>
+                    <br />
+                    <br />
+                  </>
+                )}
+              </React.Fragment>
+            ))}
+          </p>
+        </Paragraph>
       </div>
     </section>
   );
