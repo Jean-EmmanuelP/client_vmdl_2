@@ -118,9 +118,6 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
             `}
         >
           {children[1]}
-          {/* {
-            homeSection ?  children[1] : createSpanElementsWithDelay(children[1].props.children)
-          } */}
         </p>
         <div
           className={`${

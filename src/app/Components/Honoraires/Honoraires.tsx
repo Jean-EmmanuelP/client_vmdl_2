@@ -29,6 +29,7 @@ export default function Honoraires() {
 
   return (
     <section className="relative w-full h-full flex justify-center items-center gap-4  bg-blanc">
+      <div className="w-full justify-center items-center flex -mt-[64px] overflow-y-scroll sm:overflow-hidden max-h-[80%]">
       <Paragraph>
         <div
           className={`
@@ -53,6 +54,7 @@ export default function Honoraires() {
           ))}
         </p>
       </Paragraph>
+      </div>
     </section>
   );
 }
