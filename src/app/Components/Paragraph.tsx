@@ -125,7 +125,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
         <div
           className={`${
             toggle ? "opacity-100" : "opacity-0 translate-y-20 duration-200"
-          } text-justify transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 w-full -translate-y-1/2`}
+          } text-justify max-h-[50vh] sm:max-h-[70vh] overflow-y-scroll transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 w-full -translate-y-1/2`}
         >
           {children[3]}
         </div>

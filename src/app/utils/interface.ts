@@ -105,6 +105,7 @@ export interface ReverseArrowProps {
   reversed?: boolean;
   isGrey?: boolean;
   lilArrow?: boolean;
+  isWhite?: boolean;
 }
 
 export interface RoofSVGProps {

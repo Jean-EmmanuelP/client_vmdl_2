@@ -33,9 +33,10 @@ export default function ContactContent() {
         ref={contactRef}
         className="w-full h-full flex justify-center items-center bg-[#FAFAFA]"
       >
+        <div className="w-full h-full flex justify-center items-center sm:-mt-[100px]">
         <Paragraph>
           <h1
-            className={`uppercase text-center py-4 text-[23px] tracking-wide sm:text-[40px] sm:title font-light`}
+            className={`w-full uppercase text-left py-4 text-[23px] tracking-wide sm:text-[40px] sm:title font-light`}
           >
             {title}
           </h1>
@@ -44,6 +45,7 @@ export default function ContactContent() {
             <FormContact />
           </div>
         </Paragraph>
+        </div>
       </div>
     );
   }
