@@ -9,36 +9,13 @@ interface ParagraphProps {
 }
 
 export default function Paragraph({ children, homeSection }: ParagraphProps) {
-  const {
-    setHeaderHeight,
-    contactRef,
-    handleScrollSections,
-    isMobile
-  } = useSection();
+  const { setHeaderHeight, contactRef, handleScrollSections, isMobile } =
+    useSection();
   const paragraphRef = useRef<HTMLDivElement | null>(null);
   const [toggle, setToggle] = useState<boolean>(false);
   const { setSubExpertise } = useExpertise();
   const [isHere, setIsHere] = useState<boolean>(false);
   const [hasBeenViewed, setHasBeenViewed] = useState(false);
-
-  // const createSpanElementsWithDelay = (inputText: string) => {
-  //   const trimmedString = inputText.trim();
-  //   const words = trimmedString.split(/\s+/);
-
-  //   return (
-  //     <>
-  //       {words.map((word, index) => (
-  //         <span
-  //           key={index}
-  //           className={`${currentSection === 4 && 'text-blanc'} inline-block span-reveal animation-delay-${index * 50}ms`}
-  //         >
-  //           {word}&nbsp;
-  //         </span>
-  //       ))}
-  //     </>
-  //   );
-  //   return null;
-  // };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -89,83 +66,98 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
   }
 
   return (
-    <div
-      ref={paragraphRef}
-      className={`transition duration-500 w-fit h-fit flex flex-col ${homeSection ? 'gap-2' : 'gap-4'} sm:gap-2 justify-center items-center relative`}
-    >
+    <>
       <button
-        onClick={() => setToggle(!toggle)}
-        className={`absolute left-[10%] opacity-0 transition duration-200 translate-y-10 ${toggle &&
+        onClick={() => {
+          setToggle(!toggle);
+        }}
+        className={`absolute left-[5%] opacity-0 transition duration-200 translate-y-10 ${
+          toggle &&
           "transition duration-700 delay-150 opacity-100 sm:translate-y-0"
-          }`}
+        } z-[200]`}
       >
         <ReversedArrow />
       </button>
-      <button
-        className={`
-          sm:text-[40px] ${homeSection && "max-w-[78%] sm:max-w-fit sm:font-medium text-[26px]"}
-          ${toggle
-            ? `opacity-0 -translate-y-3 transition duration-700`
-            : `translate-y-0 transition duration-200 ${isHere
-              ? `${toggle && "opacity-0"} translate-y-0`
-              : "opacity-0 translate-y-12"
-            } transition duration-700 ease-in-out`
-          }
-          `}
-      >
-        {children[0]}
-      </button>
-      <p
-        className={`${homeSection && "uppercase text-[22px] font-light"}
-            ${toggle
-            ? "opacity-0 -translate-y-3 transition duration-700 delay-[30ms]"
-            : `${isHere
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-12"
-            } transition duration-700 delay-150 ease-in-out`
-          }
-            w-[70%] leading-5 sm:leading-8 text-center
-          `}
-      >
-        {children[1]}
-        {/* {
-            homeSection ?  children[1] : createSpanElementsWithDelay(children[1].props.children)
-          } */}
-      </p>
       <div
-        className={`${toggle ? "opacity-100" : "opacity-0 translate-y-20 duration-200"
-          } transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
+        ref={paragraphRef}
+        className={`w-[70%] transition duration-500 h-fit flex flex-col ${
+          homeSection ? "gap-2" : "gap-4"
+        } sm:gap-2 justify-center items-center relative`}
       >
-        {children[3]}
-      </div>
-      {children.length > 2 && !toggle && (
         <button
-          data-clickable="true"
-          onClick={() => {
-            homeSection
-              ? handleScrollSections(contactRef)
-              : setToggle(!toggle);
-          }}
-          className={`
-          ${isHere ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            } transition duration-700 delay-300 ease-in-out
-            text-[#181a1b] p-4 ${!homeSection
-              ? `w-[180px] sm:w-[280px] border-[0.5px] border-noir/10 shadow-sm transition duration-150`
-              : `mt-2 text-noir bg-blanc  shadow-2xl sm:h-[50px] sm:w-[300px]`
+          className={`text-left w-full
+          sm:text-[40px] ${
+            homeSection &&
+            "text-center max-w-[78%] sm:max-w-fit sm:font-medium text-[26px]"
+          }
+          ${
+            toggle
+              ? `opacity-0 -translate-y-3 transition duration-700`
+              : `translate-y-0 transition duration-200 ${
+                  isHere
+                    ? `${toggle && "opacity-0"} translate-y-0`
+                    : "opacity-0 translate-y-12"
+                } transition duration-700 ease-in-out`
+          }
+          `}
+        >
+          {children[0]}
+        </button>
+        <p
+          className={`${homeSection && "uppercase text-[22px] font-light"}
+            ${
+              toggle
+                ? "opacity-0 -translate-y-3 transition duration-700 delay-[30ms]"
+                : `${
+                    isHere
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-12"
+                  } transition duration-700 delay-150 ease-in-out`
+            } leading-5 sm:leading-8
+            w-full ${!homeSection ? "text-justify" : "text-center"} 
+            `}
+        >
+          {children[1]}
+        </p>
+        <div
+          className={`${
+            toggle ? "opacity-100" : "opacity-0 translate-y-20 duration-200"
+          } text-justify max-h-[50vh] sm:max-h-[70vh] overflow-y-scroll transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 w-full -translate-y-1/2`}
+        >
+          {children[3]}
+        </div>
+        {children.length > 2 && !toggle && (
+          <button
+            data-clickable="true"
+            onClick={() => {
+              homeSection
+                ? handleScrollSections(contactRef)
+                : setToggle(!toggle);
+            }}
+            className={`
+          ${
+            isHere ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          } transition duration-700 delay-300 ease-in-out
+            text-[#181a1b] p-4 ${
+              !homeSection
+                ? `w-[180px] sm:w-[280px] border-[0.5px] border-noir/10 shadow-sm transition duration-150`
+                : `mt-2 text-noir bg-blanc  shadow-2xl sm:h-[50px] sm:w-[300px]`
             } relative uppercase flex justify-center items-center leading-3 sm:h-[50px] sm:text-xs contact-us overflow-hidden group
                   `}
-        >
-          <span
-            className={`transition duration-500 ease-linear ${homeSection && "text-[12px] sm:text-base"
-              } group-hover:-translate-x-[8px]`}
           >
-            {children[2]}
-          </span>
-          <span className="transition duration-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-[8px]">
-            <Arrow />
-          </span>
-        </button>
-      )}
-    </div>
+            <span
+              className={`transition duration-300 ease-in-out ${
+                homeSection && "text-[12px] sm:text-base"
+              } group-hover:-translate-x-[8px]`}
+            >
+              {children[2]}
+            </span>
+            <span className="transition duration-300 ease-in-out opacity-0 absolute sm:right-12 group-hover:opacity-100 group-hover:translate-x-[8px]">
+              <Arrow />
+            </span>
+          </button>
+        )}
+      </div>
+    </>
   );
 }

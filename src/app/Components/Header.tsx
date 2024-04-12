@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import _ from "lodash";
+import throttle from 'lodash/throttle';
 import { useEffect, useRef, useState } from "react";
 import Menu from "../assets/svg/Menu";
 import { useExpertise, useSection } from "../utils/Contextboard";
@@ -122,7 +122,7 @@ export default function Header({ height }: HeaderProps) {
   };
   // se renseigner a quel point ceci est energivore
   useEffect(() => {
-    const handleScrollThrottled = _.throttle(detectScroll, 100);
+    const handleScrollThrottled = throttle(detectScroll, 100);
 
     window.addEventListener("scroll", handleScrollThrottled);
 

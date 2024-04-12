@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
+import { divideContentInThree } from "../utils/utils";
 
 export default function Contentieux() {
   const videoContentieuxRef = useRef<HTMLVideoElement | null>(null);
@@ -56,19 +57,12 @@ export default function Contentieux() {
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { content } = data[langCode].section_3.box_2;
-  const formatContent = (content: string): string => {
-    return (
-      content
-        .split(".")
-        .filter((sentence) => sentence.trim() !== "")
-        .join(".<br><br>") + "."
-    );
-  };
-  const formattedContent = formatContent(content);
+
   function convertToMp4Path(webmPath: string) {
     const webmToMp4 = webmPath.replace(".webm", ".mp4");
     return webmToMp4;
   }
+  const contentParts = divideContentInThree(content);
   if (subExpertise === "contentieux") {
     return (
       <div
@@ -79,9 +73,20 @@ export default function Contentieux() {
           }`}
       >
         <div
-          className={`${textHere ? 'opacity-100' : `${!playBackError && 'opacity-0'}`} transition duration-400 ease-in-out absolute p-2 z-50 sm:p-10 top-1/2 left-1/2 sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-center sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm`}
-          dangerouslySetInnerHTML={{ __html: formattedContent }}
-        ></div>
+          className={`${textHere ? 'opacity-100' : `${!playBackError && 'opacity-0'}`} transition duration-400 ease-in-out absolute p-2 z-50 sm:p-10 top-1/2 left-1/2 sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-justify sm:text-xl text-white tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm`}
+        >
+          {contentParts.map((part, index) => (
+            <React.Fragment key={index}>
+              {part}
+              {index !== contentParts.length - 1 && (
+                <>
+                  <br />
+                  <br />
+                </>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
         <video
           ref={videoContentieuxRef}
           playsInline

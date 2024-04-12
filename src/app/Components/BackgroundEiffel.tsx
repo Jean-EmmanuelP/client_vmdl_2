@@ -38,7 +38,7 @@ const BackgroundEiffel: React.FC = () => {
               autoPlay
               loop
               muted
-              className="absolute w-full h-full object-cover object-center"
+              className={`${isPaused ? 'hidden' : 'visible'} absolute w-full h-full object-cover object-center`}
             >
               <source
                 src={`${convertToMp4Path(mediaPaths.paris)}`}

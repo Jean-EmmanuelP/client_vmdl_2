@@ -1,3 +1,4 @@
+import ReversedArrow from "../assets/svg/reverseArrow";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
 
@@ -9,7 +10,7 @@ export default function Footer() {
     setPageIs,
     pageIs,
     isMobile,
-    setLangueCourante
+    setLangueCourante,
   } = useSection();
   const { data } = useData();
   const { langueCourante } = useSection();
@@ -51,16 +52,17 @@ export default function Footer() {
         >
           <div
             data-clickable={true}
-            className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${langueCourante === langue
-              ? "-translate-x-0"
-              : "group-hover:-translate-x-0 -translate-x-[100%]"
-              }`}
+            className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${
+              langueCourante === langue
+                ? "-translate-x-0"
+                : "group-hover:-translate-x-0 -translate-x-[100%]"
+            }`}
           ></div>
           {langue}
         </button>
       );
     });
-  }
+  };
   // langCode doubled
   const langCode =
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
@@ -91,7 +93,21 @@ export default function Footer() {
         setBgIsBlackFooter(false);
       }}
     >
-      <div id="footer-title" className="w-full text-center sm:w-4/5 flex justify-center items-center">
+      <div className="absolute top-[-20px] left-1/2 -translate-x-1/2 bg-black">
+        <div
+          className="h-full flex rotate-90 transition duration-100 hover:-translate-y-1"
+          onClick={() => {
+            setBgIsBlackFooter(false);
+            handleScroll(0);
+          }}
+        >
+          <ReversedArrow isWhite={true} />
+        </div>
+      </div>
+      <div
+        id="footer-title"
+        className="w-full text-center sm:w-4/5 flex justify-center items-center"
+      >
         <div
           onClick={() => {
             setBgIsBlackFooter(false);

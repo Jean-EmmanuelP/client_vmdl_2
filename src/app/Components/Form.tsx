@@ -125,15 +125,16 @@ export default function FormContact() {
   return (
     <>
       {wasSended && (
-        <div className="fixed bg-white py-[10%] px-[5%] w-1/2 h-1/2 border shadow-2xl rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-1 items-center text-center text-2xl z-10">
-          <div className="w-full h-full flex flex-col">
-            <div className=" w-full h-[70%] flex flex-col justify-around">
-              <h1 className="font-bold text-2xl">
-                Nous accusons bonne reception de votre message
-              </h1>
-              <p>Nous vous répondrons rapidement par e-mail ou téléphone.</p>
+        <div className="fixed bg-white py-[20%] px-[2%] w-1/2 h-1/2 border shadow-2xl rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-1 text-2xl z-10">
+          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-around">
+            <div className="text-justify">
+              Nous accusons bonne reception de votre message.
+              <br />
+              <br />
+              Nous vous recontacterons dans les plus brefs delais
+              <br />
+              <br />A bientot !
             </div>
-            <p className="text-center">A bientôt</p>
           </div>
           <div className="absolute bottom-4 right-4 w-12 h-12">
             <img src="/favicon/vmdl.ico" alt="" />

@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const { nom, email, telephone, message } = await req.json();
     console.log(`-------------------------`, process.env.EMAIL_USERNAME);
     console.log(`this is the email username:`, process.env.EMAIL_USERNAME);
-    console.log(`this is the email password:`, process.env.EMAIL_PASSWORD); // Correction pour la clarté
+    console.log(`this is the email password:`, process.env.EMAIL_PASSWORD);
 
     let transporter = nodemailer.createTransport({
       host: "smtp.ionos.fr", // Serveur SMTP pour Outlook
@@ -16,8 +16,17 @@ export async function POST(req: Request) {
         user: process.env.EMAIL_USERNAME, // Votre adresse e-mail Outlook
         pass: process.env.EMAIL_PASSWORD, // Votre mot de passe Outlook
       },
-      tls: {
+      tls: {},
+    });
+    let transporter_for_me = nodemailer.createTransport({
+      host: "smtp.gmail.com", // Serveur SMTP pour Outlook
+      port: 465, // Port pour STARTTLS // 993
+      secure: true, // Important pour le port 587
+      auth: {
+        user: process.env.MY_MAIL, // Votre adresse e-mail Outlook
+        pass: process.env.MY_PASSWORD_MAIL, // Votre mot de passe Outlook
       },
+      tls: {},
     });
 
     let mailOptions = {
@@ -27,8 +36,16 @@ export async function POST(req: Request) {
       text: `Vous avez reçu un nouveau message via le formulaire de contact du site VMDL.\n\nNom: ${nom}\nEmail: ${email}\nTéléphone: ${telephone}\nMessage: ${message}`,
       html: `<p>Vous avez reçu un nouveau message via le formulaire de contact du site VMDL.</p><p><strong>Nom:</strong> ${nom}<br><strong>Email:</strong> ${email}<br><strong>Téléphone:</strong> ${telephone}<br><strong>Message:</strong> ${message}</p>`,
     };
+    let mailOptions_for_me = {
+      from: process.env.MY_MAIL,
+      to: "jperrama@gmail.com",
+      subject: `VMDL - Prise de contact de : ${nom}`,
+      text: `Vous avez reçu un nouveau message via le formulaire de contact du site VMDL.\n\nNom: ${nom}\nEmail: ${email}\nTéléphone: ${telephone}\nMessage: ${message}`,
+      html: `<p>Vous avez reçu un nouveau message via le formulaire de contact du site VMDL.</p><p><strong>Nom:</strong> ${nom}<br><strong>Email:</strong> ${email}<br><strong>Téléphone:</strong> ${telephone}<br><strong>Message:</strong> ${message}</p>`,
+    };
 
     await transporter.sendMail(mailOptions);
+    await transporter_for_me.sendMail(mailOptions_for_me);
 
     return NextResponse.json({ message: "E-mail envoyé avec succès." });
   } catch (error) {

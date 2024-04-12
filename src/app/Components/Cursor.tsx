@@ -13,6 +13,7 @@ const CustomCursor: React.FC = () => {
     bgIsBlackFondateur,
     bgIsBlackFooter,
     isHoveringExpertiseButton,
+    currentSection
   } = useSection();
   const [visible, setVisible] = useState<boolean>(false);
   const [clickable, setClickable] = useState<boolean>(false);
@@ -133,13 +134,12 @@ const CustomCursor: React.FC = () => {
         : 0,
     transition:
       "opacity 0.2s, transform 0.2s, width 0.3s ease-in-out, height 0.3s ease-in-out, background .7s ease-in-out, border .7s ease-in-out",
-    backgroundColor: `${onVideos ? `#FAFAFA` : `${MappingBgColor[isHoveringExpertiseButton]}`}`,
+    backgroundColor: `${onVideos && currentSection === 2 ? `#FAFAFA` : `${MappingBgColor[isHoveringExpertiseButton]}`}`,
   };
 
   if (isHoveringExpertiseButton !== "none") {
     return ReactDOM.createPortal(
       <div style={cursorStyle} className="z-[2147483647]">
-        {/* trouver comment bien mettre la croix au milieu */}
       </div>,
       document.getElementById("cursor-root") as HTMLElement
     );
