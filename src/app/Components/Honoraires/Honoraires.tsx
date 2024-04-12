@@ -39,7 +39,7 @@ export default function Honoraires() {
           </div>
           <p
             className={`
-        text-[16px] sm:px-0 sm:text-[24px] font-light`}
+        text-[12px] sm:px-0 sm:text-[24px] font-light`}
           >
             {contentParts.map((part, index) => (
               <React.Fragment key={index}>
