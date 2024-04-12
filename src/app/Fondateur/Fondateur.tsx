@@ -71,7 +71,7 @@ export default function Fondateur() {
         <span className="uppercase text-[30px] sm:text-[40px] sm:title font-light text-blanc">
           {title}
         </span>
-        <span className="text-[16px] sm:text-[24px] sm:content leading-[26px] font-light text-left text-blanc">
+        <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light text-left text-blanc">
           {contentParts.map((part, index) => (
             <React.Fragment key={index}>
               {part}

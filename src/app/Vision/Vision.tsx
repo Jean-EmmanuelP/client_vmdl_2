@@ -31,11 +31,11 @@ export default function Vision() {
         <span className="uppercase text-[30px] sm:text-[40px] font-light">
           {title}
         </span>
-        <span className="text-[16px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
+        <span className="text-[12px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
           {content}
         </span>
         <span className="text-[12px] sm:text-base">{button}</span>
-        <span className="text-[16px] sm:text-[24px] sm:content leading-[26px] font-light">
+        <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
           {contentParts.map((part, index) => (
             <React.Fragment key={index}>
               {part}

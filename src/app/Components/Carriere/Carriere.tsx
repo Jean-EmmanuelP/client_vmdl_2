@@ -1,10 +1,10 @@
 "use client";
 
 import { LangueCode, useSection } from "@/app/utils/Contextboard";
-import React, { useEffect, useState } from "react";
+import { divideContentInThree } from "@/app/utils/utils";
+import React, { useEffect } from "react";
 import { useData } from "../../utils/DataContext";
 import Paragraph from "../Paragraph";
-import { divideContentInThree } from "@/app/utils/utils";
 
 export default function Carriere() {
   const { loadData, data } = useData();
@@ -43,7 +43,7 @@ export default function Carriere() {
         </div>
         <p
           className={`
-        text-[16px] sm:text-[24px] items-center font-light`}
+        text-[12px] sm:text-[24px] items-center font-light`}
         >
           {contentParts.map((part, index) => (
             <React.Fragment key={index}>

@@ -75,7 +75,7 @@ export default function Conseil() {
             <div className="absolute w-[70%] top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
               {title}
             </div>
-            <p className="text-justify text-[16px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
+            <p className="text-justify text-[12px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
               {content}
             </p>
           </>
@@ -114,7 +114,7 @@ export default function Conseil() {
               <div className="absolute text-justify w-[90%] top-[30%] sm:top-[20%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
                 {title}
               </div>
-              <p className="text-justify  text-[16px] w-[90%] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
+              <p className="text-justify  text-[12px] w-[90%] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
                 {content}
               </p>
             </div>
