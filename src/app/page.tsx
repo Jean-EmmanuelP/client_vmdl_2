@@ -326,7 +326,7 @@ export default function App() {
               {pageIs === "/" && (
                 <>
                   <div className={`${currentSection === 0 && 'opacity-0'} transition-all`}>
-                    <div className={`${bgIsBlackFondateur ? 'bg-blanc' : "bg-noir"} ${(subExpertise === 'contentieux' || subExpertise === 'affaires') && 'opacity-50'} overflow-hidden hover:opacity-100 transition duration-500 absolute bottom-[3%] opacity-50 sm:opacity-100 sm:bottom-[5%] left-[10%] sm:left-[5%] w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] border border-blanc/50 shadow-2xl flex items-center justify-center rounded-full z-[2147483646] -translate-x-1/2`}
+                    <div className={`${bgIsBlackFondateur ? 'bg-blanc' : "bg-noir"} ${(subExpertise === 'contentieux' || subExpertise === 'affaires') && 'opacity-50'} overflow-hidden hover:opacity-100 transition duration-500 absolute bottom-[3%] opacity-50 sm:opacity-100 sm:bottom-[5%] left-[10%] sm:left-[5%] w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] border border-blanc/50 shadow-2xl flex items-center justify-center rounded-full z-[2147483646] -translate-x-1/2`}
                       onMouseEnter={() => {
                         setBgIsBlackFooter(true);
                       }}

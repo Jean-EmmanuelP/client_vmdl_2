@@ -126,7 +126,7 @@ export default function Conseil() {
           <>
             <div
               onClick={() => setShowVideo(!showVideo)}
-              className={`absolute font-light text-sm py-2 px-4 rounded-md flex flex-col cursor-pointer transition-top ${showVideo ? "top-[70%]" : "top-[60%]"
+              className={`absolute font-light text-sm py-2 px-4 flex flex-col cursor-pointer transition-top ${showVideo ? "top-[70%]" : "top-[60%]"
                 } translate-y-1/2`}
             >
               <p
