@@ -28,7 +28,7 @@ export default function Cabinet() {
   return (
     <section
       id="Cabinet"
-      className="relative w-full h-full flex justify-center items-center gap-4  bg-blanc"
+      className="relative w-full h-full flex items-center justify-center bg-blanc"
     >
       <Paragraph>
         <span className="uppercase text-[30px] sm:text-[40px] sm:title font-light">

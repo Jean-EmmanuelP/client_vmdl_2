@@ -399,6 +399,11 @@ video {
   animation-delay: 0.05s;
 }
 
+.menu.open button:nth-child(7) {
+  animation-name: slideInFromLeft;
+  animation-delay: 0.02s;
+}
+
 @keyframes slideOutToLeft {
   from {
     transform: translateX(0);
@@ -447,6 +452,11 @@ video {
 .menu.close button:nth-child(6) {
   animation-name: slideOutToLeft;
   animation-delay: 0.60s;
+}
+
+.menu.close button:nth-child(7) {
+  animation-name: slideOutToLeft;
+  animation-delay: 0.70s;
 }
 
 @keyframes goUpTextDescription {

@@ -14,6 +14,7 @@ import {
 import { DataProvider } from "./utils/DataContext";
 import { NavigatorWithConnection } from "./utils/interface";
 import Honoraires from "./Components/Honoraires/Honoraires";
+import ReversedArrow from "./assets/svg/reverseArrow";
 
 {/* Importing the component from client */ }
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
@@ -157,13 +158,13 @@ export default function App() {
   useEffect(() => {
     if (pageIs === "/") {
       const handleScroll = (direction: string) => {
-        if (isScrolling) return; // Empêche l'action si un scroll est déjà en cours
+        if (isScrolling) return;
 
         const mainDiv = document.getElementById("main");
 
         if (mainDiv) {
-          let newSection = currentSection; // Initialise avec la section actuelle
-          if (direction === "down" && currentSection < 8) {
+          let newSection = currentSection;
+          if (direction === "down" && currentSection < 9) {
             newSection = currentSection + 1;
           } else if (direction === "up" && currentSection > 0) {
             newSection = currentSection - 1;
@@ -266,10 +267,9 @@ export default function App() {
         setCurrentSection(5);
       } else if (ref.current === honoraireRef.current) {
         setCurrentSection(6);
+      } else if (ref.current === contactRef.current) {
+        setCurrentSection(7);
       }
-      // } else if (ref.current === contactRef.current) {
-      //   setCurrentSection(7);
-      // }
     }
   };
 
@@ -325,6 +325,28 @@ export default function App() {
             >
               {pageIs === "/" && (
                 <>
+                  <div className={`${currentSection === 0 && 'opacity-0'} transition-all`}>
+                    <div className={`${bgIsBlackFondateur ? 'bg-blanc' : "bg-noir"} ${(subExpertise === 'contentieux' || subExpertise === 'affaires') && 'opacity-50'} overflow-hidden hover:opacity-100 transition duration-500 absolute bottom-[3%] opacity-50 sm:opacity-100 sm:bottom-[5%] left-[10%] sm:left-[5%] w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] border border-blanc/50 shadow-2xl flex items-center justify-center rounded-full z-[2147483646] -translate-x-1/2`}
+                      onMouseEnter={() => {
+                        setBgIsBlackFooter(true);
+                      }}
+                      onMouseLeave={() => {
+                        setBgIsBlackFooter(false);
+                      }}
+                    >
+                      <div
+                        className="flex items-center justify-center rotate-90 transition duration-100 z-[2147483646] w-1/2 h-1/2"
+                        onClick={() => {
+                          setBgIsBlackFooter(false);
+                          handleScrollSections(homeRef);
+                        }}
+                      >
+                        <ReversedArrow isWhite={bgIsBlackFondateur ? false : true} />
+                      </div>
+                      <div className="absolute inset-0 bg-cover bg-[url('/images/home/paris.png')] opacity-40">
+                      </div>
+                    </div>
+                  </div>
                   <div ref={homeRef} className="w-full h-full">
                     <Home />
                   </div>

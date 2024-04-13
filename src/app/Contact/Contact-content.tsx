@@ -33,7 +33,7 @@ export default function ContactContent() {
         ref={contactRef}
         className="w-full h-full flex justify-center items-center bg-[#FAFAFA]"
       >
-        <div className="w-full h-full flex justify-center items-center sm:-mt-[100px]">
+        <div className="w-full h-full flex justify-center items-center">
         <Paragraph>
           <h1
             className={`w-full uppercase text-left py-4 text-[23px] tracking-wide sm:text-[40px] sm:title font-light`}

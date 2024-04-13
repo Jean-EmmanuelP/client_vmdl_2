@@ -150,7 +150,7 @@ export default function FormContact() {
       >
         {({ handleSubmit, touched, errors }) => (
           <Form
-            className="bg-blanc flex flex-col gap-1 sm:gap-2 text-[14px] sm:text-[20px] sm:content leading-[26px] font-light"
+            className="flex flex-col gap-1 sm:gap-2 text-[14px] sm:text-[20px] sm:content leading-[26px] font-light"
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-1 sm:gap-2">

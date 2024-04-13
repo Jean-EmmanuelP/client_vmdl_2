@@ -164,8 +164,8 @@ export default function Affaires() {
                           className="absolute w-full h-full object-cover"
                           layout="fill"
                         />
-                        <div className="absolute p-4 top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white sm:text-xl tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-sm">
-                          <p>{title}</p>
+                        <div className="absolute p-4 top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white text-sm sm:text-[24px] font-light tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl">
+                          <p className="text-[20px] sm:text-[30px] uppercase">{title}</p>
                           <p>{content}</p>
                         </div>
                       </>
@@ -191,9 +191,9 @@ export default function Affaires() {
                       </video>
                     )}
                     <div
-                      className={`${opacities[index] ? 'opacity-100' : 'opacity-0'} delay-[${video.textAppearTime}000ms] ease-in-out transition duration-150 text-white text-[18px] tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
+                      className={`${opacities[index] ? 'opacity-100' : 'opacity-0'} delay-[${video.textAppearTime}000ms] ease-in-out transition duration-150 font-light text-[24px] text-white bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
                     >
-                      <p className="text-justify w-full">{title}</p>
+                      <p className="text-[20px] sm:text-[30px] uppercase w-full text-left">{title}</p>
                       <p className="w-full text-justify">{content}</p>
                     </div>
                     <div

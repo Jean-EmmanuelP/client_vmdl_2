@@ -1347,7 +1347,7 @@ export default function Legals() {
       <div className="w-full h-fit flex items-center justify-start pl-[10%] bg-blanc">
         <h1 className="py-4 font-semibold">{title}</h1>
       </div>
-      <div className="overflow-hidden bg-[url('/images/legals/white.webp')] bg-cover px-[10%] py-4 h-full flex flex-col sm:flex-row gap-2">
+      <div className="overflow-hidden bg-cover px-[10%] py-4 h-full flex flex-col sm:flex-row gap-2">
         <div className="w-full sm:w-1/3 h-full space-y-2">
           <div className=" bg-white/40 p-6 flex flex-col shadow-md">
             <div>
@@ -1383,8 +1383,6 @@ export default function Legals() {
             </div>
             <div className="text-[11px] pt-2">{sectionIV.content}</div>
           </div>
-        </div>
-        <div className="w-full sm:w-1/3 h-full space-y-2">
           <div className=" bg-white/40 p-6 shadow-md">
             <div>
               <h1 className="text-[13px] sm:text-base border-1 border-b border-black pb-1 mt-3 font-semibold">
@@ -1393,6 +1391,8 @@ export default function Legals() {
             </div>
             <div className="text-[11px] pt-2">{sectionV.content}</div>
           </div>
+        </div>
+        <div className="w-full sm:w-1/3 h-full space-y-2">
           <DataPrivacyPolicy />
         </div>
       </div>
