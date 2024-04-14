@@ -34,7 +34,7 @@ export default function Cabinet() {
           {title}
         </span>
         <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
-          {content}
+          {formatContent(content)}
         </span>
         <span className="text-[12px] sm:text-base">{button}</span>
         <span className="preserve-spaces text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">

@@ -1,6 +1,7 @@
 import Paragraph from "../Paragraph";
 import { LangueCode, useSection } from "@/app/utils/Contextboard";
 import { useData } from "@/app/utils/DataContext";
+import { formatContent } from "@/app/utils/utils";
 import React from "react";
 
 export default function Honoraires() {
@@ -38,7 +39,7 @@ export default function Honoraires() {
             className={`
         text-[12px] sm:px-0 sm:text-[24px] font-light`}
           >
-           {content}
+           {formatContent(content)}
           </p>
         </Paragraph>
       </div>

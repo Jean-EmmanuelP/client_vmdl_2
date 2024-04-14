@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Paragraph from "../Components/Paragraph";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
+import { formatContent } from "../utils/utils";
 
 export default function Fondateur() {
   const { data } = useData();
@@ -69,7 +70,7 @@ export default function Fondateur() {
           {title}
         </span>
         <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light text-left text-blanc">
-          {content}
+          {formatContent(content)}
         </span>
       </Paragraph>
     </section>

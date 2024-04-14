@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useData } from "../utils/DataContext";
 import ReversedArrow from "../assets/svg/reverseArrow";
 import Image from "next/image";
+import { formatContent } from "../utils/utils";
 
 interface Video {
   src: string;
@@ -166,7 +167,7 @@ export default function Affaires() {
                         />
                         <div className="absolute p-4 top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white text-sm sm:text-[24px] font-light tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl">
                           <p className="text-[20px] sm:text-[30px] uppercase">{title}</p>
-                          <p>{content}</p>
+                          <p>{formatContent(content)}</p>
                         </div>
                       </>
                     ) : (
@@ -194,7 +195,7 @@ export default function Affaires() {
                       className={`${opacities[index] ? 'opacity-100' : 'opacity-0'} delay-[${video.textAppearTime}000ms] ease-in-out transition duration-150 font-light text-[24px] text-white bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
                     >
                       <p className="text-[20px] sm:text-[30px] uppercase w-full text-left">{title}</p>
-                      <p className="w-full text-justify">{content}</p>
+                      <p className="w-full text-justify">{formatContent(content)}</p>
                     </div>
                     <div
                       className="absolute flex transition duration-100 justify-center items-center left-2 top-[40%] hover:bg-white/80 group bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"

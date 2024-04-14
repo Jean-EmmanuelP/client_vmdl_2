@@ -4,6 +4,7 @@ import { LangueCode, useSection } from "@/app/utils/Contextboard";
 import React, { useEffect } from "react";
 import { useData } from "../../utils/DataContext";
 import Paragraph from "../Paragraph";
+import { formatContent } from "@/app/utils/utils";
 
 export default function Carriere() {
   const { loadData, data } = useData();
@@ -43,7 +44,7 @@ export default function Carriere() {
           className={`
         text-[12px] sm:text-[24px] items-center font-light`}
         >
-         {content}
+         {formatContent(content)}
         </p>
       </Paragraph>
     </div>

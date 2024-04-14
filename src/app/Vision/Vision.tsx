@@ -2,6 +2,7 @@ import React from "react";
 import Paragraph from "../Components/Paragraph";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
+import { formatContent } from "../utils/utils";
 
 export default function Vision() {
   const { data } = useData();
@@ -30,11 +31,11 @@ export default function Vision() {
           {title}
         </span>
         <span className="text-[12px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
-          {content}
+          {formatContent(content)}
         </span>
         <span className="text-[12px] sm:text-base">{button}</span>
         <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
-          {content}
+          {formatContent(content)}
         </span>
       </Paragraph>
     </section>

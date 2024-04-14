@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
+import { formatContent } from "../utils/utils";
 
 export default function Contentieux() {
   const videoContentieuxRef = useRef<HTMLVideoElement | null>(null);
@@ -73,7 +74,7 @@ export default function Contentieux() {
         <div
           className={`${textHere ? 'opacity-100' : `${!playBackError && 'opacity-0'}`} transition duration-400 ease-in-out absolute p-2 z-50 sm:p-10 top-1/2 left-1/2 sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-justify text-white bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-[24px]`}
         >
-         {content}
+          {formatContent(content)}
         </div>
         <video
           ref={videoContentieuxRef}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { LangueCode, useExpertise, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
+import { formatContent } from "../utils/utils";
 
 export default function Conseil() {
   const { subExpertise } = useExpertise();
@@ -77,7 +78,7 @@ export default function Conseil() {
               {title}
             </div>
             <p className="text-justify text-[12px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
-              {content}
+              {formatContent(content)}
             </p>
           </>
         ) : (
@@ -116,7 +117,7 @@ export default function Conseil() {
                 {title}
               </div>
               <p className="text-justify  text-[12px] w-[90%] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
-                {content}
+                {formatContent(content)}
               </p>
             </div>
           </>
