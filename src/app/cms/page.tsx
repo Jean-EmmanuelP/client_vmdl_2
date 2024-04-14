@@ -218,7 +218,8 @@ const CMS: React.FC = () => {
                 <span className="underline">
                   visibles immediatement sur le site
                 </span>
-                .
+                .<br /><br />
+                <span>Pour sauter une ligne, veuillez mettre 2 espaces.<br /><br /> Pour sauter 2 lignes, veuillez mettre 4 espaces. (etc...)</span>
               </div>
             </div>
           </div>
