@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import Paragraph from "../Components/Paragraph";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
-import { divideContentInThree } from "../utils/utils";
 
 export default function Fondateur() {
   const { data } = useData();
@@ -59,8 +58,6 @@ export default function Fondateur() {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content } = data[langCode].section_5;
 
-  const contentParts = divideContentInThree(content);
-
   return (
     <section
       ref={fondateurRef}
@@ -72,17 +69,7 @@ export default function Fondateur() {
           {title}
         </span>
         <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light text-left text-blanc">
-          {contentParts.map((part, index) => (
-            <React.Fragment key={index}>
-              {part}
-              {index !== contentParts.length - 1 && (
-                <>
-                  <br />
-                  <br />
-                </>
-              )}
-            </React.Fragment>
-          ))}
+          {content}
         </span>
       </Paragraph>
     </section>

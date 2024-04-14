@@ -69,6 +69,11 @@ body {
   }
 }
 
+.preserve-spaces {
+  white-space: pre-wrap;
+}
+
+
 #main::-webkit-scrollbar {
   display: none;
 }

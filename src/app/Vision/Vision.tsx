@@ -2,7 +2,6 @@ import React from "react";
 import Paragraph from "../Components/Paragraph";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
-import { divideContentInThree } from "../utils/utils";
 
 export default function Vision() {
   const { data } = useData();
@@ -24,7 +23,6 @@ export default function Vision() {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content, button, content_after_clicking_button } =
     data[langCode].section_4;
-  const contentParts = divideContentInThree(content_after_clicking_button);
   return (
     <section className="w-full h-full flex justify-center relative items-center gap-4 bg-blanc">
       <Paragraph>
@@ -36,17 +34,7 @@ export default function Vision() {
         </span>
         <span className="text-[12px] sm:text-base">{button}</span>
         <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
-          {contentParts.map((part, index) => (
-            <React.Fragment key={index}>
-              {part}
-              {index !== contentParts.length - 1 && (
-                <>
-                  <br />
-                  <br />
-                </>
-              )}
-            </React.Fragment>
-          ))}
+          {content}
         </span>
       </Paragraph>
     </section>

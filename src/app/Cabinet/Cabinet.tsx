@@ -2,7 +2,7 @@ import React from "react";
 import Paragraph from "../Components/Paragraph";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
-import { divideContentInThree } from "../utils/utils";
+import { formatContent } from "../utils/utils";
 
 export default function Cabinet() {
   const { data } = useData();
@@ -24,7 +24,6 @@ export default function Cabinet() {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content, button, content_after_clicking_button } =
     data[langCode].section_2;
-  const contentParts = divideContentInThree(content_after_clicking_button);
   return (
     <section
       id="Cabinet"
@@ -38,18 +37,8 @@ export default function Cabinet() {
           {content}
         </span>
         <span className="text-[12px] sm:text-base">{button}</span>
-        <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
-          {contentParts.map((part, index) => (
-            <React.Fragment key={index}>
-              {part}
-              {index !== contentParts.length - 1 && (
-                <>
-                  <br />
-                  <br />
-                </>
-              )}
-            </React.Fragment>
-          ))}
+        <span className="preserve-spaces text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
+          {formatContent(content_after_clicking_button)}
         </span>
       </Paragraph>
     </section>

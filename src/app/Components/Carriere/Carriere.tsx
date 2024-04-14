@@ -1,7 +1,6 @@
 "use client";
 
 import { LangueCode, useSection } from "@/app/utils/Contextboard";
-import { divideContentInThree } from "@/app/utils/utils";
 import React, { useEffect } from "react";
 import { useData } from "../../utils/DataContext";
 import Paragraph from "../Paragraph";
@@ -30,7 +29,6 @@ export default function Carriere() {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content } = data[langCode].carreer;
 
-  const contentParts = divideContentInThree(content);
 
   return (
     <div className="relative w-full h-full bg-blanc flex flex-col sm:flex-row items-center justify-center">
@@ -45,17 +43,7 @@ export default function Carriere() {
           className={`
         text-[12px] sm:text-[24px] items-center font-light`}
         >
-          {contentParts.map((part, index) => (
-            <React.Fragment key={index}>
-              {part}
-              {index !== contentParts.length - 1 && (
-                <>
-                  <br />
-                  <br />
-                </>
-              )}
-            </React.Fragment>
-          ))}
+         {content}
         </p>
       </Paragraph>
     </div>

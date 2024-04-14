@@ -1,12 +1,11 @@
 import Paragraph from "../Paragraph";
 import { LangueCode, useSection } from "@/app/utils/Contextboard";
 import { useData } from "@/app/utils/DataContext";
-import { divideContentInThree } from "@/app/utils/utils";
 import React from "react";
 
 export default function Honoraires() {
   const { data } = useData();
-  const { langueCourante, honoraireRef, isMobile } = useSection();
+  const { langueCourante } = useSection();
 
   if (!data) {
     return;
@@ -25,8 +24,6 @@ export default function Honoraires() {
     langCodeMap[langueCourante as LangueCode] || langCodeMap["FR"];
   const { title, content } = data[langCode].section_6;
 
-  const contentParts = divideContentInThree(content);
-
   return (
     <section className="relative w-full h-full flex justify-center items-center gap-4  bg-blanc">
       <div className="w-full justify-center items-center flex sm:-mt-[64px]">
@@ -41,17 +38,7 @@ export default function Honoraires() {
             className={`
         text-[12px] sm:px-0 sm:text-[24px] font-light`}
           >
-            {contentParts.map((part, index) => (
-              <React.Fragment key={index}>
-                {part}
-                {index !== contentParts.length - 1 && (
-                  <>
-                    <br />
-                    <br />
-                  </>
-                )}
-              </React.Fragment>
-            ))}
+           {content}
           </p>
         </Paragraph>
       </div>
