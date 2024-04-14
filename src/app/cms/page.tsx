@@ -194,12 +194,12 @@ const CMS: React.FC = () => {
     <>
       <div className="relative cursor-default flex flex-col items-center justify-center p-6 h-full overflow-hidden bg-gradient-to-b from-black to-gray-900">
         <div
-          className="absolute flex items-center justify-center pr-1 sm:pr-2 bg-blanc rounded-full w-10 h-10 sm:w-20 sm:h-20 top-8 left-4 sm:top-8 sm:left-8"
+          className="absolute flex items-center justify-center pr-1 sm:pr-2 bg-blanc w-10 h-10 sm:w-20 sm:h-20 top-8 left-4 sm:top-8 sm:left-8"
           onClick={() => setGoBack(true)}
         >
           <ReversedArrow />
         </div>
-        <div className="h-[50vh] relative flex flex-col border-1 border border-[#333] shadow-md w-full sm:w-[80%] overflow-y-auto bg-blanc p-4 rounded-xl">
+        <div className="h-[50vh] relative flex flex-col border-1 border border-[#333] shadow-md w-full sm:w-[80%] overflow-y-auto bg-blanc p-4">
           <div className="sm:mt-1 w-full text-center font-bold">
             <h1 className="text-sm sm:text-base">
               Gestion du contenu du site VMDL
@@ -227,10 +227,10 @@ const CMS: React.FC = () => {
           </div>
         </div>
         <button
-          className="cursor-pointer mt-4 sm:mt-8 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+          className="cursor-pointer mt-4 sm:mt-8 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
           onClick={handleSubmit}
         >
-          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 group-hover:bg-opacity-0">
             Appliquer les modifications
           </span>
         </button>
