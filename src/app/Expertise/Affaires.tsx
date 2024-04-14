@@ -154,7 +154,7 @@ export default function Affaires() {
                 return (
                   <div
                     key={video.src}
-                    className={`relative w-full h-full text-4xl ${video.isActive ? 'opacity-100' : 'opacity-0'} transition duration-100 ease-in-out`}
+                    className={`relative w-full h-full text-4xl ${video.isActive ? 'opacity-100' : 'opacity-0'} transition duration-1000 ease-in-out`}
                   >
                     {/* mettre egalement une video dans les deux format soit sur mobile / laptop */}
                     {playBackError && isMobile ? (
@@ -192,10 +192,12 @@ export default function Affaires() {
                       </video>
                     )}
                     <div
-                      className={`${opacities[index] ? 'opacity-100' : 'opacity-0'} delay-[${video.textAppearTime}000ms] ease-in-out transition duration-150 font-light text-[24px] text-white bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
+                      className={`w-full h-full ${opacities[index] ? 'opacity-100' : 'opacity-0'} delay-[${video.textAppearTime}000ms] ease-in-out transition duration-1000 font-light text-[24px] text-white bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
                     >
-                      <p className="text-[20px] sm:text-[30px] uppercase w-full text-left">{title}</p>
-                      <p className="w-full text-justify">{formatContent(content)}</p>
+                      <div>
+                        <p className="text-[20px] sm:text-[30px] uppercase w-full text-left">{title}</p>
+                        <p className="w-full text-justify">{formatContent(content)}</p>
+                      </div>
                     </div>
                     <div
                       className="absolute flex transition duration-100 justify-center items-center left-2 top-[40%] hover:bg-white/80 group bg-white/50 backdrop-blur-sm shadow-2xl z-10 p-2 sm:p-4"
