@@ -30,9 +30,6 @@ const Carriere = dynamic(() => import("./Components/Carriere/Carriere"), {
 const Footer = dynamic(() => import("./Footer/Footer"), { ssr: false });
 const Vision = dynamic(() => import("./Vision/Vision"), { ssr: false });
 const Header = dynamic(() => import("./Components/Header"), { ssr: false });
-// const BackgroundEiffel = dynamic(
-//   () => import("./Components/BackgroundEiffel"),
-//   { ssr: false }}
 const CustomCursor = dynamic(() => import("./Components/Cursor"), {
   ssr: false,
 });

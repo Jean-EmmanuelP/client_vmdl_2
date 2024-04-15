@@ -1,0 +1,8 @@
+# Block all crawlers for /accounts
+User-agent: *
+Disallow: /cms
+Disallow: /admin
+
+# Allow all crawlers
+User-agent: *
+Allow: /
