@@ -498,7 +498,7 @@ export default function Header({ height }: HeaderProps) {
                       className={`${!isVisible ? 'opacity-0' : 'opacity-100'} group overflow-hidden transition duration-700 delay-300 flex items-center justify-center font-medium relative`}
                     >
                       <div
-                        className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 6
+                        className={`absolute bottom-0 w-[105%] bg-white h-[1px] -left-1 group-hover:opacity-100 transition duration-150 ${currentSection === 7
                           ? "-translate-x-0"
                           : "group-hover:-translate-x-0 -translate-x-[100%]"
                           }`}

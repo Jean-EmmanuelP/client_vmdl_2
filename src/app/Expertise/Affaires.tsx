@@ -165,7 +165,7 @@ export default function Affaires() {
                           className="absolute w-full h-full object-cover"
                           layout="fill"
                         />
-                        <div className="absolute p-4 top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white text-sm sm:text-[24px] font-light tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl">
+                        <div className="absolute p-4 w-[70%] top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white text-sm sm:text-[24px] font-light tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl">
                           <p className="text-[20px] sm:text-[30px] uppercase">{title}</p>
                           <p>{formatContent(content)}</p>
                         </div>
@@ -194,7 +194,7 @@ export default function Affaires() {
                     <div
                       className={`w-full h-full ${opacities[index] ? 'opacity-100' : 'opacity-0'} delay-[${video.textAppearTime}000ms] ease-in-out transition duration-1000 font-light text-[24px] text-white bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl p-10 w-fit absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-6 flex-col items-center justify-center`}
                     >
-                      <div>
+                      <div className="h-[60%] w-[70%] flex items-center justify-center sm:gap-8 flex-col">
                         <p className="text-[20px] sm:text-[30px] uppercase w-full text-left">{title}</p>
                         <p className="w-full text-justify">{formatContent(content)}</p>
                       </div>

@@ -35,7 +35,7 @@ export default function Vision() {
         </span>
         <span className="text-[12px] sm:text-base">{button}</span>
         <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
-          {formatContent(content)}
+          {formatContent(content_after_clicking_button)}
         </span>
       </Paragraph>
     </section>
