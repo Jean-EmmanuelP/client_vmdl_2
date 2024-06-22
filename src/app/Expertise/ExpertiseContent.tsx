@@ -227,7 +227,7 @@ export default function ExpertiseContent() {
     );
   } else {
     return (
-      <div className="w-full h-[130vh] bg-blanc relative" ref={expertiseRef}>
+      <div className="w-full h-full bg-blanc relative" ref={expertiseRef}>
         {subExpertise === null && (
           <>
             {/* Titre */}
@@ -241,7 +241,7 @@ export default function ExpertiseContent() {
             </div>
 
             {/* Boîtes cliquables */}
-            <div className="absolute top-[55%] w-[80%] h-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-12 justify-center items-center flex-col">
+            <div className="absolute top-[55%] w-[80%] h-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-12 justify-around py-10 items-center flex-col">
               {[1, 2, 3].map((number) => (
                 <div
                   key={number}
@@ -250,7 +250,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
                     }
-                  w-full h-1/3 relative cursor-pointer`}
+                  w-full h-1/4 relative cursor-pointer`}
                   onClick={() => {
                     const targetContent =
                       number === 0

@@ -74,10 +74,10 @@ export default function Conseil() {
       >
         {isMobile ? (
           <>
-            <div className="absolute w-[70%] top-[30%] sm:top-[12%] text-[20px] sm:text-[30px] uppercase left-1/2 -translate-x-1/2 -translate-y-1/2 sm:title font-light">
+            <div className="text-[20px] uppercase font-light">
               {title}
             </div>
-            <p className="text-justify text-[12px] sm:text-[24px] items-center -mt-[80px] max-w-[790px] font-light">
+            <p className="text-justify text-[12px] max-w-[790px] font-light">
               {formatContent(content)}
             </p>
           </>
@@ -123,7 +123,7 @@ export default function Conseil() {
           </>
         )}
 
-        {isMobile && (
+        {/* {isMobile && (
           <>
             <div
               onClick={() => setShowVideo(!showVideo)}
@@ -147,7 +147,7 @@ export default function Conseil() {
               </video>
             </div>
           </>
-        )}
+        )} */}
       </div>
     );
   } else {

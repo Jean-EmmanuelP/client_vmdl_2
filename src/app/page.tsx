@@ -16,7 +16,9 @@ import { NavigatorWithConnection } from "./utils/interface";
 import Honoraires from "./Components/Honoraires/Honoraires";
 import ReversedArrow from "./assets/svg/reverseArrow";
 
-{/* Importing the component from client */ }
+{
+  /* Importing the component from client */
+}
 const Contact = dynamic(() => import("./Contact/Contact"), { ssr: false });
 const Expertise = dynamic(() => import("./Expertise/Expertise"), {
   ssr: false,
@@ -34,7 +36,9 @@ const CustomCursor = dynamic(() => import("./Components/Cursor"), {
   ssr: false,
 });
 
-{/* used to know if it is a mobile */ }
+{
+  /* used to know if it is a mobile */
+}
 function useMobileDetect() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -55,8 +59,6 @@ function useMobileDetect() {
 
   return isMobile;
 }
-
-
 
 export default function App() {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -125,7 +127,15 @@ export default function App() {
   }, [headerHeight]);
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const keysToPrevent = ["Tab", "PageUp", "PageDown", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"];
+      const keysToPrevent = [
+        "Tab",
+        "PageUp",
+        "PageDown",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown",
+      ];
       if (keysToPrevent.includes(event.code)) {
         event.preventDefault();
       }
@@ -241,13 +251,13 @@ export default function App() {
   const honoraireRef = useRef(null);
   const mainRef = useRef(null);
   const handleScrollSections = (ref: React.RefObject<HTMLDivElement>) => {
-    const mainContainer = document.getElementById('main');
+    const mainContainer = document.getElementById("main");
     if (mainContainer && ref.current) {
       const offsetTop = ref.current.offsetTop - mainContainer.offsetTop;
 
       mainContainer.scrollTo({
         top: offsetTop,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
 
       if (ref.current === homeRef.current) {
@@ -269,7 +279,6 @@ export default function App() {
       }
     }
   };
-
 
   return (
     <DataProvider>
@@ -322,8 +331,19 @@ export default function App() {
             >
               {pageIs === "/" && (
                 <>
-                  <div className={`${currentSection === 0 && 'opacity-0'} transition-all`}>
-                    <div className={`${bgIsBlackFondateur ? 'bg-blanc' : "bg-noir"} ${(subExpertise === 'contentieux' || subExpertise === 'affaires') && 'opacity-50'} overflow-hidden hover:opacity-100 transition duration-500 absolute bottom-[3%] opacity-50 sm:opacity-100 sm:bottom-[5%] left-[10%] sm:left-[5%] w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] border border-blanc/50 shadow-2xl flex items-center justify-center rounded-full z-[2147483646] -translate-x-1/2`}
+                  <div
+                    className={`${
+                      currentSection === 0 && "opacity-0"
+                    } transition-all`}
+                  >
+                    <div
+                      className={`${
+                        bgIsBlackFondateur ? "bg-blanc" : "bg-noir"
+                      } ${
+                        (subExpertise === "contentieux" ||
+                          subExpertise === "affaires") &&
+                        "opacity-50"
+                      } overflow-hidden hover:opacity-100 transition duration-500 absolute bottom-[3%] opacity-50 sm:opacity-100 sm:bottom-[5%] left-[10%] sm:left-[5%] w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] border border-blanc/50 shadow-2xl flex items-center justify-center rounded-full z-[2147483646] -translate-x-1/2`}
                       onMouseEnter={() => {
                         setBgIsBlackFooter(true);
                       }}
@@ -338,34 +358,59 @@ export default function App() {
                           handleScrollSections(homeRef);
                         }}
                       >
-                        <ReversedArrow isWhite={bgIsBlackFondateur ? false : true} />
+                        <ReversedArrow
+                          isWhite={bgIsBlackFondateur ? false : true}
+                        />
                       </div>
-                      <div className="absolute inset-0 bg-cover bg-[url('/images/home/paris.png')] opacity-40">
-                      </div>
+                      <div className="absolute inset-0 bg-cover bg-[url('/images/home/paris.png')] opacity-40"></div>
                     </div>
                   </div>
-                  <div ref={homeRef} className="w-full h-full">
+                  <div
+                    ref={homeRef}
+                    className={`w-full h-[calc(100vh-64px)] sm:h-full`}
+                  >
                     <Home />
                   </div>
-                  <div ref={cabinetRef} className="w-full h-full">
+                  <div
+                    ref={cabinetRef}
+                    className={`w-full h-[calc(100vh-64px)] sm:h-full`}
+                  >
                     <Cabinet />
                   </div>
-                  <div ref={expertiseRef} className="w-full h-[130vh] sm:h-full">
+                  <div
+                    ref={expertiseRef}
+                    className="w-full h-[calc(100vh-64px)] sm:h-full"
+                  >
                     <Expertise />
                   </div>
-                  <div ref={visionRef} className="w-full h-full">
+                  <div
+                    ref={visionRef}
+                    className={`w-full h-[calc(100vh-64px)] sm:h-full`}
+                  >
                     <Vision />
                   </div>
-                  <div ref={fondateurRef} className="w-full h-full">
+                  <div
+                    ref={fondateurRef}
+                    className={`w-full h-[calc(100vh-64px)] sm:h-full`}
+                  >
                     <Fondateur />
                   </div>
-                  <div ref={carriereRef} className="w-full h-full">
+                  <div
+                    ref={carriereRef}
+                    className={`w-full h-[calc(100vh-64px)] sm:h-full`}
+                  >
                     <Carriere />
                   </div>
-                  <div ref={honoraireRef} className="w-full h-full">
+                  <div
+                    ref={honoraireRef}
+                    className={`w-full h-[calc(100vh-64px)] sm:h-full`}
+                  >
                     <Honoraires />
                   </div>
-                  <div ref={contactRef} className="w-full h-full">
+                  <div
+                    ref={contactRef}
+                    className={`w-full h-[calc(100vh-64px)] sm:h-full`}
+                  >
                     <Contact />
                   </div>
                   <div className="h-1/2 w-full">
