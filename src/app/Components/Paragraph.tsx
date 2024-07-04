@@ -25,14 +25,14 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
   const [hasBeenViewed, setHasBeenViewed] = useState(false);
 
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  const contentRef = useRef(null);
-  const scrollTimeout = useRef(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       if (isAutoScrolling && isVisible) {
         const element = contentRef.current;
-        if (element.scrollTop < element.scrollHeight - element.clientHeight) {
+        if (element && element.scrollTop < element.scrollHeight - element.clientHeight) {
           element.scrollTop += 1;
         }
       }
