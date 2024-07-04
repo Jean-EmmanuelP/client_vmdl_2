@@ -61,6 +61,7 @@ function useMobileDetect() {
 }
 
 export default function App() {
+const [isVisible, setIsVisible] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const [currentSection, setCurrentSection] = useState<number>(0);
   const [bgIsBlackFondateur, setBgIsBlackFondateur] = useState(false);
@@ -198,6 +199,9 @@ export default function App() {
 
       const handleWheel = (e: WheelEvent) => {
         e.preventDefault(); // Empêche le comportement de scroll par défaut
+        console.log(`pute`)
+        console.log(`pute`)
+        setIsVisible(false);
         handleScroll(e.deltaY > 0 ? "down" : "up"); // Détermine la direction du scroll
       };
 
@@ -285,6 +289,8 @@ export default function App() {
       <div className="w-full h-full z-10 overflow-hidden font-riviera font-normal">
         <currentSectionContext.Provider
           value={{
+            isVisible,
+            setIsVisible,
             onVideos,
             setOnVideos,
             handleScrollSections,

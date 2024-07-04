@@ -36,6 +36,8 @@ interface currentSectionProps {
   >;
   isMobile: boolean;
   onVideos: boolean;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  isVisible: boolean;
   setOnVideos: React.Dispatch<React.SetStateAction<boolean>>
   currentSection: number;
   menuOpen: boolean;
@@ -82,6 +84,8 @@ const defaultValues: currentSectionProps = {
   setMenuOpen: () => { },
   toggleMenu: () => { },
   goingOut: false,
+  setIsVisible: () => { },
+  isVisible: false,
   setIsGoingOut: () => { },
   bgIsBlackFondateur: false,
   bgIsBlackFooter: false,

@@ -165,7 +165,7 @@ export default function Affaires() {
                           className="absolute w-full h-full object-cover"
                           layout="fill"
                         />
-                        <div className="absolute p-4 w-[70%] top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white text-sm sm:text-[24px] font-light tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl">
+                        <div className="absolute p-6 w-[73%] top-[43%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-center text-white text-sm sm:text-[24px] font-light tracking-wide rounded-md bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl flex gap-3 flex-col">
                           <p className="text-[20px] sm:text-[30px] uppercase">{title}</p>
                           <p>{formatContent(content)}</p>
                         </div>

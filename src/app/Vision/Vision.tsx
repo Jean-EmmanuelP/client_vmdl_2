@@ -6,7 +6,7 @@ import { formatContent } from "../utils/utils";
 
 export default function Vision() {
   const { data } = useData();
-  const { langueCourante } = useSection();
+  const { langueCourante, setIsVisible } = useSection();
   if (!data) {
     return;
   }
@@ -33,7 +33,7 @@ export default function Vision() {
         <span className="text-[12px] sm:text-[24px] sm:content font-light leading-4 sm:leading-[26px]">
           {formatContent(content)}
         </span>
-        <span className="text-[12px] sm:text-base">{button}</span>
+        <span className="text-[12px] sm:text-base" onClick={() => {setIsVisible(true)}}>{button}</span>
         <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
           {formatContent(content_after_clicking_button)}
         </span>

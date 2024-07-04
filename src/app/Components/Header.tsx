@@ -22,7 +22,6 @@ export default function Header({ height }: HeaderProps) {
     honoraireRef,
     contactRef,
     visionRef,
-    setBgIsBlackFooter,
     handleScrollSections,
   } = useSection();
   const {
@@ -201,7 +200,7 @@ export default function Header({ height }: HeaderProps) {
               </div>
               <div
                 ref={optionRef}
-                className={`absolute top-[60%] z-[2147483647] mt-3 ${isOpen ? "block" : "opacity-0 pointer-events-none "
+                className={`z-100 absolute top-[60%] z-[2147483647] mt-3 ${isOpen ? "block" : "opacity-0 pointer-events-none "
                   } `}
                 onMouseEnter={() => setIsOpen(true)}
               >
