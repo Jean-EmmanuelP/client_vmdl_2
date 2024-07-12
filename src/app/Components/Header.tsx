@@ -187,20 +187,20 @@ export default function Header({ height }: HeaderProps) {
           </div>
           <div className={`${!isVisible ? 'opacity-0 sm:translate-y-7 translate-y-3' : 'opacity-100 translate-y-0'} z-[30] transition duration-700 delay-1000 absolute right-0 w-[17%] sm:w-[6%] sm:-right-[9%] h-full flex items-center justify-center transparent text-xs sm:text-sm`}>
             <div
-              className={`flex flex-col text-center z-[2147483647] items-center justify-center w-fit h-fit overflow-hidden`}
+              className={`flex flex-col text-center items-center justify-center w-fit h-fit overflow-hidden`}
               onMouseEnter={() => setIsOpen(true)}
               onMouseLeave={() => setIsOpen(false)}
             >
               <div
                 ref={selectRef}
-                className={`text-noir bg-blanc z-[2147483647] shadow-xl h-7 w-7 sm:h-10 sm:w-10 flex items-center justify-center`}
+                className={`text-noir bg-blanc shadow-xl h-7 w-7 sm:h-10 sm:w-10 flex items-center justify-center`}
                 onMouseEnter={() => setIsOpen(true)}
               >
                 {langueCourante}
               </div>
               <div
                 ref={optionRef}
-                className={`z-100 absolute top-[60%] z-[2147483647] mt-3 ${isOpen ? "block" : "opacity-0 pointer-events-none "
+                className={`absolute top-[60%] mt-3 ${isOpen ? "block" : "opacity-0 pointer-events-none "
                   } `}
                 onMouseEnter={() => setIsOpen(true)}
               >
@@ -208,7 +208,7 @@ export default function Header({ height }: HeaderProps) {
                   <div
                     key={option.value}
                     className={`${option.value === langueCourante && "hidden"
-                      } mt-3 bg-blanc text-noir hover:scale-110 shadow-xl z-[2147483647] h-7 w-7 sm:h-10  sm:w-10 flex items-center justify-center transition duration-300 group-hover:translate-y-0 ${isOpen
+                      } mt-3 bg-blanc text-noir hover:scale-110 shadow-xl h-7 w-7 sm:h-10  sm:w-10 flex items-center justify-center transition duration-300 group-hover:translate-y-0 ${isOpen
                         ? "opacity-100 translate-y-0"
                         : "group-hover:opacity-100 opacity-0 -translate-y-2 delay-0"
                       }`}
