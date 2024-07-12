@@ -34,7 +34,7 @@ export default function Vision() {
           {formatContent(content)}
         </span>
         <span className="text-[12px] sm:text-base" onClick={() => {setIsVisible(true)}}>{button}</span>
-        <span className="text-[12px] sm:text-[24px] sm:content leading-[26px] font-light">
+        <span className="text-[12px] sm:text-[16px] sm:content leading-[26px] font-light">
           {formatContent(content_after_clicking_button)}
         </span>
       </Paragraph>

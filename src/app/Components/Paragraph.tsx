@@ -124,7 +124,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
       </button>
       <div
         ref={paragraphRef}
-        className={`w-[70%] h-full transition-all flex flex-col justify-center items-center relative ${
+        className={`${currentSection === 3 ? 'w-[80%]' : 'w-[70%]'} h-full transition-all flex flex-col justify-center items-center relative ${
           currentSection === 7
             ? "gap-0 delay-500 duration-500"
             : `${
@@ -174,7 +174,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
         <div
           className={`p-4 overflow-y-auto ${
             toggle ? "opacity-100" : "opacity-0 translate-y-20 duration-200"
-          } text-justify max-h-[50vh] sm:max-h-[70vh] transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 w-full -translate-y-1/2`}
+          } text-justify max-h-[50vh] sm:max-h-[80vh] transition duration-1000 absolute top-1/2 left-1/2 -translate-x-1/2 w-full -translate-y-1/2`}
           onMouseEnter={handleUserInteraction}
           onMouseLeave={handleUserInteraction}
           onTouchStart={handleUserInteraction}
