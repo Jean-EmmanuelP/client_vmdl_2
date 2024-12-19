@@ -122,7 +122,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
                     }
-                    relative w-[30%] sm:h-[80%] overflow-hidden group`}
+                    relative w-[49%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("conseil");
                   }}
@@ -153,7 +153,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-300 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-300 ease-in-out"
                     }
-                  relative w-[30%] sm:h-[80%] overflow-hidden group`}
+                  relative w-[49%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("contentieux");
                   }}
@@ -178,7 +178,7 @@ export default function ExpertiseContent() {
                   </div>
                 </div>
                 {/* third Box */}
-                <div
+                {/* <div
                   className={`
                   ${isVisible
                       ? "opacity-100 translate-y-0 transition duration-700 delay-500 ease-in-out"
@@ -207,7 +207,7 @@ export default function ExpertiseContent() {
                       {box_3_title}
                     </h1>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div id="cursor-root"></div>
@@ -242,7 +242,7 @@ export default function ExpertiseContent() {
 
             {/* Boîtes cliquables */}
             <div className="absolute top-[55%] w-[80%] h-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-12 justify-around py-10 items-center flex-col">
-              {[1, 2, 3].map((number) => (
+              {[1, 2].map((number) => (
                 <div
                   key={number}
                   className={`
@@ -250,7 +250,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
                     }
-                  w-full h-1/4 relative cursor-pointer`}
+                  w-full h-1/2 relative cursor-pointer`}
                   onClick={() => {
                     const targetContent =
                       number === 0
