@@ -250,7 +250,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
                     }
-                  w-full h-1/2 relative cursor-pointer`}
+                  w-[70%] h-1/2 relative cursor-pointer`}
                   onClick={() => {
                     const targetContent =
                       number === 0
