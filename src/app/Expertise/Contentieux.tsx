@@ -72,7 +72,7 @@ export default function Contentieux() {
           }`}
       >
         <div
-          className={`w-[80%] sm:w-full sm:h-full ${textHere ? 'opacity-100' : `${!playBackError && 'opacity-0'}`} transition duration-1000 ease-in-out absolute p-2 z-[2] sm:p-10 top-1/2 left-1/2 sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-justify text-white bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100/20 shadow-2xl font-light text-[24px]`}
+          className={`w-[80%] sm:w-full sm:h-full ${textHere ? 'opacity-100' : `${!playBackError && 'opacity-0'}`} transition duration-1000 ease-in-out absolute p-2 z-[2] sm:p-10 top-1/2 left-1/2 sm:top-[47%] sm:left-[50%] -translate-y-1/2 -translate-x-1/2 flex flex-col gap-2 justify-center items-center text-justify text-black bg-white bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-100 border border-gray-100/20 shadow-2xl font-light text-[24px]`}
         >
           <div className="p-4 sm:w-[70%] h-fit text-sm sm:text-base">
             {formatContent(content)}

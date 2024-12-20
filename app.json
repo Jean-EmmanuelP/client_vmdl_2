@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "83bcc7e1-5cc3-4f7a-ac55-7b257f131963"
+      }
+    },
+    "android": {
+      "package": "com.kaizoku92.next_vmdl"
+    }
+  }
+}
