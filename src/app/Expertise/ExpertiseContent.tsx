@@ -113,7 +113,7 @@ export default function ExpertiseContent() {
                 {title}
               </div>
               <div
-                className={`flex justify-between items-center w-[70%] h-[80%]`}
+                className={`flex justify-center space-x-[10vw] items-center w-[70%] h-[80%]`}
               >
                 {/* first Box */}
                 <div
@@ -122,7 +122,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
                     }
-                    relative aspect-square max-h-[500px] sm:h-[65%] overflow-hidden group`}
+                    relative aspect-video w-[35%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("conseil");
                   }}
@@ -153,7 +153,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-300 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-300 ease-in-out"
                     }
-                  relative aspect-square max-h-[500px] sm:h-[65%] overflow-hidden group`}
+                  relative aspect-video w-[35%] sm:h-[80%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("contentieux");
                   }}
