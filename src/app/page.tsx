@@ -15,7 +15,6 @@ import { DataProvider } from "./utils/DataContext";
 import { NavigatorWithConnection } from "./utils/interface";
 import Honoraires from "./Components/Honoraires/Honoraires";
 import ReversedArrow from "./assets/svg/reverseArrow";
-import ChatBot from "./ChatBot/ChatBot";
 
 {
   /* Importing the component from client */
