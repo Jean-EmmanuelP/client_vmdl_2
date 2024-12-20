@@ -122,7 +122,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-100 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-100 ease-in-out"
                     }
-                    relative w-[49%] sm:h-[80%] overflow-hidden group`}
+                    relative aspect-square max-h-[500px] sm:h-[65%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("conseil");
                   }}
@@ -153,7 +153,7 @@ export default function ExpertiseContent() {
                       ? "opacity-100 translate-y-0 transition duration-700 delay-300 ease-in-out"
                       : "opacity-0 translate-y-20 transition duration-700 delay-300 ease-in-out"
                     }
-                  relative w-[49%] sm:h-[80%] overflow-hidden group`}
+                  relative aspect-square max-h-[500px] sm:h-[65%] overflow-hidden group`}
                   onMouseEnter={() => {
                     setIsHoveringExpertiseButton("contentieux");
                   }}
