@@ -124,7 +124,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
       </button>
       <div
         ref={paragraphRef}
-        className={`${currentSection === 3 ? 'w-[80%]' : 'w-[70%]'} h-full transition-all flex flex-col justify-center items-center relative ${
+        className={`w-[70%] h-full transition-all flex flex-col justify-center items-center relative ${
           currentSection === 7
             ? "gap-0 delay-500 duration-500"
             : `${

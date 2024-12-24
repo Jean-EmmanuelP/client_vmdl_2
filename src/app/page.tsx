@@ -6,6 +6,7 @@ import Cabinet from "./Cabinet/Cabinet";
 import Legals from "./Components/Legals/Legals";
 import Home from "./Home/Home";
 import BackgroundEiffel from "./Components/BackgroundEiffel";
+import Chatbot from "./Components/Chatbot/Chatbot";
 import {
   LangueCode,
   currentSectionContext,
@@ -329,6 +330,7 @@ const [isVisible, setIsVisible] = useState(false);
           <CustomCursor />
           <expertiseContext.Provider value={{ subExpertise, setSubExpertise }}>
             <Header height={headerHeight} />
+            <Chatbot />
             <div
               id="main"
               ref={mainRef}

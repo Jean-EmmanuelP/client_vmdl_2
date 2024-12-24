@@ -24,7 +24,7 @@ export default function Contentieux() {
     }
     const handleTimeUpdate = () => {
       videoElement && console.log(`this is the currentime of the video: `, videoElement.currentTime);
-      if (videoElement && videoElement.currentTime >= 7) {
+      if (videoElement && videoElement.currentTime >= 9) {
         setTextHere(true);
         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
       }
