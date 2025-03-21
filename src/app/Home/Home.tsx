@@ -31,7 +31,11 @@ export default function Home() {
       <Paragraph
         homeSection={true}
       >
-        <span className="text-blanc">{title}</span>
+        <span className="text-blanc">
+          <div className="w-full sm:w-1/4 sm:h-1/3 sm:-translate-y-[10vh] sm:translate-x-[26.5vw]">
+            <img src="/images/vmdl-logo.png" />
+          </div>
+        </span>
         <span className="text-blanc">{subtitle}</span>
         <span>{contact_button}</span>
       </Paragraph>

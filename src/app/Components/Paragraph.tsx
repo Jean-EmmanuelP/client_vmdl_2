@@ -32,7 +32,10 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
     const handleScroll = () => {
       if (isAutoScrolling && isVisible) {
         const element = contentRef.current;
-        if (element && element.scrollTop < element.scrollHeight - element.clientHeight) {
+        if (
+          element &&
+          element.scrollTop < element.scrollHeight - element.clientHeight
+        ) {
           element.scrollTop += 1;
         }
       }
@@ -128,7 +131,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
           currentSection === 7
             ? "gap-0 delay-500 duration-500"
             : `${
-                homeSection ? "gap-4 sm:gap-2" : "gap-6 sm:gap-16"
+                homeSection ? "gap-4 sm:gap-2 translate-y-[7vh]" : "gap-6 sm:gap-16"
               } delay-500 duration-500`
         } `}
       >
@@ -154,7 +157,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
         </button>
         <p
           className={`h-fit relative ${
-            homeSection && "uppercase text-[22px] font-light"
+            homeSection && "hidden uppercase text-[22px] font-light"
           }
             ${
               toggle
@@ -185,7 +188,7 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
         </div>
         <div
           className={`w-full flex ${
-            homeSection ? "justify-center" : "justify-end"
+            homeSection ? "translate-y-2 justify-center" : "justify-end"
           }`}
         >
           {children.length > 2 && !toggle && (
