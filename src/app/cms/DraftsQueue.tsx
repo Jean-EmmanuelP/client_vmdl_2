@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ArticleBody from "../articles/[slug]/ArticleBody";
+import MarkdownEditor from "./MarkdownEditor";
 
 export interface DraftArticle {
   slug: string;
@@ -260,28 +260,9 @@ function DraftEditor({
 
       <div>
         <label className="block text-xs uppercase tracking-wider text-noir/60 mb-1">
-          Contenu (Markdown)
+          Contenu de l&apos;article
         </label>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            rows={24}
-            className="w-full border border-noir/20 px-3 py-2 text-sm focus:outline-none focus:border-noir resize-y font-mono leading-relaxed"
-          />
-          <div className="border border-noir/15 bg-blanc px-5 py-4 overflow-y-auto max-h-[600px] font-riviera">
-            <p className="uppercase text-[10px] tracking-[0.3em] text-noir/40 mb-3 pb-2 border-b border-noir/10">
-              Aperçu — comme sur le site
-            </p>
-            {content.trim() ? (
-              <ArticleBody content={content} />
-            ) : (
-              <p className="text-sm text-noir/40 italic">
-                L&apos;aperçu apparaîtra ici dès que le contenu est rempli.
-              </p>
-            )}
-          </div>
-        </div>
+        <MarkdownEditor value={content} onChange={setContent} rows={24} />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
