@@ -6,7 +6,7 @@ import { pickTopicForDate, TOPICS, Topic } from "./topics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 300;
+export const maxDuration = 60;
 
 interface DraftArticle {
   slug: string;
