@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import ArticleBody from "../articles/[slug]/ArticleBody";
 
 export interface Article {
   slug: string;
@@ -285,17 +286,31 @@ export default function ArticlesManager({ articles, onChange }: Props) {
 
           <Field
             label="Contenu de l'article"
-            help="Mise en forme : ## Titre, ### Sous-titre, **gras**, *italique*, - listes, [lien](https://...)"
+            help="Mise en forme : ## Titre, ### Sous-titre, **gras**, *italique*, - listes, [lien](https://...). Aperçu en direct à droite."
           >
-            <textarea
-              value={draft.content}
-              onChange={(e) =>
-                setDraft((d) => ({ ...d, content: e.target.value }))
-              }
-              rows={18}
-              className="w-full border border-noir/20 px-3 py-2 text-sm focus:outline-none focus:border-noir resize-y font-mono"
-              placeholder={`## Introduction\n\nVotre paragraphe ici.\n\n## Développement\n\nUn autre paragraphe avec un mot **important**.\n\n- Premier point\n- Deuxième point`}
-            />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <textarea
+                value={draft.content}
+                onChange={(e) =>
+                  setDraft((d) => ({ ...d, content: e.target.value }))
+                }
+                rows={22}
+                className="w-full border border-noir/20 px-3 py-2 text-sm focus:outline-none focus:border-noir resize-y font-mono leading-relaxed"
+                placeholder={`## Introduction\n\nVotre paragraphe ici.\n\n## Développement\n\nUn autre paragraphe avec un mot **important**.\n\n- Premier point\n- Deuxième point`}
+              />
+              <div className="border border-noir/15 bg-blanc px-5 py-4 overflow-y-auto max-h-[600px] font-riviera">
+                <p className="uppercase text-[10px] tracking-[0.3em] text-noir/40 mb-3 pb-2 border-b border-noir/10">
+                  Aperçu — comme sur le site
+                </p>
+                {draft.content.trim() ? (
+                  <ArticleBody content={draft.content} />
+                ) : (
+                  <p className="text-sm text-noir/40 italic">
+                    L&apos;aperçu apparaîtra ici dès que vous commencerez à écrire.
+                  </p>
+                )}
+              </div>
+            </div>
           </Field>
 
           <Field
