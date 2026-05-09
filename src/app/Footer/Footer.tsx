@@ -116,7 +116,7 @@ export default function Footer() {
         id="footer-content"
         className="w-full sm:w-4/5 h-[40%] gap-2 sm:gap-4 flex flex-col justify-center items-center mb-10 text-[14px] sm:text-[16px] sm:content leading-[22px] font-light"
       >
-        <div className="hidden sm:flex px-4 w-full text-left text-blanc">
+        <div className="hidden sm:flex px-4 w-full text-left text-blanc gap-6">
           <button
             onClick={() => {
               setBgIsBlackFooter(false);
@@ -126,6 +126,13 @@ export default function Footer() {
           >
             {legals}
           </button>
+          <a
+            href="/articles"
+            className="hover:text-gray-300 transition"
+            data-clickable={true}
+          >
+            Articles
+          </a>
         </div>
         <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-center sm:justify-between items-center p-4 pt-5 sm:py-10">
           <div
@@ -222,7 +229,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex w-full px-4 mt-4 justify-between gap-4 sm:hidden">
-          <div className="">
+          <div className="flex gap-4">
             <button
               onClick={() => {
                 setBgIsBlackFooter(false);
@@ -232,6 +239,9 @@ export default function Footer() {
             >
               {legals}
             </button>
+            <a href="/articles" className="hover:text-gray-300 transition">
+              Articles
+            </a>
           </div>
           <div className="flex gap-4">
             <a

@@ -1,14 +1,41 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Arrow from "../assets/svg/Arrow";
 import { useEffect, useState } from "react";
 import { LangueCode, useSection } from "../utils/Contextboard";
 import { useData } from "../utils/DataContext";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FormikHelpers } from "formik";
 import * as Yup from "yup";
+
+type Status = "idle" | "sending" | "success" | "error";
+
+const localized = {
+  fr: {
+    sending: "Envoi en cours…",
+    successTitle: "Message reçu",
+    successBody:
+      "Nous accusons bonne réception de votre message et reviendrons vers vous dans les plus brefs délais.",
+    errorTitle: "Échec de l'envoi",
+    errorBody:
+      "Une erreur est survenue. Vous pouvez réessayer ou nous écrire directement à cabinet@vmdl.ai.",
+    closeAction: "Fermer",
+    retryAction: "Réessayer",
+  },
+  en: {
+    sending: "Sending…",
+    successTitle: "Message received",
+    successBody:
+      "We acknowledge receipt of your message and will get back to you shortly.",
+    errorTitle: "Sending failed",
+    errorBody:
+      "An error occurred. Please try again or write to us directly at cabinet@vmdl.ai.",
+    closeAction: "Close",
+    retryAction: "Try again",
+  },
+};
 
 export default function FormContact() {
   const { data } = useData();
-  const { langueCourante } = useSection();
+  const { langueCourante, currentSection } = useSection();
   const langCodeMap: { [key in LangueCode]: string } = {
     FR: "fr",
     EN: "en",
@@ -24,14 +51,25 @@ export default function FormContact() {
   const { nom_prenom, Numero_de_telephone, Courriel, Message, Envoyer } =
     data[langCode].contact;
   const [isHovering, setIsHovering] = useState<boolean>(false);
-  const [wasSended, setWasSended] = useState<boolean>(false);
-  const { currentSection } = useSection();
+  const [status, setStatus] = useState<Status>("idle");
+
+  const i18n =
+    langCode === "en"
+      ? localized.en
+      : localized.fr;
 
   useEffect(() => {
-    if (currentSection !== 5 && currentSection !== 6) {
-      setWasSended(false);
+    if (currentSection !== 5 && currentSection !== 6 && currentSection !== 7) {
+      setStatus("idle");
     }
   }, [currentSection]);
+
+  // Auto-close success modal after a few seconds.
+  useEffect(() => {
+    if (status !== "success") return;
+    const t = setTimeout(() => setStatus("idle"), 5000);
+    return () => clearTimeout(t);
+  }, [status]);
 
   const validationMessages = {
     fr: {
@@ -86,69 +124,56 @@ export default function FormContact() {
       .required(messages.required),
     message: Yup.string().required(messages.required),
   });
-  const handleSubmit = async (values: {
+
+  type Values = {
     nom: string;
     email: string;
     telephone: string;
     message: string;
-  }) => {
-    const data = {
-      nom: values.nom,
-      email: values.email,
-      telephone: values.telephone,
-      message: values.message,
-    };
+  };
 
-    const JSONdata = JSON.stringify(data);
+  const handleSubmit = async (
+    values: Values,
+    helpers: FormikHelpers<Values>
+  ) => {
+    // Show modal IMMEDIATELY, even before the network request.
+    setStatus("sending");
 
-    const endpoint = "/api/send-mail";
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSONdata,
-    };
-
-    const response = await fetch(endpoint, options);
-    if (response.ok) {
-      setWasSended(true);
-      setTimeout(() => {
-        setWasSended(false);
-      }, 10000);
-    } else {
-      alert(
-        "Erreur lors de l'envoi de l'e-mail. Veuillez réessayer plus tard."
-      );
+    try {
+      const response = await fetch("/api/send-mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const json = (await response.json().catch(() => ({}))) as {
+        ok?: boolean;
+      };
+      if (json.ok === false) {
+        throw new Error("API returned ok=false");
+      }
+      setStatus("success");
+      helpers.resetForm();
+    } catch (err) {
+      console.error("[contact-form] failed:", err);
+      setStatus("error");
+    } finally {
+      helpers.setSubmitting(false);
     }
   };
+
   return (
     <>
-      {wasSended && (
-        <div className="fixed bg-white py-[20%] px-[2%] w-1/2 h-1/2 border shadow-2xl rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-1 text-2xl z-10">
-          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-around">
-            <div className="text-justify">
-              Nous accusons bonne reception de votre message.
-              <br />
-              <br />
-              Nous vous recontacterons dans les plus brefs delais
-              <br />
-              <br />A bientot !
-            </div>
-          </div>
-          <div className="absolute bottom-4 right-4 w-12 h-12">
-            <img src="/favicon/vmdl.ico" alt="" />
-          </div>
-        </div>
-      )}
-      <Formik
+      <ContactModal status={status} i18n={i18n} onClose={() => setStatus("idle")} />
+
+      <Formik<Values>
         initialValues={{ nom: "", email: "", telephone: "", message: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          handleSubmit(values);
-        }}
+        onSubmit={handleSubmit}
       >
-        {({ handleSubmit, touched, errors }) => (
+        {({ handleSubmit, touched, errors, isSubmitting }) => (
           <Form
             className="flex flex-col gap-1 sm:gap-2 text-[14px] sm:text-[20px] sm:content leading-[26px] font-light"
             onSubmit={handleSubmit}
@@ -227,6 +252,7 @@ export default function FormContact() {
               <motion.button
                 data-clickable="true"
                 key={`contact-button`}
+                disabled={isSubmitting || status === "sending"}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
                 initial={{ y: "40px", opacity: 0, backgroundColor: "#FFFFFF" }}
@@ -241,7 +267,7 @@ export default function FormContact() {
                   duration: 0.5,
                 }}
                 type="submit"
-                className="text-[#181a1b] shadow-sm p-2 sm:p-4 w-[280px] text-[14px] tracking-wide sm:text-sm uppercase flex justify-center items-center"
+                className="text-[#181a1b] shadow-sm p-2 sm:p-4 w-[280px] text-[14px] tracking-wide sm:text-sm uppercase flex justify-center items-center disabled:opacity-50"
               >
                 <motion.span
                   animate={{ x: isHovering ? "0" : "8px" }}
@@ -265,5 +291,143 @@ export default function FormContact() {
         )}
       </Formik>
     </>
+  );
+}
+
+function ContactModal({
+  status,
+  i18n,
+  onClose,
+}: {
+  status: Status;
+  i18n: typeof localized.fr;
+  onClose: () => void;
+}) {
+  const open = status !== "idle";
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          key="contact-modal-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed inset-0 z-[2147483647] flex items-center justify-center bg-noir/50 backdrop-blur-sm"
+          onClick={status !== "sending" ? onClose : undefined}
+        >
+          <motion.div
+            key="contact-modal-card"
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.98 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="relative bg-blanc text-noir font-riviera w-[88%] max-w-[480px] px-8 py-10 sm:px-12 sm:py-14 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-center mb-6">
+              <ModalIcon status={status} />
+            </div>
+
+            {status === "sending" && (
+              <p className="text-center uppercase text-[11px] tracking-[0.3em] text-noir/60">
+                {i18n.sending}
+              </p>
+            )}
+
+            {status === "success" && (
+              <>
+                <h3 className="text-center uppercase text-[22px] sm:text-[26px] font-light tracking-[0.05em] mb-4">
+                  {i18n.successTitle}
+                </h3>
+                <p className="text-center text-[14px] sm:text-[15px] leading-[1.65] font-light text-noir/75">
+                  {i18n.successBody}
+                </p>
+                <div className="mt-8 flex justify-center">
+                  <button
+                    onClick={onClose}
+                    data-clickable="true"
+                    className="uppercase text-[11px] tracking-[0.3em] border border-noir/30 px-6 py-3 hover:bg-noir hover:text-blanc transition"
+                  >
+                    {i18n.closeAction}
+                  </button>
+                </div>
+              </>
+            )}
+
+            {status === "error" && (
+              <>
+                <h3 className="text-center uppercase text-[22px] sm:text-[26px] font-light tracking-[0.05em] mb-4">
+                  {i18n.errorTitle}
+                </h3>
+                <p className="text-center text-[14px] sm:text-[15px] leading-[1.65] font-light text-noir/75">
+                  {i18n.errorBody}
+                </p>
+                <div className="mt-8 flex justify-center gap-3">
+                  <button
+                    onClick={onClose}
+                    data-clickable="true"
+                    className="uppercase text-[11px] tracking-[0.3em] border border-noir/30 px-6 py-3 hover:bg-noir hover:text-blanc transition"
+                  >
+                    {i18n.closeAction}
+                  </button>
+                  <a
+                    href="mailto:cabinet@vmdl.ai"
+                    data-clickable="true"
+                    className="uppercase text-[11px] tracking-[0.3em] bg-noir text-blanc px-6 py-3 hover:opacity-80 transition"
+                  >
+                    cabinet@vmdl.ai
+                  </a>
+                </div>
+              </>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function ModalIcon({ status }: { status: Status }) {
+  if (status === "sending") {
+    return (
+      <div className="w-12 h-12 rounded-full border border-noir/15 border-t-noir animate-spin" />
+    );
+  }
+  if (status === "success") {
+    return (
+      <svg
+        width="48"
+        height="48"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="24" cy="24" r="23" stroke="currentColor" strokeWidth="1" opacity="0.2" />
+        <motion.path
+          d="M14 24.5L21 31.5L34 18"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="square"
+          fill="none"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        />
+      </svg>
+    );
+  }
+  return (
+    <svg
+      width="48"
+      height="48"
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="24" cy="24" r="23" stroke="currentColor" strokeWidth="1" opacity="0.2" />
+      <line x1="16" y1="16" x2="32" y2="32" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="32" y1="16" x2="16" y2="32" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
   );
 }

@@ -27,10 +27,14 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const userInteractedRef = useRef(false);
+  const edgeHitRef = useRef<{ direction: "up" | "down"; at: number } | null>(
+    null
+  );
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isAutoScrolling && isVisible) {
+      if (isAutoScrolling && isVisible && !userInteractedRef.current) {
         const element = contentRef.current;
         if (
           element &&
@@ -44,6 +48,77 @@ export default function Paragraph({ children, homeSection }: ParagraphProps) {
     const interval = setInterval(handleScroll, 20);
     return () => clearInterval(interval);
   }, [isAutoScrolling, isVisible]);
+
+  // Garde la molette à l'intérieur du texte étendu tant que le contenu peut
+  // scroller dans cette direction. Une fois aux bords, on laisse l'événement
+  // remonter pour permettre le changement de section.
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el || !toggle) {
+      edgeHitRef.current = null;
+      return;
+    }
+
+    const onWheel = (e: WheelEvent) => {
+      const atTop = el.scrollTop <= 0;
+      const atBottom =
+        el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+      const goingDown = e.deltaY > 0;
+      const goingUp = e.deltaY < 0;
+
+      // Premier wheel : on tue l'auto-scroll définitivement.
+      if (!userInteractedRef.current) {
+        userInteractedRef.current = true;
+        setIsAutoScrolling(false);
+        if (scrollTimeout.current) {
+          clearTimeout(scrollTimeout.current);
+          scrollTimeout.current = null;
+        }
+      }
+
+      const canScrollInside =
+        (goingDown && !atBottom) || (goingUp && !atTop);
+
+      if (canScrollInside) {
+        // On scroll le contenu interne, on bloque la propagation au handler
+        // de page qui changerait sinon de section.
+        e.stopPropagation();
+        edgeHitRef.current = null;
+        return;
+      }
+
+      // On est au bord du contenu : on demande à l'utilisateur de "réinsister"
+      // dans la même direction avant de changer de section. Ça évite de partir
+      // en transition par inertie/momentum trackpad sur le dernier scroll.
+      const direction: "up" | "down" = goingDown ? "down" : "up";
+      const now = Date.now();
+      const prev = edgeHitRef.current;
+      const sameDirectionRecent =
+        prev && prev.direction === direction && now - prev.at < 600;
+
+      if (!sameDirectionRecent) {
+        edgeHitRef.current = { direction, at: now };
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      }
+      // Sinon : on laisse bubbler vers #main qui changera de section.
+      edgeHitRef.current = null;
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [toggle]);
+
+  // Quand on referme avec la flèche : on reset l'interaction et le scroll.
+  useEffect(() => {
+    if (!toggle) {
+      userInteractedRef.current = false;
+      edgeHitRef.current = null;
+      const el = contentRef.current;
+      if (el) el.scrollTop = 0;
+    }
+  }, [toggle]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

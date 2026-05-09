@@ -58,8 +58,6 @@ export default function Header({ height }: HeaderProps) {
     const isLangueCode = (lang: any): lang is LangueCode =>
       supportedLangs.includes(lang);
     const appLang = isLangueCode(browserLang) ? browserLang : "EN";
-    console.log(`this is the appLangue`, appLang);
-    console.log(`this is the langueCourante`, langueCourante);
     setLangueCourante(appLang);
   }, []);
   // langue code ici utilise deux fois

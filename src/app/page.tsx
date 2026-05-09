@@ -198,11 +198,9 @@ const [isVisible, setIsVisible] = useState(false);
       };
 
       const handleWheel = (e: WheelEvent) => {
-        e.preventDefault(); // Empêche le comportement de scroll par défaut
-        console.log(`pute`)
-        console.log(`pute`)
+        e.preventDefault();
         setIsVisible(false);
-        handleScroll(e.deltaY > 0 ? "down" : "up"); // Détermine la direction du scroll
+        handleScroll(e.deltaY > 0 ? "down" : "up");
       };
 
       const main = document.getElementById("main");
