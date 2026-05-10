@@ -7,6 +7,7 @@ import {
   formatDate,
   getAllArticles,
   getArticleBySlug,
+  getRelatedArticles,
   readingTime,
 } from "../../utils/articles";
 import ArticlesHeader from "../ArticlesHeader";
@@ -54,30 +55,80 @@ export function generateMetadata({
 }
 
 function articleJsonLd(article: Article) {
+  const wordCount = article.content
+    .replace(/[#>*_\-\[\]()]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+
+  const url = `https://www.vmdl.ai/articles/${article.slug}`;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
+    name: article.title,
     description: article.metaDescription || article.excerpt,
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
+    inLanguage: "fr-FR",
+    wordCount,
+    articleSection: article.tags?.[0] || "Droit",
+    keywords: article.tags?.join(", "),
+    image: [`https://www.vmdl.ai${url}/opengraph-image`],
+    url,
     author: {
       "@type": "Person",
       name: article.author || "Vincent Machado Da Luz",
+      jobTitle: "Avocat à la Cour",
+      worksFor: {
+        "@type": "LegalService",
+        name: "VMDL - Law firm & Cover group",
+        url: "https://www.vmdl.ai",
+      },
+      url: "https://www.vmdl.ai",
     },
     publisher: {
       "@type": "LegalService",
-      name: "VMDL - Law firm & Cover group",
+      name: "VMDL",
+      alternateName: "VMDL - Law firm & Cover group",
       logo: {
         "@type": "ImageObject",
         url: "https://www.vmdl.ai/images/vmdl-logo.png",
+        width: 512,
+        height: 512,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://www.vmdl.ai/articles/${article.slug}`,
+      "@id": url,
     },
-    keywords: article.tags?.join(", "),
+    isAccessibleForFree: true,
+  };
+}
+
+function breadcrumbJsonLd(article: Article) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "VMDL",
+        item: "https://www.vmdl.ai",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Articles",
+        item: "https://www.vmdl.ai/articles",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: `https://www.vmdl.ai/articles/${article.slug}`,
+      },
+    ],
   };
 }
 
@@ -103,6 +154,13 @@ export default function ArticlePage({
         strategy="beforeInteractive"
       >
         {JSON.stringify(articleJsonLd(article))}
+      </Script>
+      <Script
+        id={`ld-breadcrumb-${article.slug}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+      >
+        {JSON.stringify(breadcrumbJsonLd(article))}
       </Script>
 
       <article className="max-w-3xl mx-auto px-6 sm:px-10 pt-28 sm:pt-40 pb-20">
@@ -157,6 +215,55 @@ export default function ArticlePage({
           </footer>
         )}
       </article>
+
+      {(() => {
+        const related = getRelatedArticles(article.slug, 3);
+        if (related.length === 0) return null;
+        return (
+          <aside
+            aria-labelledby="related-heading"
+            className="max-w-3xl mx-auto px-6 sm:px-10 pb-20"
+          >
+            <div className="border-t border-noir/15 pt-10">
+              <h2
+                id="related-heading"
+                className="uppercase text-[18px] sm:text-[22px] font-light tracking-[0.05em] mb-8"
+              >
+                Articles liés
+              </h2>
+              <ul className="flex flex-col">
+                {related.map((r, i) => (
+                  <li
+                    key={r.slug}
+                    className={`group ${i !== 0 ? "border-t border-noir/10" : ""}`}
+                  >
+                    <Link
+                      href={`/articles/${r.slug}`}
+                      className="flex flex-col sm:flex-row sm:items-baseline sm:gap-8 py-6 transition-colors duration-300 hover:bg-noir/[0.02] -mx-4 px-4"
+                    >
+                      <div className="sm:w-32 flex-shrink-0 mb-2 sm:mb-0">
+                        <p className="uppercase text-[10px] tracking-[0.25em] text-noir/45">
+                          {formatDate(r.publishedAt)}
+                        </p>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="uppercase text-[16px] sm:text-[20px] font-light leading-snug group-hover:text-noir transition-colors">
+                          {r.title}
+                        </h3>
+                        {r.excerpt && (
+                          <p className="mt-1 text-[13px] sm:text-[14px] leading-relaxed font-light text-noir/65 max-w-xl">
+                            {r.excerpt}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+        );
+      })()}
 
       <footer className="border-t border-noir/10 bg-noir text-blanc">
         <div className="max-w-3xl mx-auto px-6 sm:px-10 py-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">

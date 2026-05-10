@@ -47,3 +47,35 @@ export function readingTime(content: string): number {
   const words = content.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / 200));
 }
+
+export function getRelatedArticles(
+  currentSlug: string,
+  limit = 3
+): Article[] {
+  const all = getAllArticles().filter((a) => a.slug !== currentSlug);
+  if (all.length === 0) return [];
+
+  const current = getArticleBySlug(currentSlug);
+  if (!current) return all.slice(0, limit);
+
+  const currentTags = new Set(
+    (current.tags || []).map((t) => t.toLowerCase())
+  );
+
+  // Score each candidate by shared tag count, then by recency.
+  const scored = all.map((a) => {
+    const shared = (a.tags || []).filter((t) =>
+      currentTags.has(t.toLowerCase())
+    ).length;
+    return { article: a, score: shared };
+  });
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return (
+      new Date(b.article.publishedAt).getTime() -
+      new Date(a.article.publishedAt).getTime()
+    );
+  });
+
+  return scored.slice(0, limit).map((s) => s.article);
+}

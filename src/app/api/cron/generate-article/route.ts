@@ -53,43 +53,52 @@ function buildQuery(topic: Topic): string {
     month: "long",
     day: "numeric",
   });
-  return `Article de blog SEO long format en FRANÇAIS pour vmdl.ai (cabinet VMDL, Maître Vincent Machado Da Luz, Paris). Date : ${today}.
+  return `Article de blog SEO + AEO (Answer Engine Optimization) long format en FRANÇAIS pour vmdl.ai (cabinet VMDL, Maître Vincent Machado Da Luz, Paris). Date : ${today}.
 
 SUJET DU JOUR : ${topic.label}
 CONTEXTE : ${topic.brief}
 PUBLIC VISÉ : ${topic.audience}
 
-ÉTAPE 1 — RECHERCHE
-Identifie UNE actualité juridique française précise et datée des 4 dernières semaines correspondant au sujet. Privilégie les décisions (Cass., CE, CJUE, FIFA DRC, TAS, CA), réformes réglementaires, projets de loi, affaires médiatiques avec angle juridique. Évite les marronniers, sujets vagues, articles d'agrégateurs.
+ÉTAPE 1 — RECHERCHE FRAÎCHE
+Identifie UNE actualité juridique française précise et datée des 4 dernières semaines. Privilégie les décisions (Cass., CE, CJUE, FIFA DRC, TAS, CA), réformes réglementaires, projets de loi, affaires médiatiques avec angle juridique. Évite les marronniers, sujets vagues, articles d'agrégateurs.
 
-ÉTAPE 2 — RÉDACTION (LONG FORMAT OBLIGATOIRE)
-Le champ "content" doit faire IMPÉRATIVEMENT entre 9 000 et 12 000 caractères de Markdown (≈ 1 500 à 2 000 mots). Un article plus court ne sera PAS accepté. Développe chaque section avec :
-- Le contexte juridique et factuel précis
-- Les références exactes (numéros d'arrêt, articles de code, dates, cabinets, parties)
-- Les conséquences pratiques pour le public visé
-- Au moins UN exemple concret ou cas d'application
-- Les enjeux ou points de vigilance
+ÉTAPE 2 — RÉDACTION OPTIMISÉE POUR HUMAINS + MOTEURS IA
+Cible 1500-2000 mots (9000-12000 caractères). Pour chaque section, applique strictement :
+
+(a) **Réponse directe en première phrase**. Chaque H2 commence par une phrase qui répond directement à la question implicite du titre, en moins de 25 mots, formulée comme une affirmation factuelle et citable hors contexte. Les LLM extraient cette phrase comme réponse — elle DOIT pouvoir tenir seule.
+
+(b) **Densité d'information**. Pas de remplissage. Chaque paragraphe = un fait + sa source ou son texte de référence. Cite : numéros d'arrêt complets, articles de code, dates précises (jour/mois/année), parties nommées, juridictions.
+
+(c) **Listes là où c'est naturel**. Conditions, étapes, conséquences, points de vigilance → listes - ou 1. Les LLM extraient mieux les listes.
+
+(d) **Définitions explicites**. La première fois qu'un terme technique apparaît (FFAR, RSTP, JIRS, DNCG, etc.), le définir en une phrase. Aide à la fois le lecteur non spécialiste ET les moteurs IA qui assemblent des contextes.
+
+(e) **Sections FAQ-friendly**. Au moins 2 sous-titres H3 formulés comme une question naturelle ("Que risque concrètement le joueur ?", "Quand peut-on rompre sans juste cause ?"). Les Answer Engines (Perplexity, ChatGPT, Google AI Overviews) extraient ces blocs préférentiellement.
+
+(f) **Citations courtes**. Si la décision est citable littéralement, utilise un bloc > avec la phrase exacte de l'arrêt + l'attribution.
 
 STYLE
-- Pédagogique mais rigoureux, cite les textes (article L. 222-17 C. sport, art. 17 RSTP FIFA, art. 9 C. civ., etc.).
-- N'invente JAMAIS un fait ou une citation. Si une info n'est pas dans tes sources, ne l'écris pas.
+- Pédagogique mais rigoureux. Phrases courtes, voix active.
+- N'invente JAMAIS un fait, un nom, un numéro d'arrêt. Si une info n'est pas dans tes sources, ne l'écris pas.
 - Pas d'autopromotion lourde du cabinet ; une seule mention finale (voir ci-dessous).
+- Pas de phrases creuses du type "il est important de noter", "dans le monde d'aujourd'hui", etc.
 
 STRUCTURE OBLIGATOIRE DU CONTENU MARKDOWN
-1. Intro de 3-5 phrases (sans titre) qui pose l'actualité et son enjeu
-2. Section H2 #1 — le fait/la décision : qu'est-ce qui s'est passé exactement
-3. Section H2 #2 — l'analyse juridique : le raisonnement, les textes, la jurisprudence
-4. Section H2 #3 — la portée : ce que ça change concrètement pour le public visé
-5. Section H2 #4 (optionnel) — comparaison, cas pratiques, points de vigilance
-6. Section H2 finale "## Ce qu'il faut retenir" en 3 puces concises
-7. Une dernière phrase exactement : "Le cabinet VMDL accompagne ses clients sur ces problématiques."
+1. Intro de 3-5 phrases sans titre. La PREMIÈRE phrase doit être une affirmation factuelle datée et citable seule (LLMs adorent).
+2. ## Section #1 — le fait/la décision (quoi, qui, quand, où précisément)
+3. ## Section #2 — l'analyse juridique (textes applicables, raisonnement, jurisprudence)
+   - Inclure 1-2 sous-sections ### formulées comme une question
+4. ## Section #3 — la portée pratique pour le public visé (étapes, conditions, risques)
+5. ## Section #4 (optionnel) — points de vigilance ou comparaison
+6. ## Ce qu'il faut retenir — exactement 3 puces concises (réponse, conséquence, action)
+7. Dernière phrase exactement : "Le cabinet VMDL accompagne ses clients sur ces problématiques."
 
-FORMAT MARKDOWN : ## H2, ### H3, **gras** termes clés, listes - et 1., > pour citations courtes. Pas de H1 (pas de #).
+FORMAT MARKDOWN : ## H2, ### H3, **gras** pour termes-clés (pas plus de 1-2 par paragraphe), listes - et 1., > pour citations littérales d'arrêts/textes. PAS de H1 (#).
 
-ANGLES D'INSPIRATION (n'en choisis qu'un, selon l'actu) :
+ANGLES D'INSPIRATION (n'en choisis qu'un, selon l'actu trouvée) :
 ${topic.exampleAngles.map((a) => "- " + a).join("\n")}
 
-Renvoie EXACTEMENT le format structuré attendu : title (50-75 c.), excerpt (150-220 c.), metaDescription (140-155 c.), tags (3-5), content (Markdown long format ≥ 9 000 caractères).`;
+Renvoie EXACTEMENT le format structuré attendu : title (50-75 c., contient un mot-clé long-tail français), excerpt (150-220 c., factuel), metaDescription (140-155 c., distincte de l'excerpt, contient l'année), tags (3-5, première lettre majuscule), content (Markdown ≥ 9000 caractères).`;
 }
 
 const ARTICLE_SCHEMA = {
