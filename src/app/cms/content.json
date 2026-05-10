@@ -671,5 +671,58 @@
       "content": "VMDL不断寻找有才华的律师和实习律师。如果您希望加入我们的律所，并拥有优秀的推荐，并且具有出色的学术背景，请随时将您的申请发送给我们。所有申请将得到保密处理。要申请，请发送电子邮件至以下地址：cabinet@vmdl.ai"
     }
   },
-  "articles": []
+  "articles_drafts": [
+    {
+      "slug": "droit-du-sport-reforme-fifa-et-transferts-impactent-footballeurs-pro",
+      "title": "Droit du sport : réforme FIFA et transferts impactent footballeurs pro",
+      "excerpt": "L'arrêt Diarra de la CJUE bouleverse les règles FIFA sur les transferts, déclenchant une action collective majeure. Analyse des impacts pour joueurs, agents et clubs.",
+      "metaDescription": "Analyse de l'arrêt Diarra (CJUE, oct. 2024) et ses conséquences sur les transferts FIFA, droits des footballeurs, agents et clubs en 2026.",
+      "tags": [
+        "Droit du Sport",
+        "Football",
+        "Transferts",
+        "FIFA",
+        "Joueurs"
+      ],
+      "content": "L'arrêt Diarra rendu par la Cour de justice de l'Union européenne (CJUE) en octobre 2024 a déclaré illégales certaines règles FIFA sur les transferts datant de 2002. Cette décision majeure a déclenché une action collective « Justice for Players » contre la FIFA, portée par le cabinet Dupont-Hissel, et suscite une réforme profonde du cadre juridique du football professionnel. Cette actualité bouleverse les relations entre joueurs, agents, clubs et instances, et appelle à une nouvelle gouvernance plus équilibrée.\n\n## Le fait : l'arrêt Diarra et l'action collective contre la FIFA\n\nL'arrêt Diarra (CJUE, octobre 2024) a invalidé les règles FIFA de 2002 encadrant les transferts internationaux des joueurs professionnels, estimant qu'elles contreviennent au droit européen de la concurrence. Ces règles limitaient notamment la liberté de mouvement des joueurs et imposaient des conditions restrictives aux transferts.\n\nSuite à cette décision, la fondation Justice for Players, conseillée par le cabinet Dupont-Hissel, a lancé en été 2025 une action collective (class action) contre la FIFA, visant à obtenir réparation pour les préjudices subis par les joueurs du fait de ces règles illégales. Cette action a pris une ampleur considérable, avec un montant potentiel de plusieurs milliards d'euros en jeu.\n\nPar ailleurs, lors du 50e congrès de l'UEFA en février 2026, le commissaire européen aux sports a rappelé à la FIFA la nécessité d'intégrer les représentants des joueurs dans les négociations, soulignant que le football doit privilégier le bien-être des athlètes et l'expérience des supporters.\n\n## L'analyse juridique : fondements et implications\n\nL'arrêt Diarra s'appuie sur le principe fondamental de la libre circulation des travailleurs au sein de l'Union européenne, protégé par l'article 45 du Traité sur le fonctionnement de l'Union européenne (TFUE). Les règles FIFA de 2002, en restreignant la mobilité des joueurs, ont été jugées contraires à ce principe.\n\nLe Règlement du Statut et du Transfert des Joueurs (RSTP) de la FIFA, notamment son article 17, encadre les conditions de rupture de contrat et les indemnités. L'arrêt Diarra remet en cause la légalité de ces dispositions dans leur application restrictive.\n\nCette décision s'inscrit dans la continuité de la jurisprudence Bosman (CJUE, 1995), qui avait déjà libéralisé le marché des transferts en Europe. Le cabinet Dupont-Hissel, impliqué dans l'arrêt Bosman, conseille aujourd'hui la fondation Justice for Players dans cette nouvelle bataille juridique.\n\n## La portée : conséquences pratiques pour les footballeurs, agents et clubs\n\nPour les footballeurs professionnels, cette réforme ouvre la voie à une plus grande liberté contractuelle et à une meilleure protection de leurs droits, notamment en matière de transfert et de rémunération. Les agents devront adapter leurs pratiques pour accompagner cette nouvelle donne, en veillant à la conformité avec le droit européen.\n\nLes clubs devront revoir leurs stratégies de recrutement et de gestion des contrats, en tenant compte d'une possible réduction des restrictions sur les transferts. La gouvernance du football pourrait évoluer vers une plus grande transparence et une meilleure prise en compte des intérêts des joueurs.\n\nUn exemple concret est la négociation en cours entre la FIFA et la FIFPro pour la création d'une plateforme de dialogue social, où les représentants des joueurs auraient un rôle décisionnel sur les conditions de travail, les transferts et les calendriers, rompant avec le modèle actuel où la FIFA détient l'essentiel du pouvoir réglementaire.\n\n## Points de vigilance et cas pratiques\n\nIl convient de surveiller l'évolution des négociations entre la FIFA, l'UEFA, les syndicats de joueurs et les clubs, notamment sur la mise en place effective de la plateforme de dialogue social. Les acteurs doivent être vigilants quant à la conformité des nouveaux règlements avec le droit européen et les droits fondamentaux des joueurs.\n\nLes contentieux liés aux transferts risquent d'augmenter dans les prochains mois, avec des litiges portant sur la validité des clauses contractuelles et les indemnités. Les avocats spécialisés en droit du sport devront accompagner leurs clients dans cette période de transition.\n\nEnfin, la réforme pourrait impacter les règles disciplinaires et les pratiques des agents, notamment en matière de commissions et de représentation, nécessitant une adaptation rapide des cadres juridiques internes des clubs et fédérations.\n\n## Ce qu'il faut retenir\n\n- L'arrêt Diarra (CJUE, 2024) a déclaré illégales les règles FIFA de 2002 sur les transferts, renforçant la liberté des joueurs.\n- Une action collective majeure est en cours contre la FIFA, poussant à une réforme profonde de la gouvernance du football.\n- Les joueurs, agents et clubs doivent anticiper des changements importants dans les contrats, transferts et négociations collectives.\n\nLe cabinet VMDL accompagne ses clients sur ces problématiques.",
+      "publishedAt": "2026-05-10",
+      "author": "Vincent Machado Da Luz",
+      "draftCreatedAt": "2026-05-10T08:07:47.417Z",
+      "draftSource": "linkup-standard-football",
+      "sources": [
+        {
+          "name": "Après l'arrêt Diarra, l'action collective « Justice for Players » fait trembler la FIFA",
+          "url": "https://www.lequipe.fr/Football/Article/Apres-l-arret-diarra-l-action-collective-justice-for-players-fait-trembler-la-fifa/1669767"
+        },
+        {
+          "name": "L’Officiel Juridique du Sport n° 216 - Sport.fr Pro",
+          "url": "https://pro.sport.fr/lofficiel-juridique-du-sport/lofficiel-juridique-du-sport-n-216-456963.shtm"
+        },
+        {
+          "name": "La nouvelle règle que veut imposer la FIFA pour révolutionner le football mondial",
+          "url": "https://www.footmercato.net/a2570565756798605815-la-nouvelle-regle-que-veut-imposer-la-fifa-pour-revolutionner-le-football-mondial"
+        },
+        {
+          "name": "Droits TV du football : la chaîne Ligue 1+ n’est qu’une « solution par défaut », reconnaît Nicolas de Tavernost",
+          "url": "https://www.publicsenat.fr/actualites/politique/droits-tv-du-football-la-chaine-ligue-1-nest-quune-solution-par-defaut-reconnait-nicolas-de-tavernost"
+        },
+        {
+          "name": "Droits TV : Nicolas de Tavernost dénonce des \"conflits d'intérêts potentiels\" suite à l'attribution de la Coupe du Monde à beIN Sports",
+          "url": "https://www.foot-national.com/coupe-du-monde/droits-tv-nicolas-de-tavernost-denonce-des-conflits-dinterets-potentiels-suite-a-lattribution-de-la-coupe-du-monde-a-bein-sports-945089"
+        },
+        {
+          "name": "Droits à l'image : le rôle clé des avocats dans le football",
+          "url": "https://www.brevesdefoot.com/droits-image-avocats-football/"
+        },
+        {
+          "name": "Football. « Ce n'est plus acceptable » : les footballeuses professionnelles veulent une convention collective",
+          "url": "https://www.lejsl.com/sport/2026/04/21/ce-n-est-plus-acceptable-les-footballeuses-professionnelles-veulent-une-convention-collective"
+        },
+        {
+          "name": "La FIFA annonce deux nouvelles règles pour la Coupe du Monde 2026",
+          "url": "https://www.footmercato.net/a3737300028844874841-la-fifa-annonce-deux-nouvelles-regles-pour-la-coupe-du-monde-2026"
+        }
+      ]
+    }
+  ]
 }
