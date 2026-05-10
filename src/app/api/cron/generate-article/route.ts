@@ -128,7 +128,10 @@ const ARTICLE_SCHEMA = {
   required: ["title", "excerpt", "metaDescription", "tags", "content"],
 };
 
-async function generateArticleViaLinkup(topic: Topic): Promise<DraftArticle> {
+async function generateArticleViaLinkup(
+  topic: Topic,
+  depth: "standard" | "deep" = "standard"
+): Promise<DraftArticle> {
   const apiKey = process.env.LINKUP_API_KEY;
   if (!apiKey) {
     throw new Error("LINKUP_API_KEY is not configured");
@@ -139,10 +142,11 @@ async function generateArticleViaLinkup(topic: Topic): Promise<DraftArticle> {
   const fromDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
   const toDate = new Date();
 
-  // includeSources: true → response shape is { data: {...}, sources: [...] }
+  // depth=standard: sub-second, fits in 60s Vercel Hobby limit, still excellent.
+  // depth=deep: more exhaustive but can exceed 60s — only safe locally / on Pro.
   const response = await client.search({
     query: buildQuery(topic),
-    depth: "deep",
+    depth,
     outputType: "structured",
     structuredOutputSchema: ARTICLE_SCHEMA,
     includeSources: true,
@@ -186,7 +190,7 @@ async function generateArticleViaLinkup(topic: Topic): Promise<DraftArticle> {
     publishedAt: today,
     author: "Vincent Machado Da Luz",
     draftCreatedAt: new Date().toISOString(),
-    draftSource: `linkup-deep-${topic.sector}`,
+    draftSource: `linkup-${depth}-${topic.sector}`,
     sources,
   };
 }
@@ -329,12 +333,15 @@ async function handle(req: Request) {
   const url = new URL(req.url);
   const sectorParam = url.searchParams.get("sector");
   const dryRun = url.searchParams.get("dryRun") === "1";
+  const depthParam = url.searchParams.get("depth");
+  const depth: "standard" | "deep" =
+    depthParam === "deep" ? "deep" : "standard";
   const topic = sectorParam
     ? TOPICS.find((t) => t.sector === sectorParam) || pickTopicForDate()
     : pickTopicForDate();
 
   try {
-    const article = await generateArticleViaLinkup(topic);
+    const article = await generateArticleViaLinkup(topic, depth);
     if (dryRun) {
       return NextResponse.json({
         ok: true,
