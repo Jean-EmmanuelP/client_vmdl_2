@@ -4,6 +4,7 @@ import { getArticleBySlug, getAllArticles, formatDate } from "../../utils/articl
 export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
