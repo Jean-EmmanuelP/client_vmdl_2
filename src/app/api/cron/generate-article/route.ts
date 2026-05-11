@@ -44,8 +44,33 @@ const EXCLUDE_DOMAINS = [
   "reddit.com",
 ];
 
-// We don't restrict to a fixed allowlist — Linkup's ranking is good enough.
-// Just exclude the noisy sources via EXCLUDE_DOMAINS above.
+// Competitor cabinets. Linkup CAN still study them for intel (we keep them
+// in the guidance prompt), but we NEVER show them as sources on a published
+// article — that would be a free backlink to a competitor.
+const COMPETITOR_DOMAINS = [
+  "bertrand-sport-avocat.com",
+  "fellous-avocats.com",
+  "jurisportiva.fr",
+  "degaullefleurance.com",
+  "lmtavocats.com",
+  "strategos-avocat.com",
+  "verzeni-avocat.fr",
+  "barthelemy-avocats.com",
+  "avocat-plagnol.com",
+  "northridgelaw.com",
+  "morgansl.com",
+];
+
+function isCompetitorUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+    return COMPETITOR_DOMAINS.some(
+      (d) => host === d || host.endsWith("." + d)
+    );
+  } catch {
+    return false;
+  }
+}
 
 // Linkup `<guidance>` block: SOFT priority on trusted French legal sources +
 // competitor monitoring. Unlike `includeDomains` (hard filter), this biases
@@ -286,9 +311,12 @@ async function generateArticleViaLinkup(
     );
   }
 
+  // Filter out competitor cabinets from displayed sources — we don't give
+  // free SEO backlinks to competitors. They remain useful for the AI's
+  // research stage (Linkup found them), but they never appear on our pages.
   const sources = Array.isArray(response.sources)
     ? response.sources
-        .filter((s) => s && s.url)
+        .filter((s) => s && s.url && !isCompetitorUrl(s.url))
         .slice(0, 8)
         .map((s) => ({ name: s.name || s.url || "", url: s.url || "" }))
     : undefined;

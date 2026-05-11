@@ -8,6 +8,7 @@ import {
   getAllArticles,
   getArticleBySlug,
   getRelatedArticles,
+  isCompetitorUrl,
   readingTime,
 } from "../../utils/articles";
 import ArticlesHeader from "../ArticlesHeader";
@@ -196,6 +197,36 @@ export default function ArticlePage({
         </header>
 
         <ArticleBody content={article.content} />
+
+        {article.sources && article.sources.filter((s) => !isCompetitorUrl(s.url)).length > 0 && (
+          <section
+            aria-labelledby="sources-heading"
+            className="mt-16 pt-10 border-t border-noir/10"
+          >
+            <h2
+              id="sources-heading"
+              className="uppercase text-[12px] tracking-[0.3em] text-noir/50 mb-4"
+            >
+              Sources consultées
+            </h2>
+            <ol className="list-decimal pl-5 space-y-1.5 text-[13px] text-noir/70 marker:text-noir/30">
+              {article.sources
+                .filter((s) => !isCompetitorUrl(s.url))
+                .map((s, i) => (
+                  <li key={i} className="leading-snug">
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      className="underline decoration-noir/20 hover:decoration-noir transition break-all"
+                    >
+                      {s.name || s.url}
+                    </a>
+                  </li>
+                ))}
+            </ol>
+          </section>
+        )}
 
         {article.tags && article.tags.length > 0 && (
           <footer className="mt-16 pt-10 border-t border-noir/10">

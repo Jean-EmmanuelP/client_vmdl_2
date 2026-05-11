@@ -1,5 +1,10 @@
 import contentData from "../cms/content.json";
 
+export interface ArticleSource {
+  name: string;
+  url: string;
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -9,6 +14,7 @@ export interface Article {
   author?: string;
   tags?: string[];
   metaDescription?: string;
+  sources?: ArticleSource[];
 }
 
 interface ContentJson {
@@ -46,6 +52,34 @@ export function formatDate(iso: string, locale = "fr-FR"): string {
 export function readingTime(content: string): number {
   const words = content.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(words / 200));
+}
+
+// Competitor cabinets — kept in sync with the cron route. Used to filter
+// sources displayed on the public article page, defence-in-depth in case
+// a draft slips through with a competitor URL.
+const COMPETITOR_DOMAINS = [
+  "bertrand-sport-avocat.com",
+  "fellous-avocats.com",
+  "jurisportiva.fr",
+  "degaullefleurance.com",
+  "lmtavocats.com",
+  "strategos-avocat.com",
+  "verzeni-avocat.fr",
+  "barthelemy-avocats.com",
+  "avocat-plagnol.com",
+  "northridgelaw.com",
+  "morgansl.com",
+];
+
+export function isCompetitorUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+    return COMPETITOR_DOMAINS.some(
+      (d) => host === d || host.endsWith("." + d)
+    );
+  } catch {
+    return false;
+  }
 }
 
 export function getRelatedArticles(
