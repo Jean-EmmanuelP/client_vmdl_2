@@ -389,7 +389,10 @@ async function fetchPublishedHints(): Promise<PublishedArticleHint[]> {
   return [...published, ...drafts];
 }
 
-async function appendDraftToContent(article: DraftArticle): Promise<void> {
+async function appendDraftToContent(
+  article: DraftArticle,
+  options: { autoPublish?: boolean } = {}
+): Promise<{ finalSlug: string }> {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
   const owner = process.env.GITHUB_USERNAME as string;
   const cmsRepo = process.env.GITHUB_CMS_REPO as string;
@@ -408,12 +411,13 @@ async function appendDraftToContent(article: DraftArticle): Promise<void> {
   const cmsRaw = Buffer.from(cmsResp.data.content, "base64").toString();
   const cms = JSON.parse(cmsRaw) as ContentJson;
   const drafts = Array.isArray(cms.articles_drafts) ? cms.articles_drafts : [];
+  const published = Array.isArray(cms.articles)
+    ? (cms.articles as Array<{ slug?: string }>)
+    : [];
 
   const allSlugs = new Set<string>([
     ...drafts.map((d) => d.slug),
-    ...(Array.isArray(cms.articles)
-      ? (cms.articles as { slug?: string }[]).map((a) => a.slug || "")
-      : []),
+    ...published.map((a) => a.slug || ""),
   ]);
   let finalSlug = article.slug;
   let n = 2;
@@ -423,17 +427,30 @@ async function appendDraftToContent(article: DraftArticle): Promise<void> {
   }
   const finalArticle: DraftArticle = { ...article, slug: finalSlug };
 
-  cms.articles_drafts = [...drafts, finalArticle];
+  if (options.autoPublish) {
+    // Strip draft-only metadata and push straight to articles[]
+    const { draftCreatedAt, draftSource, ...publishable } =
+      finalArticle as DraftArticle & { draftCreatedAt?: string; draftSource?: string };
+    void draftCreatedAt;
+    void draftSource;
+    cms.articles = [...published, publishable as unknown as Record<string, unknown>];
+  } else {
+    cms.articles_drafts = [...drafts, finalArticle];
+  }
 
   const newContent = Buffer.from(
     JSON.stringify(cms, null, 2)
   ).toString("base64");
 
+  const commitMessage = options.autoPublish
+    ? `feat(articles): auto-publication « ${article.title.slice(0, 60)} »`
+    : `chore(cron): nouvel article brouillon « ${article.title.slice(0, 60)} »`;
+
   await octokit.repos.createOrUpdateFileContents({
     owner,
     repo: cmsRepo,
     path: cmsPath,
-    message: `chore(cron): nouvel article brouillon « ${article.title.slice(0, 60)} »`,
+    message: commitMessage,
     content: newContent,
     sha: cmsResp.data.sha,
   });
@@ -448,11 +465,13 @@ async function appendDraftToContent(article: DraftArticle): Promise<void> {
       owner,
       repo: currentRepo,
       path: currentPath,
-      message: `chore(cron): nouvel article brouillon « ${article.title.slice(0, 60)} »`,
+      message: commitMessage,
       content: newContent,
       sha: curResp.data.sha,
     });
   }
+
+  return { finalSlug };
 }
 
 async function notifyDraftReady(article: DraftArticle, topic: Topic) {
@@ -521,6 +540,7 @@ async function handle(req: Request) {
   const url = new URL(req.url);
   const sectorParam = url.searchParams.get("sector");
   const dryRun = url.searchParams.get("dryRun") === "1";
+  const autoPublish = url.searchParams.get("autoPublish") === "1";
   const depthParam = url.searchParams.get("depth");
   const depth: "standard" | "deep" =
     depthParam === "deep" ? "deep" : "standard";
@@ -545,16 +565,19 @@ async function handle(req: Request) {
         article,
       });
     }
-    await appendDraftToContent(article);
-    await notifyDraftReady(article, topic).catch((e) =>
-      console.warn("[cron] notify failed:", (e as Error).message)
-    );
+    const { finalSlug } = await appendDraftToContent(article, { autoPublish });
+    if (!autoPublish) {
+      await notifyDraftReady(article, topic).catch((e) =>
+        console.warn("[cron] notify failed:", (e as Error).message)
+      );
+    }
     return NextResponse.json({
       ok: true,
       sector: topic.sector,
-      slug: article.slug,
+      slug: finalSlug,
       title: article.title,
       sourcesCount: article.sources?.length || 0,
+      published: autoPublish,
     });
   } catch (err) {
     console.error("[cron generate-article] failed:", err);
