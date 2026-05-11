@@ -47,17 +47,91 @@ const EXCLUDE_DOMAINS = [
 // We don't restrict to a fixed allowlist — Linkup's ranking is good enough.
 // Just exclude the noisy sources via EXCLUDE_DOMAINS above.
 
-function buildQuery(topic: Topic): string {
+// Linkup `<guidance>` block: SOFT priority on trusted French legal sources +
+// competitor monitoring. Unlike `includeDomains` (hard filter), this biases
+// the ranking without locking the index.
+const FRENCH_LEGAL_GUIDANCE = `<guidance>
+Pour cette recherche : (a) base les faits et citations sur les sources françaises officielles, (b) étudie ce que les cabinets concurrents ont publié pour identifier les ANGLES MORTS et écrire un article plus précis ou plus pratique qu'eux. Si plusieurs sources couvrent la même actualité, favorise celles listées ci-dessous. N'écarte pas une autre source si elle apporte un fait unique et vérifiable.
+
+Sources officielles et de référence (faits et citations) :
+- legifrance.gouv.fr
+- courdecassation.fr
+- conseil-etat.fr
+- curia.europa.eu
+- conseil-constitutionnel.fr
+- fifa.com
+- uefa.com
+- fff.fr
+- lfp.fr
+- dalloz-actualite.fr
+- actu-juridique.fr
+- lextenso.fr
+- village-justice.com
+- jurisportiva.fr
+- cdes.fr
+- lemonde.fr
+- lefigaro.fr
+- lequipe.fr
+- lawinsport.com
+
+Cabinets concurrents à étudier pour identifier les angles morts (NE PAS copier, surpasser) :
+- bertrand-sport-avocat.com
+- fellous-avocats.com
+- jurisportiva.fr
+- degaullefleurance.com
+- lmtavocats.com
+- strategos-avocat.com
+- verzeni-avocat.fr
+- barthelemy-avocats.com
+- avocat-plagnol.com
+- northridgelaw.com
+- morgansl.com
+
+<priority>
+- legifrance.gouv.fr
+- courdecassation.fr
+- conseil-etat.fr
+- curia.europa.eu
+- conseil-constitutionnel.fr
+</priority>
+</guidance>`;
+
+interface PublishedArticleHint {
+  slug: string;
+  title: string;
+  tags?: string[];
+}
+
+function buildQuery(topic: Topic, alreadyPublished: PublishedArticleHint[] = []): string {
   const today = new Date().toLocaleDateString("fr-FR", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-  return `Article de blog SEO + AEO (Answer Engine Optimization) long format en FRANÇAIS pour vmdl.ai (cabinet VMDL, Maître Vincent Machado Da Luz, Paris). Date : ${today}.
+
+  const existingBlock =
+    alreadyPublished.length > 0
+      ? `
+
+ARTICLES DÉJÀ PUBLIÉS SUR VMDL.AI (à NE PAS reprendre, mais à mentionner en lien interne si pertinent) :
+${alreadyPublished
+  .slice(0, 15)
+  .map(
+    (a) =>
+      `- [${a.title}](https://www.vmdl.ai/articles/${a.slug})${a.tags && a.tags.length ? " — tags: " + a.tags.join(", ") : ""}`
+  )
+  .join("\n")}
+
+→ Si ton sujet du jour recoupe un de ces articles, CHANGE d'angle, prends une décision plus récente, ou approfondis un aspect non encore couvert. Quand un lien interne s'impose naturellement dans ton texte, utilise la syntaxe Markdown [titre](URL relative ou absolue) pour pointer vers l'article existant — c'est précieux pour le SEO.`
+      : "";
+
+  return `${FRENCH_LEGAL_GUIDANCE}
+
+Article de blog SEO + AEO (Answer Engine Optimization) long format en FRANÇAIS pour vmdl.ai (cabinet VMDL, Maître Vincent Machado Da Luz, Paris). Date : ${today}.
 
 SUJET DU JOUR : ${topic.label}
 CONTEXTE : ${topic.brief}
-PUBLIC VISÉ : ${topic.audience}
+PUBLIC VISÉ : ${topic.audience}${existingBlock}
 
 ÉTAPE 1 — RECHERCHE FRAÎCHE
 Identifie UNE actualité juridique française précise et datée des 4 dernières semaines. Privilégie les décisions (Cass., CE, CJUE, FIFA DRC, TAS, CA), réformes réglementaires, projets de loi, affaires médiatiques avec angle juridique. Évite les marronniers, sujets vagues, articles d'agrégateurs.
@@ -137,9 +211,21 @@ const ARTICLE_SCHEMA = {
   required: ["title", "excerpt", "metaDescription", "tags", "content"],
 };
 
+function passesQualityGate(content: string): {
+  ok: boolean;
+  reason?: string;
+} {
+  const chars = content.length;
+  if (chars < 4500) return { ok: false, reason: `content too short (${chars} chars, need ≥4500)` };
+  const h2Count = (content.match(/^##\s/gm) || []).length;
+  if (h2Count < 3) return { ok: false, reason: `not enough H2 sections (${h2Count}, need ≥3)` };
+  return { ok: true };
+}
+
 async function generateArticleViaLinkup(
   topic: Topic,
-  depth: "standard" | "deep" = "standard"
+  depth: "standard" | "deep" = "standard",
+  alreadyPublished: PublishedArticleHint[] = []
 ): Promise<DraftArticle> {
   const apiKey = process.env.LINKUP_API_KEY;
   if (!apiKey) {
@@ -151,10 +237,11 @@ async function generateArticleViaLinkup(
   const fromDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
   const toDate = new Date();
 
-  // depth=standard: sub-second, fits in 60s Vercel Hobby limit, still excellent.
-  // depth=deep: more exhaustive but can exceed 60s — only safe locally / on Pro.
-  const response = await client.search({
-    query: buildQuery(topic),
+  const baseQuery = buildQuery(topic, alreadyPublished);
+
+  // First attempt
+  let response = await client.search({
+    query: baseQuery,
     depth,
     outputType: "structured",
     structuredOutputSchema: ARTICLE_SCHEMA,
@@ -164,13 +251,34 @@ async function generateArticleViaLinkup(
     toDate,
   });
 
-  const data = response.data as {
+  let data = response.data as {
     title?: string;
     excerpt?: string;
     metaDescription?: string;
     tags?: string[];
     content?: string;
   };
+
+  // Quality gate + single retry with stronger length insistence
+  if (data && data.content) {
+    const gate = passesQualityGate(data.content);
+    if (!gate.ok) {
+      console.warn("[cron] quality gate failed, retrying:", gate.reason);
+      response = await client.search({
+        query:
+          baseQuery +
+          `\n\nNOTE IMPORTANTE : ta réponse précédente était trop courte ou mal structurée. Cette fois, produis IMPÉRATIVEMENT un content d'au moins 6000 caractères avec au moins 4 sections H2 distinctes. Développe chaque section, ne réduis pas le contenu.`,
+        depth,
+        outputType: "structured",
+        structuredOutputSchema: ARTICLE_SCHEMA,
+        includeSources: true,
+        excludeDomains: EXCLUDE_DOMAINS,
+        fromDate,
+        toDate,
+      });
+      data = response.data as typeof data;
+    }
+  }
 
   if (!data || !data.title || !data.content) {
     throw new Error(
@@ -208,6 +316,49 @@ interface ContentJson {
   articles?: unknown[];
   articles_drafts?: DraftArticle[];
   [k: string]: unknown;
+}
+
+async function fetchPublishedHints(): Promise<PublishedArticleHint[]> {
+  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+  const owner = process.env.GITHUB_USERNAME as string;
+  const cmsRepo = process.env.GITHUB_CMS_REPO as string;
+  const cmsPath = process.env.GITHUB_CONTENT_CMS_PATH as string;
+
+  const resp = await octokit.repos.getContent({
+    owner,
+    repo: cmsRepo,
+    path: cmsPath,
+  });
+  if (Array.isArray(resp.data) || resp.data.type !== "file") return [];
+  const cms = JSON.parse(
+    Buffer.from(resp.data.content, "base64").toString()
+  ) as ContentJson;
+
+  const published: PublishedArticleHint[] = Array.isArray(cms.articles)
+    ? (cms.articles as Array<{ slug?: string; title?: string; tags?: string[] }>)
+        .filter((a) => a.slug && a.title)
+        .map((a) => ({
+          slug: a.slug as string,
+          title: a.title as string,
+          tags: a.tags,
+        }))
+    : [];
+  const drafts: PublishedArticleHint[] = Array.isArray(cms.articles_drafts)
+    ? (cms.articles_drafts as Array<{
+        slug?: string;
+        title?: string;
+        tags?: string[];
+      }>)
+        .filter((a) => a.slug && a.title)
+        .map((a) => ({
+          slug: a.slug as string,
+          title: a.title as string,
+          tags: a.tags,
+        }))
+    : [];
+  // Pending drafts also count: we don't want 2 drafts on the same topic in
+  // the queue waiting for review.
+  return [...published, ...drafts];
 }
 
 async function appendDraftToContent(article: DraftArticle): Promise<void> {
@@ -350,7 +501,14 @@ async function handle(req: Request) {
     : pickTopicForDate();
 
   try {
-    const article = await generateArticleViaLinkup(topic, depth);
+    // Fetch already-published articles + pending drafts so the AI doesn't
+    // duplicate angles and can suggest internal cross-links.
+    const alreadyPublished = await fetchPublishedHints().catch(() => []);
+    const article = await generateArticleViaLinkup(
+      topic,
+      depth,
+      alreadyPublished
+    );
     if (dryRun) {
       return NextResponse.json({
         ok: true,
