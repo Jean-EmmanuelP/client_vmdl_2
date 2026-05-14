@@ -2,19 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const NAV = [
-  { label: "Le cabinet", href: "/?section=cabinet" },
-  { label: "Expertises", href: "/?section=expertise" },
-  { label: "Vision", href: "/?section=vision" },
-  { label: "Le fondateur", href: "/?section=fondateur" },
-  { label: "Honoraires", href: "/?section=honoraires" },
-  { label: "Contact", href: "/?section=contact" },
-];
+import { useLang } from "./LangContext";
+import { ARTICLE_LOCALES, getLabels } from "./i18n";
 
 export default function ArticlesHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const { lang, setLang } = useLang();
+  const t = getLabels(lang);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -22,6 +18,15 @@ export default function ArticlesHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const NAV = [
+    { label: t.cabinet, href: "/?section=cabinet" },
+    { label: t.expertises, href: "/?section=expertise" },
+    { label: t.vision, href: "/?section=vision" },
+    { label: t.fondateur, href: "/?section=fondateur" },
+    { label: t.honoraires, href: "/?section=honoraires" },
+    { label: t.contact, href: "/?section=contact" },
+  ];
 
   return (
     <header
@@ -31,11 +36,11 @@ export default function ArticlesHeader() {
       style={{ height: scrolled ? "64px" : "90px" }}
     >
       <div className="relative w-full h-full flex items-center justify-center">
-        <div className="w-[90%] sm:w-[80%] h-full flex items-center justify-between gap-6 sm:gap-12">
+        <div className="w-[90%] sm:w-[85%] h-full flex items-center justify-between gap-4 sm:gap-8">
           <Link
             href="/"
             aria-label="Retour à l'accueil VMDL"
-            className="flex items-center hover:opacity-80 transition-opacity duration-300 ease-[cubic-bezier(0.44,0,0.56,1)]"
+            className="flex items-center hover:opacity-80 transition-opacity duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] flex-shrink-0"
           >
             <img
               src="/images/vmdl-logo.png"
@@ -46,7 +51,7 @@ export default function ArticlesHeader() {
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6 lg:gap-9 text-[13px] lg:text-[15px] font-medium">
+          <nav className="hidden md:flex items-center gap-5 lg:gap-8 text-[13px] lg:text-[14px] font-medium flex-1 justify-center">
             {NAV.map((n) => (
               <Link
                 key={n.label}
@@ -62,19 +67,55 @@ export default function ArticlesHeader() {
               className="relative group text-blanc font-medium"
             >
               <span className="uppercase tracking-wider text-[12px] lg:text-[13px]">
-                Articles
+                {t.articles}
               </span>
               <span className="absolute left-0 -bottom-1 w-full h-[1px] bg-blanc" />
             </Link>
           </nav>
 
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden text-[13px] uppercase tracking-wider"
-            aria-label="Menu"
+          <div
+            className="flex-shrink-0 flex items-center gap-3 sm:gap-4"
+            onMouseEnter={() => setLangOpen(true)}
+            onMouseLeave={() => setLangOpen(false)}
           >
-            {menuOpen ? "Fermer" : "Menu"}
-          </button>
+            <div className="relative flex flex-col items-center text-xs sm:text-sm">
+              <button
+                aria-label="Changer la langue"
+                onClick={() => setLangOpen((v) => !v)}
+                className="text-noir bg-blanc shadow-xl h-7 w-7 sm:h-9 sm:w-9 flex items-center justify-center hover:scale-105 transition"
+              >
+                {lang}
+              </button>
+              <div
+                className={`absolute top-full mt-2 flex flex-col gap-2 transition-all duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] ${
+                  langOpen
+                    ? "opacity-100 translate-y-0 pointer-events-auto"
+                    : "opacity-0 -translate-y-2 pointer-events-none"
+                }`}
+              >
+                {ARTICLE_LOCALES.filter((l) => l !== lang).map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => {
+                      setLang(l);
+                      setLangOpen(false);
+                    }}
+                    className="bg-blanc text-noir hover:scale-110 shadow-xl h-7 w-7 sm:h-9 sm:w-9 flex items-center justify-center transition"
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              className="md:hidden text-[13px] uppercase tracking-wider"
+              aria-label="Menu"
+            >
+              {menuOpen ? "✕" : "☰"}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -99,7 +140,7 @@ export default function ArticlesHeader() {
             onClick={() => setMenuOpen(false)}
             className="text-[14px] uppercase tracking-wider border-b border-blanc pb-0.5"
           >
-            Articles
+            {t.articles}
           </Link>
         </nav>
       </div>

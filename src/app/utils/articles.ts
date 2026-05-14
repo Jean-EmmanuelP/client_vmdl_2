@@ -5,6 +5,24 @@ export interface ArticleSource {
   url: string;
 }
 
+export type ArticleLocaleCode =
+  | "fr"
+  | "en"
+  | "it"
+  | "es"
+  | "ar"
+  | "pt"
+  | "de"
+  | "zh";
+
+export interface ArticleTranslation {
+  title: string;
+  excerpt: string;
+  content: string;
+  metaDescription?: string;
+  tags?: string[];
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -15,6 +33,35 @@ export interface Article {
   tags?: string[];
   metaDescription?: string;
   sources?: ArticleSource[];
+  // Optional translations keyed by short locale code (fr, en, it, ...)
+  translations?: Partial<Record<ArticleLocaleCode, ArticleTranslation>>;
+}
+
+export function pickTranslation(
+  article: Article,
+  locale: ArticleLocaleCode
+): { data: ArticleTranslation; isFallback: boolean } {
+  const t = article.translations?.[locale];
+  if (t && t.title && t.content) {
+    return { data: t, isFallback: false };
+  }
+  // Fallback to French (or top-level fields which were FR by default)
+  if (locale !== "fr" && article.translations?.fr) {
+    return {
+      data: article.translations.fr,
+      isFallback: true,
+    };
+  }
+  return {
+    data: {
+      title: article.title,
+      excerpt: article.excerpt,
+      content: article.content,
+      metaDescription: article.metaDescription,
+      tags: article.tags,
+    },
+    isFallback: locale !== "fr",
+  };
 }
 
 interface ContentJson {

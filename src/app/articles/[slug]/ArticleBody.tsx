@@ -9,23 +9,13 @@ interface Props {
 
 const DAVIS_EASE = [0.44, 0, 0.56, 1] as const;
 
-function RevealBlock({
-  children,
-  index,
-}: {
-  children: React.ReactNode;
-  index: number;
-}) {
+function RevealBlock({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{
-        duration: 0.85,
-        ease: DAVIS_EASE,
-        delay: Math.min(index, 4) * 0.04,
-      }}
+      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      transition={{ duration: 0.35, ease: DAVIS_EASE }}
     >
       {children}
     </motion.div>
@@ -209,7 +199,7 @@ export default function ArticleBody({ content }: Props) {
           }
         })();
         return (
-          <RevealBlock key={i} index={i}>
+          <RevealBlock key={i}>
             {inner}
           </RevealBlock>
         );

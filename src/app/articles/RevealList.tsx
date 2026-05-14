@@ -7,13 +7,13 @@ import React, { Children, isValidElement } from "react";
 const DAVIS_EASE = [0.44, 0, 0.56, 1] as const;
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 10 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.9,
-      delay: Math.min(i, 6) * 0.06,
+      duration: 0.4,
+      delay: Math.min(i, 5) * 0.025,
       ease: DAVIS_EASE,
     },
   }),
@@ -33,7 +33,7 @@ export default function RevealList({
           custom={i}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: true, margin: "0px 0px -10% 0px" }}
           variants={itemVariants}
         >
           {child}
