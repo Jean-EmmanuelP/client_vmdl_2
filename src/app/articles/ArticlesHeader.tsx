@@ -73,21 +73,23 @@ export default function ArticlesHeader() {
             </Link>
           </nav>
 
-          <div
-            className="flex-shrink-0 flex items-center gap-3 sm:gap-4"
-            onMouseEnter={() => setLangOpen(true)}
-            onMouseLeave={() => setLangOpen(false)}
-          >
-            <div className="relative flex flex-col items-center text-xs sm:text-sm">
+          <div className="flex-shrink-0 flex items-center gap-3 sm:gap-4">
+            <div
+              className="relative flex flex-col items-center text-xs sm:text-sm"
+              onMouseEnter={() => setLangOpen(true)}
+              onMouseLeave={() => setLangOpen(false)}
+            >
               <button
                 aria-label="Changer la langue"
                 onClick={() => setLangOpen((v) => !v)}
-                className="text-noir bg-blanc shadow-xl h-7 w-7 sm:h-9 sm:w-9 flex items-center justify-center hover:scale-105 transition"
+                onMouseEnter={() => setLangOpen(true)}
+                className="relative z-10 text-noir bg-blanc shadow-xl h-7 w-7 sm:h-9 sm:w-9 flex items-center justify-center hover:scale-105 transition"
               >
                 {lang}
               </button>
               <div
-                className={`absolute top-full mt-2 flex flex-col gap-2 transition-all duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] ${
+                onMouseEnter={() => setLangOpen(true)}
+                className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 flex flex-col gap-2 transition-all duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] ${
                   langOpen
                     ? "opacity-100 translate-y-0 pointer-events-auto"
                     : "opacity-0 -translate-y-2 pointer-events-none"
