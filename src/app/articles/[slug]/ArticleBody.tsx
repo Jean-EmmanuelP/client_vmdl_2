@@ -1,7 +1,35 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 
 interface Props {
   content: string;
+}
+
+const DAVIS_EASE = [0.44, 0, 0.56, 1] as const;
+
+function RevealBlock({
+  children,
+  index,
+}: {
+  children: React.ReactNode;
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        duration: 0.85,
+        ease: DAVIS_EASE,
+        delay: Math.min(index, 4) * 0.04,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 type Block =
@@ -137,56 +165,54 @@ function renderInline(text: string): React.ReactNode[] {
 export default function ArticleBody({ content }: Props) {
   const blocks = parseBlocks(content);
   return (
-    <div className="text-[16px] sm:text-[18px] leading-[1.85] font-light text-noir/85 space-y-6">
+    <div className="text-[15px] sm:text-[17px] leading-[1.8] font-light text-noir/85 space-y-5">
       {blocks.map((b, i) => {
-        switch (b.type) {
-          case "h2":
-            return (
-              <h2
-                key={i}
-                className="uppercase text-[22px] sm:text-[28px] font-light text-noir mt-12 mb-2 leading-tight"
-              >
-                {renderInline(b.text)}
-              </h2>
-            );
-          case "h3":
-            return (
-              <h3
-                key={i}
-                className="uppercase text-[16px] sm:text-[19px] tracking-wider font-medium text-noir mt-8 mb-1"
-              >
-                {renderInline(b.text)}
-              </h3>
-            );
-          case "ul":
-            return (
-              <ul key={i} className="list-disc pl-6 space-y-2 marker:text-noir/40">
-                {b.items.map((it, j) => (
-                  <li key={j}>{renderInline(it)}</li>
-                ))}
-              </ul>
-            );
-          case "ol":
-            return (
-              <ol key={i} className="list-decimal pl-6 space-y-2 marker:text-noir/40">
-                {b.items.map((it, j) => (
-                  <li key={j}>{renderInline(it)}</li>
-                ))}
-              </ol>
-            );
-          case "quote":
-            return (
-              <blockquote
-                key={i}
-                className="border-l-2 border-noir/40 pl-6 italic text-noir/75 my-8"
-              >
-                {renderInline(b.text)}
-              </blockquote>
-            );
-          case "p":
-          default:
-            return <p key={i}>{renderInline(b.text)}</p>;
-        }
+        const inner = (() => {
+          switch (b.type) {
+            case "h2":
+              return (
+                <h2 className="uppercase text-[18px] sm:text-[22px] font-light text-noir mt-10 mb-2 leading-tight tracking-wide">
+                  {renderInline(b.text)}
+                </h2>
+              );
+            case "h3":
+              return (
+                <h3 className="uppercase text-[14px] sm:text-[16px] tracking-[0.15em] font-medium text-noir mt-6 mb-1">
+                  {renderInline(b.text)}
+                </h3>
+              );
+            case "ul":
+              return (
+                <ul className="list-disc pl-6 space-y-2 marker:text-noir/40">
+                  {b.items.map((it, j) => (
+                    <li key={j}>{renderInline(it)}</li>
+                  ))}
+                </ul>
+              );
+            case "ol":
+              return (
+                <ol className="list-decimal pl-6 space-y-2 marker:text-noir/40">
+                  {b.items.map((it, j) => (
+                    <li key={j}>{renderInline(it)}</li>
+                  ))}
+                </ol>
+              );
+            case "quote":
+              return (
+                <blockquote className="border-l-2 border-noir/40 pl-6 italic text-noir/75 my-8">
+                  {renderInline(b.text)}
+                </blockquote>
+              );
+            case "p":
+            default:
+              return <p>{renderInline(b.text)}</p>;
+          }
+        })();
+        return (
+          <RevealBlock key={i} index={i}>
+            {inner}
+          </RevealBlock>
+        );
       })}
     </div>
   );

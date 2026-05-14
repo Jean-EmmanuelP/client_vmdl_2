@@ -15,18 +15,24 @@ export default function ArticlesHeader() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.44,0,0.56,1)] ${
         scrolled
-          ? "bg-blanc/90 backdrop-blur-sm border-b border-noir/10"
-          : "bg-transparent"
+          ? "bg-blanc/95 backdrop-blur-md border-b border-noir/10"
+          : "bg-blanc/80 backdrop-blur-sm"
       }`}
     >
-      <div className="max-w-5xl mx-auto px-6 sm:px-10 py-5 sm:py-6 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 py-4 sm:py-5 flex items-center justify-between">
         <Link
           href="/"
-          className="text-[14px] sm:text-[18px] font-light uppercase tracking-[0.15em] hover:opacity-70 transition"
+          aria-label="Retour à l'accueil VMDL"
+          className="flex items-center hover:opacity-70 transition-opacity duration-300 ease-[cubic-bezier(0.44,0,0.56,1)]"
         >
-          VMDL
+          <img
+            src="/images/vmdl-logo.png"
+            alt="VMDL"
+            className="h-10 sm:h-12 w-auto"
+            style={{ filter: "invert(1) brightness(0)" }}
+          />
         </Link>
         <Link
           href="/"

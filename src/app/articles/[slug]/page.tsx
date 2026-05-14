@@ -12,6 +12,8 @@ import {
   readingTime,
 } from "../../utils/articles";
 import ArticlesHeader from "../ArticlesHeader";
+import SiteFooter from "../SiteFooter";
+import Reveal from "../Reveal";
 import ArticleBody from "./ArticleBody";
 
 export const dynamicParams = false;
@@ -164,8 +166,8 @@ export default function ArticlePage({
         {JSON.stringify(breadcrumbJsonLd(article))}
       </Script>
 
-      <article className="max-w-3xl mx-auto px-6 sm:px-10 pt-28 sm:pt-40 pb-20">
-        <nav className="mb-10 sm:mb-14">
+      <article className="max-w-3xl mx-auto px-6 sm:px-10 pt-24 sm:pt-32 pb-20">
+        <nav className="mb-8 sm:mb-10">
           <Link
             href="/articles"
             className="uppercase text-[11px] tracking-[0.3em] text-noir/50 hover:text-noir transition"
@@ -174,8 +176,8 @@ export default function ArticlePage({
           </Link>
         </nav>
 
-        <header className="border-b border-noir/15 pb-10 mb-12">
-          <div className="flex flex-wrap gap-4 text-[11px] tracking-[0.25em] uppercase text-noir/50 mb-6">
+        <Reveal as="header" className="border-b border-noir/15 pb-8 mb-10">
+          <div className="flex flex-wrap gap-3 text-[10px] tracking-[0.25em] uppercase text-noir/50 mb-5">
             <span>{formatDate(article.publishedAt)}</span>
             <span aria-hidden="true">·</span>
             <span>{minutes} min de lecture</span>
@@ -186,15 +188,15 @@ export default function ArticlePage({
               </>
             )}
           </div>
-          <h1 className="uppercase text-[32px] sm:text-[52px] leading-[1.08] font-light">
+          <h1 className="uppercase text-[24px] sm:text-[36px] leading-[1.1] font-light">
             {article.title}
           </h1>
           {article.excerpt && (
-            <p className="mt-6 text-[16px] sm:text-[20px] leading-[1.7] font-light text-noir/70 max-w-2xl">
+            <p className="mt-5 text-[15px] sm:text-[18px] leading-[1.65] font-light text-noir/70 max-w-2xl">
               {article.excerpt}
             </p>
           )}
-        </header>
+        </Reveal>
 
         <ArticleBody content={article.content} />
 
@@ -296,24 +298,7 @@ export default function ArticlePage({
         );
       })()}
 
-      <footer className="border-t border-noir/10 bg-noir text-blanc">
-        <div className="max-w-3xl mx-auto px-6 sm:px-10 py-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="uppercase text-[11px] tracking-[0.3em] text-blanc/60">
-              VMDL — Cabinet d&apos;avocat
-            </p>
-            <p className="mt-1 text-[16px] font-light">
-              Pour échanger sur cet article ou un dossier
-            </p>
-          </div>
-          <a
-            href="mailto:cabinet@vmdl.ai"
-            className="uppercase text-[11px] tracking-[0.3em] border border-blanc/30 px-5 py-3 hover:bg-blanc hover:text-noir transition"
-          >
-            cabinet@vmdl.ai
-          </a>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

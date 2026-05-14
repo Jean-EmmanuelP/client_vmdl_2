@@ -1,18 +1,19 @@
 import Link from "next/link";
 import ArticlesHeader from "../ArticlesHeader";
+import SiteFooter from "../SiteFooter";
 
 export default function NotFound() {
   return (
     <main className="min-h-screen bg-blanc text-noir font-riviera">
       <ArticlesHeader />
-      <section className="max-w-3xl mx-auto px-6 sm:px-10 pt-40 pb-20 text-center">
+      <section className="max-w-3xl mx-auto px-6 sm:px-10 pt-32 sm:pt-44 pb-20 text-center">
         <p className="uppercase text-[11px] tracking-[0.3em] text-noir/50 mb-4">
           Erreur 404
         </p>
-        <h1 className="uppercase text-[32px] sm:text-[48px] leading-[1.1] font-light">
+        <h1 className="uppercase text-[24px] sm:text-[36px] leading-[1.1] font-light">
           Article introuvable
         </h1>
-        <p className="mt-6 text-noir/70 font-light">
+        <p className="mt-5 text-noir/70 font-light">
           Cet article n&apos;existe pas ou a été retiré.
         </p>
         <Link
@@ -22,6 +23,7 @@ export default function NotFound() {
           Voir tous les articles
         </Link>
       </section>
+      <SiteFooter />
     </main>
   );
 }
