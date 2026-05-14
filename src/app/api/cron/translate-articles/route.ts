@@ -112,9 +112,19 @@ async function translateOneLang(
     outputType: "structured",
     structuredOutputSchema: singleLangSchema(target.label),
   });
-  const data = (response as unknown as { data: Record<string, unknown> }).data;
-  if (!data || typeof data !== "object") {
-    throw new Error("Linkup returned no data");
+  // When includeSources is NOT set, Linkup returns the structured object
+  // directly. When it IS set, it returns { data, sources }.
+  const raw = response as unknown as
+    | { data: Record<string, unknown> }
+    | Record<string, unknown>;
+  const data =
+    "data" in raw && raw.data
+      ? (raw.data as Record<string, unknown>)
+      : (raw as Record<string, unknown>);
+  if (!data || typeof data !== "object" || !data.title || !data.content) {
+    throw new Error(
+      `Linkup returned no usable data: ${JSON.stringify(response).slice(0, 300)}`
+    );
   }
   return data;
 }
