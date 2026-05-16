@@ -11,10 +11,17 @@
     {
       "path": "/api/cron/generate-article",
       "schedule": "0 8 */2 * *"
+    },
+    {
+      "path": "/api/cron/translate-articles",
+      "schedule": "0 * * * *"
     }
   ],
   "functions": {
     "src/app/api/cron/generate-article/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/cron/translate-articles/route.ts": {
       "maxDuration": 60
     }
   }
