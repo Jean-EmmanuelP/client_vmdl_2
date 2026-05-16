@@ -192,105 +192,132 @@ async function handle(req: Request) {
   const slugParam = url.searchParams.get("slug");
   const langParam = url.searchParams.get("lang") as TargetCode | null;
   const dryRun = url.searchParams.get("dryRun") === "1";
+  const maxParam = parseInt(url.searchParams.get("max") || "1", 10);
+  const maxTranslations = Math.max(1, Math.min(5, isNaN(maxParam) ? 1 : maxParam));
+
+  // Time budget: 45s, leaves 15s buffer before Vercel 60s kill.
+  const startTs = Date.now();
+  const TIME_BUDGET_MS = 45_000;
+  const PER_LANG_BUDGET_MS = 25_000; // expected upper bound
 
   try {
-    const cms = await loadCms();
-    const articles = Array.isArray(cms.articles) ? cms.articles : [];
-    if (articles.length === 0) {
-      return NextResponse.json({ ok: true, message: "no articles" });
-    }
+    const completed: Array<{ slug: string; lang: TargetCode; title: string }> = [];
 
-    // Pick article
-    let target: ArticleShape | undefined;
-    if (slugParam) {
-      target = articles.find((a) => a.slug === slugParam);
-      if (!target) {
-        return NextResponse.json({ ok: false, error: `slug not found: ${slugParam}` }, { status: 404 });
+    for (let iteration = 0; iteration < maxTranslations; iteration++) {
+      const elapsed = Date.now() - startTs;
+      // Stop early if we don't have time for one more translation
+      if (elapsed + PER_LANG_BUDGET_MS > TIME_BUDGET_MS && completed.length > 0) {
+        break;
       }
-    } else {
-      target = articles
-        .filter((a) => nextMissing(a) !== null)
-        .sort(
-          (a, b) =>
-            new Date(a.publishedAt).getTime() -
-            new Date(b.publishedAt).getTime()
-        )[0];
-      if (!target) {
+
+      const cms = await loadCms();
+      const articles = Array.isArray(cms.articles) ? cms.articles : [];
+      if (articles.length === 0) {
+        return NextResponse.json({ ok: true, completed, message: "no articles" });
+      }
+
+      // Pick article
+      let target: ArticleShape | undefined;
+      if (slugParam) {
+        target = articles.find((a) => a.slug === slugParam);
+        if (!target) {
+          return NextResponse.json({ ok: false, error: `slug not found: ${slugParam}` }, { status: 404 });
+        }
+      } else {
+        target = articles
+          .filter((a) => nextMissing(a) !== null)
+          .sort(
+            (a, b) =>
+              new Date(a.publishedAt).getTime() -
+              new Date(b.publishedAt).getTime()
+          )[0];
+        if (!target) {
+          return NextResponse.json({
+            ok: true,
+            completed,
+            message: "all articles fully translated",
+            count: articles.length,
+          });
+        }
+      }
+
+      // Pick language
+      let code: TargetCode | null = null;
+      if (langParam && TARGET_LANGS[langParam]) {
+        code = langParam;
+      } else {
+        code = nextMissing(target);
+        if (code === null) {
+          return NextResponse.json({
+            ok: true,
+            completed,
+            message: `article ${target.slug} already fully translated`,
+          });
+        }
+      }
+
+      const translation = await translateOneLang(target, code);
+
+      if (dryRun) {
         return NextResponse.json({
           ok: true,
-          message: "all articles fully translated",
-          count: articles.length,
+          dryRun: true,
+          slug: target.slug,
+          lang: code,
+          sampleTitle: translation.title,
         });
       }
-    }
 
-    // Pick language
-    let code: TargetCode | null = null;
-    if (langParam && TARGET_LANGS[langParam]) {
-      code = langParam;
-    } else {
-      code = nextMissing(target);
-      if (code === null) {
-        return NextResponse.json({
-          ok: true,
-          message: `article ${target.slug} already fully translated`,
-        });
+      // Re-load + merge + write
+      const freshCms = await loadCms();
+      const freshArticles = Array.isArray(freshCms.articles)
+        ? freshCms.articles
+        : [];
+      const idx = freshArticles.findIndex((a) => a.slug === target!.slug);
+      if (idx === -1) {
+        return NextResponse.json(
+          { ok: false, error: "article disappeared during translation" },
+          { status: 500 }
+        );
       }
-    }
+      const existing =
+        (freshArticles[idx].translations as Record<string, unknown>) || {};
+      const fr =
+        (existing.fr as unknown) || {
+          title: freshArticles[idx].title,
+          excerpt: freshArticles[idx].excerpt,
+          metaDescription:
+            freshArticles[idx].metaDescription || freshArticles[idx].excerpt,
+          tags: freshArticles[idx].tags || [],
+          content: freshArticles[idx].content,
+        };
+      const merged = { ...existing, fr, [code]: translation };
+      freshArticles[idx] = {
+        ...freshArticles[idx],
+        translations: merged,
+      };
+      freshCms.articles = freshArticles;
 
-    const translation = await translateOneLang(target, code);
+      await commitCms(
+        freshCms,
+        `i18n(${code}): traduction « ${target.title.slice(0, 50)} »`
+      );
 
-    if (dryRun) {
-      return NextResponse.json({
-        ok: true,
-        dryRun: true,
+      completed.push({
         slug: target.slug,
         lang: code,
-        sampleTitle: translation.title,
+        title: (translation.title as string) || "",
       });
-    }
 
-    // Re-load + merge + write
-    const freshCms = await loadCms();
-    const freshArticles = Array.isArray(freshCms.articles)
-      ? freshCms.articles
-      : [];
-    const idx = freshArticles.findIndex((a) => a.slug === target!.slug);
-    if (idx === -1) {
-      return NextResponse.json(
-        { ok: false, error: "article disappeared during translation" },
-        { status: 500 }
-      );
+      // If caller passed a specific slug+lang, only do one
+      if (slugParam && langParam) break;
     }
-    const existing =
-      (freshArticles[idx].translations as Record<string, unknown>) || {};
-    // Also keep FR canonical mirrored at first save
-    const fr =
-      (existing.fr as unknown) || {
-        title: freshArticles[idx].title,
-        excerpt: freshArticles[idx].excerpt,
-        metaDescription:
-          freshArticles[idx].metaDescription || freshArticles[idx].excerpt,
-        tags: freshArticles[idx].tags || [],
-        content: freshArticles[idx].content,
-      };
-    const merged = { ...existing, fr, [code]: translation };
-    freshArticles[idx] = {
-      ...freshArticles[idx],
-      translations: merged,
-    };
-    freshCms.articles = freshArticles;
-
-    await commitCms(
-      freshCms,
-      `i18n(${code}): traduction « ${target.title.slice(0, 50)} »`
-    );
 
     return NextResponse.json({
       ok: true,
-      slug: target.slug,
-      lang: code,
-      title: translation.title,
+      completedCount: completed.length,
+      completed,
+      elapsedMs: Date.now() - startTs,
     });
   } catch (err) {
     console.error("[translate-articles] failed:", err);
