@@ -21,5 +21,5 @@ export default function ArticlesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="articles-section">{children}</div>;
 }

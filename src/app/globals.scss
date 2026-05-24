@@ -88,6 +88,20 @@ button {
   cursor: none;
 }
 
+/* Articles section: pages under /articles do not render the CustomCursor
+   component, so re-enable the native cursor inside that scope (otherwise
+   the global `cursor: none` above leaves the user with no visible cursor
+   over backgrounds — most visibly in the navbar). */
+.articles-section,
+.articles-section button {
+  cursor: auto;
+}
+
+.articles-section a,
+.articles-section [role="button"] {
+  cursor: pointer;
+}
+
 .title {
   font-size: 10rem;
   line-height: 46px;
