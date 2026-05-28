@@ -128,9 +128,23 @@ const siteNavigationLd = {
     {
       "@type": "SiteNavigationElement",
       position: HOME_SECTIONS.length + 2,
+      name: "Expertises",
+      description: "Les deux expertises du cabinet VMDL : contentieux pénal et droit du football.",
+      url: "https://www.vmdl.ai/expertises",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      position: HOME_SECTIONS.length + 3,
       name: "Contentieux pénal",
       description: "Avocat pénaliste à Paris : garde à vue, mise en examen, pénal des affaires, presse et e-réputation.",
       url: "https://www.vmdl.ai/expertises/contentieux-penal",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      position: HOME_SECTIONS.length + 4,
+      name: "Football — Droit du sport",
+      description: "Avocat des footballeurs professionnels à Paris : contrats, transferts FIFA, mécanisme de solidarité, contentieux disciplinaire.",
+      url: "https://www.vmdl.ai/expertises/football",
     },
   ],
 };
@@ -154,8 +168,20 @@ const breadcrumbLd = {
     {
       "@type": "ListItem",
       position: HOME_SECTIONS.length + 2,
+      name: "Expertises",
+      item: "https://www.vmdl.ai/expertises",
+    },
+    {
+      "@type": "ListItem",
+      position: HOME_SECTIONS.length + 3,
       name: "Contentieux pénal",
       item: "https://www.vmdl.ai/expertises/contentieux-penal",
+    },
+    {
+      "@type": "ListItem",
+      position: HOME_SECTIONS.length + 4,
+      name: "Football — Droit du sport",
+      item: "https://www.vmdl.ai/expertises/football",
     },
   ],
 };
