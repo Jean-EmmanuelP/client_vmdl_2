@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import WhatsAppFab from "../Components/WhatsAppFab";
 
 export const metadata: Metadata = {
   title: "Articles & Publications",
@@ -21,5 +22,10 @@ export default function ArticlesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="articles-section">{children}</div>;
+  return (
+    <div className="articles-section">
+      {children}
+      <WhatsAppFab />
+    </div>
+  );
 }

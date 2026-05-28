@@ -4,6 +4,7 @@ import Script from "next/script";
 import ArticlesHeader from "../../articles/ArticlesHeader";
 import SiteFooter from "../../articles/SiteFooter";
 import { LangProvider } from "../../articles/LangContext";
+import ContactCTA from "../../Components/ContactCTA";
 
 const URL = "https://www.vmdl.ai/expertises/contentieux-penal";
 
@@ -308,7 +309,7 @@ export default function ContentieuxPenalPage() {
           </dl>
         </section>
 
-        <section className="max-w-5xl mx-auto px-6 sm:px-10 pb-20 sm:pb-28">
+        <section className="max-w-5xl mx-auto px-6 sm:px-10 pb-12 sm:pb-16">
           <div className="border-t border-noir/15 pt-10 sm:pt-14 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-6">
             <div>
               <p className="uppercase text-[10px] sm:text-[11px] tracking-[0.3em] text-noir/40 mb-2">
@@ -331,6 +332,15 @@ export default function ContentieuxPenalPage() {
             </Link>
           </div>
         </section>
+
+        <div className="max-w-5xl mx-auto px-6 sm:px-10 pb-20 sm:pb-28">
+          <ContactCTA
+            variant="default"
+            eyebrow="Urgence pénale — réponse immédiate"
+            title="Convocation, garde à vue, mise en examen ?"
+            body="Maître Vincent Machado Da Luz intervient dès la première heure de garde à vue. Le cabinet répond en direct, 7j/7, pour toute urgence pénale ou sportive."
+          />
+        </div>
 
         <SiteFooter />
       </main>

@@ -8,6 +8,7 @@ import {
   readingTime,
 } from "../utils/articles";
 import RevealList from "./RevealList";
+import ContactCTA from "../Components/ContactCTA";
 import { useLang } from "./LangContext";
 import { getLabels, langCodeMap, localeDateMap } from "./i18n";
 
@@ -174,6 +175,13 @@ export default function ArticlesListClient({
               <RevealList>{football.map(renderArticle)}</RevealList>
             </section>
           )}
+
+          <ContactCTA
+            variant="default"
+            eyebrow="Urgence pénale ou dossier sportif"
+            title="Joindre Maître Vincent Machado Da Luz"
+            body="Garde à vue, mise en examen, contrat footballeur, transfert : le cabinet VMDL répond en direct, 7j/7. Intervention dès la 1re heure de garde à vue."
+          />
         </>
       )}
     </section>

@@ -4,10 +4,7 @@ export interface Topic {
     | "international-bresil"
     | "penal-general"
     | "penal-presse-reputation"
-    | "penal-affaires"
-    | "famille"
-    | "etrangers"
-    | "affaires";
+    | "penal-affaires";
   label: string;
   brief: string;
   audience: string;
@@ -80,48 +77,6 @@ export const TOPICS: Topic[] = [
       "Blanchiment et obligations Tracfin pour les avocats",
       "Abus de biens sociaux : zones grises pour le dirigeant",
       "Lanceur d'alerte et procédure pénale",
-    ],
-  },
-  {
-    sector: "famille",
-    label: "Droit de la famille",
-    brief:
-      "Actualité du droit de la famille français : divorce, séparation, garde des enfants, prestation compensatoire, régimes matrimoniaux, autorité parentale, pensions alimentaires, protection patrimoniale.",
-    audience:
-      "particuliers en instance de divorce ou de séparation, parents, conjoints, sportifs et personnalités confrontés à un divorce médiatisé",
-    exampleAngles: [
-      "Divorce par consentement mutuel : ce qui change en 2026",
-      "Garde alternée et résidence des enfants : critères du juge aux affaires familiales",
-      "Prestation compensatoire d'un sportif professionnel : revenu et droits image",
-      "Régime matrimonial et patrimoine d'une personnalité publique",
-    ],
-  },
-  {
-    sector: "etrangers",
-    label: "Droit des étrangers",
-    brief:
-      "Actualité du droit des étrangers et de l'immigration en France : titres de séjour, naturalisation, regroupement familial, asile, OQTF, recours préfectoraux, conditions d'entrée et de séjour des sportifs professionnels étrangers.",
-    audience:
-      "ressortissants étrangers en France, conjoints de Français, sportifs étrangers, familles binationales",
-    exampleAngles: [
-      "Carte de séjour talent international pour sportif de haut niveau",
-      "OQTF et recours suspensif : délais et procédure 2026",
-      "Naturalisation par décret : critères et durée 2026",
-      "Regroupement familial : conditions, délais, contentieux",
-    ],
-  },
-  {
-    sector: "affaires",
-    label: "Droit des affaires",
-    brief:
-      "Actualité du droit des affaires français : contrats commerciaux, droit des sociétés, M&A, baux commerciaux, contentieux entre associés, gouvernance d'entreprise, responsabilité du dirigeant (hors fiscalité internationale).",
-    audience:
-      "dirigeants d'entreprise, entrepreneurs, associés, sportifs créateurs de société",
-    exampleAngles: [
-      "Pacte d'associés : clauses essentielles pour un sportif investisseur",
-      "Cession de fonds de commerce : étapes et points de vigilance 2026",
-      "Responsabilité civile du dirigeant : limites et assurance",
-      "Litige entre associés : conciliation, médiation, contentieux",
     ],
   },
 ];

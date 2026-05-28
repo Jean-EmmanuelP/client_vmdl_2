@@ -10,6 +10,7 @@ import {
 } from "../../utils/articles";
 import ArticleBody from "./ArticleBody";
 import Reveal from "../Reveal";
+import ContactCTA from "../../Components/ContactCTA";
 import { useLang } from "../LangContext";
 import { getLabels, langCodeMap, localeDateMap } from "../i18n";
 
@@ -123,6 +124,10 @@ export default function ArticleDetailClient({
           </footer>
         )}
       </article>
+
+      <div className="max-w-3xl mx-auto px-6 sm:px-10">
+        <ContactCTA />
+      </div>
 
       {related.length > 0 && (
         <aside className="max-w-3xl mx-auto px-6 sm:px-10 pb-20">

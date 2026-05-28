@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.scss";
-import WhatsAppFab from "./Components/WhatsAppFab";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.vmdl.ai"),
@@ -257,10 +256,7 @@ export default function RootLayout({
           {JSON.stringify(breadcrumbLd)}
         </Script>
       </head>
-      <body>
-        {children}
-        <WhatsAppFab />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
