@@ -81,6 +81,10 @@ export interface I18nLabels {
   cabinetSubtitle: string;
   cabinetTitle: string;
   notTranslatedNotice: string;
+  sectionPenal: string;
+  sectionFootball: string;
+  sectionPenalIntro: string;
+  sectionFootballIntro: string;
 }
 
 const FALLBACK_FR: I18nLabels = {
@@ -115,6 +119,12 @@ const FALLBACK_FR: I18nLabels = {
   cabinetTitle: "VMDL - Law firm & Cover group",
   notTranslatedNotice:
     "Cet article n'est pas encore disponible dans votre langue. Version française affichée par défaut.",
+  sectionPenal: "Droit pénal",
+  sectionFootball: "Actualités football",
+  sectionPenalIntro:
+    "Garde à vue, mise en examen, cyber-harcèlement, droit pénal des affaires — analyses du cabinet sur le contentieux pénal.",
+  sectionFootballIntro:
+    "FIFA, transferts, contrats, contentieux sportif — actualités juridiques du football professionnel.",
 };
 
 export const LABELS: { [key in LangueCode]: I18nLabels } = {
@@ -151,6 +161,12 @@ export const LABELS: { [key in LangueCode]: I18nLabels } = {
     cabinetTitle: "VMDL - Law firm & Cover group",
     notTranslatedNotice:
       "This article is not yet available in your language. French version shown by default.",
+    sectionPenal: "Criminal Law",
+    sectionFootball: "Football News",
+    sectionPenalIntro:
+      "Police custody, examination, cyber-harassment, business criminal law — the firm's analyses on criminal litigation.",
+    sectionFootballIntro:
+      "FIFA, transfers, contracts, sports litigation — legal news from professional football.",
   },
   IT: {
     cabinet: "Lo studio",
@@ -183,6 +199,12 @@ export const LABELS: { [key in LangueCode]: I18nLabels } = {
     cabinetTitle: "VMDL - Law firm & Cover group",
     notTranslatedNotice:
       "Questo articolo non è ancora disponibile nella sua lingua. Versione francese mostrata per impostazione predefinita.",
+    sectionPenal: "Diritto penale",
+    sectionFootball: "Attualità calcio",
+    sectionPenalIntro:
+      "Fermo, indagini, cyber-molestie, penale dell'impresa — analisi dello studio sul contenzioso penale.",
+    sectionFootballIntro:
+      "FIFA, trasferimenti, contratti, contenzioso sportivo — attualità giuridica del calcio professionistico.",
   },
   ES: {
     cabinet: "El despacho",
@@ -216,6 +238,12 @@ export const LABELS: { [key in LangueCode]: I18nLabels } = {
     cabinetTitle: "VMDL - Law firm & Cover group",
     notTranslatedNotice:
       "Este artículo aún no está disponible en su idioma. Se muestra la versión francesa por defecto.",
+    sectionPenal: "Derecho penal",
+    sectionFootball: "Actualidad fútbol",
+    sectionPenalIntro:
+      "Detención, instrucción, ciberacoso, penal económico — análisis del despacho sobre contencioso penal.",
+    sectionFootballIntro:
+      "FIFA, traspasos, contratos, contencioso deportivo — actualidad jurídica del fútbol profesional.",
   },
   عربي: {
     cabinet: "المكتب",
@@ -248,6 +276,12 @@ export const LABELS: { [key in LangueCode]: I18nLabels } = {
     cabinetTitle: "VMDL - مكتب محاماة",
     notTranslatedNotice:
       "هذا المقال غير متوفر بعد بلغتك. يتم عرض النسخة الفرنسية افتراضيًا.",
+    sectionPenal: "القانون الجنائي",
+    sectionFootball: "أخبار كرة القدم",
+    sectionPenalIntro:
+      "الحجز، التحقيق، التحرش الإلكتروني، القانون الجنائي للأعمال — تحليلات المكتب في التقاضي الجنائي.",
+    sectionFootballIntro:
+      "الفيفا، الانتقالات، العقود، المنازعات الرياضية — المستجدات القانونية لكرة القدم الاحترافية.",
   },
   PT: {
     cabinet: "O escritório",
@@ -281,6 +315,12 @@ export const LABELS: { [key in LangueCode]: I18nLabels } = {
     cabinetTitle: "VMDL - Escritório de advocacia",
     notTranslatedNotice:
       "Este artigo ainda não está disponível no seu idioma. Versão francesa exibida por padrão.",
+    sectionPenal: "Direito penal",
+    sectionFootball: "Atualidade futebol",
+    sectionPenalIntro:
+      "Detenção, instrução, ciberassédio, penal empresarial — análises do escritório sobre o contencioso penal.",
+    sectionFootballIntro:
+      "FIFA, transferências, contratos, contencioso desportivo — atualidade jurídica do futebol profissional.",
   },
   DE: {
     cabinet: "Die Kanzlei",
@@ -314,6 +354,12 @@ export const LABELS: { [key in LangueCode]: I18nLabels } = {
     cabinetTitle: "VMDL - Anwaltskanzlei",
     notTranslatedNotice:
       "Dieser Artikel ist noch nicht in Ihrer Sprache verfügbar. Französische Version standardmäßig angezeigt.",
+    sectionPenal: "Strafrecht",
+    sectionFootball: "Fußball-News",
+    sectionPenalIntro:
+      "Polizeigewahrsam, Ermittlung, Cyber-Mobbing, Wirtschaftsstrafrecht — Analysen der Kanzlei zur Strafverteidigung.",
+    sectionFootballIntro:
+      "FIFA, Transfers, Verträge, Sportstreitigkeiten — rechtliche Aktualität des Profifußballs.",
   },
   中文: {
     cabinet: "律所",
@@ -345,6 +391,10 @@ export const LABELS: { [key in LangueCode]: I18nLabels } = {
     cabinetSubtitle: "律师事务所",
     cabinetTitle: "VMDL - 律师事务所",
     notTranslatedNotice: "此文章尚未提供您选择的语言版本，默认显示法语版本。",
+    sectionPenal: "刑法",
+    sectionFootball: "足球资讯",
+    sectionPenalIntro: "拘留、调查、网络骚扰、商业刑法——律所对刑事诉讼的专业分析。",
+    sectionFootballIntro: "FIFA、转会、合同、体育诉讼——职业足球的法律资讯。",
   },
 };
 

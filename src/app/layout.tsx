@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.scss";
+import WhatsAppFab from "./Components/WhatsAppFab";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.vmdl.ai"),
@@ -94,6 +95,59 @@ const websiteLd = {
   },
 };
 
+// Section anchors of the single-page home, exposed as structured data so
+// search engines can surface them as sitelinks under the main result.
+const HOME_SECTIONS = [
+  { id: "cabinet", name: "Le cabinet", description: "Présentation du cabinet VMDL, ses valeurs et son approche du droit." },
+  { id: "expertise", name: "Expertises", description: "Conseil en contrats sportifs (football), contentieux pénal, droit de la famille, droit des étrangers et droit des affaires." },
+  { id: "vision", name: "Vision", description: "La vision du cabinet : excellence, agilité et innovation au service du client." },
+  { id: "fondateur", name: "Le fondateur", description: "Maître Vincent Machado Da Luz, avocat à la Cour, ancien footballeur de haut niveau." },
+  { id: "honoraires", name: "Honoraires", description: "Modalités d'intervention et de rémunération du cabinet (taux horaire, forfait, honoraire de résultat)." },
+  { id: "contact", name: "Contact", description: "Prendre contact avec le cabinet VMDL à Paris." },
+] as const;
+
+const siteNavigationLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "VMDL — Navigation principale",
+  url: "https://www.vmdl.ai",
+  itemListElement: [
+    ...HOME_SECTIONS.map((s, i) => ({
+      "@type": "SiteNavigationElement",
+      position: i + 1,
+      name: s.name,
+      description: s.description,
+      url: `https://www.vmdl.ai/?section=${s.id}`,
+    })),
+    {
+      "@type": "SiteNavigationElement",
+      position: HOME_SECTIONS.length + 1,
+      name: "Articles",
+      description: "Articles, analyses et publications du cabinet en droit du sport, droit pénal et droit des affaires.",
+      url: "https://www.vmdl.ai/articles",
+    },
+  ],
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    ...HOME_SECTIONS.map((s, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: s.name,
+      item: `https://www.vmdl.ai/?section=${s.id}`,
+    })),
+    {
+      "@type": "ListItem",
+      position: HOME_SECTIONS.length + 1,
+      name: "Articles",
+      item: "https://www.vmdl.ai/articles",
+    },
+  ],
+};
+
 const organizationLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -175,8 +229,25 @@ export default function RootLayout({
         >
           {JSON.stringify(legalServiceLd)}
         </Script>
+        <Script
+          id="ld-site-navigation"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+        >
+          {JSON.stringify(siteNavigationLd)}
+        </Script>
+        <Script
+          id="ld-breadcrumb"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+        >
+          {JSON.stringify(breadcrumbLd)}
+        </Script>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <WhatsAppFab />
+      </body>
     </html>
   );
 }
