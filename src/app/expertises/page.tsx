@@ -105,7 +105,7 @@ export default function ExpertisesIndex() {
               Le cabinet VMDL exerce dans deux domaines : le contentieux pénal
               et le droit du sport — football. Maître Vincent Machado Da Luz,
               avocat à la Cour et ancien footballeur de haut niveau, accompagne
-              ses clients sur l'intégralité de ces deux pratiques.
+              ses clients sur l&apos;intégralité de ces deux pratiques.
             </p>
           </header>
         </section>

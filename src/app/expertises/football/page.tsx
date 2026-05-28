@@ -209,7 +209,7 @@ export default function FootballPage() {
               Football — Droit du sport
             </h1>
             <p className="mt-5 max-w-2xl text-[14px] sm:text-[17px] leading-[1.7] font-light text-noir/70">
-              Cabinet d'avocat dédié aux footballeurs professionnels, agents et
+              Cabinet d&apos;avocat dédié aux footballeurs professionnels, agents et
               clubs : contrats, transferts FIFA, mécanisme de solidarité,
               contentieux disciplinaire et sportif. Vincent Machado Da Luz est
               ancien footballeur de haut niveau.
