@@ -227,13 +227,15 @@ export default function ContentieuxPenalPage() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="https://wa.me/33757417287?text=Bonjour%20Ma%C3%AEtre%2C%20je%20souhaite%20%C3%A9changer%20avec%20le%20cabinet%20VMDL%20au%20sujet%20d%27une%20affaire%20p%C3%A9nale."
+                href={`https://wa.me/33757417287?text=${encodeURIComponent(
+                  "Bonjour Maître, je souhaite être rappelé dans les meilleurs délais.\n\nContexte : [garde à vue / convocation / mise en examen / autre]\nNom : "
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-clickable="true"
                 className="inline-flex items-center gap-2 bg-noir text-blanc px-5 py-3 text-[11px] sm:text-[12px] uppercase tracking-[0.25em] hover:opacity-80 transition"
               >
-                Contact urgent WhatsApp
+                Demander un rappel WhatsApp
               </a>
               <a
                 href="tel:+33757417287"
@@ -336,9 +338,9 @@ export default function ContentieuxPenalPage() {
         <div className="max-w-5xl mx-auto px-6 sm:px-10 pb-20 sm:pb-28">
           <ContactCTA
             variant="default"
-            eyebrow="Urgence pénale — réponse immédiate"
-            title="Convocation, garde à vue, mise en examen ?"
-            body="Maître Vincent Machado Da Luz intervient dès la première heure de garde à vue. Le cabinet répond en direct, 7j/7, pour toute urgence pénale ou sportive."
+            eyebrow="Cabinet VMDL — joindre l'avocat pénaliste"
+            title="Convocation, garde à vue ou mise en examen ?"
+            body="Maître Vincent Machado Da Luz intervient dès la première heure de garde à vue et reçoit en direct toute demande de consultation pénale."
           />
         </div>
 

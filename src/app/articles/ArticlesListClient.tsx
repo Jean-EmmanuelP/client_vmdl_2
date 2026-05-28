@@ -178,9 +178,9 @@ export default function ArticlesListClient({
 
           <ContactCTA
             variant="default"
-            eyebrow="Urgence pénale ou dossier sportif"
-            title="Joindre Maître Vincent Machado Da Luz"
-            body="Garde à vue, mise en examen, contrat footballeur, transfert : le cabinet VMDL répond en direct, 7j/7. Intervention dès la 1re heure de garde à vue."
+            eyebrow="Cabinet VMDL — joindre l'avocat"
+            title="Une question pénale ou un dossier sportif ?"
+            body="Maître Vincent Machado Da Luz reçoit en direct toute demande de consultation : garde à vue, mise en examen, contrat footballeur, contentieux disciplinaire."
           />
         </>
       )}

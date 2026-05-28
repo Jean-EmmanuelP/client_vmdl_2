@@ -9,8 +9,11 @@
 
 const PHONE_DISPLAY = "07 57 41 72 87";
 const PHONE_TEL = "+33757417287";
+// Direct, professional pre-fill. Frame the message so the caller can
+// send in 5 seconds, without forcing a polite intro nobody writes in
+// a hurry.
 const WA_PREFILL =
-  "Bonjour Maître, je souhaite échanger avec le cabinet VMDL au sujet d'une affaire pénale.";
+  "Bonjour Maître, je souhaite être rappelé dans les meilleurs délais.\n\nContexte : [garde à vue / convocation / mise en examen / dossier sportif / autre]\nNom : ";
 
 export default function ContactCTA({
   variant = "default",
@@ -44,14 +47,14 @@ export default function ContactCTA({
           isDark ? "text-blanc/55" : "text-noir/45"
         }`}
       >
-        {eyebrow ?? "Urgence pénale — réponse immédiate"}
+        {eyebrow ?? "Cabinet VMDL — joindre l'avocat"}
       </p>
       <h2
         className={`uppercase text-[22px] sm:text-[30px] leading-[1.15] font-light max-w-3xl ${
           isDark ? "text-blanc" : "text-noir"
         }`}
       >
-        {title ?? "Garde à vue, convocation, mise en examen ?"}
+        {title ?? "Une question pénale ou un dossier sportif ?"}
       </h2>
       <p
         className={`mt-3 max-w-2xl text-[13px] sm:text-[15px] leading-[1.7] font-light ${
@@ -59,7 +62,7 @@ export default function ContactCTA({
         }`}
       >
         {body ??
-          "Maître Vincent Machado Da Luz intervient dès la première heure de garde à vue. Le cabinet répond en direct, 7j/7, pour toute urgence pénale."}
+          "Maître Vincent Machado Da Luz reçoit en direct toute demande de consultation, intervient dès la première heure de garde à vue et accompagne les sportifs sur leurs dossiers contractuels et disciplinaires."}
       </p>
 
       <div className="mt-6 flex flex-wrap gap-3">
@@ -116,8 +119,7 @@ export default function ContactCTA({
           isDark ? "text-blanc/55" : "text-noir/50"
         }`}
       >
-        Cabinet VMDL · 2 rue de Poissy, 75005 Paris · Avocat à la Cour ·
-        Intervention dès la 1re heure de garde à vue.
+        Cabinet VMDL · 2 rue de Poissy, 75005 Paris · Avocat à la Cour.
       </p>
     </aside>
   );
