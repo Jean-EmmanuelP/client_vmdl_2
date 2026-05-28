@@ -126,6 +126,13 @@ const siteNavigationLd = {
       description: "Articles, analyses et publications du cabinet en droit du sport, droit pénal et droit des affaires.",
       url: "https://www.vmdl.ai/articles",
     },
+    {
+      "@type": "SiteNavigationElement",
+      position: HOME_SECTIONS.length + 2,
+      name: "Contentieux pénal",
+      description: "Avocat pénaliste à Paris : garde à vue, mise en examen, pénal des affaires, presse et e-réputation.",
+      url: "https://www.vmdl.ai/expertises/contentieux-penal",
+    },
   ],
 };
 
@@ -144,6 +151,12 @@ const breadcrumbLd = {
       position: HOME_SECTIONS.length + 1,
       name: "Articles",
       item: "https://www.vmdl.ai/articles",
+    },
+    {
+      "@type": "ListItem",
+      position: HOME_SECTIONS.length + 2,
+      name: "Contentieux pénal",
+      item: "https://www.vmdl.ai/expertises/contentieux-penal",
     },
   ],
 };
