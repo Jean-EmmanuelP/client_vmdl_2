@@ -1,13 +1,13 @@
 export interface Topic {
   sector:
     | "football"
-    | "international-qatar"
-    | "international-usa"
     | "international-bresil"
     | "penal-general"
     | "penal-presse-reputation"
     | "penal-affaires"
-    | "immobilier-international";
+    | "famille"
+    | "etrangers"
+    | "affaires";
   label: string;
   brief: string;
   audience: string;
@@ -26,33 +26,6 @@ export const TOPICS: Topic[] = [
       "Affaires de transfert ou rupture de contrat médiatisées",
       "Évolutions du salary cap, fair-play financier, DNCG",
       "Multi-club ownership et conflits d'intérêts",
-    ],
-  },
-  {
-    sector: "international-qatar",
-    label: "Affaires Qatar / Moyen-Orient",
-    brief:
-      "Actualité du droit des affaires, immobilier, sport ou investissements au Qatar et plus largement Moyen-Orient (Émirats, Arabie saoudite). Réformes locales, opportunités pour entrepreneurs et investisseurs français.",
-    audience:
-      "entrepreneurs, investisseurs et personnalités françaises actifs au Moyen-Orient",
-    exampleAngles: [
-      "Régime juridique de l'investissement immobilier au Qatar",
-      "Structuration d'un projet sportif ou commercial dans le Golfe",
-      "Conformité OFAC et fiscalité dual-residency France/Golfe",
-      "Sponsoring et droits TV en Saudi Pro League ou QSL",
-    ],
-  },
-  {
-    sector: "international-usa",
-    label: "Affaires États-Unis",
-    brief:
-      "Actualité du droit des affaires, fiscal, immigration, immobilier et sportif aux États-Unis touchant les Français : visas (E-2, O-1), structuration de société, fiscalité, transferts vers MLS / NBA.",
-    audience: "Français entrepreneurs, sportifs ou investisseurs aux États-Unis",
-    exampleAngles: [
-      "Visa O-1 / E-2 pour entrepreneurs et sportifs",
-      "Structuration LLC pour un Français : risques fiscaux",
-      "MLS et droits du joueur étranger",
-      "Litiges immobiliers transfrontaliers France/US",
     ],
   },
   {
@@ -110,17 +83,45 @@ export const TOPICS: Topic[] = [
     ],
   },
   {
-    sector: "immobilier-international",
-    label: "Immobilier international",
+    sector: "famille",
+    label: "Droit de la famille",
     brief:
-      "Actualité du droit immobilier transfrontalier : acquisition par un Français à l'étranger, par un étranger en France, fiscalité, structuration, régimes matrimoniaux, succession internationale.",
+      "Actualité du droit de la famille français : divorce, séparation, garde des enfants, prestation compensatoire, régimes matrimoniaux, autorité parentale, pensions alimentaires, protection patrimoniale.",
     audience:
-      "investisseurs immobiliers franco-internationaux, family offices, particuliers UHNW",
+      "particuliers en instance de divorce ou de séparation, parents, conjoints, sportifs et personnalités confrontés à un divorce médiatisé",
     exampleAngles: [
-      "Acquisition d'un bien à Dubaï par un résident fiscal français",
-      "Régime matrimonial international et acquisition immobilière",
-      "Successions internationales : règlement européen 650/2012 en pratique",
-      "Fiscalité d'une SCI familiale détenant des biens à l'étranger",
+      "Divorce par consentement mutuel : ce qui change en 2026",
+      "Garde alternée et résidence des enfants : critères du juge aux affaires familiales",
+      "Prestation compensatoire d'un sportif professionnel : revenu et droits image",
+      "Régime matrimonial et patrimoine d'une personnalité publique",
+    ],
+  },
+  {
+    sector: "etrangers",
+    label: "Droit des étrangers",
+    brief:
+      "Actualité du droit des étrangers et de l'immigration en France : titres de séjour, naturalisation, regroupement familial, asile, OQTF, recours préfectoraux, conditions d'entrée et de séjour des sportifs professionnels étrangers.",
+    audience:
+      "ressortissants étrangers en France, conjoints de Français, sportifs étrangers, familles binationales",
+    exampleAngles: [
+      "Carte de séjour talent international pour sportif de haut niveau",
+      "OQTF et recours suspensif : délais et procédure 2026",
+      "Naturalisation par décret : critères et durée 2026",
+      "Regroupement familial : conditions, délais, contentieux",
+    ],
+  },
+  {
+    sector: "affaires",
+    label: "Droit des affaires",
+    brief:
+      "Actualité du droit des affaires français : contrats commerciaux, droit des sociétés, M&A, baux commerciaux, contentieux entre associés, gouvernance d'entreprise, responsabilité du dirigeant (hors fiscalité internationale).",
+    audience:
+      "dirigeants d'entreprise, entrepreneurs, associés, sportifs créateurs de société",
+    exampleAngles: [
+      "Pacte d'associés : clauses essentielles pour un sportif investisseur",
+      "Cession de fonds de commerce : étapes et points de vigilance 2026",
+      "Responsabilité civile du dirigeant : limites et assurance",
+      "Litige entre associés : conciliation, médiation, contentieux",
     ],
   },
 ];
