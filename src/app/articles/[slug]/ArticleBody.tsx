@@ -161,13 +161,13 @@ export default function ArticleBody({ content }: Props) {
           switch (b.type) {
             case "h2":
               return (
-                <h2 className="uppercase text-[18px] sm:text-[22px] font-light text-noir mt-10 mb-2 leading-tight tracking-wide">
+                <h2 className="text-[18px] sm:text-[22px] font-light text-noir mt-10 mb-2 leading-tight tracking-wide">
                   {renderInline(b.text)}
                 </h2>
               );
             case "h3":
               return (
-                <h3 className="uppercase text-[14px] sm:text-[16px] tracking-[0.15em] font-medium text-noir mt-6 mb-1">
+                <h3 className="text-[14px] sm:text-[16px] tracking-[0.15em] font-medium text-noir mt-6 mb-1">
                   {renderInline(b.text)}
                 </h3>
               );

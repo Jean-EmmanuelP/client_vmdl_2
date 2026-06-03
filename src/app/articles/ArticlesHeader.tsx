@@ -66,7 +66,7 @@ export default function ArticlesHeader() {
               href="/articles"
               className="relative group text-blanc font-medium"
             >
-              <span className="uppercase tracking-wider text-[12px] lg:text-[13px]">
+              <span className="tracking-wider text-[12px] lg:text-[13px]">
                 {t.articles}
               </span>
               <span className="absolute left-0 -bottom-1 w-full h-[1px] bg-blanc" />
@@ -112,7 +112,7 @@ export default function ArticlesHeader() {
 
             <button
               onClick={() => setMenuOpen((v) => !v)}
-              className="md:hidden text-[13px] uppercase tracking-wider"
+              className="md:hidden text-[13px] tracking-wider"
               aria-label="Menu"
             >
               {menuOpen ? "✕" : "☰"}
@@ -132,7 +132,7 @@ export default function ArticlesHeader() {
               key={n.label}
               href={n.href}
               onClick={() => setMenuOpen(false)}
-              className="text-[14px] uppercase tracking-wider opacity-90 hover:opacity-100"
+              className="text-[14px] tracking-wider opacity-90 hover:opacity-100"
             >
               {n.label}
             </Link>
@@ -140,7 +140,7 @@ export default function ArticlesHeader() {
           <Link
             href="/articles"
             onClick={() => setMenuOpen(false)}
-            className="text-[14px] uppercase tracking-wider border-b border-blanc pb-0.5"
+            className="text-[14px] tracking-wider border-b border-blanc pb-0.5"
           >
             {t.articles}
           </Link>

@@ -45,7 +45,7 @@ export default function ArticleDetailClient({
         <nav className="mb-8 sm:mb-10">
           <Link
             href="/articles"
-            className="uppercase text-[11px] tracking-[0.3em] text-noir/50 hover:text-noir transition"
+            className="text-[11px] tracking-[0.3em] text-noir/50 hover:text-noir transition"
           >
             {t.backToAll}
           </Link>
@@ -58,7 +58,7 @@ export default function ArticleDetailClient({
         )}
 
         <Reveal as="header" className="border-b border-noir/15 pb-8 mb-10">
-          <div className="flex flex-wrap gap-3 text-[10px] tracking-[0.25em] uppercase text-noir/50 mb-5">
+          <div className="flex flex-wrap gap-3 text-[10px] tracking-[0.25em] text-noir/50 mb-5">
             <span>{formatDateLocale(article.publishedAt, localeDateMap[lang])}</span>
             <span aria-hidden="true">·</span>
             <span>{minutes} {t.minRead}</span>
@@ -69,7 +69,7 @@ export default function ArticleDetailClient({
               </>
             )}
           </div>
-          <h1 className="uppercase text-[24px] sm:text-[36px] leading-[1.1] font-light">
+          <h1 className="text-[24px] sm:text-[36px] leading-[1.1] font-light">
             {data.title}
           </h1>
           {data.excerpt && (
@@ -84,7 +84,7 @@ export default function ArticleDetailClient({
         {article.sources &&
           article.sources.filter((s) => !isCompetitorUrl(s.url)).length > 0 && (
             <section className="mt-16 pt-10 border-t border-noir/10">
-              <h2 className="uppercase text-[12px] tracking-[0.3em] text-noir/50 mb-4">
+              <h2 className="text-[12px] tracking-[0.3em] text-noir/50 mb-4">
                 {t.sourcesConsulted}
               </h2>
               <ol className="list-decimal pl-5 space-y-1.5 text-[13px] text-noir/70 marker:text-noir/30">
@@ -108,14 +108,14 @@ export default function ArticleDetailClient({
 
         {data.tags && data.tags.length > 0 && (
           <footer className="mt-16 pt-10 border-t border-noir/10">
-            <p className="uppercase text-[11px] tracking-[0.3em] text-noir/50 mb-3">
+            <p className="text-[11px] tracking-[0.3em] text-noir/50 mb-3">
               {t.keywords}
             </p>
             <div className="flex flex-wrap gap-2">
               {data.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-xs uppercase tracking-wider border border-noir/15 text-noir/70"
+                  className="px-3 py-1 text-xs tracking-wider border border-noir/15 text-noir/70"
                 >
                   {tag}
                 </span>
@@ -132,7 +132,7 @@ export default function ArticleDetailClient({
       {related.length > 0 && (
         <aside className="max-w-3xl mx-auto px-6 sm:px-10 pb-20">
           <div className="border-t border-noir/15 pt-10">
-            <h2 className="uppercase text-[18px] sm:text-[22px] font-light tracking-[0.05em] mb-8">
+            <h2 className="text-[18px] sm:text-[22px] font-light tracking-[0.05em] mb-8">
               {t.relatedArticles}
             </h2>
             <ul className="flex flex-col">
@@ -148,12 +148,12 @@ export default function ArticleDetailClient({
                       className="flex flex-col sm:flex-row sm:items-baseline sm:gap-8 py-6 transition-colors duration-300 hover:bg-noir/[0.02] -mx-4 px-4"
                     >
                       <div className="sm:w-32 flex-shrink-0 mb-2 sm:mb-0">
-                        <p className="uppercase text-[10px] tracking-[0.25em] text-noir/45">
+                        <p className="text-[10px] tracking-[0.25em] text-noir/45">
                           {formatDateLocale(r.publishedAt, localeDateMap[lang])}
                         </p>
                       </div>
                       <div className="flex-1">
-                        <h3 className="uppercase text-[16px] sm:text-[20px] font-light leading-snug group-hover:text-noir transition-colors">
+                        <h3 className="text-[16px] sm:text-[20px] font-light leading-snug group-hover:text-noir transition-colors">
                           {rTranslation.title}
                         </h3>
                         {rTranslation.excerpt && (

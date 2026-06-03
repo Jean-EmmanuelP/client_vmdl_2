@@ -11,7 +11,7 @@ export default function SiteFooter() {
           <p className="md:text-2xl group-hover:text-gray-400 transition duration-300 text-[19px] sm:text-[32px] font-semibold">
             VMDL - Law firm &amp; Cover group
           </p>
-          <p className="uppercase flex justify-center group-hover:text-gray-400 transition duration-300 text-[15px] sm:text-[22px] leading-[26px] font-light">
+          <p className="flex justify-center group-hover:text-gray-400 transition duration-300 text-[15px] sm:text-[22px] leading-[26px] font-light">
             Cabinet d&apos;avocat
           </p>
         </Link>
@@ -39,19 +39,19 @@ export default function SiteFooter() {
               href="https://www.google.com/maps/search/?api=1&query=2%20Rue%20de%20Poissy%2C%2075005%20Paris"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#8A8A8A] uppercase hover:scale-105 text-center transition duration-300 text-xs md:text-base"
+              className="text-[#8A8A8A] hover:scale-105 text-center transition duration-300 text-xs md:text-base"
             >
               2 rue de Poissy, 75005 Paris
             </a>
             <a
               href="tel:0757417287"
-              className="text-[#8A8A8A] uppercase hover:scale-105 text-center transition duration-300 text-xs md:text-base"
+              className="text-[#8A8A8A] hover:scale-105 text-center transition duration-300 text-xs md:text-base"
             >
               07 57 41 72 87
             </a>
             <a
               href="tel:0144329523"
-              className="text-[#8A8A8A] uppercase hover:scale-105 transition duration-300 text-xs md:text-base hidden md:block"
+              className="text-[#8A8A8A] hover:scale-105 transition duration-300 text-xs md:text-base hidden md:block"
             >
               01 44 32 13 93
             </a>

@@ -37,7 +37,7 @@ export default async function OpengraphImage({
             style={{
               fontSize: 24,
               letterSpacing: 8,
-              textTransform: "uppercase",
+              
               color: "#F9F9F9",
               fontWeight: 300,
             }}
@@ -55,7 +55,7 @@ export default async function OpengraphImage({
             style={{
               fontSize: 16,
               letterSpacing: 4,
-              textTransform: "uppercase",
+              
               color: "rgba(249,249,249,0.5)",
             }}
           >
@@ -68,7 +68,7 @@ export default async function OpengraphImage({
             style={{
               fontSize: 14,
               letterSpacing: 6,
-              textTransform: "uppercase",
+              
               color: "rgba(249,249,249,0.55)",
             }}
           >
@@ -84,7 +84,7 @@ export default async function OpengraphImage({
               fontWeight: 300,
               maxWidth: 1000,
               color: "#F9F9F9",
-              textTransform: "uppercase",
+              
               letterSpacing: -0.5,
             }}
           >
@@ -106,7 +106,7 @@ export default async function OpengraphImage({
             style={{
               fontSize: 14,
               letterSpacing: 4,
-              textTransform: "uppercase",
+              
               color: "rgba(249,249,249,0.5)",
             }}
           >
