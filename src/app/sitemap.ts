@@ -17,7 +17,7 @@ const HOME_SECTIONS = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const articles = getAllArticles();
+  // const articles = getAllArticles(); // /articles temporairement retiré du sitemap
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -26,12 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
-    {
-      url: `${SITE_URL}/articles`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+    // /articles temporairement retiré du sitemap — accessible par lien direct uniquement.
+    // {
+    //   url: `${SITE_URL}/articles`,
+    //   lastModified: now,
+    //   changeFrequency: "weekly",
+    //   priority: 0.8,
+    // },
     {
       url: `${SITE_URL}/expertises`,
       lastModified: now,
@@ -59,29 +60,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // /articles is split into two visible, anchored sections so search
-  // engines can surface them as distinct sitelinks under /articles.
-  const articleSections: MetadataRoute.Sitemap = [
-    {
-      url: `${SITE_URL}/articles#penal`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.75,
-    },
-    {
-      url: `${SITE_URL}/articles#football`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.75,
-    },
-  ];
+  // /articles#penal et /articles#football temporairement retirés du sitemap.
+  // const articleSections: MetadataRoute.Sitemap = [
+  //   { url: `${SITE_URL}/articles#penal`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
+  //   { url: `${SITE_URL}/articles#football`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
+  // ];
 
-  const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
-    url: `${SITE_URL}/articles/${a.slug}`,
-    lastModified: a.publishedAt ? new Date(a.publishedAt) : now,
-    changeFrequency: "yearly",
-    priority: 0.7,
-  }));
+  // Pages d'articles individuelles temporairement retirées du sitemap.
+  // const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
+  //   url: `${SITE_URL}/articles/${a.slug}`,
+  //   lastModified: a.publishedAt ? new Date(a.publishedAt) : now,
+  //   changeFrequency: "yearly",
+  //   priority: 0.7,
+  // }));
 
-  return [...staticPages, ...sectionPages, ...articleSections, ...articlePages];
+  return [...staticPages, ...sectionPages];
 }

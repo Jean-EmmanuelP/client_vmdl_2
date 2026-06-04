@@ -126,6 +126,7 @@ export default function Footer() {
           >
             {legals}
           </button>
+          {/* Articles section temporairement retirée du public — accessible par lien direct uniquement.
           <a
             href="/articles"
             className="hover:text-gray-300 transition"
@@ -133,6 +134,7 @@ export default function Footer() {
           >
             Articles
           </a>
+          */}
         </div>
         <div className="border border-y-[0.5px] border-x-0 sm:gap-4 border-white/20 w-full flex justify-center sm:justify-between items-center p-4 pt-5 sm:py-10">
           <div
@@ -239,9 +241,11 @@ export default function Footer() {
             >
               {legals}
             </button>
+            {/* Articles temporairement retirée du public.
             <a href="/articles" className="hover:text-gray-300 transition">
               Articles
             </a>
+            */}
           </div>
           <div className="flex gap-4">
             <a

@@ -8,6 +8,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/articles",
   },
+  // /articles temporairement non indexable — accessible par lien direct uniquement.
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
   openGraph: {
     title: "Articles & Publications | VMDL",
     description:

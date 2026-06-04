@@ -1,10 +1,11 @@
-import { getAllArticles } from "../utils/articles";
+// import { getAllArticles } from "../utils/articles";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
 
 export function GET() {
-  const articles = getAllArticles();
+  // /articles temporairement retirés du llms.txt — accessibles par lien direct uniquement.
+  // const articles = getAllArticles();
 
   const lines: string[] = [
     "# VMDL — Cabinet d'avocat",
@@ -30,20 +31,9 @@ export function GET() {
     "## Pages principales",
     "",
     "- [Accueil](https://www.vmdl.ai/) : présentation du cabinet, vision, expertises, fondateur, honoraires, contact.",
-    "- [Articles & publications](https://www.vmdl.ai/articles) : analyses juridiques signées Maître Vincent Machado da Luz.",
     "- [Sitemap](https://www.vmdl.ai/sitemap.xml) : liste exhaustive des pages indexables.",
     "",
   ];
-
-  if (articles.length > 0) {
-    lines.push("## Articles publiés", "");
-    for (const a of articles) {
-      lines.push(
-        `- [${a.title}](https://www.vmdl.ai/articles/${a.slug}) — ${a.excerpt || "Article publié le " + a.publishedAt}`
-      );
-    }
-    lines.push("");
-  }
 
   lines.push(
     "## Politique de citation",

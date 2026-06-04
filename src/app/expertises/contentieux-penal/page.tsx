@@ -311,6 +311,7 @@ export default function ContentieuxPenalPage() {
           </dl>
         </section>
 
+        {/* Section « Pour aller plus loin / Articles & analyses » temporairement retirée du public.
         <section className="max-w-5xl mx-auto px-6 sm:px-10 pb-12 sm:pb-16">
           <div className="border-t border-noir/15 pt-10 sm:pt-14 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-6">
             <div>
@@ -334,6 +335,7 @@ export default function ContentieuxPenalPage() {
             </Link>
           </div>
         </section>
+        */}
 
         <div className="max-w-5xl mx-auto px-6 sm:px-10 pb-20 sm:pb-28">
           <ContactCTA

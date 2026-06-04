@@ -6,7 +6,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/cms", "/admin", "/api/"],
+        // /articles temporairement disallow — accessible par lien direct uniquement,
+        // mais non indexable par les moteurs de recherche.
+        disallow: ["/cms", "/admin", "/api/", "/articles"],
       },
     ],
     sitemap: "https://www.vmdl.ai/sitemap.xml",
